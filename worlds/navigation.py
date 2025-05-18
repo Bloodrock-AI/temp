@@ -4,15 +4,19 @@ from typing import Tuple, Dict, List, Optional
 from worlds.world import World
 from llm_tool import tool
 
+FUNCTION_SYSTEM_PROMPT= """
+You are an AI agent responsible for handling spatial navigation in a 5x5 grid-based environment.
+Your objective is to correctly execute movement functions to navigate the grid efficiently while ensuring logical consistency.
+"""
+DECISION_SYSTEM_PROMPT="""
+You are a helpful assistant that makes changes on a database. The database is a list of messages. Always check the database.
+"""
 
 class Navigation(World):
     def __init__(self):
         self.world_state_description = "Player Position on 5x5 Grid: {}"
-        self.function_system_prompt = """
-You are an AI agent responsible for handling spatial navigation in a 5x5 grid-based environment.
-Your objective is to correctly execute movement functions to navigate the grid efficiently while ensuring logical consistency.
-        """
-        self.decision_system_prompt = self.function_system_prompt
+        self.function_system_prompt = FUNCTION_SYSTEM_PROMPT
+        self.decision_system_prompt = DECISION_SYSTEM_PROMPT
 
         self.grid_size = (5, 5)  # Fixed 5x5 grid
         self._init_world_state = {
