@@ -137,6 +137,8 @@ prompts = [
 
 
 if __name__ == '__main__':
+    OUTPUT_TOKENS_CAP = 10_000
+    
     temp_mistake_2_counter = 0
     FUNCTION_HALLUCINATION = 0
     PARAMETER_HALLUCINATION = 0
@@ -175,13 +177,13 @@ if __name__ == '__main__':
         decision_agent = DecisionAgent(
             model=model,
             prompt=decision_prompt,
-            max_output_length=5000,
+            max_output_length=OUTPUT_TOKENS_CAP,
         )
         
         function_agent = FunctionAgent(
             model=model,
             prompt=function_prompt,
-            max_output_length=5000,
+            max_output_length=OUTPUT_TOKENS_CAP,
         )
         
         while True:
@@ -236,7 +238,12 @@ if __name__ == '__main__':
             decision_prompt.function_called(fc)
             function_prompt.function_called(fc)
             
-            if decision_agent.decide(): break
+            try:
+                if decision_agent.decide(): break
+            except Exception as e:
+                print(f'Error: {repr(e)}')
+                print('Failed to parse decision')
+                break
             
         # print mistake counters
         from agents import MISTAKE_1_COUNTER, MISTAKE_2_COUNTER, GENERATED_TOKENS

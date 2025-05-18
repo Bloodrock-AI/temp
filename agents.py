@@ -195,6 +195,7 @@ class DecisionAgent:
     
     def decide(self) -> bool:
         global GENERATED_TOKENS
+        global MISTAKE_1_COUNTER
         out = self.model.prompt(
             self.prompt.get_prompt()
         )
@@ -208,6 +209,7 @@ class DecisionAgent:
         if m:
             answer = m.group(1)
             return answer == "true"
+        MISTAKE_1_COUNTER += 1
         raise Exception("Could not parse answer")
 
 class FunctionAgent:
