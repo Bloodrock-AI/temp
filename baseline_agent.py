@@ -144,6 +144,7 @@ if __name__ == '__main__':
     PARAMETER_HALLUCINATION = 0
     GENERATED_TOKENS_AVG = 0
     temp_generated_tokens = 0
+    RESULTS = []
 
     model = ModelType.DEEPSEEK_LLAMA_8B
     # user_prompt = prompts[0]['prompt']
@@ -256,6 +257,18 @@ if __name__ == '__main__':
         GENERATED_TOKENS_AVG += (GENERATED_TOKENS - temp_generated_tokens)
         
         print(f'Sequence: {decision_prompt.functions_called}')
+        RESULTS.append({
+            "prompt": user_prompt,
+            "functions_called": decision_prompt.functions_called,
+            "mistakes": {
+                "MISTAKE_1_COUNTER": MISTAKE_1_COUNTER,
+                "MISTAKE_2_COUNTER": MISTAKE_2_COUNTER + temp_mistake_2_counter,
+                "MISTAKE_3_COUNTER": MISTAKE_3_COUNTER,
+                "FUNCTION_HALLUCINATION": FUNCTION_HALLUCINATION,
+                "PARAMETER_HALLUCINATION": PARAMETER_HALLUCINATION,
+            },
+            "database": database
+        })
     
     # print mistake counters
     from agents import MISTAKE_1_COUNTER, MISTAKE_2_COUNTER, GENERATED_TOKENS
@@ -265,3 +278,4 @@ if __name__ == '__main__':
     print(f'FUNCTION_HALLUCINATION: {FUNCTION_HALLUCINATION}')
     print(f'PARAMETER_HALLUCINATION: {PARAMETER_HALLUCINATION}')
     print(f'GENERATED_TOKENS_AVG: {GENERATED_TOKENS_AVG / len(prompts)}')
+    print(f'RESULTS: {RESULTS}')
