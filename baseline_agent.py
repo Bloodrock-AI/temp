@@ -10,6 +10,8 @@ from model import Model
 from agents import DecisionAgentPrompt, DecisionAgent, FunctionAgentPrompt, FunctionAgent, FunctionCalled, MISTAKE_1_COUNTER, MISTAKE_2_COUNTER, MISTAKE_3_COUNTER
 from llm_tool import tool
 
+from worlds.crud import CRUD
+
 from typing import List, Dict, Optional
 
 FUNCTION_SYSTEM_PROMPT="""
@@ -135,6 +137,9 @@ prompts = [
     }
 ]
 
+tests = {
+    "crud": CRUD(),
+}
 
 if __name__ == '__main__':
     OUTPUT_TOKENS_CAP = 10_000
@@ -146,106 +151,138 @@ if __name__ == '__main__':
     temp_generated_tokens = 0
     RESULTS = []
 
-    model = ModelType.DEEPSEEK_LLAMA_8B
+    model = ModelType.DEEPSEEK_1_5B
     # user_prompt = prompts[0]['prompt']
     
-    for test in prompts:
-        from agents import GENERATED_TOKENS
-        temp_generated_tokens = GENERATED_TOKENS
-        setup_functions = test.get('functions', [])
-        user_prompt = test['prompt']
-    
-        # reset the database
-        database = {}
-        # run setup functions
-        for function in setup_functions:
-            eval(function)
-    
-        decision_prompt = DecisionAgentPrompt(
-            function_definitions=tool_definitions,
-            user_prompt=user_prompt,
-            additional_instructions=DECISION_SYSTEM_PROMPT,
-            additional_state=f"Database: {database}"
-        )
-        
-        function_prompt = FunctionAgentPrompt(
-            function_definitions=tool_definitions,
-            user_prompt=user_prompt,
-            additional_instructions=FUNCTION_SYSTEM_PROMPT,
-            additional_state=f"Database: {database}"
-        )
-        
-        decision_agent = DecisionAgent(
-            model=model,
-            prompt=decision_prompt,
-            max_output_length=OUTPUT_TOKENS_CAP,
-        )
-        
-        function_agent = FunctionAgent(
-            model=model,
-            prompt=function_prompt,
-            max_output_length=OUTPUT_TOKENS_CAP,
-        )
-        
-        while True:
+    for world in tests.values():
+        for prompt in world.prompts[1:]:
             
-            try:
-                function = function_agent.get_next_function()
-            except Exception as e:
-                print(f'Error: {repr(e)}')
-                print(f'Failed to parse function')
-                break
+            from agents import GENERATED_TOKENS
+            temp_generated_tokens = GENERATED_TOKENS
             
-            print(function)
+            setup_functions = prompt.get('functions', [])
+            user_prompt = prompt['prompt']
+        
+            # reset the database
+            world_state = world.world_state
             
-            try:
-                current_module = __import__(__name__)
-                resp = getattr(current_module, function["function_name"])(**function["arguments"])
-            except AttributeError as e:
-                # function does not exist
-                print(f'Error: {repr(e)}')
-                print('Failed to call function')
-                print('[CORE]: FUNCTION CALLING ERROR')
-                MISTAKE_3_COUNTER += 1
-                FUNCTION_HALLUCINATION += 1
-                break
-            except TypeError as e:
-                # parameter does not exist
-                print(f'Error: {repr(e)}')
-                print('Failed to call function')
-                print('[CORE]: FUNCTION CALLING ERROR')
-                # function or parameter does not exist
-                MISTAKE_3_COUNTER += 1
-                PARAMETER_HALLUCINATION += 1
-                break
-            except Exception as e:
-                # "function_name" or "arguments" do not exist -> invalid JSON format
-                print(f'Error: {repr(e)}')
-                print('Failed to call function')
-                temp_mistake_2_counter += 1
-                break
-            
-            fc = FunctionCalled(
-                name=function["function_name"],
-                arguments=function["arguments"],
-                response=resp,
+            # run setup functions
+            for function in setup_functions:
+                eval(f'world.{function}')
+
+            tool_definitions = world.tool_definitions
+        
+            FUNCTION_SYSTEM_PROMPT = world.function_system_prompt
+            DECISION_SYSTEM_PROMPT = world.decision_system_prompt
+
+            decision_prompt = DecisionAgentPrompt(
+                function_definitions=tool_definitions,
+                user_prompt=user_prompt,
+                additional_instructions=DECISION_SYSTEM_PROMPT,
+                additional_state=world.world_state_description.format(world_state)
+            )
+
+            function_prompt = FunctionAgentPrompt(
+                function_definitions=tool_definitions,
+                user_prompt=user_prompt,
+                additional_instructions=FUNCTION_SYSTEM_PROMPT,
+                additional_state=world.world_state_description.format(world_state)
             )
             
-            # update additional states
-            new_state = f"Database: {database}"
-            decision_prompt.additional_state = new_state
-            function_prompt.additional_state = new_state
+            decision_agent = DecisionAgent(
+                model=model,
+                prompt=decision_prompt,
+                max_output_length=OUTPUT_TOKENS_CAP,
+            )
             
-            decision_prompt.function_called(fc)
-            function_prompt.function_called(fc)
+            function_agent = FunctionAgent(
+                model=model,
+                prompt=function_prompt,
+                max_output_length=OUTPUT_TOKENS_CAP,
+            )
             
-            try:
-                if decision_agent.decide(): break
-            except Exception as e:
-                print(f'Error: {repr(e)}')
-                print('Failed to parse decision')
-                break
+            while True:
+                
+                try:
+                    function = function_agent.get_next_function()
+                except Exception as e:
+                    print(f'Error: {repr(e)}')
+                    print(f'Failed to parse function')
+                    break
+                
+                print(function)
+                
+                try:
+                    resp = getattr(world, function["function_name"])(**function["arguments"])
+                except AttributeError as e:
+                    # function does not exist
+                    print(f'Error: {repr(e)}')
+                    print('Failed to call function')
+                    print('[CORE]: FUNCTION CALLING ERROR')
+                    MISTAKE_3_COUNTER += 1
+                    FUNCTION_HALLUCINATION += 1
+                    break
+                except TypeError as e:
+                    # parameter does not exist
+                    print(f'Error: {repr(e)}')
+                    print('Failed to call function')
+                    print('[CORE]: FUNCTION CALLING ERROR')
+                    # function or parameter does not exist
+                    MISTAKE_3_COUNTER += 1
+                    PARAMETER_HALLUCINATION += 1
+                    break
+                except Exception as e:
+                    # "function_name" or "arguments" do not exist -> invalid JSON format
+                    print(f'Error: {repr(e)}')
+                    print('Failed to call function')
+                    temp_mistake_2_counter += 1
+                    break
+                
+                fc = FunctionCalled(
+                    name=function["function_name"],
+                    arguments=function["arguments"],
+                    response=resp,
+                )
+                
+                # update additional states
+                new_state = world.world_state_description.format(world_state)
+                decision_prompt.additional_state = new_state
+                function_prompt.additional_state = new_state
+                
+                decision_prompt.function_called(fc)
+                function_prompt.function_called(fc)
+                
+                try:
+                    if decision_agent.decide(): break
+                except Exception as e:
+                    print(f'Error: {repr(e)}')
+                    print('Failed to parse decision')
+                    break
+                
+            # print mistake counters
+            from agents import MISTAKE_1_COUNTER, MISTAKE_2_COUNTER, GENERATED_TOKENS
+            print(f'MISTAKE_1_COUNTER: {MISTAKE_1_COUNTER}')
+            print(f'MISTAKE_2_COUNTER: {MISTAKE_2_COUNTER + temp_mistake_2_counter}')
+            print(f'MISTAKE_3_COUNTER: {MISTAKE_3_COUNTER}')
+            print(f'FUNCTION_HALLUCINATION: {FUNCTION_HALLUCINATION}')
+            print(f'PARAMETER_HALLUCINATION: {PARAMETER_HALLUCINATION}')
+            print(f'GENERATED_TOKENS: {GENERATED_TOKENS - temp_generated_tokens}')
+            GENERATED_TOKENS_AVG += (GENERATED_TOKENS - temp_generated_tokens)
             
+            print(f'Sequence: {decision_prompt.functions_called}')
+            RESULTS.append({
+                "prompt": user_prompt,
+                "functions_called": decision_prompt.functions_called,
+                "mistakes": {
+                    "MISTAKE_1_COUNTER": MISTAKE_1_COUNTER,
+                    "MISTAKE_2_COUNTER": MISTAKE_2_COUNTER + temp_mistake_2_counter,
+                    "MISTAKE_3_COUNTER": MISTAKE_3_COUNTER,
+                    "FUNCTION_HALLUCINATION": FUNCTION_HALLUCINATION,
+                    "PARAMETER_HALLUCINATION": PARAMETER_HALLUCINATION,
+                },
+                "database": database
+            })
+        
         # print mistake counters
         from agents import MISTAKE_1_COUNTER, MISTAKE_2_COUNTER, GENERATED_TOKENS
         print(f'MISTAKE_1_COUNTER: {MISTAKE_1_COUNTER}')
@@ -253,29 +290,5 @@ if __name__ == '__main__':
         print(f'MISTAKE_3_COUNTER: {MISTAKE_3_COUNTER}')
         print(f'FUNCTION_HALLUCINATION: {FUNCTION_HALLUCINATION}')
         print(f'PARAMETER_HALLUCINATION: {PARAMETER_HALLUCINATION}')
-        print(f'GENERATED_TOKENS: {GENERATED_TOKENS - temp_generated_tokens}')
-        GENERATED_TOKENS_AVG += (GENERATED_TOKENS - temp_generated_tokens)
-        
-        print(f'Sequence: {decision_prompt.functions_called}')
-        RESULTS.append({
-            "prompt": user_prompt,
-            "functions_called": decision_prompt.functions_called,
-            "mistakes": {
-                "MISTAKE_1_COUNTER": MISTAKE_1_COUNTER,
-                "MISTAKE_2_COUNTER": MISTAKE_2_COUNTER + temp_mistake_2_counter,
-                "MISTAKE_3_COUNTER": MISTAKE_3_COUNTER,
-                "FUNCTION_HALLUCINATION": FUNCTION_HALLUCINATION,
-                "PARAMETER_HALLUCINATION": PARAMETER_HALLUCINATION,
-            },
-            "database": database
-        })
-    
-    # print mistake counters
-    from agents import MISTAKE_1_COUNTER, MISTAKE_2_COUNTER, GENERATED_TOKENS
-    print(f'MISTAKE_1_COUNTER: {MISTAKE_1_COUNTER}')
-    print(f'MISTAKE_2_COUNTER: {MISTAKE_2_COUNTER + temp_mistake_2_counter}')
-    print(f'MISTAKE_3_COUNTER: {MISTAKE_3_COUNTER}')
-    print(f'FUNCTION_HALLUCINATION: {FUNCTION_HALLUCINATION}')
-    print(f'PARAMETER_HALLUCINATION: {PARAMETER_HALLUCINATION}')
-    print(f'GENERATED_TOKENS_AVG: {GENERATED_TOKENS_AVG / len(prompts)}')
-    print(f'RESULTS: {RESULTS}')
+        print(f'GENERATED_TOKENS_AVG: {GENERATED_TOKENS_AVG / len(prompts)}')
+        print(f'RESULTS: {RESULTS}')
