@@ -29,7 +29,7 @@ class FileManagement(World):
             "notes.txt": "Lady Maria lies dormant in the Astral Clocktower",
             "meeting_notes.txt": "An appointment with the lawyer is set for 5 p.m."
         }
-        self.world_state = self._init_world_state
+        self.reset_world_state()
         self.prompts = [
             {
                 "prompt": "Create a file named 'notes.txt', then write 'Meeting at 10 AM' to it.",
