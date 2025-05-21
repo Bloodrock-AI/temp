@@ -23,7 +23,7 @@ class Communication(World):
         self._init_world_state = {
             "messages": []
         }
-        self.world_state = self._init_world_state
+        self.reset_world_state()
         self.prompts = [
             {
                 "prompt": "Send a high-priority message from 'Alice' to 'Bob' with the content 'Urgent meeting at 3 PM'.",
