@@ -26,7 +26,7 @@ class Automation(World):
             "door_locked": True,
             "alarm_on": False,
         }
-        self.world_state = self._init_world_state
+        self.reset_world_state()
         self.prompts = [
             {
                 "prompt": "Turn on the lights and set the thermostat to 24 degrees.",
