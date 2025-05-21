@@ -30,23 +30,23 @@ class Automation(World):
         self.prompts = [
             {
                 "prompt": "Turn on the lights and set the thermostat to 24 degrees.",
-                "functions": ["turn_on_lights()", "set_thermostat(temperature=24)"]
+                "expected_sequence": ["turn_on_lights()", "set_thermostat(temperature=24)"]
             },
             {
                 "prompt": "Lock the door and activate the alarm.",
-                "functions": ["lock_door()", "activate_alarm()"]
+                "expected_sequence": ["lock_door()", "activate_alarm()"]
             },
             {
                 "prompt": "Unlock the door, turn off the lights, and set the thermostat to 20 degrees.",
-                "functions": ["unlock_door()", "turn_off_lights()", "set_thermostat(temperature=20)"]
+                "expected_sequence": ["unlock_door()", "turn_off_lights()", "set_thermostat(temperature=20)"]
             },
             {
                 "prompt": "Print the system status, then turn on the lights if they are off.",
-                "functions": ["print_system_status()", "turn_on_lights()"]
+                "expected_sequence": ["print_system_status()", "turn_on_lights()"]
             },
             {
                 "prompt": "Deactivate the alarm, unlock the door, and lower the thermostat to 18 degrees.",
-                "functions": ["deactivate_alarm()", "unlock_door()", "set_thermostat(temperature=18)"]
+                "expected_sequence": ["deactivate_alarm()", "unlock_door()", "set_thermostat(temperature=18)"]
             }
         ]
 
