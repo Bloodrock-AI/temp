@@ -29,7 +29,7 @@ class Validation(World):
         
         self.tool_definitions = self._get_tool_definitions()
         self._init_world_state = {}
-        self.world_state = self._init_world_state
+        self.reset_world_state()
         self.prompts = [
             {
                 "prompt": "Validate the email 'user@example.com'.",
