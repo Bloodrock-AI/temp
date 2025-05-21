@@ -31,7 +31,7 @@ class Web_Browsing(World):
             "current_url": None,
             "history": []  # Stores previously visited URLs
         }
-        self.world_state = self._init_world_state
+        self.reset_world_state()
         self.prompts = [
             {"prompt": "Move to 'page1.html' and retrieve its HTML source.", "functions": ["move_to_url(file_name='page1.html')", "get_page_source()"]},
             {"prompt": "Navigate to 'page2.html', then search for the text 'Matt then discusses his former job, training \"cookies\"'.", "expected_sequence": ["move_to_url(file_name='page2.html')", "find_text_in_page(text='Matt then discusses his former job, training \"cookies\"')"]},
