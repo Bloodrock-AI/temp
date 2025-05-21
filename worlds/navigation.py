@@ -22,7 +22,7 @@ class Navigation(World):
         self._init_world_state = {
             "player_position": (0, 0),
         }
-        self.world_state = self._init_world_state.copy()
+        self.reset_world_state()
 
         self.prompts = [
             {"prompt": "Move the player right by 2 steps.", "expected_sequence": ["move_right(2)"]},
