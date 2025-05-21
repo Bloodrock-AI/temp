@@ -200,7 +200,6 @@ class DecisionAgent:
             self.prompt.get_prompt()
         )
         GENERATED_TOKENS += self.model.last_generated_tokens
-        print(out)
         out=out.split('</think>')[1]
         
         reg = r'"answer":\s*(true|false)'
@@ -235,7 +234,6 @@ class FunctionAgent:
             self.prompt.get_prompt()
         )
         GENERATED_TOKENS += self.model.last_generated_tokens
-        print(out)
         out=out.split('<token>')[-1]
         
         reg = re.compile(
@@ -256,7 +254,6 @@ class FunctionAgent:
             
             check_chars = ['{', '}', ':', '[', ']', ',', ' ']
             last_function_call = matches[-1]
-            print(matches)
             t = ''
             
             for index, c in enumerate(last_function_call):
