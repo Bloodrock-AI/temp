@@ -32,7 +32,7 @@ class Transaction(World):
         self.prompts = [
             {
                 "prompt": "Create account 'A123', deposit 500, and confirm the balance.",
-                "functions": [
+                "expected_sequence": [
                     "create_account(account_id='A123')",
                     "deposit(account_id='A123', amount=500)",
                     "check_balance(account_id='A123')"
@@ -40,7 +40,7 @@ class Transaction(World):
             },
             {
                 "prompt": "Create account 'A123', deposit 200, withdraw 100 and then retrieve its transaction history.",
-                "functions": [
+                "expected_sequence": [
                     "create_account(account_id='A123')",
                     "deposit(account_id='A123', amount=200)",
                     "withdraw(account_id='A123', amount=100)",
@@ -49,7 +49,7 @@ class Transaction(World):
             },
             {
                 "prompt": "Create both 'A123' and 'B456' accounts in that order, deposit 500 into 'A123', then transfer 300 from 'A123' to 'B456' and confirm both balances starting from 'A123'.",
-                "functions": [
+                "expected_sequence": [
                     "create_account(account_id='A123')",
                     "create_account(account_id='B456')",
                     "deposit(account_id='A123',amount=500)",
@@ -60,7 +60,7 @@ class Transaction(World):
             },
             {
                 "prompt": "Create account 'A123', deposit 200, apply 5% interest, and retrieve the new balance.",
-                "functions": [
+                "expected_sequence": [
                     "create_account(account_id='A123')",
                     "deposit(account_id='A123', amount=200)",
                     "apply_interest(account_id='A123', rate=0.05)",
@@ -69,7 +69,7 @@ class Transaction(World):
             },
             {
                 "prompt": "Create accounts 'A123' and 'B456' in this order, then retrieve their transaction histories in the order they were created.",
-                "functions": [
+                "expected_sequence": [
                     "create_account(account_id='A123')",
                     "create_account(account_id='B456')",
                     "get_transaction_history(account_id='A123')",
@@ -78,7 +78,7 @@ class Transaction(World):
             },
             {
                 "prompt": "Create account 'D001', deposit 100, check its balance and then close it.",
-                "functions": [
+                "expected_sequence": [
                     "create_account(account_id='B456')",
                     "deposit(account_id='B456', amount=100)",
                     "check_balance(account_id='B456')",
@@ -87,7 +87,7 @@ class Transaction(World):
             },
             {
                 "prompt": "Create account 'D001', deposit 1000, apply 10% interest, then withdraw 300.",
-                "functions": [
+                "expected_sequence": [
                     "create_account(account_id='D001')",
                     "deposit(account_id='D001', amount=1000)",
                     "apply_interest(account_id='D001', rate=0.1)",
@@ -96,7 +96,7 @@ class Transaction(World):
             },
             {
                 "prompt": "Create two accounts 'E111' and 'F222' in that order, deposit 500 into 'E111' and apply 10% interest. Then, transfer all of its money to 'F222' and close 'E111'.",
-                "functions": [
+                "expected_sequence": [
                     "create_account(account_id='E111')",
                     "create_account(account_id='F222')",
                     "deposit(account_id='E111', amount=500)",
@@ -107,7 +107,7 @@ class Transaction(World):
             },
             {
                 "prompt": "Create account 'A123', deposit 100, charge a fee of 50, and check the balance.",
-                "functions": [
+                "expected_sequence": [
                     "create_account(account_id='A123')",
                     "deposit(account_id='A123', amount=100)",
                     "charge_fee(account_id='A123', amount=50)",
@@ -116,7 +116,7 @@ class Transaction(World):
             },
             {
                 "prompt": "Create account 'Cainhurst', deposit 100, then refund 100 and retrieve the transaction history.",
-                "functions": [
+                "expected_sequence": [
                     "create_account(account_id='Cainhurst')",
                     "deposit(account_id='Cainhurst', amount=100)",
                     "refund(account_id='Cainhurst', amount=100)",
@@ -125,7 +125,7 @@ class Transaction(World):
             },
             {
                 "prompt": "Create account 'D001', deposit 50, apply 10% interest, then charge a maintenance fee of 10.",
-                "functions": [
+                "expected_sequence": [
                     "create_account(account_id='D001')",
                     "deposit(account_id='D001', amount=50)",
                     "apply_interest(account_id='D001', rate=0.1)",
@@ -134,7 +134,7 @@ class Transaction(World):
             },
             {
                 "prompt": "Create account 'G888', deposit 500, then charge a fee of the account's entire amount and check the balance.",
-                "functions": [
+                "expected_sequence": [
                     "create_account(account_id='G888')",
                     "deposit(account_id='G888', amount=500)",
                     "charge_fee(account_id='G888', amount=500)",
@@ -143,7 +143,7 @@ class Transaction(World):
             },
             {
                 "prompt": "Create account 'E111', deposit 100, refund 150, then apply 5% interest.",
-                "functions": [
+                "expected_sequence": [
                     "create_account(account_id='E111')",
                     "deposit('E111', 100)",
                     "refund(account_id='E111', amount=150)",
