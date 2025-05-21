@@ -7,7 +7,7 @@ models = [
     ModelType.QWEN_7B,
     ModelType.DEEPSEEK_QWEN_14B,
     ModelType.MISTRAL_24B,
-    ModelType.LLAMA_3_3_70B,
+    ModelType.DEEPSEEK_LLAMA_70B,
 ]
 
 for model in models:

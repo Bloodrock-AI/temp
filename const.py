@@ -11,6 +11,7 @@ class ModelType(Enum):
     DEEPSEEK_QWEN_7B = "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B"
     DEEPSEEK_LLAMA_8B = "deepseek-ai/DeepSeek-R1-Distill-Llama-8B"
     DEEPSEEK_QWEN_14B = "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B"
+    DEEPSEEK_LLAMA_70B = "deepseek-ai/DeepSeek-R1-Distill-Llama-70B"
     
     # Qwen
     QWEN_0_5B = "Qwen/Qwen2.5-0.5B"
