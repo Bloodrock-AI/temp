@@ -28,7 +28,7 @@ class Transaction(World):
         
         self.tool_definitions = self._get_tool_definitions()
         self._init_world_state = {}
-        self.world_state = self._init_world_state
+        self.reset_world_state()
         self.prompts = [
             {
                 "prompt": "Create account 'A123', deposit 500, and confirm the balance.",
