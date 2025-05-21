@@ -56,6 +56,7 @@ class Model:
         
         # decode output
         output = self.tokenizer.decode(output_tokens[0], skip_special_tokens=True)
+        print(f"Output: {output}")
         
         return output
 

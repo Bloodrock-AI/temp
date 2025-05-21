@@ -34,7 +34,9 @@ tests = {
     "writing": Writing(),
 }
 
-if __name__ == '__main__':
+def main(model: str, output_file: str):
+    global MISTAKE_3_COUNTER
+    
     OUTPUT_TOKENS_CAP = 10_000
     
     temp_mistake_2_counter = 0
@@ -43,8 +45,6 @@ if __name__ == '__main__':
     GENERATED_TOKENS_AVG = 0
     temp_generated_tokens = 0
     RESULTS = []
-
-    model = sys.argv[1]
     
     try:
     
@@ -183,5 +183,5 @@ if __name__ == '__main__':
     except KeyboardInterrupt:
         print('KeyboardInterrupt: Stopping the execution')
 
-    with open(sys.argv[2], 'w') as f:
+    with open(output_file, 'w') as f:
         json.dump(RESULTS, f, indent=4)
