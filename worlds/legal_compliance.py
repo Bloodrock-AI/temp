@@ -45,7 +45,7 @@ class Legal_Compliance(World):
             and documented. Data breaches must be reported within 72 hours.
             """
         }
-        self.world_state = self._init_world_state
+        self.reset_world_state()
         self.prompts = [
             {"prompt": "Verify if the statement 'Users must be informed before data collection' adheres to the privacy policy. If it does, approve it as a valid policy statement.", "expected_sequence": ["check_compliance(doc_name='privacy_policy', statement='Users must be informed before data collection')", "approve_policy(statement='Users must be informed before data collection')"]},
             {"prompt": "A potential violation has been detected where personal data is being shared with third parties without consent. Flag this violation as 'Unauthorized data sharing detected' and request consent from user 'U123' for data processing as 'Data processing consent required'.", "expected_sequence": ["flag_violation(issue='Unauthorized data sharing detected')", "request_consent(user_id='U123', reason='Data processing consent required')"]},
