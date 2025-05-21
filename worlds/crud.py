@@ -24,12 +24,14 @@ class CRUD(World):
         self.prompts = [
             {
                 "prompt": "Create a new user named 'Alice' with an age of 25. List the details of this user and confirm the age field is correct",
+                "expected_sequence": [],
             },
             {
                 "prompt": "Show all users and update the email of the user with name 'Alice' to 'alice@example.com'. Ensure the changes were applied.",
                 "functions": [
                     'add_user(name="Alice", age=25)',
                 ],
+                "expected_sequence": [],
             },
             {
                 "prompt": "Show all users. Then, update the emails of all users with no email address to 'default@example.com'. Pick one of these users and ensure the changes were applied.",
@@ -37,12 +39,15 @@ class CRUD(World):
                     'add_user(name="John", age=30, email=None)',
                     'add_user(name="Jane", age=25, email=None)',
                 ],
+                "expected_sequence": [],
             },
             {
-                "prompt": "Add a new user named 'Charlie' aged 40 with email 'charlie@email.com'. Then, delete that user. Finally, confirm the deletion by showing all the users."
+                "prompt": "Add a new user named 'Charlie' aged 40 with email 'charlie@email.com'. Then, delete that user. Finally, confirm the deletion by showing all the users.",
+                "expected_sequence": [],
             },
             {
-                "prompt": "Create a new user named 'Eve' with an age of 22 and empty email. Then, update their email to 'eve@example.com'. Finally delete the user and verify the deletion by checking all the existing users.",
+                "prompt": "Create a new user named 'Eve' with an age of 22 and empty email. Then, update their email to 'eve@example.com'. Finally delete the user and verify the deletion by checking all the existing users.",,
+                "expected_sequence": [],
             }
         ]
 

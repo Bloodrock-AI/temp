@@ -10,7 +10,7 @@ from model import Model
 from agents import DecisionAgentPrompt, DecisionAgent, FunctionAgentPrompt, FunctionAgent, FunctionCalled, MISTAKE_1_COUNTER, MISTAKE_2_COUNTER, MISTAKE_3_COUNTER
 from llm_tool import tool
 
-from worlds.crud import CRUD
+from worlds import Automation, Communication, Configurations, CRUD, DataProcessing, DesktopManager, EventsScheduler, FileManagement, LegalCompliance, Maths, Navigation, Transactions, Validation, WebBrowsing, Writing
 
 from typing import List, Dict, Optional
 
@@ -138,7 +138,21 @@ prompts = [
 ]
 
 tests = {
+    "automation": Automation(),
+    "communication": Communication(),
+    "configurations": Configurations(),
     "crud": CRUD(),
+    "data_processing": DataProcessing(),
+    "desktop_manager": DesktopManager(),
+    "events_scheduler": EventsScheduler(),
+    "file_management": FileManagement(),
+    "legal_compliance": LegalCompliance(),
+    "maths": Maths(),
+    "navigation": Navigation(),
+    "transactions": Transactions(),
+    "validation": Validation(),
+    "web_browsing": WebBrowsing(),
+    "writing": Writing(),
 }
 
 if __name__ == '__main__':
@@ -167,8 +181,8 @@ if __name__ == '__main__':
             world_state = world.world_state
             
             # run setup functions
-            for function in setup_functions:
-                eval(f'world.{function}')
+            # for function in setup_functions:
+            #     eval(f'world.{function}')
 
             tool_definitions = world.tool_definitions
         
