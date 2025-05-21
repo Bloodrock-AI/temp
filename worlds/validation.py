@@ -33,27 +33,27 @@ class Validation(World):
         self.prompts = [
             {
                 "prompt": "Validate the email 'user@example.com'.",
-                "functions": ["validate_email(email='user@example.com')"]
+                "expected_sequence": ["validate_email(email='user@example.com')"]
             },
             {
                 "prompt": "Hash the password 'Yharnam' and validate that 'Hunter' does not match its hash.",
-                "functions": ["hash_password(password='Yharnam')", "check_password_hash(password='Hunter', '<hashed_value>')"]
+                "expected_sequence": ["hash_password(password='Yharnam')", "check_password_hash(password='Hunter', '<hashed_value>')"]
             },
             {
                 "prompt": "Validate if 'John_Doe' is a proper username, then hash the password 'MyStrongPass!'.",
-                "functions": ["validate_username(username='John_Doe')", "hash_password(password='MyStrongPass!')"]
+                "expected_sequence": ["validate_username(username='John_Doe')", "hash_password(password='MyStrongPass!')"]
             },
             {
                 "prompt": "Generate a 7-digit OTP and verify if '1234567' is the correct OTP.",
-                "functions": ["generate_otp(length=7)", "verify_otp(input_otp='1234567', correct_otp='<generated_otp>')"]
+                "expected_sequence": ["generate_otp(length=7)", "verify_otp(input_otp='1234567', correct_otp='<generated_otp>')"]
             },
             {
                 "prompt": "Validate the email 'invalid-email', hash the password 'test123', then generate an OTP of length 9.",
-                "functions": ["validate_email(email='invalid-email')", "hash_password(password='test123')", "generate_otp(length=9)"]
+                "expected_sequence": ["validate_email(email='invalid-email')", "hash_password(password='test123')", "generate_otp(length=9)"]
             },
             {
                 "prompt": "Validate 'Alice_Wonder' as a username, hash 'SuperSecure123', generate an OTP of length 8, and check if '999999' matches it.",
-                "functions": ["validate_username(username='Alice_Wonder')", "hash_password(password='SuperSecure123')", "generate_otp(length=8)", "verify_otp(input_otp='99999999', correct_otp='<generated_otp>')"]
+                "expected_sequence": ["validate_username(username='Alice_Wonder')", "hash_password(password='SuperSecure123')", "generate_otp(length=8)", "verify_otp(input_otp='99999999', correct_otp='<generated_otp>')"]
             }
         ]
 
