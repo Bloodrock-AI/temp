@@ -21,7 +21,7 @@ class EventsScheduler(World):
         
         self.tool_definitions = self._get_tool_definitions()
         self._init_world_state = {}
-        self.world_state = self._init_world_state.copy()
+        self.reset_world_state()
         self.prompts = [
             {
                 "prompt": "Schedule a meeting called 'Team Sync' at '2025-02-10T09:00:00' and retrieve its scheduled time.",
