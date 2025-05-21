@@ -30,7 +30,7 @@ class DataProcessing(World):
                 {"employee_id": 6, "name": "Frank", "age": 45, "salary": 100000, "department": "Finance", "status": "inactive", "sales": 8000, "category": "accounting", "date": "2024-02-06"}
             ]
         }
-        self.world_state = self._init_world_state
+        self.reset_world_state()
         self.prompts = [
             {
                 "prompt": "Print all employees in the 'HR' department who are currently active.",
