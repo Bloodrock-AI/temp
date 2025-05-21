@@ -20,7 +20,7 @@ Always check the state.
 WORLD_STATE_DESCRIPTION = "Account Database: {}"
 
 
-class Transaction(World):
+class Transactions(World):
     def __init__(self):
         self.world_state_description = WORLD_STATE_DESCRIPTION
         self.function_system_prompt = FUNCTION_SYSTEM_PROMPT

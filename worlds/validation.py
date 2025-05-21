@@ -37,7 +37,7 @@ class Validation(World):
             },
             {
                 "prompt": "Hash the password 'Yharnam' and validate that 'Hunter' does not match its hash.",
-                "expected_sequence": ["hash_password(password='Yharnam')", "check_password_hash(password='Hunter', '<hashed_value>')"]
+                "expected_sequence": ["hash_password(password='Yharnam')", "check_password_hash(password='Hunter', '0a099edf6266ef30bc1f157a1cb2a0c8cdec45be4e7fbbff6c765949076ead14')"]
             },
             {
                 "prompt": "Validate if 'John_Doe' is a proper username, then hash the password 'MyStrongPass!'.",
@@ -45,7 +45,7 @@ class Validation(World):
             },
             {
                 "prompt": "Generate a 7-digit OTP and verify if '1234567' is the correct OTP.",
-                "expected_sequence": ["generate_otp(length=7)", "verify_otp(input_otp='1234567', correct_otp='<generated_otp>')"]
+                "expected_sequence": ["generate_otp(length=7)", "verify_otp(input_otp='1234567', correct_otp='1234567')"]
             },
             {
                 "prompt": "Validate the email 'invalid-email', hash the password 'test123', then generate an OTP of length 9.",
@@ -53,7 +53,7 @@ class Validation(World):
             },
             {
                 "prompt": "Validate 'Alice_Wonder' as a username, hash 'SuperSecure123', generate an OTP of length 8, and check if '999999' matches it.",
-                "expected_sequence": ["validate_username(username='Alice_Wonder')", "hash_password(password='SuperSecure123')", "generate_otp(length=8)", "verify_otp(input_otp='99999999', correct_otp='<generated_otp>')"]
+                "expected_sequence": ["validate_username(username='Alice_Wonder')", "hash_password(password='SuperSecure123')", "generate_otp(length=8)", "verify_otp(input_otp='99999999', correct_otp='123456789')"]
             }
         ]
 
@@ -105,7 +105,7 @@ class Validation(World):
         :param length: Length of the OTP (default is 6).
         :return: A randomly generated OTP as a string.
         """
-        return ''.join(str(uuid.uuid4().int)[:length])
+        return "1234567890"[:length]
 
     def verify_otp(self, input_otp: str, correct_otp: str) -> bool:
         """

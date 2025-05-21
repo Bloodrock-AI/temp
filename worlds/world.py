@@ -25,4 +25,4 @@ class World:
         ]
         
     def reset_world_state(self):
-        self.world_state = self._init_world_state
+        self.world_state = self._init_world_state.copy()

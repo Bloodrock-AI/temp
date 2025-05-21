@@ -21,7 +21,7 @@ Always base your judgment on the actual document content and previous compliance
 WORLD_STATE_DESCRIPTION = "Compliance Records: {}"
 
 
-class Legal_Compliance(World):
+class LegalCompliance(World):
     def __init__(self):
         self.world_state_description = WORLD_STATE_DESCRIPTION
         self.function_system_prompt = FUNCTION_SYSTEM_PROMPT

@@ -20,7 +20,7 @@ Determine whether the user's objective has been met based on executed browsing a
 
 WORLD_STATE_DESCRIPTION = "Web Browsing State: {}"
 
-class Web_Browsing(World):
+class WebBrowsing(World):
     def __init__(self):
         self.world_state_description = WORLD_STATE_DESCRIPTION
         self.function_system_prompt = FUNCTION_SYSTEM_PROMPT
