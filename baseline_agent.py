@@ -171,15 +171,15 @@ if __name__ == '__main__':
                     "FUNCTION_HALLUCINATION": FUNCTION_HALLUCINATION,
                     "PARAMETER_HALLUCINATION": PARAMETER_HALLUCINATION,
                 },
-                "database": database
+                "database": world.world_state,
             })
         
         # print mistake counters
-        from agents import MISTAKE_1_COUNTER, MISTAKE_2_COUNTER, GENERATED_TOKENS
-        print(f'MISTAKE_1_COUNTER: {MISTAKE_1_COUNTER}')
-        print(f'MISTAKE_2_COUNTER: {MISTAKE_2_COUNTER + temp_mistake_2_counter}')
-        print(f'MISTAKE_3_COUNTER: {MISTAKE_3_COUNTER}')
-        print(f'FUNCTION_HALLUCINATION: {FUNCTION_HALLUCINATION}')
-        print(f'PARAMETER_HALLUCINATION: {PARAMETER_HALLUCINATION}')
-        print(f'GENERATED_TOKENS_AVG: {GENERATED_TOKENS_AVG / len(prompts)}')
-        print(f'RESULTS: {RESULTS}')
+        # from agents import MISTAKE_1_COUNTER, MISTAKE_2_COUNTER, GENERATED_TOKENS
+        # print(f'MISTAKE_1_COUNTER: {MISTAKE_1_COUNTER}')
+        # print(f'MISTAKE_2_COUNTER: {MISTAKE_2_COUNTER + temp_mistake_2_counter}')
+        # print(f'MISTAKE_3_COUNTER: {MISTAKE_3_COUNTER}')
+        # print(f'FUNCTION_HALLUCINATION: {FUNCTION_HALLUCINATION}')
+        # print(f'PARAMETER_HALLUCINATION: {PARAMETER_HALLUCINATION}')
+        # print(f'GENERATED_TOKENS_AVG: {GENERATED_TOKENS_AVG / len()}')
+        # print(f'RESULTS: {RESULTS}')
