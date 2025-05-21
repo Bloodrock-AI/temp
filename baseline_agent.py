@@ -1,5 +1,6 @@
 import os
 import re
+import sys
 import json
 import time
 from datetime import datetime
@@ -182,5 +183,5 @@ if __name__ == '__main__':
     except KeyboardInterrupt:
         print('KeyboardInterrupt: Stopping the execution')
 
-    with open('results.json', 'w') as f:
+    with open(sys.argv[1], 'w') as f:
         json.dump(RESULTS, f, indent=4)
