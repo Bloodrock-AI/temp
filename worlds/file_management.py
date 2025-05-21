@@ -33,42 +33,42 @@ class FileManagement(World):
         self.prompts = [
             {
                 "prompt": "Create a file named 'notes.txt', then write 'Meeting at 10 AM' to it.",
-                "functions": [
+                "expected_sequence": [
                     "create_file(filename='notes.txt')",
                     "write_file(filename='notes.txt', content='Meeting at 10 AM')"
                 ]
             },
             {
                 "prompt": "Check if 'notes.txt' exists, then read its content.",
-                "functions": [
+                "expected_sequence": [
                     "file_exists(filename='notes.txt')",
                     "read_file(filename='notes.txt')"
                 ]
             },
             {
                 "prompt": "Rename 'notes.txt' to 'new_notes.txt' and list all files.",
-                "functions": [
+                "expected_sequence": [
                     "rename_file(old_name='notes.txt', new_name='new_notes.txt')",
                     "list_files()"
                 ]
             },
             {
                 "prompt": "Append 'New agenda added' to 'meeting_notes.txt' and count its words.",
-                "functions": [
+                "expected_sequence": [
                     "append_to_file(filename='meeting_notes.txt', content='New agenda added')",
                     "count_words('meeting_notes.txt')"
                 ]
             },
             {
                 "prompt": "Copy 'meeting_notes.txt' to 'notes.txt' and check the latter's size.",
-                "functions": [
+                "expected_sequence": [
                     "copy_file(source='meeting_notes.txt', destination='notes.txt')",
                     "get_file_size('notes.txt')"
                 ]
             },
             {
                 "prompt": "Search for the word 'agenda' in 'meeting_notes.txt'. If it's not found, append it.",
-                "functions": [
+                "expected_sequence": [
                     "search_in_file(filename='meeting_notes.txt', keyword='agenda')",
                     "append_to_file(filename='meeting_notes.txt', content='agenda')"
                 ]
