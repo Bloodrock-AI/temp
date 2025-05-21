@@ -9,7 +9,7 @@ import random
 FUNCTION_SYSTEM_PROMPT = """
 You are a helpful assistant responsible for constructing grammatically correct sentences.
 You interact with a database that stores the in-progress sentence.
-Always use the designated writing functions to build or modify the sentence based on the user’s request.
+Always use the designated writing expected_sequence to build or modify the sentence based on the user’s request.
 Never write text directly — always call the appropriate function to add specific parts of speech.
 """
 
@@ -43,7 +43,7 @@ class Writing(World):
         self.prompts = [
             {
                 "prompt": "Write a simple sentence describing 'the big cat runs'.",
-                "functions": [
+                "expected_sequence": [
                     "add_article(article='the')",
                     "add_adjective(adjective='big')",
                     "add_noun(noun='cat')",
@@ -53,7 +53,7 @@ class Writing(World):
             },
             {
                 "prompt": "Write a sentence about a small dog sleeping under a tree. Use present simple tense for the verb",
-                "functions": [
+                "expected_sequence": [
                     "add_article(article='a')",
                     "add_adjective(adjective='small')",
                     "add_noun(noun='dog')",
@@ -66,7 +66,7 @@ class Writing(World):
             },
             {
                 "prompt": "Form a sentence about 'a fast bird' that 'flies beside the house'.",
-                "functions": [
+                "expected_sequence": [
                     "add_article(article='the')",
                     "add_adjective(adjective='fast')",
                     "add_noun(noun='bird')",
@@ -79,7 +79,7 @@ class Writing(World):
             },
             {
                 "prompt": "Create a sentence consisting of the words: 'runs', 'the', 'dog', 'happy'. Put them in the correct order first.",
-                "functions": [
+                "expected_sequence": [
                     "add_article(article='the')",
                     "add_adjective(adjective='happy')",
                     "add_noun(noun='dog')",
@@ -89,7 +89,7 @@ class Writing(World):
             },
             {
                 "prompt": "Construct a sentence where 'the blue cat jumps above a small X'. Replace 'X' with the available synonym word for 'large plant' in the 'nouns' list.",
-                "functions": [
+                "expected_sequence": [
                     "add_article(article='the')",
                     "add_adjective(adjective='blue')",
                     "add_noun(noun='cat')",
@@ -103,7 +103,7 @@ class Writing(World):
             },
             {
                 "prompt": "Construct the sentence 'the bird flies', finalize it, then repeat the entire process again.",
-                "functions": [
+                "expected_sequence": [
                     "add_article(article='the')",
                     "add_noun(noun='bird')",
                     "add_verb(verb='flies')",
