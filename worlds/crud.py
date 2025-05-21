@@ -46,7 +46,7 @@ class CRUD(World):
                 "expected_sequence": ["add_user(name='Charlie', age=40, email='charlie@email.com')", "delete_user(user_id='Charlie')", "list_users()"],
             },
             {
-                "prompt": "Create a new user named 'Eve' with an age of 22 and empty email. Then, update their email to 'eve@example.com'. Finally delete the user and verify the deletion by checking all the existing users.",,
+                "prompt": "Create a new user named 'Eve' with an age of 22 and empty email. Then, update their email to 'eve@example.com'. Finally delete the user and verify the deletion by checking all the existing users."
                 "expected_sequence": ["add_user(name='Eve', age=22, email=None)", "update_user_email(user_id='Eve', email='eve@example.com')", "delete_user(user_id='Eve')", "list_users()"],
             }
         ]
