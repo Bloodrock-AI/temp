@@ -44,7 +44,7 @@ if __name__ == '__main__':
     temp_generated_tokens = 0
     RESULTS = []
 
-    model = ModelType.DEEPSEEK_1_5B
+    model = sys.argv[1]
     
     try:
     
@@ -169,7 +169,7 @@ if __name__ == '__main__':
                 RESULTS.append({
                     "world": world.__class__.__name__,
                     "prompt": user_prompt,
-                    "functions_called": decision_prompt.functions_called,
+                    "functions_called": str(decision_prompt.functions_called),
                     "mistakes": {
                         "MISTAKE_1_COUNTER": MISTAKE_1_COUNTER,
                         "MISTAKE_2_COUNTER": MISTAKE_2_COUNTER + temp_mistake_2_counter,
@@ -183,5 +183,5 @@ if __name__ == '__main__':
     except KeyboardInterrupt:
         print('KeyboardInterrupt: Stopping the execution')
 
-    with open(sys.argv[1], 'w') as f:
+    with open(sys.argv[2], 'w') as f:
         json.dump(RESULTS, f, indent=4)

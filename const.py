@@ -11,6 +11,17 @@ class ModelType(Enum):
     DEEPSEEK_QWEN_7B = "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B"
     DEEPSEEK_LLAMA_8B = "deepseek-ai/DeepSeek-R1-Distill-Llama-8B"
     DEEPSEEK_QWEN_14B = "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B"
+    
+    # Qwen
+    QWEN_0_5B = "Qwen/Qwen2.5-0.5B"
+    QWEN_7B = "Qwen/Qwen-7B"
+    
+    # Mistral
+    MISTRAL_24B = "mistralai/Mistral-Small-3.1-24B-Instruct-2503"
+    
+    # Llama
+    LLAMA_3_3_70B = "meta-llama/Llama-3.3-70B-Instruct"
+    
 
 class Role(Enum):
     SYSTEM = "system"
