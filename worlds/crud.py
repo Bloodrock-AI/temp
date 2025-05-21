@@ -20,7 +20,7 @@ class CRUD(World):
         
         self.tool_definitions = self._get_tool_definitions()
         self._init_world_state = {}
-        self.world_state = self._init_world_state
+        self.reset_world_state()
         self.prompts = [
             {
                 "prompt": "Create a new user named 'Alice' with an age of 25. List the details of this user and confirm the age field is correct",
