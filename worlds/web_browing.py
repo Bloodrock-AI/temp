@@ -34,11 +34,11 @@ class Web_Browsing(World):
         self.world_state = self._init_world_state
         self.prompts = [
             {"prompt": "Move to 'page1.html' and retrieve its HTML source.", "functions": ["move_to_url(file_name='page1.html')", "get_page_source()"]},
-            {"prompt": "Navigate to 'page2.html', then search for the text 'Matt then discusses his former job, training \"cookies\"'.", "functions": ["move_to_url(file_name='page2.html')", "find_text_in_page(text='Matt then discusses his former job, training \"cookies\"')"]},
-            {"prompt": "Go to 'page3.html', retrieve the page source, and confirm the current URL.", "functions": ["move_to_url(file_name='page3.html')", "get_page_source()", "get_current_url()"]},
-            {"prompt": "Move to 'page1.html'. Then, move to 'page2.html'. Then go back to the previous page.", "functions": ["move_to_url(file_name='page1.html')","move_to_url(file_name='page2.html')", "go_back()"]},
-            {"prompt": "Retrieve the current URL before and after navigating to 'page3.html'.", "functions": ["get_current_url()", "move_to_url('page3.html')", "get_current_url()"]},
-            {"prompt": "View the browsing history after visiting 'page3.html', 'page1.html' and 'page2.html' in that specific order.", "functions": ["move_to_url(file_name='page3.html')", "move_to_url(file_name='page1.html')", "move_to_url(file_name='page2.html')", "view_browsing_history()"]}
+            {"prompt": "Navigate to 'page2.html', then search for the text 'Matt then discusses his former job, training \"cookies\"'.", "expected_sequence": ["move_to_url(file_name='page2.html')", "find_text_in_page(text='Matt then discusses his former job, training \"cookies\"')"]},
+            {"prompt": "Go to 'page3.html', retrieve the page source, and confirm the current URL.", "expected_sequence": ["move_to_url(file_name='page3.html')", "get_page_source()", "get_current_url()"]},
+            {"prompt": "Move to 'page1.html'. Then, move to 'page2.html'. Then go back to the previous page.", "expected_sequence": ["move_to_url(file_name='page1.html')","move_to_url(file_name='page2.html')", "go_back()"]},
+            {"prompt": "Retrieve the current URL before and after navigating to 'page3.html'.", "expected_sequence": ["get_current_url()", "move_to_url('page3.html')", "get_current_url()"]},
+            {"prompt": "View the browsing history after visiting 'page3.html', 'page1.html' and 'page2.html' in that specific order.", "expected_sequence": ["move_to_url(file_name='page3.html')", "move_to_url(file_name='page1.html')", "move_to_url(file_name='page2.html')", "view_browsing_history()"]}
         ]
 
     def move_to_url(self, file_name: str) -> str:
