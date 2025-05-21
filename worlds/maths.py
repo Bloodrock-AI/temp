@@ -23,7 +23,7 @@ class Maths(World):
         self._init_world_state = {
             "calculations": []
         }
-        self.world_state = self._init_world_state
+        self.reset_world_state()
         self.prompts = [
             {
                 "prompt": "Add 15 and 7, then multiply the result by 3.",
