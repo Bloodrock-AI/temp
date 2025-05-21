@@ -39,7 +39,7 @@ class Writing(World):
                 "prepositions": ["on", "under", "beside", "near", "above"]
             }
         }
-        self.world_state = self._init_world_state
+        self.reset_world_state()
         self.prompts = [
             {
                 "prompt": "Write a simple sentence describing 'the big cat runs'.",
