@@ -25,7 +25,7 @@ class DesktopManager(World):
             "app_history": [],
             "action_log": {}
         }
-        self.world_state = self._init_world_state
+        self.reset_world_state()
         self.prompts = [
             {"prompt": "Open 'Text Editor' and list open applications.", "expected_sequence": ["open_application('Text Editor')", "print_open_applications()"]},
             {"prompt": "Open 'Browser', perform a search action, then print actions performed in the Browser.", "expected_sequence": ["open_application('Browser')", "perform_action('Browser', 'Search for AI')", "print_application_actions('Browser')"]},
