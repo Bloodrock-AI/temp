@@ -8,6 +8,7 @@ from model import Model
 from const import (
     ModelType
 )
+from logger import logger
 
 from typing import List, Dict, Any, Optional
 
@@ -195,11 +196,10 @@ class DecisionAgent:
     
     def decide(self) -> bool:
         global GENERATED_TOKENS
-        global MISTAKE_1_COUNTER
         out = self.model.prompt(
             self.prompt.get_prompt()
         )
-        GENERATED_TOKENS += self.model.last_generated_tokens
+        logger.mistake_counters["generated_tokens"] += self.model.last_generated_tokens
         out=out.split('</think>')[1]
         
         reg = r'"answer":\s*(true|false)'
@@ -208,7 +208,7 @@ class DecisionAgent:
         if m:
             answer = m.group(1)
             return answer == "true"
-        MISTAKE_1_COUNTER += 1
+        logger.mistake_counters["type_1"] += 1
         raise Exception("Could not parse answer")
 
 class FunctionAgent:
@@ -225,15 +225,10 @@ class FunctionAgent:
         self.prompt = prompt
     
     def get_next_function(self) -> Dict[str, Any]:
-        global MISTAKE_1_COUNTER
-        global MISTAKE_2_COUNTER
-        global MISTAKE_3_COUNTER
-        global GENERATED_TOKENS
-        
         out = self.model.prompt(
             self.prompt.get_prompt()
         )
-        GENERATED_TOKENS += self.model.last_generated_tokens
+        logger.mistake_counters["generated_tokens"] += self.model.last_generated_tokens
         out=out.split('<token>')[-1]
         
         reg = re.compile(
@@ -249,7 +244,7 @@ class FunctionAgent:
         if matches:
             if len(matches) > 1:
                 print("[CORE]: MORE THAN ONE OUTPUT JSON")
-                MISTAKE_1_COUNTER += 1
+                logger.mistake_counters["type_1"] += 1
                 # raise Exception("More than one function call found")
             
             check_chars = ['{', '}', ':', '[', ']', ',', ' ']
@@ -281,11 +276,11 @@ class FunctionAgent:
             except json.decoder.JSONDecodeError as e:
                 print(f'Error: {repr(e)}')
                 print('[CORE]: INVALID JSON')
-                MISTAKE_2_COUNTER += 1
+                logger.mistake_counters["type_2"] += 1
                 raise e
         
         print("[CORE]: NOT FOLLOWING SYSTEM PROMPT FORMAT")
-        MISTAKE_1_COUNTER += 1
+        logger.mistake_counters["type_1"] += 1
         raise Exception("Could not parse answer")
 
 @tool()

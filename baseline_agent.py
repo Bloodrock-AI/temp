@@ -8,10 +8,11 @@ import uuid
 
 from const import ModelType, MessageType, Role
 from model import Model
-from agents import DecisionAgentPrompt, DecisionAgent, FunctionAgentPrompt, FunctionAgent, FunctionCalled, MISTAKE_1_COUNTER, MISTAKE_2_COUNTER, MISTAKE_3_COUNTER
+from agents import DecisionAgentPrompt, DecisionAgent, FunctionAgentPrompt, FunctionAgent, FunctionCalled
 from llm_tool import tool
 
 from worlds import Automation, Communication, Configurations, CRUD, DataProcessing, DesktopManager, EventsScheduler, FileManagement, LegalCompliance, Maths, Navigation, Transactions, Validation, WebBrowsing, Writing
+from logger import logger
 
 from typing import List, Dict, Optional
 
@@ -35,26 +36,24 @@ tests = {
 }
 
 def main(model: str, output_file: str):
-    global MISTAKE_3_COUNTER
     
     OUTPUT_TOKENS_CAP = 10_000
     
-    temp_mistake_2_counter = 0
-    FUNCTION_HALLUCINATION = 0
-    PARAMETER_HALLUCINATION = 0
     GENERATED_TOKENS_AVG = 0
-    temp_generated_tokens = 0
     RESULTS = []
     
     try:
     
-        for world in tests.values():
+        for world in list(tests.values()):
+            logger.reset()
             print(f'---------------------- WORLD: {world.__class__.__name__} ----------------------')
             for prompt in world.prompts:
+                logger.reset()
                 print(f'---------------------- PROMPT: {prompt["prompt"]} ----------------------')
                 
-                from agents import GENERATED_TOKENS
-                temp_generated_tokens = GENERATED_TOKENS
+                # from agents import GENERATED_TOKENS
+                # temp_generated_tokens = GENERATED_TOKENS
+                prev_generated_tokens = logger.mistake_counters["generated_tokens"]
                 
                 setup_functions = prompt.get('functions', [])
                 user_prompt = prompt['prompt']
@@ -115,8 +114,8 @@ def main(model: str, output_file: str):
                         print(f'Error: {repr(e)}')
                         print('Failed to call function')
                         print('[CORE]: FUNCTION CALLING ERROR')
-                        MISTAKE_3_COUNTER += 1
-                        FUNCTION_HALLUCINATION += 1
+                        logger.mistake_counters["type_3"] += 1
+                        logger.mistake_counters["function_hallucination"] += 1
                         break
                     except TypeError as e:
                         # parameter does not exist
@@ -124,13 +123,14 @@ def main(model: str, output_file: str):
                         print('Failed to call function')
                         print('[CORE]: FUNCTION CALLING ERROR')
                         # function or parameter does not exist
-                        MISTAKE_3_COUNTER += 1
-                        PARAMETER_HALLUCINATION += 1
+                        logger.mistake_counters["type_3"] += 1
+                        logger.mistake_counters["parameter_hallucination"] += 1
                         break
                     except Exception as e:
                         # "function_name" or "arguments" do not exist -> invalid JSON format
                         print(f'Error: {repr(e)}')
                         print('Failed to call function')
+                        logger.mistake_counters["type_2"] += 1
                         temp_mistake_2_counter += 1
                         break
                     
@@ -156,14 +156,14 @@ def main(model: str, output_file: str):
                         break
                     
                 # print mistake counters
-                from agents import MISTAKE_1_COUNTER, MISTAKE_2_COUNTER, GENERATED_TOKENS
-                print(f'MISTAKE_1_COUNTER: {MISTAKE_1_COUNTER}')
-                print(f'MISTAKE_2_COUNTER: {MISTAKE_2_COUNTER + temp_mistake_2_counter}')
-                print(f'MISTAKE_3_COUNTER: {MISTAKE_3_COUNTER}')
-                print(f'FUNCTION_HALLUCINATION: {FUNCTION_HALLUCINATION}')
-                print(f'PARAMETER_HALLUCINATION: {PARAMETER_HALLUCINATION}')
-                print(f'GENERATED_TOKENS: {GENERATED_TOKENS - temp_generated_tokens}')
-                GENERATED_TOKENS_AVG += (GENERATED_TOKENS - temp_generated_tokens)
+                print(f'------------ logger ------------')
+                print(f'MISTAKE_1_COUNTER: {logger.mistake_counters["type_1"]}')
+                print(f'MISTAKE_2_COUNTER: {logger.mistake_counters["type_2"]}')
+                print(f'MISTAKE_3_COUNTER: {logger.mistake_counters["type_3"]}')
+                print(f'FUNCTION_HALLUCINATION: {logger.mistake_counters["function_hallucination"]}')
+                print(f'PARAMETER_HALLUCINATION: {logger.mistake_counters["parameter_hallucination"]}')
+                print(f'GENERATED_TOKENS: {logger.mistake_counters["generated_tokens"] - prev_generated_tokens}')
+                GENERATED_TOKENS_AVG += logger.mistake_counters["generated_tokens"] - prev_generated_tokens
                 
                 print(f'Sequence: {decision_prompt.functions_called}')
                 RESULTS.append({
@@ -171,13 +171,13 @@ def main(model: str, output_file: str):
                     "prompt": user_prompt,
                     "functions_called": str(decision_prompt.functions_called),
                     "mistakes": {
-                        "MISTAKE_1_COUNTER": MISTAKE_1_COUNTER,
-                        "MISTAKE_2_COUNTER": MISTAKE_2_COUNTER + temp_mistake_2_counter,
-                        "MISTAKE_3_COUNTER": MISTAKE_3_COUNTER,
-                        "FUNCTION_HALLUCINATION": FUNCTION_HALLUCINATION,
-                        "PARAMETER_HALLUCINATION": PARAMETER_HALLUCINATION,
+                        "MISTAKE_1_COUNTER": logger.mistake_counters["type_1"],
+                        "MISTAKE_2_COUNTER": logger.mistake_counters["type_2"],
+                        "MISTAKE_3_COUNTER": logger.mistake_counters["type_3"],
+                        "FUNCTION_HALLUCINATION": logger.mistake_counters["function_hallucination"],
+                        "PARAMETER_HALLUCINATION": logger.mistake_counters["parameter_hallucination"],
                     },
-                    "generated_tokens": GENERATED_TOKENS - temp_generated_tokens,
+                    "generated_tokens": logger.mistake_counters["generated_tokens"] - prev_generated_tokens,
                     "database": world.world_state,
                 })
     except KeyboardInterrupt:
