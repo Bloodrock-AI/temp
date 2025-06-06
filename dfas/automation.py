@@ -1,3 +1,4 @@
+from typing import List
 from dfas.dfa import Node, Transition, Prompt, FunctionCall, FunctionArgument
 
 
@@ -44,7 +45,7 @@ alphabet: List[str, FunctionCall] = {
     "G'": FunctionCall(
         'set_thermostat',
         arguments={
-            "temperature": "temperature": FunctionArgument(
+            "temperature": FunctionArgument(
                 name="temperature",
                 value=None,
                 excluded_values=[22],

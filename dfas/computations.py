@@ -1,3 +1,4 @@
+from typing import List
 from dfas.dfa import Node, Transition, Prompt, FunctionCall, FunctionArgument
 
 
