@@ -51,7 +51,7 @@ class Communication(World):
             },
         ]
 
-    def send_message(self, sender: str, recipient: str, content: str, priority: Optional[str] = "normal", timestamp: Optional[str] = None) -> str:
+    def send_message(self, sender: str, recipient: str, content: str, priority: Optional[str], timestamp: Optional[str] = None) -> str:
         """
         Sends a message from a sender to a recipient.
         
@@ -78,7 +78,7 @@ class Communication(World):
         """
         return [msg for msg in self.world_state["messages"] if msg["recipient"] == recipient and (priority is None or msg["priority"] == priority)]
 
-    def delete_message(self, sender: str, recipient: str, timestamp: str) -> str:
+    def delete_message(self, sender: str, recipient: str) -> str:
         """
         Deletes a message based on sender, recipient, and timestamp.
         
@@ -87,8 +87,8 @@ class Communication(World):
         :param timestamp: The timestamp of the message to delete.
         :return: Confirmation message.
         """
-        self.world_state["messages"] = [msg for msg in self.world_state["messages"] if not (msg["sender"] == sender and msg["recipient"] == recipient and msg["timestamp"] == timestamp)]
-        return f"Message from '{sender}' to '{recipient}' at '{timestamp}' has been deleted."
+        self.world_state["messages"] = [msg for msg in self.world_state["messages"] if not (msg["sender"] == sender and msg["recipient"] == recipient) ]
+        return f"Message from '{sender}' to '{recipient}' has been deleted."
 
     def forward_message(self, original_sender: str, new_recipient: str, timestamp: str, forwarded_by: str) -> str:
         """
