@@ -58,13 +58,13 @@ class CRUD(World):
     def add_user(self, name: str, age: int, email: Optional[str] = None) -> str:
         """
         Adds a new user to the database and returns the user ID.
-
+    
         :param name: The name of the user to be added.
         :param age: The age of the user to be added.
         :param email: The email of the user to be added.
         :return: user ID
         """
-        user_id = f"user_{uuid.uuid4().hex[:8]}"
+        user_id = f"{name}_id"
         new_user = {
             "id": user_id,
             "name": name,
@@ -73,6 +73,7 @@ class CRUD(World):
         }
         self.world_state[user_id] = new_user
         return user_id
+
 
     def update_user_email(self, user_id: str, email: str) -> bool:
         """
