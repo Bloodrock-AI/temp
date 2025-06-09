@@ -2,12 +2,11 @@ from worlds.automation import Automation
 from worlds.communication import Communication
 from worlds.configurations import Configurations
 from worlds.crud import CRUD
-from worlds.data_processing import DataProcessing
 from worlds.desktop_manager import DesktopManager
 from worlds.events_scheduler import EventsScheduler
 from worlds.file_management import FileManagement
 from worlds.legal_compliance import LegalCompliance
-from worlds.maths import Maths
+from worlds.computations import Maths
 from worlds.navigation import Navigation
 from worlds.transactions import Transactions
 from worlds.validation import Validation

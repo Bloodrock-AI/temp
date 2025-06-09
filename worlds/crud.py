@@ -23,31 +23,39 @@ class CRUD(World):
         self.reset_world_state()
         self.prompts = [
             {
-                "prompt": "Create a new user named 'Alice' with an age of 25. List the details of this user and confirm the age field is correct",
-                "expected_sequence": ["add_user(name='Alice', age=25)", "list_users()", "verify_user_field(user_id='Alice', field='age', expected_value=25)"],
+                "prompt": "Create a new user named 'Alice' with an age of 25. List the details of this user and confirm the age field is correct.",
+                "setup_functions": [],
+                "expected_sequences": [["add_user(name='Alice', age=25)", "list_users()", "verify_user_field(user_id='Alice_id', field='age', expected_value=25)"]],
             },
             {
-                "prompt": "Show all users and update the email of the user with name 'Alice' to 'alice@example.com'. Ensure the changes were applied.",
-                "functions": [
+                "prompt": "Show all users and update the email of the user with name 'Alice' to 'alice@example.com'. Finally verify the changes were applied.",
+                "setup_functions": [
                     'add_user(name="Alice", age=25)',
                 ],
-                "expected_sequence": ["list_users()", "update_user_email(user_id='Alice', email='alice@example.com')", "verify_user_field(user_id='Alice', field='email', expected_value='alice@example.com')"],
+                "expected_sequences": [["list_users()", "update_user_email(user_id='Alice_id', email='alice@example.com')", "verify_user_field(user_id='Alice_id', field='email', expected_value='alice@example.com')"]],
             },
             {
                 "prompt": "Show all users. Then, update the emails of all users with no email address to 'default@example.com'. Pick one of these users and ensure the changes were applied.",
-                "functions": [
+                "setup_functions": [
                     'add_user(name="John", age=30, email=None)',
                     'add_user(name="Jane", age=25, email=None)',
                 ],
-                "expected_sequence": ["list_users()", "update_user_email(user_id='John', email='defaul@example.com')", "update_user_email(user_id='Jane', email='defaul@example.com')", "verify_user_field(user_id='John', field='email', expected_value='defaul@example.com')"],
+                "expected_sequences": [
+                    ["list_users()", "update_user_email(user_id='John_id', email='defaul@example.com')", "update_user_email(user_id='Jane_id', email='defaul@example.com')", "verify_user_field(user_id='John_id', field='email', expected_value='defaul@example.com')"],
+                    ["list_users()", "update_user_email(user_id='Jane_id', email='defaul@example.com')", "update_user_email(user_id='John_id', email='defaul@example.com')", "verify_user_field(user_id='John_id', field='email', expected_value='defaul@example.com')"],
+                    ["list_users()", "update_user_email(user_id='John_id', email='defaul@example.com')", "update_user_email(user_id='Jane_id', email='defaul@example.com')", "verify_user_field(user_id='Jane_id', field='email', expected_value='defaul@example.com')"],
+                    ["list_users()", "update_user_email(user_id='Jane_id', email='defaul@example.com')", "update_user_email(user_id='Jane_id', email='defaul@example.com')", "verify_user_field(user_id='Jane_id', field='email', expected_value='defaul@example.com')"],      
+                    ],
             },
             {
                 "prompt": "Add a new user named 'Charlie' aged 40 with email 'charlie@email.com'. Then, delete that user. Finally, confirm the deletion by showing all the users.",
-                "expected_sequence": ["add_user(name='Charlie', age=40, email='charlie@email.com')", "delete_user(user_id='Charlie')", "list_users()"],
+                "setup_functions": [],
+                "expected_sequences": [["add_user(name='Charlie', age=40, email='charlie@email.com')", "delete_user(user_id='Charlie_id')", "list_users()"]],
             },
             {
-                "prompt": "Create a new user named 'Eve' with an age of 22 and empty email. Then, update their email to 'eve@example.com'. Finally delete the user and verify the deletion by checking all the existing users.",
-                "expected_sequence": ["add_user(name='Eve', age=22, email=None)", "update_user_email(user_id='Eve', email='eve@example.com')", "delete_user(user_id='Eve')", "list_users()"],
+                "prompt": "Create a new user named 'Eve' with an age of 22 and empty email. Then, update her email to 'eve@example.com'. Finally delete the user and verify the deletion by checking all the existing users.",
+                "setup_functions": [],
+                "expected_sequences": [["add_user(name='Eve', age=22, email=None)", "update_user_email(user_id='Eve_id', email='eve@example.com')", "delete_user(user_id='Eve_id')", "list_users()"]],
             }
         ]
 

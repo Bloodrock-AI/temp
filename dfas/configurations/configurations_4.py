@@ -18,15 +18,6 @@ alphabet: dict[str, FunctionCall] = {
     "A'": FunctionCall(
         name="set_config",
         arguments={
-            "key":       FunctionArgument(name="key", value="timeout",     excluded_values=None,          type="str"),
-            "value":     FunctionArgument(name="value", value="15 minutes", excluded_values=None, type="str"),
-            "category":  FunctionArgument(name="category", value="security",  excluded_values=None,          type="str"),
-            "timestamp": FunctionArgument(name="timestamp", value=None,    excluded_values=None,          type="str"),
-        },
-    ),
-    "A''": FunctionCall(
-        name="set_config",
-        arguments={
             "key":       FunctionArgument(name="key", value=None,     excluded_values=["timeout"],          type="str"),
             "value":     FunctionArgument(name="value", value=None, excluded_values=["30 minutes", "15 minutes"], type="str"),
             "category":  FunctionArgument(name="category", value=None,  excluded_values=["security"],          type="str"),
@@ -48,9 +39,18 @@ alphabet: dict[str, FunctionCall] = {
     "C": FunctionCall(
         name="update_config",
         arguments={
-            "key":       FunctionArgument(name="key", value=None, excluded_values=None, type="str"),
-            "new_value": FunctionArgument(name="new_value", value=None, excluded_values=None, type="str"),
-            "category":  FunctionArgument(name="category", value=None, excluded_values=None, type="str"),
+            "key":       FunctionArgument(name="key", value="timeout", excluded_values=None, type="str"),
+            "new_value": FunctionArgument(name="new_value", value="15 minutes", excluded_values=None, type="str"),
+            "category":  FunctionArgument(name="category", value='process', excluded_values=None, type="str"),
+            "timestamp": FunctionArgument(name="timestamp", value=None, excluded_values=None, type="str"),
+        },
+    ),
+    "C'": FunctionCall(
+        name="update_config",
+        arguments={
+            "key":       FunctionArgument(name="key", value=None, excluded_values=["timeout"], type="str"),
+            "new_value": FunctionArgument(name="new_value", value=None, excluded_values=["15 minutes"], type="str"),
+            "category":  FunctionArgument(name="category", value=None, excluded_values=["process"], type="str"),
             "timestamp": FunctionArgument(name="timestamp", value=None, excluded_values=None, type="str"),
         },
     ),
@@ -68,7 +68,7 @@ G0.transitions = [
 ]
 
 G1.transitions = [
-    Transition(symbols=["A'"], _from=G1, _to=G2),
+    Transition(symbols=["C"], _from=G1, _to=G2),
     Transition(symbols=["B", "B'"], _from=G1, _to=G1),
 ]
 
