@@ -19,7 +19,7 @@ alphabet: dict[str, FunctionCall] = {
         name="set_config",
         arguments={
             "key":       FunctionArgument(name="key", value="timeout",     excluded_values=None,          type="str"),
-            "value":     FunctionArgument(name="value", value="15 minutes", excluded_values=["30 minutes"], type="str"),
+            "value":     FunctionArgument(name="value", value="15 minutes", excluded_values=None, type="str"),
             "category":  FunctionArgument(name="category", value="security",  excluded_values=None,          type="str"),
             "timestamp": FunctionArgument(name="timestamp", value=None,    excluded_values=None,          type="str"),
         },
