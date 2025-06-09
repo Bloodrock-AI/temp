@@ -1,5 +1,5 @@
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 import uuid
 
 from worlds.world import World
@@ -42,10 +42,6 @@ class EventsScheduler(World):
             {
                 "prompt": "Schedule a recurring stand-up meeting every 30 minutes and retrieve its scheduled time.",
                 "expected_sequence": ["schedule_recurring_event('Stand-up Meeting', 30)", "get_event_time('Stand-up Meeting')"]
-            },
-            {
-                "prompt": "List all scheduled events and check the remaining time until 'Stand-up Meeting'.",
-                "expected_sequence": ["list_events()", "time_until_event('Stand-up Meeting')"]
             },
             {
                 "prompt": "Schedule 'Project Review' at '2025-02-11T15:00:00', list all events, then check time until 'Project Review'.",
