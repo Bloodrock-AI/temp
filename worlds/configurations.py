@@ -95,7 +95,7 @@ class Configurations(World):
         self.world_state[key]["timestamp"] = timestamp
         if category is not None:
             self.world_state[key]["category"] = category
-        return f"Configuration '{key}' updated to '{new_value}' in category '{database[key]['category']}'."
+        return f"Configuration '{key}' updated to '{new_value}' in category '{self.world_state[key]['category']}'."
 
     def delete_config(self, key: str) -> str:
         """
