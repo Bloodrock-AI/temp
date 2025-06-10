@@ -32,46 +32,52 @@ class FileManagement(World):
         self.reset_world_state()
         self.prompts = [
             {
-                "prompt": "Create a file named 'notes.txt', then write 'Meeting at 10 AM' to it.",
-                "expected_sequence": [
-                    "create_file(filename='notes.txt')",
-                    "write_file(filename='notes.txt', content='Meeting at 10 AM')"
-                ]
+                "prompt": "Create a file named 'new_meeting.txt'. Then write in it: 'Meeting at 10 AM'.",
+                "setup_functions": [],
+                "expected_sequences": [[
+                    "create_file(filename='new_meeting.txt')",
+                    "write_file(filename='new_meeting.txt', content='Meeting at 10 AM')"
+                ]]
             },
             {
                 "prompt": "Check if 'notes.txt' exists, then read its content.",
-                "expected_sequence": [
+                "setup_functions": [],
+                "expected_sequences": [[
                     "file_exists(filename='notes.txt')",
                     "read_file(filename='notes.txt')"
-                ]
+                ]]
             },
             {
                 "prompt": "Rename 'notes.txt' to 'new_notes.txt' and list all files.",
-                "expected_sequence": [
+                "setup_functions": [],
+                "expected_sequences": [[
                     "rename_file(old_name='notes.txt', new_name='new_notes.txt')",
                     "list_files()"
-                ]
+                ]]
             },
             {
                 "prompt": "Append 'New agenda added' to 'meeting_notes.txt' and count its words.",
-                "expected_sequence": [
+                "setup_functions": [],
+                "expected_sequences": [[
                     "append_to_file(filename='meeting_notes.txt', content='New agenda added')",
                     "count_words('meeting_notes.txt')"
-                ]
+                ]]
             },
             {
                 "prompt": "Copy 'meeting_notes.txt' to 'notes.txt' and check the latter's size.",
-                "expected_sequence": [
+                "setup_functions": [],
+                "expected_sequences": [[
                     "copy_file(source='meeting_notes.txt', destination='notes.txt')",
                     "get_file_size('notes.txt')"
-                ]
+                ]]
             },
             {
                 "prompt": "Search for the word 'agenda' in 'meeting_notes.txt'. If it's not found, append it.",
-                "expected_sequence": [
+                "setup_functions": [],
+                "expected_sequences": [[
                     "search_in_file(filename='meeting_notes.txt', keyword='agenda')",
                     "append_to_file(filename='meeting_notes.txt', content='agenda')"
-                ]
+                ]]
             }
         ]
 

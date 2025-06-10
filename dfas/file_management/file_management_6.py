@@ -93,13 +93,13 @@ alphabet: dict[str, FunctionCall] = {
 }
 
 G0.transitions = [
-    Transition(symbols=["C", "F", "J", "K", "M", "N'"], _from=G0, _to=G0),
     Transition(symbols=["N"], _from=G0, _to=G1),
+    Transition(symbols=["C", "F", "J", "K", "M", "N'"], _from=G0, _to=G0),
 ]
 
 G1.transitions = [
-    Transition(symbols=["C", "J", "K", "M","N", "N'"], _from=G1, _to=G1),
     Transition(symbols=["E"], _from=G1, _to=G2),
+    Transition(symbols=["C", "F", "J", "K", "M","N", "N'"], _from=G1, _to=G1),
 ]
 
 G2.transitions = [
