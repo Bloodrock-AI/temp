@@ -60,12 +60,12 @@ alphabet: dict[str, FunctionCall] = {
 
 G0.transitions = [
     Transition(symbols=["A"], _from=G0, _to=G1),
-    Transition(symbols=["C", "E", "E'", "F"], _from=G0, _to=G0),
+    Transition(symbols=["C", "E", "F"], _from=G0, _to=G0),
 ]
 G1.transitions = [
     Transition(symbols=["C"], _from=G1, _to=G2),
-    Transition(symbols=["E", "E'", "F"], _from=G1, _to=G1),
+    Transition(symbols=["E", "F"], _from=G1, _to=G1),
 ]
 G2.transitions = [
-    Transition(symbols=["C", "E", "E'", "F"], _from=G2, _to=G2),
+    Transition(symbols=["C", "E", "F"], _from=G2, _to=G2),
 ]
