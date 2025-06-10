@@ -27,12 +27,36 @@ class DesktopManager(World):
         }
         self.reset_world_state()
         self.prompts = [
-            {"prompt": "Open 'Text Editor' and list open applications.", "expected_sequence": ["open_application('Text Editor')", "print_open_applications()"]},
-            {"prompt": "Open 'Browser', perform a search action, then print actions performed in the Browser.", "expected_sequence": ["open_application('Browser')", "perform_action('Browser', 'Search for AI')", "print_application_actions('Browser')"]},
-            {"prompt": "Open 'Music Player', play a song, and close the application.", "expected_sequence": ["open_application('Music Player')", "perform_action('Music Player', 'Play song')", "close_application('Music Player')"]},
-            {"prompt": "Check the history of opened applications.", "expected_sequence": ["print_application_history()"]},
-            {"prompt": "Open 'Terminal', execute a command, and list all currently open applications.", "expected_sequence": ["open_application('Terminal')", "perform_action('Terminal', 'Run ls command')", "print_open_applications()"]},
-            {"prompt": "Open 'Spreadsheet', enter data, then print its action log.", "expected_sequence": ["open_application('Spreadsheet')", "perform_action('Spreadsheet', 'Enter data in cell A1')", "print_application_actions('Spreadsheet')"]}
+            {
+                "prompt": "Open 'Text Editor' and list open applications.",
+                "setup_functions": [], 
+                "expected_sequences": [["open_application('Text Editor')", "print_open_applications()"]]
+            },
+            {
+                "prompt": "Open 'Browser', perform a 'Search' action, then print actions performed in the Browser.",
+                "setup_functions": [],
+                "expected_sequences": [["open_application('Browser')", "perform_action('Browser', 'Search')", "print_application_actions('Browser')"]]
+            },
+            {
+                "prompt": "Open 'Music Player', print its possible actions, play a song ('play_song' action), and finally close the application.",
+                "setup_functions": [],
+                "expected_sequences": [["open_application('Music Player')", "print_application_actions('Music Player')", "perform_action('Music Player', 'play_song')", "close_application('Music Player')"]]
+            },
+            {
+                "prompt": "Check the history of opened applications.",
+                "setup_functions": ["open_application('Music Player')"],
+                "expected_sequences": [["print_application_history()"]]
+            },
+            {
+                "prompt": "Open 'Terminal', run an 'execute_command' action, and then list all currently open applications.", 
+                "setup_functions": [],
+                "expected_sequences": [["open_application('Terminal')", "perform_action('Terminal', 'execute_command')", "print_open_applications()"]]
+            },
+            {
+                "prompt": "Open 'Spreadsheet', enter data in cell A1 ('enter_data_A1'). Then, do the same for cell A2. Finally, print its action log.",
+                "setup_functions": [],
+                "expected_sequences": [["open_application('Spreadsheet')", "perform_action('Spreadsheet', 'enter_data_A1')", "perform_action('Spreadsheet', 'enter_data_A2')", "print_application_actions('Spreadsheet')"]]
+            }
         ]
 
     def open_application(self, app_name: str) -> str:

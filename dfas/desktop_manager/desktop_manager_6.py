@@ -2,8 +2,9 @@ from dfas.dfa import Node, Transition, FunctionCall, FunctionArgument
 
 G0 = Node("G0")                   
 G1 = Node("G1")                   
-G2 = Node("G2")                    
-G3 = Node("G3", is_final=True)     
+G2 = Node("G2")    
+G3 = Node("G3")                    
+G4 = Node("G4", is_final=True)     
 
 alphabet: dict[str, FunctionCall] = {
     "A": FunctionCall(                
@@ -36,14 +37,21 @@ alphabet: dict[str, FunctionCall] = {
         name="perform_action",
         arguments={
             "app_name": FunctionArgument(name="app_name", value="Spreadsheet", excluded_values=None, type="str"),
-            "action":   FunctionArgument(name="action",   value="enter_data",  excluded_values=None, type="str"),
+            "action":   FunctionArgument(name="action",   value="enter_data_A1",  excluded_values=None, type="str"),
         },
     ),
     "E'": FunctionCall(                
         name="perform_action",
         arguments={
+            "app_name": FunctionArgument(name="app_name", value="Spreadsheet", excluded_values=None, type="str"),
+            "action":   FunctionArgument(name="action",   value="enter_data_A2",  excluded_values=None, type="str"),
+        },
+    ),
+    "E''": FunctionCall(                
+        name="perform_action",
+        arguments={
             "app_name": FunctionArgument(name="app_name", value=None, excluded_values=["Spreadsheet"], type="str"),
-            "action":   FunctionArgument(name="action",   value=None,  excluded_values=["enter_data"], type="str"),
+            "action":   FunctionArgument(name="action",   value=None,  excluded_values=["enter_data_A1", "enter_data_A2"], type="str"),
         },
     ),
     "F": FunctionCall(                 
@@ -75,10 +83,15 @@ G1.transitions = [
 ]
 
 G2.transitions = [
-    Transition(symbols=["F"], _from=G2, _to=G3),
-    Transition(symbols=["C", "D", "F'"], _from=G2, _to=G2),
+    Transition(symbols=["E'"], _from=G1, _to=G3),
+    Transition(symbols=["C", "D", "F", "F'"], _from=G2, _to=G2),
 ]
 
 G3.transitions = [
-    Transition(symbols=["C", "D", "F", "F'"], _from=G3, _to=G3),
+    Transition(symbols=["F"], _from=G3, _to=G4),
+    Transition(symbols=["C", "D", "F'"], _from=G3, _to=G3),
+]
+
+G4.transitions = [
+    Transition(symbols=["C", "D", "F", "F'"], _from=G4, _to=G4),
 ]
