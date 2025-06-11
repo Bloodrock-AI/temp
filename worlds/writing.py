@@ -42,18 +42,20 @@ class Writing(World):
         self.reset_world_state()
         self.prompts = [
             {
-                "prompt": "Write a simple sentence describing 'the big cat runs'.",
-                "expected_sequence": [
+                "prompt": "Write the following simple sentence: 'the big cat runs'.",
+                "setup_functions": [],
+                "expected_sequences": [[
                     "add_article(article='the')",
                     "add_adjective(adjective='big')",
                     "add_noun(noun='cat')",
                     "add_verb(verb='runs')",
                     "complete_sentence()"
-                ]
+                ]]
             },
             {
                 "prompt": "Write a sentence about a small dog sleeping under a tree. Use present simple tense for the verb",
-                "expected_sequence": [
+                "setup_functions": [],
+                "expected_sequences": [[
                     "add_article(article='a')",
                     "add_adjective(adjective='small')",
                     "add_noun(noun='dog')",
@@ -62,12 +64,13 @@ class Writing(World):
                     "add_article(article='a')",
                     "add_noun(noun='tree')",
                     "complete_sentence()"
-                ]
+                ]]
             },
             {
                 "prompt": "Form a sentence about 'a fast bird' that 'flies beside the house'.",
-                "expected_sequence": [
-                    "add_article(article='the')",
+                "setup_functions": [],
+                "expected_sequences": [[
+                    "add_article(article='a')",
                     "add_adjective(adjective='fast')",
                     "add_noun(noun='bird')",
                     "add_verb(verb='flies')",
@@ -75,21 +78,23 @@ class Writing(World):
                     "add_article(article='the')",
                     "add_noun(noun='house')",
                     "complete_sentence()"
-                ]
+                ]]
             },
             {
                 "prompt": "Create a sentence consisting of the words: 'runs', 'the', 'dog', 'happy'. Put them in the correct order first.",
-                "expected_sequence": [
+                "setup_functions": [],
+                "expected_sequences": [[
                     "add_article(article='the')",
                     "add_adjective(adjective='happy')",
                     "add_noun(noun='dog')",
                     "add_verb(verb='runs')",
                     "complete_sentence()"
-                ]
+                ]]
             },
             {
-                "prompt": "Construct a sentence where 'the blue cat jumps above a small X'. Replace 'X' with the available synonym word for 'large plant' in the 'nouns' list.",
-                "expected_sequence": [
+                "prompt": "Construct a sentence where 'the blue cat jumps above a small X'. Replace 'X' with the available synonym word for 'large plant' in your 'nouns' list.",
+                "setup_functions": [],
+                "expected_sequences": [[
                     "add_article(article='the')",
                     "add_adjective(adjective='blue')",
                     "add_noun(noun='cat')",
@@ -99,11 +104,12 @@ class Writing(World):
                     "add_adjective(adjective='small')",
                     "add_noun(noun='tree')",
                     "complete_sentence()"
-                ]
+                ]]
             },
             {
                 "prompt": "Construct the sentence 'the bird flies', finalize it, then repeat the entire process again.",
-                "expected_sequence": [
+                "setup_functions": [],
+                "expected_sequences": [[
                     "add_article(article='the')",
                     "add_noun(noun='bird')",
                     "add_verb(verb='flies')",
@@ -112,7 +118,7 @@ class Writing(World):
                     "add_noun(noun='bird')",
                     "add_verb(verb='flies')",
                     "complete_sentence()"
-                ]
+                ]]
             }
         ]
 
