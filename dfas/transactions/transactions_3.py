@@ -105,9 +105,30 @@ loop_syms = ["D", "D'", "D''", "F"]
 for node in [G0, G1, G2, G3, G4, G5, G6]:
     node.transitions.extend([Transition(symbols=loop_syms, _from=node, _to=node)])
 
-G0.transitions.append(Transition(symbols=["A"], _from=G0, _to=G1))
-G1.transitions.append(Transition(symbols=["A'"], _from=G1, _to=G2))
-G2.transitions.append(Transition(symbols=["B"], _from=G2, _to=G3))
-G3.transitions.append(Transition(symbols=["E"], _from=G3, _to=G4))
-G4.transitions.append(Transition(symbols=["D"], _from=G4, _to=G5))
-G5.transitions.append(Transition(symbols=["D'"], _from=G5, _to=G6))
+G0.transitions = [
+    Transition(symbols=["A"], _from=G0, _to=G1),
+    Transition(symbols=["D", "D'", "D''", "F"], _from=G0, _to=G0),
+    ]
+G1.transitions = [
+    Transition(symbols=["A'"], _from=G1, _to=G2),
+    Transition(symbols=["D", "D'", "D''", "F"], _from=G1, _to=G1),
+    ]
+G2.transitions = [
+    Transition(symbols=["B"], _from=G2, _to=G3),
+    Transition(symbols=["D", "D'", "D''", "F"], _from=G2, _to=G2),
+    ]
+G3.transitions = [
+    Transition(symbols=["E"], _from=G3, _to=G4),
+    Transition(symbols=["D", "D'", "D''", "F"], _from=G3, _to=G3),
+    ]
+G4.transitions = [
+    Transition(symbols=["D"], _from=G4, _to=G5),
+    Transition(symbols=["D'", "D''", "F"], _from=G4, _to=G4),
+    ]
+G5.transitions = [
+    Transition(symbols=["D'"], _from=G5, _to=G6),
+    Transition(symbols=["D'", "D''", "F"], _from=G5, _to=G5),
+    ]
+G6.transitions = [
+    Transition(symbols=["D", "D'", "D''", "F"], _from=G6, _to=G6),
+    ]
