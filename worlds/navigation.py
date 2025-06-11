@@ -18,19 +18,43 @@ class Navigation(World):
         self.function_system_prompt = FUNCTION_SYSTEM_PROMPT
         self.decision_system_prompt = DECISION_SYSTEM_PROMPT
 
-        self.grid_size = (5, 5)  # Fixed 5x5 grid
+        self.grid_size = (5, 5) 
         self._init_world_state = {
             "player_position": (0, 0),
         }
         self.reset_world_state()
 
         self.prompts = [
-            {"prompt": "Move the player right by 2 steps.", "expected_sequence": ["move_right(2)"]},
-            {"prompt": "Move the player down by 3 steps, then retrieve the player's position.", "expected_sequence": ["move_down(3)", "get_player_position()"]},
-            {"prompt": "Move the player right by 1 step, then move down by 2 steps.", "expected_sequence": ["move_right(1)", "move_down(2)"]},
-            {"prompt": "Move the player in a square pattern (2 steps right, 2 steps down, 2 steps left, 2 steps up).", "expected_sequence": ["move_right(2)", "move_down(2)", "move_left(2)", "move_up(2)"]},
-            {"prompt": "Move the player to the bottom-right corner of the grid (4,4).", "expected_sequence": ["move_right(4)", "move_down(4)"]},
-            {"prompt": "Move the player right by 3 steps. Reset the player's position and confirm their location.", "expected_sequence": ["move_right(3)", "reset_position()", "get_player_position()"]}
+            {
+                "prompt": "Move the player right by 2 steps.", 
+                "setup_functions": [],
+                "expected_sequences": [["move_right(2)"]]
+            },
+            {
+                "prompt": "Move the player down by 3 steps, then retrieve the player's position.", 
+                "setup_functions": [],
+                "expected_sequences": [["move_down(3)", "get_player_position()"]]
+            },
+            {
+                "prompt": "Move the player right by 1 step, then move down by 2 steps.", 
+                "setup_functions": [],
+                "expected_sequences": [["move_right(1)", "move_down(2)"]]
+            },
+            {
+                "prompt": "Move the player in a square pattern (2 steps right, 2 steps down, 2 steps left, 2 steps up).",
+                "setup_functions": [], 
+                "expected_sequences": [["move_right(2)", "move_down(2)", "move_left(2)", "move_up(2)"]]
+            },
+            {
+                "prompt": "Move the player to the bottom-right corner of the grid (4,4) as fast as possible.",
+                "setup_functions": [], 
+                "expected_sequences": [["move_right(4)", "move_down(4)"]]
+            },
+            {
+                "prompt": "Move the player right by 3 steps. Reset the player's position and confirm their location.",
+                "setup_functions": [], 
+                "expected_sequences": [["move_right(3)", "reset_position()", "get_player_position()"]]
+            }
         ]      
 
         self.tool_definitions = self._get_tool_definitions()
