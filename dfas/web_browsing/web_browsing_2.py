@@ -48,7 +48,7 @@ alphabet: dict[str, FunctionCall] = {
         arguments={
             "text": FunctionArgument(
                 name="text",
-                value='Matt then discusses his former job, training "cookies"',
+                value="Matt then discusses his former job,",
                 excluded_values=None,
                 type="str",
             ),
@@ -60,7 +60,7 @@ alphabet: dict[str, FunctionCall] = {
             "text": FunctionArgument(
                 name="text",
                 value=None,
-                excluded_values=['Matt then discusses his former job, training "cookies"'],
+                excluded_values=['Matt then discusses his former job,'],
                 type="str",
             ),
         },
