@@ -1,4 +1,3 @@
-from typing import List
 from dfas.dfa import Node, Transition, Prompt, FunctionCall, FunctionArgument
 
 
@@ -6,7 +5,7 @@ G0 = Node("G0")
 G1 = Node("G1")
 G2 = Node("G2", is_final=True)
 
-alphabet: List[str, FunctionCall] = {
+alphabet: dict[str, FunctionCall] = {
     "A": FunctionCall(
         'turn_on_lights',
         arguments={},
