@@ -72,4 +72,4 @@ def build_dataset(root_dir, output_file):
         json.dump(dataset, f, indent=2)
 
 if __name__ == "__main__":
-    build_dataset("/Users/panosm/Desktop/Bloodrock/DFAs/temp/dfas", "all_worlds_dataset.json")
+    build_dataset("dfas", "all_worlds_dataset.json")
