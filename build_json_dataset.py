@@ -3,7 +3,6 @@ import sys
 import json
 import importlib.util
 
-# Add parent of dfas to sys.path so dfas.* imports work
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 def serialize_function_call(fc):
@@ -55,7 +54,7 @@ def build_dataset(root_dir, output_file):
     for world in os.listdir(root_dir):
         world_path = os.path.join(root_dir, world)
         if not os.path.isdir(world_path) or world.startswith("__"):
-            continue  # skip non-world folders
+            continue  
 
         for file in os.listdir(world_path):
             if not file.endswith(".py") or file.startswith("__"):
@@ -72,6 +71,5 @@ def build_dataset(root_dir, output_file):
     with open(output_file, "w") as f:
         json.dump(dataset, f, indent=2)
 
-# Example usage
 if __name__ == "__main__":
     build_dataset("/Users/panosm/Desktop/Bloodrock/DFAs/temp/dfas", "all_worlds_dataset.json")
