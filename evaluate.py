@@ -1,4 +1,7 @@
 from dfas.dfa import Node, Transition, FunctionCall, FunctionArgument
+from build_json_dataset import serialize_function_call
+
+import sys
 import re
 import ast
 import json
@@ -226,5 +229,69 @@ def convert_alphabet_to_proc(alphabet: dict[str, FunctionCall]) -> dict[str, lis
     return proc
 
 # print(fc2symbol(function_calls[2], alphabet_proc))
-for fc in parse_function_calls_from_string(string):
-    print(fc2symbol(fc, alphabet_proc))
+# for fc in parse_function_calls_from_string(string):
+#     print(fc2symbol(fc, alphabet_proc))
+
+def json_to_alphabet(data):
+    """
+    Convert a JSON representation of an alphabet to a dictionary of FunctionCall objects.
+    """
+    alphabet = {}
+    for symbol, func_call in data.items():
+        name = func_call["name"]
+        arguments = {k: FunctionArgument(**v) for k, v in func_call["arguments"].items()}
+        alphabet[symbol] = FunctionCall(name=name, arguments=arguments)
+    return alphabet
+
+def load_world(a):
+    out = {
+        "prompt_id": a["prompt_id"],
+        "alphabet": {},
+        "nodes": {}
+    }
+    
+    for node in a["nodes"]:
+        out["nodes"][node["name"]] = Node(name=node["name"], is_final=node.get("is_final", False))
+    
+    out["alphabet"] = json_to_alphabet(a["alphabet"])
+    
+    # add transitions
+    for node in a["nodes"]:
+        out["nodes"][node["name"]].transitions = []
+        for transition in node.get("transitions", []):
+            out["nodes"][node["name"]].transitions.append(Transition(
+                symbols=transition["symbols"],
+                _from=out["nodes"][transition["from"]],
+                _to=out["nodes"][transition["to"]]
+            ))
+
+    return out
+
+# def load_results(results)
+
+if __name__ == "__main__":
+    dataset_file = sys.argv[1]
+    results_file = sys.argv[2]
+    
+    # Load the dataset (json)
+    with open(dataset_file, 'r') as f:
+        dataset = json.load(f)
+    
+    # data = load_dataset(dataset)
+    # expected format:
+    # {
+        # prompt_id: "",
+        # alphabet: <alphabet>,
+        # nodes: <nodes>, # dfa
+    # }
+    
+    world = load_world(dataset[0])
+    print(f"World loaded: {world}")
+    
+    
+    # Load the results (json)
+    # with open(results_file, 'r') as f:
+    #     results = json.load(f)
+        
+        
+    
