@@ -1,4 +1,7 @@
 from dfas.dfa import Node, Transition, FunctionCall, FunctionArgument
+import re
+import ast
+import json
 from typing import Optional, Dict, List
 
 alphabet: dict[str, FunctionCall] = {
@@ -49,9 +52,43 @@ alphabet: dict[str, FunctionCall] = {
     ),
 }
 
+def fix_response_quotes(s):
+    # Find the response value and escape inner quotes
+    
+    def replacer(match):
+        before = match.group(1)
+        content = match.group(2)
+        print(f"Original content: {content}")
+        print(f"Before content: {before}")
+        # Escape quotes inside the content
+        fixed_content = content.replace('"', "'")
+        return f'{before}"{fixed_content}"'
+    return re.sub(r'("response":)"(.*)"(\s*})', replacer, s, flags=re.DOTALL)
+
 string = '''
-"[FunctionCalled(name='set_config', arguments={'key': 'theme', 'value': 'light mode'}, response=\"Configuration 'theme' set to 'light mode' in category 'general'.\")]",
+[FunctionCalled(name='set_config', arguments={'key': 'theme', 'value': 'light mode', 'category': 'UI'}, response=\"Configuration 'theme' set to 'light mode' in category 'general'.\"),FunctionCalled(name='set_config', arguments={'key': 'theme', 'value': 'light mode'}, response=\"Configuration 'theme' set to "light mode" in category 'general'.\")]
 '''
+
+def parse_function_calls_from_string(seq_str: str) -> List[Dict[str, Optional[str]]]:
+    """
+    Parses a string like the variable `string` in evaluate.py into a list of dicts:
+    [
+        {"name": ..., "arguments": {...}, "response": ...}
+    ]
+    """
+    out = seq_str.replace("'", "\"").replace("FunctionCalled", '').replace("[", "").replace("]", "").replace("\n", "").replace("=", ":").strip().split("),(")
+    for index, s in enumerate(out):
+        s = s.strip()
+        if s.endswith(")"):
+            s = s[:-1]
+        if s.startswith("("):
+            s = s[1:]
+        s = f"{{{s}}}"
+        s = re.sub(r'(\w+):', r'"\1":', s)
+        s = fix_response_quotes(s)
+        s += "}"
+        out[index] = s
+    return [json.loads(s) for s in out if s.strip()]
 
 alphabet_proc = {
     "set_config": [
@@ -188,4 +225,6 @@ def convert_alphabet_to_proc(alphabet: dict[str, FunctionCall]) -> dict[str, lis
         proc[name].append(entry)
     return proc
 
-print(fc2symbol(function_calls[2], alphabet_proc))
+# print(fc2symbol(function_calls[2], alphabet_proc))
+for fc in parse_function_calls_from_string(string):
+    print(fc2symbol(fc, alphabet_proc))
