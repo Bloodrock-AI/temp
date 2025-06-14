@@ -34,31 +34,37 @@ class WebBrowsing(World):
         self.reset_world_state()
         self.prompts = [
             {
+                "prompt_id": "web_browsing_1",
                 "prompt": "Move to 'page1.html' and retrieve its HTML source.",
                 "setup_functions": [], 
                 "expected_sequences": [["move_to_url(file_name='page1.html')", "get_page_source()"]]
             },
             {
+                "prompt_id": "web_browsing_2",
                 "prompt": "Navigate to 'page2.html', then search for the text: 'Matt then discusses his former job,'.",
                 "setup_functions": [], 
                 "expected_sequences": [["move_to_url(file_name='page2.html')", "find_text_in_page(text='Matt then discusses his former job,')"]]
             },
             {
+                "prompt_id": "web_browsing_3",
                 "prompt": "Go to 'page3.html', retrieve the page source, and confirm the current URL.",
                 "setup_functions": [], 
                 "expected_sequences": [["move_to_url(file_name='page3.html')", "get_page_source()", "get_current_url()"]]
             },
             {
+                "prompt_id": "web_browsing_4",
                 "prompt": "Move to 'page1.html'. Then, move to 'page2.html'. Then go back to the previous page.",
                 "setup_functions": [], 
                 "expected_sequences": [["move_to_url(file_name='page1.html')","move_to_url(file_name='page2.html')", "go_back()"]]
             },
             {
+                "prompt_id": "web_browsing_5",
                 "prompt": "Retrieve the current URL before and after navigating to 'page3.html'.",
                 "setup_functions": [], 
                 "expected_sequences": [["get_current_url()", "move_to_url('page3.html')", "get_current_url()"]]
             },
             {
+                "prompt_id": "web_browsing_6",
                 "prompt": "View the browsing history after visiting 'page3.html', 'page1.html' and 'page2.html' in that specific order.",
                 "setup_functions": [], 
                 "expected_sequences": [["move_to_url(file_name='page3.html')", "move_to_url(file_name='page1.html')", "move_to_url(file_name='page2.html')", "view_browsing_history()"]]

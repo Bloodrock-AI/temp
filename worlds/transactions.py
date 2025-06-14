@@ -31,6 +31,7 @@ class Transactions(World):
         self.reset_world_state()
         self.prompts = [
             {
+                "prompt_id": "transaction_1",
                 "prompt": "Create account 'A123', deposit 500, and confirm the balance.",
                 "setup_functions": [],
                 "expected_sequences": [[
@@ -40,6 +41,7 @@ class Transactions(World):
                 ]]
             },
             {
+                "prompt_id": "transaction_2",
                 "prompt": "Create account 'A123', deposit 200, withdraw 100 and then retrieve its transaction history.",
                 "setup_functions": [],
                 "expected_sequences": [[
@@ -50,6 +52,7 @@ class Transactions(World):
                 ]]
             },
             {
+                "prompt_id": "transaction_3",
                 "prompt": "Create both 'A123' and 'B456' accounts in that order, deposit 500 into 'A123', then transfer 300 from 'A123' to 'B456' and confirm both balances starting from 'A123'.",
                 "setup_functions": [],
                 "expected_sequences": [[
@@ -62,6 +65,7 @@ class Transactions(World):
                 ]]
             },
             {
+                "prompt_id": "transaction_4",
                 "prompt": "Create account 'A123', deposit 200, apply 0.05 interest, and retrieve the new balance.",
                 "setup_functions": [],
                 "expected_sequences": [[
@@ -72,6 +76,7 @@ class Transactions(World):
                 ]]
             },
             {
+                "prompt_id": "transaction_5",
                 "prompt": "Create accounts 'A123' and 'B456' in this order, then retrieve their transaction histories in the order they were created.",
                 "setup_functions": [],
                 "expected_sequences": [[
@@ -82,6 +87,7 @@ class Transactions(World):
                 ]]
             },
             {
+                "prompt_id": "transaction_6",
                 "prompt": "Create account 'D001', deposit 1000, check its balance and then close it.",
                 "setup_functions": [],
                 "expected_sequences": [[
@@ -92,6 +98,7 @@ class Transactions(World):
                 ]]
             },
             {
+                "prompt_id": "transaction_7",
                 "prompt": "Create account 'D001', deposit 1000, apply 0.1 interest, then withdraw 300.",
                 "setup_functions": [],
                 "expected_sequences": [[
@@ -102,6 +109,7 @@ class Transactions(World):
                 ]]
             },
             {
+                "prompt_id": "transaction_8",
                 "prompt": "Create two accounts 'E111' and 'F222' in that order, deposit 500 into 'E111' and apply to it 0.1 interest. Then, transfer all of its money to 'F222' and close 'E111'.",
                 "setup_functions": [],
                 "expected_sequences": [[
@@ -114,6 +122,7 @@ class Transactions(World):
                 ]]
             },
             {
+                "prompt_id": "transaction_9",
                 "prompt": "Create account 'A123', deposit 100, charge a fee of 50, and check the balance.",
                 "setup_functions": [],
                 "expected_sequences": [[
@@ -124,6 +133,7 @@ class Transactions(World):
                 ]]
             },
             {
+                "prompt_id": "transaction_10",
                 "prompt": "Create account 'Cainhurst', deposit 100, then refund 100 and retrieve the transaction history.",
                 "setup_functions": [],
                 "expected_sequences": [[
@@ -134,6 +144,7 @@ class Transactions(World):
                 ]]
             },
             {
+                "prompt_id": "transaction_11",
                 "prompt": "Create account 'D001', deposit 50, apply 0.1 interest, then charge a maintenance fee of 10.",
                 "setup_functions": [],
                 "expected_sequences": [[
@@ -144,6 +155,7 @@ class Transactions(World):
                 ]]
             },
             {
+                "prompt_id": "transaction_12",
                 "prompt": "Create account 'G888', deposit 500, then charge a fee of the account's entire amount and check the balance. Finally, close the account.",
                 "setup_functions": [],
                 "expected_sequences": [[

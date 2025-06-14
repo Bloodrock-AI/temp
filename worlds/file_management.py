@@ -32,6 +32,7 @@ class FileManagement(World):
         self.reset_world_state()
         self.prompts = [
             {
+                "prompt_id": "file_management_1",
                 "prompt": "Create a file named 'new_meeting.txt'. Then write in it: 'Meeting at 10 AM'.",
                 "setup_functions": [],
                 "expected_sequences": [[
@@ -40,6 +41,7 @@ class FileManagement(World):
                 ]]
             },
             {
+                "prompt_id": "file_management_2",
                 "prompt": "Check if 'notes.txt' exists, then read its content.",
                 "setup_functions": [],
                 "expected_sequences": [[
@@ -48,6 +50,7 @@ class FileManagement(World):
                 ]]
             },
             {
+                "prompt_id": "file_management_3",
                 "prompt": "Rename 'notes.txt' to 'new_notes.txt' and list all files.",
                 "setup_functions": [],
                 "expected_sequences": [[
@@ -56,6 +59,7 @@ class FileManagement(World):
                 ]]
             },
             {
+                "prompt_id": "file_management_4",
                 "prompt": "Append 'New agenda added' to 'meeting_notes.txt' and count its words.",
                 "setup_functions": [],
                 "expected_sequences": [[
@@ -64,6 +68,7 @@ class FileManagement(World):
                 ]]
             },
             {
+                "prompt_id": "file_management_5",
                 "prompt": "Copy 'meeting_notes.txt' to 'notes.txt' and check the latter's size.",
                 "setup_functions": [],
                 "expected_sequences": [[
@@ -72,6 +77,7 @@ class FileManagement(World):
                 ]]
             },
             {
+                "prompt_id": "file_management_6",
                 "prompt": "Search for the word 'agenda' in 'meeting_notes.txt'. If it's not found, append it.",
                 "setup_functions": [],
                 "expected_sequences": [[

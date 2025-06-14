@@ -42,6 +42,7 @@ class Writing(World):
         self.reset_world_state()
         self.prompts = [
             {
+                "prompt_id": "writing_1",
                 "prompt": "Write the following simple sentence: 'the big cat runs'.",
                 "setup_functions": [],
                 "expected_sequences": [[
@@ -53,6 +54,7 @@ class Writing(World):
                 ]]
             },
             {
+                "prompt_id": "writing_2",
                 "prompt": "Write a sentence about a small dog sleeping under a tree. Use present simple tense for the verb",
                 "setup_functions": [],
                 "expected_sequences": [[
@@ -67,6 +69,7 @@ class Writing(World):
                 ]]
             },
             {
+                "prompt_id": "writing_3",
                 "prompt": "Form a sentence about 'a fast bird' that 'flies beside the house'.",
                 "setup_functions": [],
                 "expected_sequences": [[
@@ -81,6 +84,7 @@ class Writing(World):
                 ]]
             },
             {
+                "prompt_id": "writing_4",
                 "prompt": "Create a sentence consisting of the words: 'runs', 'the', 'dog', 'happy'. Put them in the correct order first.",
                 "setup_functions": [],
                 "expected_sequences": [[
@@ -92,6 +96,7 @@ class Writing(World):
                 ]]
             },
             {
+                "prompt_id": "writing_5",
                 "prompt": "Construct a sentence where 'the blue cat jumps above a small X'. Replace 'X' with the available synonym word for 'large plant' in your 'nouns' list.",
                 "setup_functions": [],
                 "expected_sequences": [[
@@ -107,6 +112,7 @@ class Writing(World):
                 ]]
             },
             {
+                "prompt_id": "writing_6",
                 "prompt": "Construct the sentence 'the bird flies', finalize it, then repeat the entire process again.",
                 "setup_functions": [],
                 "expected_sequences": [[
