@@ -24,31 +24,37 @@ class EventsScheduler(World):
         self.reset_world_state()
         self.prompts = [
             {
+                "prompt_id": "event_scheduler_1",
                 "prompt": "Schedule a meeting called 'Team Sync' at '2025-02-10T09:00:00' and retrieve its scheduled time.",
                 "setup_functions": [],
                 "expected_sequences": [["schedule_event('Team Sync', '2025-02-10T09:00:00')", "get_event_time('Team Sync')"]]
             },
             {
+                "prompt_id": "event_scheduler_2",
                 "prompt": "Schedule 'Team Sync' at '2025-02-10T09:00:00', then list all scheduled events.",
                 "setup_functions": [],
                 "expected_sequences": [["schedule_event('Team Sync', '2025-02-10T09:00:00')", "list_events()"]]
             },
             {
+                "prompt_id": "event_scheduler_3",
                 "prompt": "Reschedule 'Team Sync' to '2025-02-10T10:00:00' and check the remaining time until the event.",
                 "setup_functions": ["schedule_event('Team Sync', '2025-02-10T09:00:00')"],
                 "expected_sequences": [["reschedule_event('Team Sync', '2025-02-10T10:00:00')", "time_until_event('Team Sync')"]]
             },
             {
+                "prompt_id": "event_scheduler_4",
                 "prompt": "Cancel 'Team Sync', then list all events to confirm it has been removed.",
                 "setup_functions": ["schedule_event('Team Sync', '2025-02-10T09:00:00')"],
                 "expected_sequences": [["cancel_event('Team Sync')", "list_events()"]]
             },
             {
+                "prompt_id": "event_scheduler_5",
                 "prompt": "Schedule a recurring stand-up meeting every 30 minutes and retrieve its scheduled time.",
                 "setup_functions": [],
                 "expected_sequences": [["schedule_recurring_event('Stand-up Meeting', 30)", "get_event_time('Stand-up Meeting')"]]
             },
             {
+                "prompt_id": "event_scheduler_6",
                 "prompt": "Schedule 'Project Review' at '2025-02-11T15:00:00', list all events, then check the time until that event.",
                 "setup_functions": [],
                 "expected_sequences": [["schedule_event('Project Review', '2025-02-11T15:00:00')", "list_events()", "time_until_event('Project Review')"]]

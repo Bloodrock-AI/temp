@@ -13,7 +13,7 @@ You are a helpful assistant that is responsible for performing computational and
 """
 WORLD_STATE_DESCRIPTION = "Database: {}"
 
-class Maths(World):
+class Computations(World):
     def __init__(self):
         self.world_state_description = WORLD_STATE_DESCRIPTION
         self.function_system_prompt = FUNCTION_SYSTEM_PROMPT
@@ -26,26 +26,31 @@ class Maths(World):
         self.reset_world_state()
         self.prompts = [
             {
+                "prompt_id": "computations_1",
                 "prompt": "Add 15 and 7, then multiply the result by 3.",
                 "setup_functions": [],
                 "expected_sequences": [["add_numbers(a=15, b=7)", "multiply_numbers(a=22, b=3)"]]
             },
             {
+                "prompt_id": "computations_2",
                 "prompt": "Divide 100 by 4, then raise the result to the power of 2.",
                 "setup_functions": [],
                 "expected_sequences": [["divide_numbers(a=100, b=4)", "power(base=25, exponent=2)"]]
             },
             {
+                "prompt_id": "computations_3",
                 "prompt": "Calculate the average of the numbers 10, 20, and 30.",
                 "setup_functions": [],
                 "expected_sequences": [["calculate_average(numbers=[10, 20, 30])"]]
             },
             {
+                "prompt_id": "computations_4",
                 "prompt": "Subtract 4 from 25 and divide the result by 3. Then, calculate the average of this quotient and the product of 4 and 5.",
                 "setup_functions": [],
                 "expected_sequences": [["subtract_numbers(a=25, b=4)", "divide_numbers(a=21, b=3)", "multiply_numbers(a=4, b=5)", "calculate_average(numbers=[7,20])"]]
             },
             {
+                "prompt_id": "computations_5",
                 "prompt": "Multiply 6 by 7. Then, add 8 to the product. Then, divide the result by 4 raised to the second power.",
                 "setup_functions": [],
                 "expected_sequences": [["multiply_numbers(a=6, b=7)", "add_numbers(a=42, b=8)","powers(base=4, exponent=2)", "divide_numbers(a=50, b=16)"]]

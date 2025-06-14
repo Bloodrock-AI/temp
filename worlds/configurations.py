@@ -24,26 +24,31 @@ class Configurations(World):
         self.reset_world_state()
         self.prompts = [
             {
+                "prompt_id": "configurations_1",
                 "prompt": "Set the configuration for 'theme' to 'dark mode' under the 'UI' category with the timestamp, 2025-02-12T10:00:00.",
                 "setup_functions": [],
                 "expected_sequences": [["set_config('theme', 'dark mode', 'UI', '2025-02-12T10:00:00.')"]]
             },
             {
+                "prompt_id": "configurations_2",
                 "prompt": "Print the configuration for 'theme' and update it to 'light mode' while keeping the category unchanged.",
                 "setup_functions": [["set_config('theme', 'dark mode', 'UI', '2025-02-12T10:00:00.')"]],
                 "expected_sequences": [["print_config('theme')", "update_config('theme', 'light mode')"]]
             },
             {
+                "prompt_id": "configurations_3",
                 "prompt": "Set a new configuration for 'auto-save' to 'enabled' under the 'system' category, then print it.",
                 "setup_functions": [],
                 "expected_sequences": [["set_config('auto-save', 'enabled', 'system')", "print_config('auto-save')"]]
             },
             {
+                "prompt_id": "configurations_4",
                 "prompt": "Set a configuration for 'timeout' to '30 minutes' under the 'security' category. Then update it to '15 minutes' and put 'process' as its category. Finally, verify the change by printing the config.",
                 "setup_functions": [],
                 "expected_sequences": [["set_config('timeout', '30 minutes', 'security')", "update_config('timeout', '15 minutes', 'process')", "print_config('timeout')"]]
             },
             {
+                "prompt_id": "configurations_5",
                 "prompt": "Set configurations for 'max-connections' to '100' in 'network', 'log-level' to 'debug' in 'system' with whatever order you like. Then, print both in whatever order you choose.",
                 "setup_functions": [],
                 "expected_sequences": [
@@ -54,6 +59,7 @@ class Configurations(World):
                 ]
             },
             {
+                "prompt_id": "configurations_6",
                 "prompt": "Update 'log-level' from 'debug' to 'info', then delete 'max-connections'. Finally print all remaining configurations in whatever order you like.",
                 "setup_functions": ["set_config('log-level', 'debug', 'system')", "set_config('max-connections', '100', 'network')", "set_config('timeout', '30 minutes', 'security')"],
                 "expected_sequences": [
@@ -62,6 +68,7 @@ class Configurations(World):
                 ]
             },
             {
+                "prompt_id": "configurations_7",
                 "prompt": "Set a new configuration for 'backup-frequency' to 'daily' in 'storage', update 'timeout' to '10 minutes', then print both settings in whatever order you like.",
                 "setup_functions": ["set_config('timeout', '30 minutes', 'security')"],
                 "expected_sequences": [

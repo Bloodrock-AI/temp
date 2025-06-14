@@ -26,16 +26,19 @@ class Communication(World):
         self.reset_world_state()
         self.prompts = [
             {
+                "prompt_id": "communication_1",
                 "prompt": "Send a high-priority message from 'Alice' to 'Bob' with the content 'Urgent meeting at 3 PM'.",
                 "setup_functions": [],
                 "expected_sequences": [["send_message(sender='Alice', recipient='Bob', content='Urgent meeting at 3 PM', priority='high')"]]
             },
             {
+                "prompt_id": "communication_2",
                 "prompt": "Print all messages for 'Bob', filtering only high-priority ones.",
                 "setup_functions": [],
                 "expected_sequences": [["print_messages(recipient='Bob', priority='high')"]]
             },
             {
+                "prompt_id": "communication_3",
                 "prompt": "Send a normal-priority message from 'Charlie' to 'Dana' with the content 'Lunch at noon'. Then print all of Dana’s normal-priority messages. Finally, delete Charlie's messages to Dana.",
                 "setup_functions": [],
                 "expected_sequences": [["send_message(sender='Charlie', recipient='Dana', content='Lunch at noon', priority='normal')", "print_messages(recipient='Dana', priority='normal')", "delete_message(sender='Charlie', recipient='Dana')"]]
