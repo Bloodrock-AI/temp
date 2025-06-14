@@ -6,7 +6,7 @@ from worlds.desktop_manager import DesktopManager
 from worlds.events_scheduler import EventsScheduler
 from worlds.file_management import FileManagement
 from worlds.legal_compliance import LegalCompliance
-from worlds.computations import Maths
+from worlds.computations import Computations
 from worlds.navigation import Navigation
 from worlds.transactions import Transactions
 from worlds.validation import Validation
