@@ -11,7 +11,7 @@ from model import Model
 from agents import DecisionAgentPrompt, DecisionAgent, FunctionAgentPrompt, FunctionAgent, FunctionCalled
 from llm_tool import tool
 
-from worlds import Automation, Communication, Configurations, CRUD, DesktopManager, EventsScheduler, FileManagement, LegalCompliance, Maths, Navigation, Transactions, Validation, WebBrowsing, Writing
+from worlds import Automation, Communication, Configurations, CRUD, DesktopManager, EventsScheduler, FileManagement, LegalCompliance, Computations, Navigation, Transactions, Validation, WebBrowsing, Writing
 from logger import logger
 
 from typing import List, Dict, Optional
