@@ -19,19 +19,19 @@ from typing import List, Dict, Optional
 
 tests = {
     "automation": Automation(),
-    # "communication": Communication(),
-    # "configurations": Configurations(),
-    # "crud": CRUD(),
-    # "desktop_manager": DesktopManager(),
-    # "events_scheduler": EventsScheduler(),
-    # "file_management": FileManagement(),
-    # "legal_compliance": LegalCompliance(),
-    # "maths": Maths(),
-    # "navigation": Navigation(),
-    # "transactions": Transactions(),
-    # "validation": Validation(),
-    # "web_browsing": WebBrowsing(),
-    # "writing": Writing(),
+    "communication": Communication(),
+    "configurations": Configurations(),
+    "crud": CRUD(),
+    "desktop_manager": DesktopManager(),
+    "events_scheduler": EventsScheduler(),
+    "file_management": FileManagement(),
+    "legal_compliance": LegalCompliance(),
+    "computations": Computations(),
+    "navigation": Navigation(),
+    "transactions": Transactions(),
+    "validation": Validation(),
+    "web_browsing": WebBrowsing(),
+    "writing": Writing(),
 }
 
 def load_prompt_dataset(dataset_file: str) -> List[Dict]:
