@@ -19,23 +19,37 @@ from typing import List, Dict, Optional
 
 tests = {
     "automation": Automation(),
-    "communication": Communication(),
-    "configurations": Configurations(),
-    "crud": CRUD(),
-    "desktop_manager": DesktopManager(),
-    "events_scheduler": EventsScheduler(),
-    "file_management": FileManagement(),
-    "legal_compliance": LegalCompliance(),
-    "maths": Maths(),
-    "navigation": Navigation(),
-    "transactions": Transactions(),
-    "validation": Validation(),
-    "web_browsing": WebBrowsing(),
-    "writing": Writing(),
+    # "communication": Communication(),
+    # "configurations": Configurations(),
+    # "crud": CRUD(),
+    # "desktop_manager": DesktopManager(),
+    # "events_scheduler": EventsScheduler(),
+    # "file_management": FileManagement(),
+    # "legal_compliance": LegalCompliance(),
+    # "maths": Maths(),
+    # "navigation": Navigation(),
+    # "transactions": Transactions(),
+    # "validation": Validation(),
+    # "web_browsing": WebBrowsing(),
+    # "writing": Writing(),
 }
 
+def load_prompt_dataset(dataset_file: str) -> List[Dict]:
+    with open(dataset_file, 'r') as f:
+        dataset = json.load(f)
+
+    # create dictionary to map prompt ids to prompts
+    prompt_dict = {
+        prompt['id']: prompt for prompt in dataset
+    }
+    return prompt_dict
+
 def main(model: str, output_file: str):
-    
+
+    # load dataset
+    dataset_file = 'all_worlds_dataset.json'
+    prompt_dict = load_prompt_dataset(dataset_file)
+
     OUTPUT_TOKENS_CAP = 10_000
     
     GENERATED_TOKENS_AVG = 0
@@ -48,14 +62,20 @@ def main(model: str, output_file: str):
             print(f'---------------------- WORLD: {world.__class__.__name__} ----------------------')
             for prompt in world.prompts:
                 logger.reset()
-                print(f'---------------------- PROMPT: {prompt["prompt"]} ----------------------')
+                
+                # prompt from dataset
+                user_prompt = prompt_dict.get(prompt['id'], None)
+                if user_prompt is None:
+                    print(f'Prompt with id {prompt["id"]} not found in dataset.')
+                    continue
+                
+                print(f'---------------------- PROMPT: {user_prompt} ----------------------')
                 
                 # from agents import GENERATED_TOKENS
                 # temp_generated_tokens = GENERATED_TOKENS
                 prev_generated_tokens = logger.mistake_counters["generated_tokens"]
                 
                 setup_functions = prompt.get('functions', [])
-                user_prompt = prompt['prompt']
             
                 # reset the database
                 world_state = world.world_state
@@ -167,6 +187,7 @@ def main(model: str, output_file: str):
                 print(f'Sequence: {decision_prompt.functions_called}')
                 RESULTS.append({
                     "world": world.__class__.__name__,
+                    "prompt_id": prompt['id'],
                     "prompt": user_prompt,
                     "functions_called": str(decision_prompt.functions_called),
                     "mistakes": {

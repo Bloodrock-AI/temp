@@ -61,8 +61,8 @@ def fix_response_quotes(s):
     def replacer(match):
         before = match.group(1)
         content = match.group(2)
-        print(f"Original content: {content}")
-        print(f"Before content: {before}")
+        # print(f"Original content: {content}")
+        # print(f"Before content: {before}")
         # Escape quotes inside the content
         fixed_content = content.replace('"', "'")
         return f'{before}"{fixed_content}"'
@@ -79,7 +79,8 @@ def parse_function_calls_from_string(seq_str: str) -> List[Dict[str, Optional[st
         {"name": ..., "arguments": {...}, "response": ...}
     ]
     """
-    out = seq_str.replace("'", "\"").replace("FunctionCalled", '').replace("[", "").replace("]", "").replace("\n", "").replace("=", ":").strip().split("),(")
+    out = seq_str.replace("'", "\"").replace("[", "").replace("]", "").replace("\n", "").replace("=", ":").strip().split("), FunctionCalled(")
+    out = [s.replace("FunctionCalled", "") for s in out if s.strip()]
     for index, s in enumerate(out):
         s = s.strip()
         if s.endswith(")"):
@@ -168,8 +169,8 @@ def fc2symbol(fc, alphabet) -> str:
     out_symbol = ""
     
     for symbol in alphabet[fc["name"]]:
-        print("--------")
-        print(f"Checking symbol: {symbol['symbol']} for function call: {fc['name']}")
+        # print("--------")
+        # print(f"Checking symbol: {symbol['symbol']} for function call: {fc['name']}")
         
         try:
             for arg_name, arg in symbol["arguments"].items():
@@ -178,7 +179,7 @@ def fc2symbol(fc, alphabet) -> str:
                     "excluded_values": arg.excluded_values,
                     "type": arg.type
                 }
-                print(f"Checking argument: {arg_name} with value: {arg_value}")
+                # print(f"Checking argument: {arg_name} with value: {arg_value}")
 
                 if arg_value["value"] is not None:
                     # this argument is required
@@ -267,31 +268,49 @@ def load_world(a):
 
     return out
 
-# def load_results(results)
+def evaluate_world(world, result):
+    """
+    Evaluate the world against the result.
+    """
+    # Convert the alphabet to a processing format
+    alphabet_proc = convert_alphabet_to_proc(world["alphabet"])
+    
+    # Parse the function calls from the result
+    function_calls = parse_function_calls_from_string(result["functions_called"])
+    print(f"Parsed function calls: {function_calls}")
+    print("----------")
+    
+    # Check each function call against the alphabet
+    agent_sequence = []
+    for fc in function_calls:
+        symbol = fc2symbol(fc, alphabet_proc)
+        if not symbol:
+            print(f"Function call {fc} does not match any symbol in the alphabet.")
+            continue
+        agent_sequence.append(symbol)
+        print(f"Function call {fc} matches symbol: {symbol}")
+    
+    dfa = world["nodes"]
+    
+    # use agent_sequence and dfa to evaluate the agent's output
+    
+    return True  # Placeholder for actual evaluation logic
 
 if __name__ == "__main__":
     dataset_file = sys.argv[1]
     results_file = sys.argv[2]
-    
+
     # Load the dataset (json)
     with open(dataset_file, 'r') as f:
         dataset = json.load(f)
-    
-    # data = load_dataset(dataset)
-    # expected format:
-    # {
-        # prompt_id: "",
-        # alphabet: <alphabet>,
-        # nodes: <nodes>, # dfa
-    # }
-    
-    world = load_world(dataset[0])
-    print(f"World loaded: {world}")
-    
-    
+
+    world = load_world(dataset[2])
+    print(f"World loaded: {world['prompt_id']}")
+
     # Load the results (json)
-    # with open(results_file, 'r') as f:
-    #     results = json.load(f)
-        
-        
+    with open(results_file, 'r') as f:
+        results = json.load(f)
     
+    print(f"Results loaded: {results[13]['prompt']}")
+    
+    print(evaluate_world(world, results[13]))

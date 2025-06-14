@@ -1,8 +1,6 @@
 from dataclasses import dataclass, field
 from typing import List, Tuple, Optional, Dict, Any
 
-from agents import FunctionCalled
-
 @dataclass
 class Node:
     name: str
