@@ -64,7 +64,12 @@ def main(model: str, output_file: str):
                 logger.reset()
                 
                 # prompt from dataset
-                user_prompt = prompt_dict.get(prompt['prompt_id'], None)
+                current_prompt = prompt_dict.get(prompt['prompt_id'], None)
+                if current_prompt is None:
+                    print(f'Prompt with id {prompt["prompt_id"]} not found in dataset.')
+                    continue
+                
+                user_prompt = current_prompt.get('prompt', None)
                 if user_prompt is None:
                     print(f'Prompt with id {prompt["id"]} not found in dataset.')
                     continue
