@@ -192,7 +192,7 @@ def main(model: str, output_file: str):
                 print(f'Sequence: {decision_prompt.functions_called}')
                 RESULTS.append({
                     "world": world.__class__.__name__,
-                    "prompt_id": prompt['id'],
+                    "prompt_id": prompt['prompt_id'],
                     "prompt": user_prompt,
                     "functions_called": str(decision_prompt.functions_called),
                     "mistakes": {
