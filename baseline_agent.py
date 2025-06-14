@@ -40,7 +40,7 @@ def load_prompt_dataset(dataset_file: str) -> List[Dict]:
 
     # create dictionary to map prompt ids to prompts
     prompt_dict = {
-        prompt['id']: prompt for prompt in dataset
+        prompt['prompt_id']: prompt for prompt in dataset
     }
     return prompt_dict
 
@@ -64,7 +64,7 @@ def main(model: str, output_file: str):
                 logger.reset()
                 
                 # prompt from dataset
-                user_prompt = prompt_dict.get(prompt['id'], None)
+                user_prompt = prompt_dict.get(prompt['prompt_id'], None)
                 if user_prompt is None:
                     print(f'Prompt with id {prompt["id"]} not found in dataset.')
                     continue
