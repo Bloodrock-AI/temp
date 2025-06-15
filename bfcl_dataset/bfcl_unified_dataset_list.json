@@ -2432,8 +2432,8 @@
     },
     "expected_sequences": [
       [
-        "get_zipcode_based_on_city('San Francisco')",
-        "get_zipcode_based_on_city('Silverpine')",
+        "get_zipcode_based_on_city(city='San Francisco')",
+        "get_zipcode_based_on_city(city='Silverpine')",
         "estimate_distance(cityA='94016', cityB='62947')"
       ]
     ]
@@ -2510,8 +2510,8 @@
     },
     "expected_sequences": [
       [
-        "get_zipcode_based_on_city('San Francisco')",
-        "get_zipcode_based_on_city('Rivermist')",
+        "get_zipcode_based_on_city(city='San Francisco')",
+        "get_zipcode_based_on_city(city='Rivermist')",
         "estimate_distance(cityA='94016', cityB='83214')",
         "liter_to_gallon(liter=40)",
         "fillFuelTank(fuelAmount=10.57)"
@@ -2595,8 +2595,8 @@
     },
     "expected_sequences": [
       [
-        "get_zipcode_based_on_city('Rivermist')",
-        "get_zipcode_based_on_city('Stonebrook')",
+        "get_zipcode_based_on_city(city='Rivermist')",
+        "get_zipcode_based_on_city(city='Stonebrook')",
         "estimate_distance(cityA='83214', cityB='74532')"
       ]
     ]
@@ -2828,8 +2828,8 @@
     },
     "expected_sequences": [
       [
-        "get_zipcode_based_on_city('San Francisco')",
-        "get_zipcode_based_on_city('Stonebrook')",
+        "get_zipcode_based_on_city(city='San Francisco')",
+        "get_zipcode_based_on_city(city='Stonebrook')",
         "estimate_distance(cityA='94016', cityB='74532')"
       ]
     ]
@@ -2945,8 +2945,8 @@
     },
     "expected_sequences": [
       [
-        "get_zipcode_based_on_city('San Francisco')",
-        "get_zipcode_based_on_city('Rivermist')",
+        "get_zipcode_based_on_city(city='San Francisco')",
+        "get_zipcode_based_on_city(city='Rivermist')",
         "estimate_distance(cityA='83214', cityB='94016')"
       ]
     ]
@@ -3145,8 +3145,8 @@
     },
     "expected_sequences": [
       [
-        "get_zipcode_based_on_city('San Francisco')",
-        "get_zipcode_based_on_city('Rivermist')",
+        "get_zipcode_based_on_city(city='San Francisco')",
+        "get_zipcode_based_on_city(city='Rivermist')",
         "estimate_distance(cityA='83214', cityB='94016')",
         "estimate_drive_feasibility_by_mileage(distance=980.0)"
       ]
