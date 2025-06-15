@@ -15,17 +15,14 @@ To use:  change PROMPTS_FILE, ANSWERS_FILE, WORLDS_DIR below, then
          run  `python prepare_bfcl.py`.
 """
 
-# ───────────────────────── CONFIGURATION ─────────────────────────
-PROMPTS_FILE = "/Users/panosm/Desktop/Bloodrock/DFAs/temp/bfcl_dataset/prompts_dataset_list.json"      # or .jsonl
-ANSWERS_FILE = "/Users/panosm/Desktop/Bloodrock/DFAs/temp/bfcl_dataset/answers_list.json"      # or .jsonl
-WORLDS_DIR   = "/Users/panosm/Desktop/Bloodrock/DFAs/temp/bfcl_dataset/worlds"            # folder with *.json world specs
-OUTPUT_FILE  = "/Users/panosm/Desktop/Bloodrock/DFAs/temp/bfcl_dataset/bfcl_unified_dataset.json"       # merged dataset
+PROMPTS_FILE = "/Users/panosm/Desktop/Bloodrock/DFAs/temp/bfcl_dataset/prompts_dataset_list.json"     
+ANSWERS_FILE = "/Users/panosm/Desktop/Bloodrock/DFAs/temp/bfcl_dataset/answers_list.json"      
+WORLDS_DIR   = "/Users/panosm/Desktop/Bloodrock/DFAs/temp/bfcl_dataset/worlds"           
+OUTPUT_FILE  = "/Users/panosm/Desktop/Bloodrock/DFAs/temp/bfcl_dataset/bfcl_unified_dataset.json"       
 
-# ─────────────────────── standard-library imports ───────────────
 import glob, json, os, re
 from typing import Dict, List, Set, Any
 
-# ───────────────────────── file helpers ─────────────────────────
 def load_objects(path: str) -> List[dict]:
     """Load either JSON-Lines or a JSON array file."""
     with open(path, encoding="utf-8") as f:
@@ -51,7 +48,6 @@ def load_worlds(dir_: str) -> Dict[str, Set[str]]:
             worlds[name] = {tool["name"] for tool in json.load(f)}
     return worlds
 
-# ────────────────────── world-inference helpers ─────────────────
 _FN_RE = re.compile(r"^\s*([A-Za-z_]\w*)\s*\(")
 def fn_name(call: str) -> str:
     m = _FN_RE.match(call)
@@ -65,7 +61,6 @@ def choose_world(fnset: Set[str], worlds: Dict[str, Set[str]]) -> str:
             best, score = w, overlap
     return best
 
-# ─────────────────── trim initial_config helper ─────────────────
 def first_config_entry(cfg: Any) -> Any:
     """
     Return a dict containing only the first key-value pair
@@ -77,7 +72,6 @@ def first_config_entry(cfg: Any) -> Any:
         return {key: cfg[key]}
     return cfg
 
-# ────────────────────────── core routine ────────────────────────
 def build_dataset() -> List[dict]:
     prompts = {p["id"]: p for p in load_objects(PROMPTS_FILE)}
     answers = {a["id"]: a for a in load_objects(ANSWERS_FILE)}
@@ -105,7 +99,6 @@ def build_dataset() -> List[dict]:
     print(f"✓ merged {len(merged)} examples   (skipped {skipped})")
     return merged
 
-# ─────────────────────────── entry point ────────────────────────
 if __name__ == "__main__":
     dataset = build_dataset()
     dump_jsonl(dataset, OUTPUT_FILE)

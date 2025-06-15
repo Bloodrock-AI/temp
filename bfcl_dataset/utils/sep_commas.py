@@ -10,10 +10,8 @@ Output:  BFCL_v3_multi_turn_base_list.json
 import json
 from pathlib import Path
 
-# --- configuration ---------------------------------------------------------
 INPUT_FILE  = Path("/Users/panosm/Desktop/Bloodrock/DFAs/temp/bfcl_dataset/bfcl_unified_dataset.json")
 OUTPUT_FILE = INPUT_FILE.with_name(INPUT_FILE.stem + "_list.json")
-# ---------------------------------------------------------------------------
 
 def main() -> None:
     objects = []
@@ -21,10 +19,9 @@ def main() -> None:
     with INPUT_FILE.open(encoding="utf-8") as f:
         for raw in f:
             raw = raw.strip()
-            if raw:                       # ignore blank lines
+            if raw:                      
                 objects.append(json.loads(raw))
 
-    # Dump back out as a pretty-printed JSON list
     with OUTPUT_FILE.open("w", encoding="utf-8") as f:
         json.dump(objects, f, indent=2, ensure_ascii=False)
 
