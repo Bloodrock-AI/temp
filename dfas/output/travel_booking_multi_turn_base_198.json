@@ -1,0 +1,696 @@
+{
+    "dfa": [
+        {
+            "name": "G0",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "C"
+                    ],
+                    "from": "G0",
+                    "to": "G1"
+                },
+                {
+                    "symbols": [
+                        "G",
+                        "I",
+                        "J",
+                        "K",
+                        "L",
+                        "M",
+                        "N",
+                        "S",
+                        "T"
+                    ],
+                    "from": "G0",
+                    "to": "G0"
+                }
+            ]
+        },
+        {
+            "name": "G1",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "A"
+                    ],
+                    "from": "G1",
+                    "to": "G2"
+                },
+                {
+                    "symbols": [
+                        "C",
+                        "G",
+                        "I",
+                        "J",
+                        "K",
+                        "L",
+                        "M",
+                        "N",
+                        "S",
+                        "T"
+                    ],
+                    "from": "G1",
+                    "to": "G1"
+                }
+            ]
+        },
+        {
+            "name": "G2",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "B"
+                    ],
+                    "from": "G2",
+                    "to": "G3"
+                },
+                {
+                    "symbols": [
+                        "C",
+                        "G",
+                        "I",
+                        "J",
+                        "K",
+                        "L",
+                        "M",
+                        "N",
+                        "S",
+                        "T"
+                    ],
+                    "from": "G2",
+                    "to": "G2"
+                }
+            ]
+        },
+        {
+            "name": "G3",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "C",
+                        "G",
+                        "I",
+                        "J",
+                        "K",
+                        "L",
+                        "M",
+                        "N",
+                        "S",
+                        "T"
+                    ],
+                    "from": "G3",
+                    "to": "G3"
+                }
+            ]
+        },
+        {
+            "name": "G4",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "C",
+                        "G",
+                        "I",
+                        "J",
+                        "K",
+                        "L",
+                        "M",
+                        "N",
+                        "S",
+                        "T"
+                    ],
+                    "from": "G4",
+                    "to": "G4"
+                }
+            ]
+        },
+        {
+            "name": "G5",
+            "is_final": true,
+            "transitions": [
+                {
+                    "symbols": [
+                        "C",
+                        "G",
+                        "I",
+                        "J",
+                        "K",
+                        "L",
+                        "M",
+                        "N",
+                        "S",
+                        "T"
+                    ],
+                    "from": "G5",
+                    "to": "G5"
+                }
+            ]
+        }
+    ],
+    "alphabet": {
+        "A": {
+            "name": "book_flight",
+            "arguments": {
+                "access_token": {
+                    "name": "access_token",
+                    "value": "abc123token",
+                    "excluded_values": null,
+                    "type": "string"
+                },
+                "card_id": {
+                    "name": "card_id",
+                    "value": "6789",
+                    "excluded_values": null,
+                    "type": "string"
+                },
+                "travel_date": {
+                    "name": "travel_date",
+                    "value": "2024-12-25",
+                    "excluded_values": null,
+                    "type": "string"
+                },
+                "travel_from": {
+                    "name": "travel_from",
+                    "value": "SFO",
+                    "excluded_values": null,
+                    "type": "string"
+                },
+                "travel_to": {
+                    "name": "travel_to",
+                    "value": "LAX",
+                    "excluded_values": null,
+                    "type": "string"
+                },
+                "travel_class": {
+                    "name": "travel_class",
+                    "value": "first",
+                    "excluded_values": null,
+                    "type": "string"
+                },
+                "travel_cost": {
+                    "name": "travel_cost",
+                    "value": 2000.0,
+                    "excluded_values": null,
+                    "type": "float"
+                }
+            }
+        },
+        "B": {
+            "name": "cancel_booking",
+            "arguments": {
+                "access_token": {
+                    "name": "access_token",
+                    "value": "abc123token",
+                    "excluded_values": null,
+                    "type": "string"
+                },
+                "booking_id": {
+                    "name": "booking_id",
+                    "value": "3426812",
+                    "excluded_values": null,
+                    "type": "string"
+                }
+            }
+        },
+        "C": {
+            "name": "get_flight_cost",
+            "arguments": {
+                "travel_from": {
+                    "name": "travel_from",
+                    "value": "SFO",
+                    "excluded_values": null,
+                    "type": "string"
+                },
+                "travel_to": {
+                    "name": "travel_to",
+                    "value": "LAX",
+                    "excluded_values": null,
+                    "type": "string"
+                },
+                "travel_date": {
+                    "name": "travel_date",
+                    "value": "2024-12-25",
+                    "excluded_values": null,
+                    "type": "string"
+                },
+                "travel_class": {
+                    "name": "travel_class",
+                    "value": "first",
+                    "excluded_values": null,
+                    "type": "string"
+                }
+            }
+        },
+        "D": {
+            "name": "authenticate_travel",
+            "arguments": {
+                "client_id": {
+                    "name": "client_id",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "client_secret": {
+                    "name": "client_secret",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "refresh_token": {
+                    "name": "refresh_token",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "grant_type": {
+                    "name": "grant_type",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "user_first_name": {
+                    "name": "user_first_name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "user_last_name": {
+                    "name": "user_last_name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "E": {
+            "name": "book_flight",
+            "arguments": {
+                "access_token": {
+                    "name": "access_token",
+                    "value": null,
+                    "excluded_values": [
+                        "abc123token"
+                    ],
+                    "type": "string"
+                },
+                "card_id": {
+                    "name": "card_id",
+                    "value": null,
+                    "excluded_values": [
+                        "6789"
+                    ],
+                    "type": "string"
+                },
+                "travel_date": {
+                    "name": "travel_date",
+                    "value": null,
+                    "excluded_values": [
+                        "2024-12-25"
+                    ],
+                    "type": "string"
+                },
+                "travel_from": {
+                    "name": "travel_from",
+                    "value": null,
+                    "excluded_values": [
+                        "SFO"
+                    ],
+                    "type": "string"
+                },
+                "travel_to": {
+                    "name": "travel_to",
+                    "value": null,
+                    "excluded_values": [
+                        "LAX"
+                    ],
+                    "type": "string"
+                },
+                "travel_class": {
+                    "name": "travel_class",
+                    "value": null,
+                    "excluded_values": [
+                        "first"
+                    ],
+                    "type": "string"
+                },
+                "travel_cost": {
+                    "name": "travel_cost",
+                    "value": null,
+                    "excluded_values": [
+                        2000.0
+                    ],
+                    "type": "float"
+                }
+            }
+        },
+        "F": {
+            "name": "cancel_booking",
+            "arguments": {
+                "access_token": {
+                    "name": "access_token",
+                    "value": null,
+                    "excluded_values": [
+                        "abc123token"
+                    ],
+                    "type": "string"
+                },
+                "booking_id": {
+                    "name": "booking_id",
+                    "value": null,
+                    "excluded_values": [
+                        "3426812"
+                    ],
+                    "type": "string"
+                }
+            }
+        },
+        "G": {
+            "name": "compute_exchange_rate",
+            "arguments": {
+                "base_currency": {
+                    "name": "base_currency",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "target_currency": {
+                    "name": "target_currency",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "value": {
+                    "name": "value",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "float"
+                }
+            }
+        },
+        "H": {
+            "name": "contact_customer_support",
+            "arguments": {
+                "booking_id": {
+                    "name": "booking_id",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "message": {
+                    "name": "message",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "I": {
+            "name": "get_all_credit_cards",
+            "arguments": {}
+        },
+        "J": {
+            "name": "get_budget_fiscal_year",
+            "arguments": {
+                "lastModifiedAfter": {
+                    "name": "lastModifiedAfter",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "includeRemoved": {
+                    "name": "includeRemoved",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "K": {
+            "name": "get_credit_card_balance",
+            "arguments": {
+                "access_token": {
+                    "name": "access_token",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "card_id": {
+                    "name": "card_id",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "L": {
+            "name": "get_flight_cost",
+            "arguments": {
+                "travel_from": {
+                    "name": "travel_from",
+                    "value": null,
+                    "excluded_values": [
+                        "SFO"
+                    ],
+                    "type": "string"
+                },
+                "travel_to": {
+                    "name": "travel_to",
+                    "value": null,
+                    "excluded_values": [
+                        "LAX"
+                    ],
+                    "type": "string"
+                },
+                "travel_date": {
+                    "name": "travel_date",
+                    "value": null,
+                    "excluded_values": [
+                        "2024-12-25"
+                    ],
+                    "type": "string"
+                },
+                "travel_class": {
+                    "name": "travel_class",
+                    "value": null,
+                    "excluded_values": [
+                        "first"
+                    ],
+                    "type": "string"
+                }
+            }
+        },
+        "M": {
+            "name": "get_nearest_airport_by_city",
+            "arguments": {
+                "location": {
+                    "name": "location",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "N": {
+            "name": "list_all_airports",
+            "arguments": {}
+        },
+        "O": {
+            "name": "purchase_insurance",
+            "arguments": {
+                "access_token": {
+                    "name": "access_token",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "insurance_type": {
+                    "name": "insurance_type",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "insurance_cost": {
+                    "name": "insurance_cost",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "float"
+                },
+                "booking_id": {
+                    "name": "booking_id",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "card_id": {
+                    "name": "card_id",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "P": {
+            "name": "register_credit_card",
+            "arguments": {
+                "access_token": {
+                    "name": "access_token",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "card_number": {
+                    "name": "card_number",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "expiration_date": {
+                    "name": "expiration_date",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "cardholder_name": {
+                    "name": "cardholder_name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "card_verification_number": {
+                    "name": "card_verification_number",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "integer"
+                }
+            }
+        },
+        "Q": {
+            "name": "retrieve_invoice",
+            "arguments": {
+                "access_token": {
+                    "name": "access_token",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "booking_id": {
+                    "name": "booking_id",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "insurance_id": {
+                    "name": "insurance_id",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "R": {
+            "name": "set_budget_limit",
+            "arguments": {
+                "access_token": {
+                    "name": "access_token",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "budget_limit": {
+                    "name": "budget_limit",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "float"
+                }
+            }
+        },
+        "S": {
+            "name": "travel_get_login_status",
+            "arguments": {}
+        },
+        "T": {
+            "name": "verify_traveler_information",
+            "arguments": {
+                "first_name": {
+                    "name": "first_name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "last_name": {
+                    "name": "last_name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "date_of_birth": {
+                    "name": "date_of_birth",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "passport_number": {
+                    "name": "passport_number",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "expected_sequence": [
+        {
+            "name": "get_flight_cost",
+            "arguments": {
+                "travel_from": "SFO",
+                "travel_to": "LAX",
+                "travel_date": "2024-12-25",
+                "travel_class": "first"
+            }
+        },
+        {
+            "name": "book_flight",
+            "arguments": {
+                "access_token": "abc123token",
+                "card_id": "6789",
+                "travel_date": "2024-12-25",
+                "travel_from": "SFO",
+                "travel_to": "LAX",
+                "travel_class": "first",
+                "travel_cost": 2000.0
+            }
+        },
+        {
+            "name": "cancel_booking",
+            "arguments": {
+                "access_token": "abc123token",
+                "booking_id": "3426812"
+            }
+        },
+        {
+            "name": "authenticate_twitter",
+            "arguments": {
+                "username": "john",
+                "password": "john1234"
+            }
+        },
+        {
+            "name": "post_tweet",
+            "arguments": {
+                "content": "Disappointed over my canceled plans.",
+                "tags": [
+                    "#TravelWoes"
+                ],
+                "mentions": [
+                    "@CarlinaYates"
+                ]
+            }
+        }
+    ]
+}

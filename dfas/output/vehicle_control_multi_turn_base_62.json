@@ -1,0 +1,452 @@
+{
+    "dfa": [
+        {
+            "name": "G0",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "A",
+                        "B",
+                        "E",
+                        "F",
+                        "G",
+                        "H",
+                        "I",
+                        "K",
+                        "L",
+                        "M",
+                        "N",
+                        "O",
+                        "P",
+                        "Q"
+                    ],
+                    "from": "G0",
+                    "to": "G0"
+                }
+            ]
+        },
+        {
+            "name": "G1",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "B"
+                    ],
+                    "from": "G1",
+                    "to": "G2"
+                },
+                {
+                    "symbols": [
+                        "A",
+                        "E",
+                        "F",
+                        "G",
+                        "H",
+                        "I",
+                        "K",
+                        "L",
+                        "M",
+                        "N",
+                        "O",
+                        "P",
+                        "Q"
+                    ],
+                    "from": "G1",
+                    "to": "G1"
+                }
+            ]
+        },
+        {
+            "name": "G2",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "A"
+                    ],
+                    "from": "G2",
+                    "to": "G3"
+                },
+                {
+                    "symbols": [
+                        "B",
+                        "E",
+                        "F",
+                        "G",
+                        "H",
+                        "I",
+                        "K",
+                        "L",
+                        "M",
+                        "N",
+                        "O",
+                        "P",
+                        "Q"
+                    ],
+                    "from": "G2",
+                    "to": "G2"
+                }
+            ]
+        },
+        {
+            "name": "G3",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "A",
+                        "B",
+                        "E",
+                        "F",
+                        "G",
+                        "H",
+                        "I",
+                        "K",
+                        "L",
+                        "M",
+                        "N",
+                        "O",
+                        "P",
+                        "Q"
+                    ],
+                    "from": "G3",
+                    "to": "G3"
+                }
+            ]
+        },
+        {
+            "name": "G4",
+            "is_final": true,
+            "transitions": [
+                {
+                    "symbols": [
+                        "A",
+                        "B",
+                        "E",
+                        "F",
+                        "G",
+                        "H",
+                        "I",
+                        "K",
+                        "L",
+                        "M",
+                        "N",
+                        "O",
+                        "P",
+                        "Q"
+                    ],
+                    "from": "G4",
+                    "to": "G4"
+                }
+            ]
+        }
+    ],
+    "alphabet": {
+        "A": {
+            "name": "estimate_distance",
+            "arguments": {
+                "cityA": {
+                    "name": "cityA",
+                    "value": "83214",
+                    "excluded_values": null,
+                    "type": "string"
+                },
+                "cityB": {
+                    "name": "cityB",
+                    "value": "74532",
+                    "excluded_values": null,
+                    "type": "string"
+                }
+            }
+        },
+        "B": {
+            "name": "get_zipcode_based_on_city",
+            "arguments": {
+                "city": {
+                    "name": "city",
+                    "value": "Stonebrook",
+                    "excluded_values": null,
+                    "type": "string"
+                }
+            }
+        },
+        "C": {
+            "name": "activateParkingBrake",
+            "arguments": {
+                "mode": {
+                    "name": "mode",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "D": {
+            "name": "adjustClimateControl",
+            "arguments": {
+                "temperature": {
+                    "name": "temperature",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "float"
+                },
+                "unit": {
+                    "name": "unit",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "fanSpeed": {
+                    "name": "fanSpeed",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "integer"
+                },
+                "mode": {
+                    "name": "mode",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "E": {
+            "name": "check_tire_pressure",
+            "arguments": {}
+        },
+        "F": {
+            "name": "displayCarStatus",
+            "arguments": {
+                "option": {
+                    "name": "option",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "G": {
+            "name": "display_log",
+            "arguments": {
+                "messages": {
+                    "name": "messages",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "array"
+                }
+            }
+        },
+        "H": {
+            "name": "estimate_distance",
+            "arguments": {
+                "cityA": {
+                    "name": "cityA",
+                    "value": null,
+                    "excluded_values": [
+                        "83214"
+                    ],
+                    "type": "string"
+                },
+                "cityB": {
+                    "name": "cityB",
+                    "value": null,
+                    "excluded_values": [
+                        "74532"
+                    ],
+                    "type": "string"
+                }
+            }
+        },
+        "I": {
+            "name": "estimate_drive_feasibility_by_mileage",
+            "arguments": {
+                "distance": {
+                    "name": "distance",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "float"
+                }
+            }
+        },
+        "J": {
+            "name": "fillFuelTank",
+            "arguments": {
+                "fuelAmount": {
+                    "name": "fuelAmount",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "float"
+                }
+            }
+        },
+        "K": {
+            "name": "find_nearest_tire_shop",
+            "arguments": {}
+        },
+        "L": {
+            "name": "gallon_to_liter",
+            "arguments": {
+                "gallon": {
+                    "name": "gallon",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "float"
+                }
+            }
+        },
+        "M": {
+            "name": "get_current_speed",
+            "arguments": {}
+        },
+        "N": {
+            "name": "get_outside_temperature_from_google",
+            "arguments": {}
+        },
+        "O": {
+            "name": "get_outside_temperature_from_weather_com",
+            "arguments": {}
+        },
+        "P": {
+            "name": "get_zipcode_based_on_city",
+            "arguments": {
+                "city": {
+                    "name": "city",
+                    "value": null,
+                    "excluded_values": [
+                        "Stonebrook"
+                    ],
+                    "type": "string"
+                }
+            }
+        },
+        "Q": {
+            "name": "liter_to_gallon",
+            "arguments": {
+                "liter": {
+                    "name": "liter",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "float"
+                }
+            }
+        },
+        "R": {
+            "name": "lockDoors",
+            "arguments": {
+                "unlock": {
+                    "name": "unlock",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "boolean"
+                },
+                "door": {
+                    "name": "door",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "array"
+                }
+            }
+        },
+        "S": {
+            "name": "pressBrakePedal",
+            "arguments": {
+                "pedalPosition": {
+                    "name": "pedalPosition",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "float"
+                }
+            }
+        },
+        "T": {
+            "name": "releaseBrakePedal",
+            "arguments": {}
+        },
+        "U": {
+            "name": "setCruiseControl",
+            "arguments": {
+                "speed": {
+                    "name": "speed",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "float"
+                },
+                "activate": {
+                    "name": "activate",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "boolean"
+                },
+                "distanceToNextVehicle": {
+                    "name": "distanceToNextVehicle",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "float"
+                }
+            }
+        },
+        "V": {
+            "name": "setHeadlights",
+            "arguments": {
+                "mode": {
+                    "name": "mode",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "W": {
+            "name": "set_navigation",
+            "arguments": {
+                "destination": {
+                    "name": "destination",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "X": {
+            "name": "startEngine",
+            "arguments": {
+                "ignitionMode": {
+                    "name": "ignitionMode",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "expected_sequence": [
+        {
+            "name": "get_zipcode_based_on_city",
+            "arguments": {
+                "city": "Rivermist"
+            }
+        },
+        {
+            "name": "get_zipcode_based_on_city",
+            "arguments": {
+                "city": "Stonebrook"
+            }
+        },
+        {
+            "name": "estimate_distance",
+            "arguments": {
+                "cityA": "83214",
+                "cityB": "74532"
+            }
+        },
+        {
+            "name": "send_message",
+            "arguments": {
+                "receiver_id": "USR002",
+                "message": "The distance from Rivermist to Stonebrook is 750.0 km."
+            }
+        }
+    ]
+}

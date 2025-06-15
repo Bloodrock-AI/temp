@@ -1,0 +1,362 @@
+{
+    "dfa": [
+        {
+            "name": "G0",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "A"
+                    ],
+                    "from": "G0",
+                    "to": "G1"
+                },
+                {
+                    "symbols": [
+                        "C",
+                        "F",
+                        "G",
+                        "I",
+                        "J",
+                        "K",
+                        "N",
+                        "R",
+                        "T"
+                    ],
+                    "from": "G0",
+                    "to": "G0"
+                }
+            ]
+        },
+        {
+            "name": "G1",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "B"
+                    ],
+                    "from": "G1",
+                    "to": "G2"
+                },
+                {
+                    "symbols": [
+                        "C",
+                        "F",
+                        "G",
+                        "I",
+                        "J",
+                        "K",
+                        "N",
+                        "R",
+                        "T"
+                    ],
+                    "from": "G1",
+                    "to": "G1"
+                }
+            ]
+        },
+        {
+            "name": "G2",
+            "is_final": true,
+            "transitions": [
+                {
+                    "symbols": [
+                        "C",
+                        "F",
+                        "G",
+                        "I",
+                        "J",
+                        "K",
+                        "N",
+                        "R",
+                        "T"
+                    ],
+                    "from": "G2",
+                    "to": "G2"
+                }
+            ]
+        }
+    ],
+    "alphabet": {
+        "A": {
+            "name": "cd",
+            "arguments": {
+                "folder": {
+                    "name": "folder",
+                    "value": "workspace",
+                    "excluded_values": null,
+                    "type": "string"
+                }
+            }
+        },
+        "B": {
+            "name": "mkdir",
+            "arguments": {
+                "dir_name": {
+                    "name": "dir_name",
+                    "value": "Projects",
+                    "excluded_values": null,
+                    "type": "string"
+                }
+            }
+        },
+        "C": {
+            "name": "cat",
+            "arguments": {
+                "file_name": {
+                    "name": "file_name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "D": {
+            "name": "cd",
+            "arguments": {
+                "folder": {
+                    "name": "folder",
+                    "value": null,
+                    "excluded_values": [
+                        "workspace"
+                    ],
+                    "type": "string"
+                }
+            }
+        },
+        "E": {
+            "name": "cp",
+            "arguments": {
+                "source": {
+                    "name": "source",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "destination": {
+                    "name": "destination",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "F": {
+            "name": "diff",
+            "arguments": {
+                "file_name1": {
+                    "name": "file_name1",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "file_name2": {
+                    "name": "file_name2",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "G": {
+            "name": "du",
+            "arguments": {
+                "human_readable": {
+                    "name": "human_readable",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "boolean"
+                }
+            }
+        },
+        "H": {
+            "name": "echo",
+            "arguments": {
+                "content": {
+                    "name": "content",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "file_name": {
+                    "name": "file_name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "I": {
+            "name": "find",
+            "arguments": {
+                "path": {
+                    "name": "path",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "name": {
+                    "name": "name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "J": {
+            "name": "grep",
+            "arguments": {
+                "file_name": {
+                    "name": "file_name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "pattern": {
+                    "name": "pattern",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "K": {
+            "name": "ls",
+            "arguments": {
+                "a": {
+                    "name": "a",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "boolean"
+                }
+            }
+        },
+        "L": {
+            "name": "mkdir",
+            "arguments": {
+                "dir_name": {
+                    "name": "dir_name",
+                    "value": null,
+                    "excluded_values": [
+                        "Projects"
+                    ],
+                    "type": "string"
+                }
+            }
+        },
+        "M": {
+            "name": "mv",
+            "arguments": {
+                "source": {
+                    "name": "source",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "destination": {
+                    "name": "destination",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "N": {
+            "name": "pwd",
+            "arguments": {}
+        },
+        "O": {
+            "name": "rm",
+            "arguments": {
+                "file_name": {
+                    "name": "file_name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "P": {
+            "name": "rmdir",
+            "arguments": {
+                "dir_name": {
+                    "name": "dir_name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "Q": {
+            "name": "sort",
+            "arguments": {
+                "file_name": {
+                    "name": "file_name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "R": {
+            "name": "tail",
+            "arguments": {
+                "file_name": {
+                    "name": "file_name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "lines": {
+                    "name": "lines",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "integer"
+                }
+            }
+        },
+        "S": {
+            "name": "touch",
+            "arguments": {
+                "file_name": {
+                    "name": "file_name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "T": {
+            "name": "wc",
+            "arguments": {
+                "file_name": {
+                    "name": "file_name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "mode": {
+                    "name": "mode",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "expected_sequence": [
+        {
+            "name": "cd",
+            "arguments": {
+                "folder": "workspace"
+            }
+        },
+        {
+            "name": "mkdir",
+            "arguments": {
+                "dir_name": "Projects"
+            }
+        }
+    ]
+}

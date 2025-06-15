@@ -1,0 +1,522 @@
+{
+    "dfa": [
+        {
+            "name": "G0",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "A"
+                    ],
+                    "from": "G0",
+                    "to": "G1"
+                },
+                {
+                    "symbols": [
+                        "F",
+                        "H",
+                        "I",
+                        "J",
+                        "K",
+                        "L",
+                        "M",
+                        "R",
+                        "S"
+                    ],
+                    "from": "G0",
+                    "to": "G0"
+                }
+            ]
+        },
+        {
+            "name": "G1",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "B"
+                    ],
+                    "from": "G1",
+                    "to": "G2"
+                },
+                {
+                    "symbols": [
+                        "A",
+                        "F",
+                        "H",
+                        "I",
+                        "J",
+                        "K",
+                        "L",
+                        "M",
+                        "R",
+                        "S"
+                    ],
+                    "from": "G1",
+                    "to": "G1"
+                }
+            ]
+        },
+        {
+            "name": "G2",
+            "is_final": true,
+            "transitions": [
+                {
+                    "symbols": [
+                        "A",
+                        "F",
+                        "H",
+                        "I",
+                        "J",
+                        "K",
+                        "L",
+                        "M",
+                        "R",
+                        "S"
+                    ],
+                    "from": "G2",
+                    "to": "G2"
+                }
+            ]
+        }
+    ],
+    "alphabet": {
+        "A": {
+            "name": "compute_exchange_rate",
+            "arguments": {
+                "base_currency": {
+                    "name": "base_currency",
+                    "value": "RMB",
+                    "excluded_values": null,
+                    "type": "string"
+                },
+                "target_currency": {
+                    "name": "target_currency",
+                    "value": "USD",
+                    "excluded_values": null,
+                    "type": "string"
+                },
+                "value": {
+                    "name": "value",
+                    "value": 50000.0,
+                    "excluded_values": null,
+                    "type": "float"
+                }
+            }
+        },
+        "B": {
+            "name": "set_budget_limit",
+            "arguments": {
+                "access_token": {
+                    "name": "access_token",
+                    "value": "abc123xyz",
+                    "excluded_values": null,
+                    "type": "string"
+                },
+                "budget_limit": {
+                    "name": "budget_limit",
+                    "value": 7142.86,
+                    "excluded_values": null,
+                    "type": "float"
+                }
+            }
+        },
+        "C": {
+            "name": "authenticate_travel",
+            "arguments": {
+                "client_id": {
+                    "name": "client_id",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "client_secret": {
+                    "name": "client_secret",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "refresh_token": {
+                    "name": "refresh_token",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "grant_type": {
+                    "name": "grant_type",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "user_first_name": {
+                    "name": "user_first_name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "user_last_name": {
+                    "name": "user_last_name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "D": {
+            "name": "book_flight",
+            "arguments": {
+                "access_token": {
+                    "name": "access_token",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "card_id": {
+                    "name": "card_id",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "travel_date": {
+                    "name": "travel_date",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "travel_from": {
+                    "name": "travel_from",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "travel_to": {
+                    "name": "travel_to",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "travel_class": {
+                    "name": "travel_class",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "travel_cost": {
+                    "name": "travel_cost",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "float"
+                }
+            }
+        },
+        "E": {
+            "name": "cancel_booking",
+            "arguments": {
+                "access_token": {
+                    "name": "access_token",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "booking_id": {
+                    "name": "booking_id",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "F": {
+            "name": "compute_exchange_rate",
+            "arguments": {
+                "base_currency": {
+                    "name": "base_currency",
+                    "value": null,
+                    "excluded_values": [
+                        "RMB"
+                    ],
+                    "type": "string"
+                },
+                "target_currency": {
+                    "name": "target_currency",
+                    "value": null,
+                    "excluded_values": [
+                        "USD"
+                    ],
+                    "type": "string"
+                },
+                "value": {
+                    "name": "value",
+                    "value": null,
+                    "excluded_values": [
+                        50000.0
+                    ],
+                    "type": "float"
+                }
+            }
+        },
+        "G": {
+            "name": "contact_customer_support",
+            "arguments": {
+                "booking_id": {
+                    "name": "booking_id",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "message": {
+                    "name": "message",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "H": {
+            "name": "get_all_credit_cards",
+            "arguments": {}
+        },
+        "I": {
+            "name": "get_budget_fiscal_year",
+            "arguments": {
+                "lastModifiedAfter": {
+                    "name": "lastModifiedAfter",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "includeRemoved": {
+                    "name": "includeRemoved",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "J": {
+            "name": "get_credit_card_balance",
+            "arguments": {
+                "access_token": {
+                    "name": "access_token",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "card_id": {
+                    "name": "card_id",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "K": {
+            "name": "get_flight_cost",
+            "arguments": {
+                "travel_from": {
+                    "name": "travel_from",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "travel_to": {
+                    "name": "travel_to",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "travel_date": {
+                    "name": "travel_date",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "travel_class": {
+                    "name": "travel_class",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "L": {
+            "name": "get_nearest_airport_by_city",
+            "arguments": {
+                "location": {
+                    "name": "location",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "M": {
+            "name": "list_all_airports",
+            "arguments": {}
+        },
+        "N": {
+            "name": "purchase_insurance",
+            "arguments": {
+                "access_token": {
+                    "name": "access_token",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "insurance_type": {
+                    "name": "insurance_type",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "insurance_cost": {
+                    "name": "insurance_cost",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "float"
+                },
+                "booking_id": {
+                    "name": "booking_id",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "card_id": {
+                    "name": "card_id",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "O": {
+            "name": "register_credit_card",
+            "arguments": {
+                "access_token": {
+                    "name": "access_token",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "card_number": {
+                    "name": "card_number",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "expiration_date": {
+                    "name": "expiration_date",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "cardholder_name": {
+                    "name": "cardholder_name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "card_verification_number": {
+                    "name": "card_verification_number",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "integer"
+                }
+            }
+        },
+        "P": {
+            "name": "retrieve_invoice",
+            "arguments": {
+                "access_token": {
+                    "name": "access_token",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "booking_id": {
+                    "name": "booking_id",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "insurance_id": {
+                    "name": "insurance_id",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "Q": {
+            "name": "set_budget_limit",
+            "arguments": {
+                "access_token": {
+                    "name": "access_token",
+                    "value": null,
+                    "excluded_values": [
+                        "abc123xyz"
+                    ],
+                    "type": "string"
+                },
+                "budget_limit": {
+                    "name": "budget_limit",
+                    "value": null,
+                    "excluded_values": [
+                        7142.86
+                    ],
+                    "type": "float"
+                }
+            }
+        },
+        "R": {
+            "name": "travel_get_login_status",
+            "arguments": {}
+        },
+        "S": {
+            "name": "verify_traveler_information",
+            "arguments": {
+                "first_name": {
+                    "name": "first_name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "last_name": {
+                    "name": "last_name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "date_of_birth": {
+                    "name": "date_of_birth",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "passport_number": {
+                    "name": "passport_number",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "expected_sequence": [
+        {
+            "name": "compute_exchange_rate",
+            "arguments": {
+                "base_currency": "RMB",
+                "target_currency": "USD",
+                "value": 50000.0
+            }
+        },
+        {
+            "name": "set_budget_limit",
+            "arguments": {
+                "access_token": "abc123xyz",
+                "budget_limit": 7142.86
+            }
+        }
+    ]
+}

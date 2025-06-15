@@ -1,0 +1,195 @@
+{
+    "dfa": [
+        {
+            "name": "G0",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "D",
+                        "E",
+                        "F",
+                        "G",
+                        "I",
+                        "K"
+                    ],
+                    "from": "G0",
+                    "to": "G0"
+                }
+            ]
+        },
+        {
+            "name": "G1",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "A"
+                    ],
+                    "from": "G1",
+                    "to": "G2"
+                },
+                {
+                    "symbols": [
+                        "D",
+                        "E",
+                        "F",
+                        "G",
+                        "I",
+                        "K"
+                    ],
+                    "from": "G1",
+                    "to": "G1"
+                }
+            ]
+        },
+        {
+            "name": "G2",
+            "is_final": true,
+            "transitions": [
+                {
+                    "symbols": [
+                        "D",
+                        "E",
+                        "F",
+                        "G",
+                        "I",
+                        "K"
+                    ],
+                    "from": "G2",
+                    "to": "G2"
+                }
+            ]
+        }
+    ],
+    "alphabet": {
+        "A": {
+            "name": "send_message",
+            "arguments": {
+                "receiver_id": {
+                    "name": "receiver_id",
+                    "value": "USR006",
+                    "excluded_values": null,
+                    "type": "string"
+                },
+                "message": {
+                    "name": "message",
+                    "value": "It is hot outside.",
+                    "excluded_values": null,
+                    "type": "string"
+                }
+            }
+        },
+        "B": {
+            "name": "add_contact",
+            "arguments": {
+                "user_name": {
+                    "name": "user_name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "C": {
+            "name": "delete_message",
+            "arguments": {
+                "receiver_id": {
+                    "name": "receiver_id",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "message_id": {
+                    "name": "message_id",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "integer"
+                }
+            }
+        },
+        "D": {
+            "name": "get_message_stats",
+            "arguments": {}
+        },
+        "E": {
+            "name": "get_user_id",
+            "arguments": {
+                "user": {
+                    "name": "user",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "F": {
+            "name": "list_users",
+            "arguments": {}
+        },
+        "G": {
+            "name": "message_get_login_status",
+            "arguments": {}
+        },
+        "H": {
+            "name": "message_login",
+            "arguments": {
+                "user_id": {
+                    "name": "user_id",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "I": {
+            "name": "search_messages",
+            "arguments": {
+                "keyword": {
+                    "name": "keyword",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "J": {
+            "name": "send_message",
+            "arguments": {
+                "receiver_id": {
+                    "name": "receiver_id",
+                    "value": null,
+                    "excluded_values": [
+                        "USR006"
+                    ],
+                    "type": "string"
+                },
+                "message": {
+                    "name": "message",
+                    "value": null,
+                    "excluded_values": [
+                        "It is hot outside."
+                    ],
+                    "type": "string"
+                }
+            }
+        },
+        "K": {
+            "name": "view_messages_sent",
+            "arguments": {}
+        }
+    },
+    "expected_sequence": [
+        {
+            "name": "get_outside_temperature_from_google",
+            "arguments": {}
+        },
+        {
+            "name": "send_message",
+            "arguments": {
+                "receiver_id": "USR006",
+                "message": "It is hot outside."
+            }
+        }
+    ]
+}

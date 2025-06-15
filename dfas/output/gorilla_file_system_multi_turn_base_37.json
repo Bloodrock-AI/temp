@@ -1,0 +1,325 @@
+{
+    "dfa": [
+        {
+            "name": "G0",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "A"
+                    ],
+                    "from": "G0",
+                    "to": "G1"
+                },
+                {
+                    "symbols": [
+                        "B",
+                        "E",
+                        "F",
+                        "H",
+                        "I",
+                        "J",
+                        "M",
+                        "Q",
+                        "S"
+                    ],
+                    "from": "G0",
+                    "to": "G0"
+                }
+            ]
+        },
+        {
+            "name": "G1",
+            "is_final": true,
+            "transitions": [
+                {
+                    "symbols": [
+                        "A",
+                        "B",
+                        "E",
+                        "F",
+                        "H",
+                        "I",
+                        "J",
+                        "M",
+                        "Q",
+                        "S"
+                    ],
+                    "from": "G1",
+                    "to": "G1"
+                }
+            ]
+        }
+    ],
+    "alphabet": {
+        "A": {
+            "name": "wc",
+            "arguments": {
+                "file_name": {
+                    "name": "file_name",
+                    "value": "dev_summary.txt",
+                    "excluded_values": null,
+                    "type": "string"
+                },
+                "mode": {
+                    "name": "mode",
+                    "value": "l",
+                    "excluded_values": null,
+                    "type": "string"
+                }
+            }
+        },
+        "B": {
+            "name": "cat",
+            "arguments": {
+                "file_name": {
+                    "name": "file_name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "C": {
+            "name": "cd",
+            "arguments": {
+                "folder": {
+                    "name": "folder",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "D": {
+            "name": "cp",
+            "arguments": {
+                "source": {
+                    "name": "source",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "destination": {
+                    "name": "destination",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "E": {
+            "name": "diff",
+            "arguments": {
+                "file_name1": {
+                    "name": "file_name1",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "file_name2": {
+                    "name": "file_name2",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "F": {
+            "name": "du",
+            "arguments": {
+                "human_readable": {
+                    "name": "human_readable",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "boolean"
+                }
+            }
+        },
+        "G": {
+            "name": "echo",
+            "arguments": {
+                "content": {
+                    "name": "content",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "file_name": {
+                    "name": "file_name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "H": {
+            "name": "find",
+            "arguments": {
+                "path": {
+                    "name": "path",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "name": {
+                    "name": "name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "I": {
+            "name": "grep",
+            "arguments": {
+                "file_name": {
+                    "name": "file_name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "pattern": {
+                    "name": "pattern",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "J": {
+            "name": "ls",
+            "arguments": {
+                "a": {
+                    "name": "a",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "boolean"
+                }
+            }
+        },
+        "K": {
+            "name": "mkdir",
+            "arguments": {
+                "dir_name": {
+                    "name": "dir_name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "L": {
+            "name": "mv",
+            "arguments": {
+                "source": {
+                    "name": "source",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "destination": {
+                    "name": "destination",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "M": {
+            "name": "pwd",
+            "arguments": {}
+        },
+        "N": {
+            "name": "rm",
+            "arguments": {
+                "file_name": {
+                    "name": "file_name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "O": {
+            "name": "rmdir",
+            "arguments": {
+                "dir_name": {
+                    "name": "dir_name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "P": {
+            "name": "sort",
+            "arguments": {
+                "file_name": {
+                    "name": "file_name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "Q": {
+            "name": "tail",
+            "arguments": {
+                "file_name": {
+                    "name": "file_name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "lines": {
+                    "name": "lines",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "integer"
+                }
+            }
+        },
+        "R": {
+            "name": "touch",
+            "arguments": {
+                "file_name": {
+                    "name": "file_name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "S": {
+            "name": "wc",
+            "arguments": {
+                "file_name": {
+                    "name": "file_name",
+                    "value": null,
+                    "excluded_values": [
+                        "dev_summary.txt"
+                    ],
+                    "type": "string"
+                },
+                "mode": {
+                    "name": "mode",
+                    "value": null,
+                    "excluded_values": [
+                        "l"
+                    ],
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "expected_sequence": [
+        {
+            "name": "wc",
+            "arguments": {
+                "file_name": "dev_summary.txt",
+                "mode": "l"
+            }
+        }
+    ]
+}
