@@ -200,7 +200,7 @@ class DecisionAgent:
             self.prompt.get_prompt()
         )
         logger.mistake_counters["generated_tokens"] += self.model.last_generated_tokens
-        out=out.split('</think>')[1]
+        out=out.split('<token>')[1]
         
         reg = r'"answer":\s*(true|false)'
         m = re.search(reg, out)
