@@ -149,7 +149,7 @@ You are a helpful assistant which can use functions in order to satisfy the user
 These are the functions which you have access to:
 {self.function_definitions}
 
-{f"Additional Instructions: {self.additional_instructions.replace("'", '"')}" if self.additional_instructions else ""}
+{f"Additional Instructions: {self.additional_instructions.replace('\'', '\"')}" if self.additional_instructions else ""}
 
 Your task is to give the next function which should be called in order to satisfy the user's prompt.
 
