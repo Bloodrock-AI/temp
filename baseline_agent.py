@@ -155,7 +155,6 @@ def main(model: str, output_file: str):
                         print(f'Error: {repr(e)}')
                         print('Failed to call function')
                         logger.mistake_counters["type_2"] += 1
-                        temp_mistake_2_counter += 1
                         break
                     
                     fc = FunctionCalled(
