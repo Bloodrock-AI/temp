@@ -1,0 +1,297 @@
+{
+    "dfa": [
+        {
+            "name": "G0",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "E",
+                        "F",
+                        "G",
+                        "H",
+                        "I",
+                        "L",
+                        "N"
+                    ],
+                    "from": "G0",
+                    "to": "G0"
+                }
+            ]
+        },
+        {
+            "name": "G1",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "A"
+                    ],
+                    "from": "G1",
+                    "to": "G2"
+                },
+                {
+                    "symbols": [
+                        "E",
+                        "F",
+                        "G",
+                        "H",
+                        "I",
+                        "L",
+                        "N"
+                    ],
+                    "from": "G1",
+                    "to": "G1"
+                }
+            ]
+        },
+        {
+            "name": "G2",
+            "is_final": true,
+            "transitions": [
+                {
+                    "symbols": [
+                        "E",
+                        "F",
+                        "G",
+                        "H",
+                        "I",
+                        "L",
+                        "N"
+                    ],
+                    "from": "G2",
+                    "to": "G2"
+                }
+            ]
+        }
+    ],
+    "alphabet": {
+        "A": {
+            "name": "post_tweet",
+            "arguments": {
+                "content": {
+                    "name": "content",
+                    "value": "Omega Industries is skyrocketing at $457.23 per share! The tech industry evolution is electrifying, and we are just getting started.",
+                    "excluded_values": null,
+                    "type": "string"
+                },
+                "tags": {
+                    "name": "tags",
+                    "value": [
+                        "#TechBoom"
+                    ],
+                    "excluded_values": null,
+                    "type": "array"
+                },
+                "mentions": {
+                    "name": "mentions",
+                    "value": [
+                        "@industryexperts"
+                    ],
+                    "excluded_values": null,
+                    "type": "array"
+                }
+            }
+        },
+        "B": {
+            "name": "authenticate_twitter",
+            "arguments": {
+                "username": {
+                    "name": "username",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "password": {
+                    "name": "password",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "C": {
+            "name": "comment",
+            "arguments": {
+                "tweet_id": {
+                    "name": "tweet_id",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "integer"
+                },
+                "comment_content": {
+                    "name": "comment_content",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "D": {
+            "name": "follow_user",
+            "arguments": {
+                "username_to_follow": {
+                    "name": "username_to_follow",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "E": {
+            "name": "get_tweet",
+            "arguments": {
+                "tweet_id": {
+                    "name": "tweet_id",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "integer"
+                }
+            }
+        },
+        "F": {
+            "name": "get_tweet_comments",
+            "arguments": {
+                "tweet_id": {
+                    "name": "tweet_id",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "integer"
+                }
+            }
+        },
+        "G": {
+            "name": "get_user_stats",
+            "arguments": {
+                "username": {
+                    "name": "username",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "H": {
+            "name": "get_user_tweets",
+            "arguments": {
+                "username": {
+                    "name": "username",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "I": {
+            "name": "list_all_following",
+            "arguments": {}
+        },
+        "J": {
+            "name": "mention",
+            "arguments": {
+                "tweet_id": {
+                    "name": "tweet_id",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "integer"
+                },
+                "mentioned_usernames": {
+                    "name": "mentioned_usernames",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "array"
+                }
+            }
+        },
+        "K": {
+            "name": "post_tweet",
+            "arguments": {
+                "content": {
+                    "name": "content",
+                    "value": null,
+                    "excluded_values": [
+                        "Omega Industries is skyrocketing at $457.23 per share! The tech industry evolution is electrifying, and we are just getting started."
+                    ],
+                    "type": "string"
+                },
+                "tags": {
+                    "name": "tags",
+                    "value": null,
+                    "excluded_values": [
+                        [
+                            "#TechBoom"
+                        ]
+                    ],
+                    "type": "array"
+                },
+                "mentions": {
+                    "name": "mentions",
+                    "value": null,
+                    "excluded_values": [
+                        [
+                            "@industryexperts"
+                        ]
+                    ],
+                    "type": "array"
+                }
+            }
+        },
+        "L": {
+            "name": "posting_get_login_status",
+            "arguments": {}
+        },
+        "M": {
+            "name": "retweet",
+            "arguments": {
+                "tweet_id": {
+                    "name": "tweet_id",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "integer"
+                }
+            }
+        },
+        "N": {
+            "name": "search_tweets",
+            "arguments": {
+                "keyword": {
+                    "name": "keyword",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "O": {
+            "name": "unfollow_user",
+            "arguments": {
+                "username_to_unfollow": {
+                    "name": "username_to_unfollow",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "expected_sequence": [
+        {
+            "name": "get_stock_info",
+            "arguments": {
+                "symbol": "OMEG"
+            }
+        },
+        {
+            "name": "post_tweet",
+            "arguments": {
+                "content": "Omega Industries is skyrocketing at $457.23 per share! The tech industry evolution is electrifying, and we are just getting started.",
+                "tags": [
+                    "#TechBoom"
+                ],
+                "mentions": [
+                    "@industryexperts"
+                ]
+            }
+        }
+    ]
+}

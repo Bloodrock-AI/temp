@@ -1,0 +1,528 @@
+{
+    "dfa": [
+        {
+            "name": "G0",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "A",
+                        "C",
+                        "D",
+                        "G",
+                        "H",
+                        "I",
+                        "J",
+                        "K",
+                        "M",
+                        "N",
+                        "O",
+                        "P",
+                        "Q",
+                        "R",
+                        "S"
+                    ],
+                    "from": "G0",
+                    "to": "G0"
+                }
+            ]
+        },
+        {
+            "name": "G1",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "C"
+                    ],
+                    "from": "G1",
+                    "to": "G2"
+                },
+                {
+                    "symbols": [
+                        "A",
+                        "D",
+                        "G",
+                        "H",
+                        "I",
+                        "J",
+                        "K",
+                        "M",
+                        "N",
+                        "O",
+                        "P",
+                        "Q",
+                        "R",
+                        "S"
+                    ],
+                    "from": "G1",
+                    "to": "G1"
+                }
+            ]
+        },
+        {
+            "name": "G2",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "A"
+                    ],
+                    "from": "G2",
+                    "to": "G3"
+                },
+                {
+                    "symbols": [
+                        "C",
+                        "D",
+                        "G",
+                        "H",
+                        "I",
+                        "J",
+                        "K",
+                        "M",
+                        "N",
+                        "O",
+                        "P",
+                        "Q",
+                        "R",
+                        "S"
+                    ],
+                    "from": "G2",
+                    "to": "G2"
+                }
+            ]
+        },
+        {
+            "name": "G3",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "D"
+                    ],
+                    "from": "G3",
+                    "to": "G4"
+                },
+                {
+                    "symbols": [
+                        "A",
+                        "C",
+                        "G",
+                        "H",
+                        "I",
+                        "J",
+                        "K",
+                        "M",
+                        "N",
+                        "O",
+                        "P",
+                        "Q",
+                        "R",
+                        "S"
+                    ],
+                    "from": "G3",
+                    "to": "G3"
+                }
+            ]
+        },
+        {
+            "name": "G4",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "B"
+                    ],
+                    "from": "G4",
+                    "to": "G5"
+                },
+                {
+                    "symbols": [
+                        "A",
+                        "C",
+                        "D",
+                        "G",
+                        "H",
+                        "I",
+                        "J",
+                        "K",
+                        "M",
+                        "N",
+                        "O",
+                        "P",
+                        "Q",
+                        "R",
+                        "S"
+                    ],
+                    "from": "G4",
+                    "to": "G4"
+                }
+            ]
+        },
+        {
+            "name": "G5",
+            "is_final": true,
+            "transitions": [
+                {
+                    "symbols": [
+                        "A",
+                        "C",
+                        "D",
+                        "G",
+                        "H",
+                        "I",
+                        "J",
+                        "K",
+                        "M",
+                        "N",
+                        "O",
+                        "P",
+                        "Q",
+                        "R",
+                        "S"
+                    ],
+                    "from": "G5",
+                    "to": "G5"
+                }
+            ]
+        }
+    ],
+    "alphabet": {
+        "A": {
+            "name": "estimate_distance",
+            "arguments": {
+                "cityA": {
+                    "name": "cityA",
+                    "value": "94016",
+                    "excluded_values": null,
+                    "type": "string"
+                },
+                "cityB": {
+                    "name": "cityB",
+                    "value": "83214",
+                    "excluded_values": null,
+                    "type": "string"
+                }
+            }
+        },
+        "B": {
+            "name": "fillFuelTank",
+            "arguments": {
+                "fuelAmount": {
+                    "name": "fuelAmount",
+                    "value": 10.57,
+                    "excluded_values": null,
+                    "type": "float"
+                }
+            }
+        },
+        "C": {
+            "name": "get_zipcode_based_on_city",
+            "arguments": {
+                "city": {
+                    "name": "city",
+                    "value": "Rivermist",
+                    "excluded_values": null,
+                    "type": "string"
+                }
+            }
+        },
+        "D": {
+            "name": "liter_to_gallon",
+            "arguments": {
+                "liter": {
+                    "name": "liter",
+                    "value": 40,
+                    "excluded_values": null,
+                    "type": "float"
+                }
+            }
+        },
+        "E": {
+            "name": "activateParkingBrake",
+            "arguments": {
+                "mode": {
+                    "name": "mode",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "F": {
+            "name": "adjustClimateControl",
+            "arguments": {
+                "temperature": {
+                    "name": "temperature",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "float"
+                },
+                "unit": {
+                    "name": "unit",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "fanSpeed": {
+                    "name": "fanSpeed",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "integer"
+                },
+                "mode": {
+                    "name": "mode",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "G": {
+            "name": "check_tire_pressure",
+            "arguments": {}
+        },
+        "H": {
+            "name": "displayCarStatus",
+            "arguments": {
+                "option": {
+                    "name": "option",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "I": {
+            "name": "display_log",
+            "arguments": {
+                "messages": {
+                    "name": "messages",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "array"
+                }
+            }
+        },
+        "J": {
+            "name": "estimate_distance",
+            "arguments": {
+                "cityA": {
+                    "name": "cityA",
+                    "value": null,
+                    "excluded_values": [
+                        "94016"
+                    ],
+                    "type": "string"
+                },
+                "cityB": {
+                    "name": "cityB",
+                    "value": null,
+                    "excluded_values": [
+                        "83214"
+                    ],
+                    "type": "string"
+                }
+            }
+        },
+        "K": {
+            "name": "estimate_drive_feasibility_by_mileage",
+            "arguments": {
+                "distance": {
+                    "name": "distance",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "float"
+                }
+            }
+        },
+        "L": {
+            "name": "fillFuelTank",
+            "arguments": {
+                "fuelAmount": {
+                    "name": "fuelAmount",
+                    "value": null,
+                    "excluded_values": [
+                        10.57
+                    ],
+                    "type": "float"
+                }
+            }
+        },
+        "M": {
+            "name": "find_nearest_tire_shop",
+            "arguments": {}
+        },
+        "N": {
+            "name": "gallon_to_liter",
+            "arguments": {
+                "gallon": {
+                    "name": "gallon",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "float"
+                }
+            }
+        },
+        "O": {
+            "name": "get_current_speed",
+            "arguments": {}
+        },
+        "P": {
+            "name": "get_outside_temperature_from_google",
+            "arguments": {}
+        },
+        "Q": {
+            "name": "get_outside_temperature_from_weather_com",
+            "arguments": {}
+        },
+        "R": {
+            "name": "get_zipcode_based_on_city",
+            "arguments": {
+                "city": {
+                    "name": "city",
+                    "value": null,
+                    "excluded_values": [
+                        "Rivermist"
+                    ],
+                    "type": "string"
+                }
+            }
+        },
+        "S": {
+            "name": "liter_to_gallon",
+            "arguments": {
+                "liter": {
+                    "name": "liter",
+                    "value": null,
+                    "excluded_values": [
+                        40
+                    ],
+                    "type": "float"
+                }
+            }
+        },
+        "T": {
+            "name": "lockDoors",
+            "arguments": {
+                "unlock": {
+                    "name": "unlock",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "boolean"
+                },
+                "door": {
+                    "name": "door",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "array"
+                }
+            }
+        },
+        "U": {
+            "name": "pressBrakePedal",
+            "arguments": {
+                "pedalPosition": {
+                    "name": "pedalPosition",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "float"
+                }
+            }
+        },
+        "V": {
+            "name": "releaseBrakePedal",
+            "arguments": {}
+        },
+        "W": {
+            "name": "setCruiseControl",
+            "arguments": {
+                "speed": {
+                    "name": "speed",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "float"
+                },
+                "activate": {
+                    "name": "activate",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "boolean"
+                },
+                "distanceToNextVehicle": {
+                    "name": "distanceToNextVehicle",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "float"
+                }
+            }
+        },
+        "X": {
+            "name": "setHeadlights",
+            "arguments": {
+                "mode": {
+                    "name": "mode",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "Y": {
+            "name": "set_navigation",
+            "arguments": {
+                "destination": {
+                    "name": "destination",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "Z": {
+            "name": "startEngine",
+            "arguments": {
+                "ignitionMode": {
+                    "name": "ignitionMode",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "expected_sequence": [
+        {
+            "name": "get_zipcode_based_on_city",
+            "arguments": {
+                "city": "San Francisco"
+            }
+        },
+        {
+            "name": "get_zipcode_based_on_city",
+            "arguments": {
+                "city": "Rivermist"
+            }
+        },
+        {
+            "name": "estimate_distance",
+            "arguments": {
+                "cityA": "94016",
+                "cityB": "83214"
+            }
+        },
+        {
+            "name": "liter_to_gallon",
+            "arguments": {
+                "liter": 40
+            }
+        },
+        {
+            "name": "fillFuelTank",
+            "arguments": {
+                "fuelAmount": 10.57
+            }
+        }
+    ]
+}

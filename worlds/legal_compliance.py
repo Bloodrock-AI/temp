@@ -47,11 +47,36 @@ class LegalCompliance(World):
         }
         self.reset_world_state()
         self.prompts = [
-            {"prompt": "Verify if the statement 'Users must be informed before data collection' adheres to the privacy policy. If it does, approve it as a valid policy statement.", "expected_sequence": ["check_compliance(doc_name='privacy_policy', statement='Users must be informed before data collection')", "approve_policy(statement='Users must be informed before data collection')"]},
-            {"prompt": "A potential violation has been detected where personal data is being shared with third parties without consent. Flag this violation as 'Unauthorized data sharing detected' and request consent from user 'U123' for data processing as 'Data processing consent required'.", "expected_sequence": ["flag_violation(issue='Unauthorized data sharing detected')", "request_consent(user_id='U123', reason='Data processing consent required')"]},
-            {"prompt": "Conduct an audit on GDPR compliance and flag the issue: 'Data breaches not reported within 72 hours' ", "expected_sequence": ["generate_audit_report(doc_name='gdpr_compliance')", "flag_violation(issue='Data breaches not reported within 72 hours')"]},
-            {"prompt": "Check whether the policy 'Users must not engage in fraudulent activities' is part of the terms of service. If it is, enforce compliance measures to prevent such activity as 'Fraudulent activity detected'.", "expected_sequence": ["check_compliance(doc_name='terms_of_service', statement='Users must not engage in fraudulent activities')", "enforce_compliance(doc_name='terms_of_service', issue='Fraudulent activity detected')"]},
-            {"prompt": "Review the privacy policy to confirm that 'Personal data shall not be shared with third parties'. If this rule is violated, flag the issue as 'Third-party data sharing detected', enforce corrective actions on privacy policy for 'Unauthorized data sharing mitigation', and generate an audit report to track compliance.", "expected_sequence": ["check_compliance(doc_name='privacy_policy', statement='Personal data shall not be shared with third parties')", "flag_violation(issue='Third-party data sharing detected')", "enforce_compliance(doc_name='privacy_policy', issue='Unauthorized data sharing mitigation')", "generate_audit_report(doc_name='privacy_policy')"]}
+            {
+                "prompt_id": "legal_compliance_1",
+                "prompt": "Verify if the statement 'Users must be informed before data collection' adheres to our privacy policy. If it does, approve it as a valid policy statement.", 
+                "setup_functions": [],
+                "expected_sequences": [["check_compliance(doc_name='privacy_policy', statement='Users must be informed before data collection')", "approve_policy(statement='Users must be informed before data collection')"]]
+            },
+            {
+                "prompt_id": "legal_compliance_2",
+                "prompt": "A potential violation has been detected where personal data is being shared with third parties without consent. Flag this violation as 'Unauthorized data sharing detected' and request consent from user 'U123' for data processing as 'Data processing consent required'.", 
+                "setup_functions": [],
+                "expected_sequences": [["flag_violation(issue='Unauthorized data sharing detected')", "request_consent(user_id='U123', reason='Data processing consent required')"]]
+            },
+            {
+                "prompt_id": "legal_compliance_3",
+                "prompt": "Conduct an audit on GDPR compliance and flag the issue: 'Data breaches not reported within 72 hours' ",
+                "setup_functions": [], 
+                "expected_sequences": [["generate_audit_report(doc_name='gdpr_compliance')", "flag_violation(issue='Data breaches not reported within 72 hours')"]]
+            },
+            {
+                "prompt_id": "legal_compliance_4",
+                "prompt": "Check whether the policy 'Users must not engage in fraudulent activities' is part of the terms of service. If it is, enforce compliance measures to prevent such activity as 'Fraudulent activity detected'.",
+                "setup_functions": [], 
+                "expected_sequences": [["check_compliance(doc_name='terms_of_service', statement='Users must not engage in fraudulent activities')", "enforce_compliance(doc_name='terms_of_service', issue='Fraudulent activity detected')"]]
+            },
+            {
+                "prompt_id": "legal_compliance_5",
+                "prompt": "Review the privacy policy to confirm that 'Personal data shall not be shared with third parties'. If this rule is violated, flag the issue as 'Third-party data sharing detected', enforce corrective actions on privacy policy for 'Unauthorized data sharing mitigation', and generate an audit report to track compliance.",
+                "setup_functions": [], 
+                "expected_sequences": [["check_compliance(doc_name='privacy_policy', statement='Personal data shall not be shared with third parties')", "flag_violation(issue='Third-party data sharing detected')", "enforce_compliance(doc_name='privacy_policy', issue='Unauthorized data sharing mitigation')", "generate_audit_report(doc_name='privacy_policy')"]]
+            }
         ]
 
     def check_compliance(self, doc_name: str, statement: str) -> bool:

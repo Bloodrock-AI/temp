@@ -1,0 +1,421 @@
+{
+    "dfa": [
+        {
+            "name": "G0",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "A"
+                    ],
+                    "from": "G0",
+                    "to": "G1"
+                },
+                {
+                    "symbols": [
+                        "G",
+                        "H",
+                        "I",
+                        "J",
+                        "K",
+                        "L",
+                        "M",
+                        "N",
+                        "O",
+                        "T"
+                    ],
+                    "from": "G0",
+                    "to": "G0"
+                }
+            ]
+        },
+        {
+            "name": "G1",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "B"
+                    ],
+                    "from": "G1",
+                    "to": "G2"
+                },
+                {
+                    "symbols": [
+                        "A",
+                        "G",
+                        "H",
+                        "I",
+                        "J",
+                        "K",
+                        "L",
+                        "M",
+                        "N",
+                        "O",
+                        "T"
+                    ],
+                    "from": "G1",
+                    "to": "G1"
+                }
+            ]
+        },
+        {
+            "name": "G2",
+            "is_final": true,
+            "transitions": [
+                {
+                    "symbols": [
+                        "A",
+                        "G",
+                        "H",
+                        "I",
+                        "J",
+                        "K",
+                        "L",
+                        "M",
+                        "N",
+                        "O",
+                        "T"
+                    ],
+                    "from": "G2",
+                    "to": "G2"
+                }
+            ]
+        }
+    ],
+    "alphabet": {
+        "A": {
+            "name": "get_stock_info",
+            "arguments": {
+                "symbol": {
+                    "name": "symbol",
+                    "value": "AAPL",
+                    "excluded_values": null,
+                    "type": "string"
+                }
+            }
+        },
+        "B": {
+            "name": "place_order",
+            "arguments": {
+                "order_type": {
+                    "name": "order_type",
+                    "value": "Buy",
+                    "excluded_values": null,
+                    "type": "string"
+                },
+                "symbol": {
+                    "name": "symbol",
+                    "value": "AAPL",
+                    "excluded_values": null,
+                    "type": "string"
+                },
+                "price": {
+                    "name": "price",
+                    "value": 227.16,
+                    "excluded_values": null,
+                    "type": "float"
+                },
+                "amount": {
+                    "name": "amount",
+                    "value": 100,
+                    "excluded_values": null,
+                    "type": "integer"
+                }
+            }
+        },
+        "C": {
+            "name": "add_to_watchlist",
+            "arguments": {
+                "stock": {
+                    "name": "stock",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "D": {
+            "name": "cancel_order",
+            "arguments": {
+                "order_id": {
+                    "name": "order_id",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "integer"
+                }
+            }
+        },
+        "E": {
+            "name": "filter_stocks_by_price",
+            "arguments": {
+                "stocks": {
+                    "name": "stocks",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "array"
+                },
+                "min_price": {
+                    "name": "min_price",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "float"
+                },
+                "max_price": {
+                    "name": "max_price",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "float"
+                }
+            }
+        },
+        "F": {
+            "name": "fund_account",
+            "arguments": {
+                "amount": {
+                    "name": "amount",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "float"
+                }
+            }
+        },
+        "G": {
+            "name": "get_account_info",
+            "arguments": {}
+        },
+        "H": {
+            "name": "get_available_stocks",
+            "arguments": {
+                "sector": {
+                    "name": "sector",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "I": {
+            "name": "get_current_time",
+            "arguments": {}
+        },
+        "J": {
+            "name": "get_order_details",
+            "arguments": {
+                "order_id": {
+                    "name": "order_id",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "integer"
+                }
+            }
+        },
+        "K": {
+            "name": "get_order_history",
+            "arguments": {}
+        },
+        "L": {
+            "name": "get_stock_info",
+            "arguments": {
+                "symbol": {
+                    "name": "symbol",
+                    "value": null,
+                    "excluded_values": [
+                        "AAPL"
+                    ],
+                    "type": "string"
+                }
+            }
+        },
+        "M": {
+            "name": "get_symbol_by_name",
+            "arguments": {
+                "name": {
+                    "name": "name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "N": {
+            "name": "get_transaction_history",
+            "arguments": {
+                "start_date": {
+                    "name": "start_date",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "end_date": {
+                    "name": "end_date",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "O": {
+            "name": "get_watchlist",
+            "arguments": {}
+        },
+        "P": {
+            "name": "make_transaction",
+            "arguments": {
+                "account_id": {
+                    "name": "account_id",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "integer"
+                },
+                "xact_type": {
+                    "name": "xact_type",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "amount": {
+                    "name": "amount",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "float"
+                }
+            }
+        },
+        "Q": {
+            "name": "notify_price_change",
+            "arguments": {
+                "stocks": {
+                    "name": "stocks",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "array"
+                },
+                "threshold": {
+                    "name": "threshold",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "float"
+                }
+            }
+        },
+        "R": {
+            "name": "place_order",
+            "arguments": {
+                "order_type": {
+                    "name": "order_type",
+                    "value": null,
+                    "excluded_values": [
+                        "Buy"
+                    ],
+                    "type": "string"
+                },
+                "symbol": {
+                    "name": "symbol",
+                    "value": null,
+                    "excluded_values": [
+                        "AAPL"
+                    ],
+                    "type": "string"
+                },
+                "price": {
+                    "name": "price",
+                    "value": null,
+                    "excluded_values": [
+                        227.16
+                    ],
+                    "type": "float"
+                },
+                "amount": {
+                    "name": "amount",
+                    "value": null,
+                    "excluded_values": [
+                        100
+                    ],
+                    "type": "integer"
+                }
+            }
+        },
+        "S": {
+            "name": "remove_stock_from_watchlist",
+            "arguments": {
+                "symbol": {
+                    "name": "symbol",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "T": {
+            "name": "trading_get_login_status",
+            "arguments": {}
+        },
+        "U": {
+            "name": "trading_login",
+            "arguments": {
+                "username": {
+                    "name": "username",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "password": {
+                    "name": "password",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "V": {
+            "name": "trading_logout",
+            "arguments": {}
+        },
+        "W": {
+            "name": "update_market_status",
+            "arguments": {
+                "current_time_str": {
+                    "name": "current_time_str",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "X": {
+            "name": "update_stock_price",
+            "arguments": {
+                "symbol": {
+                    "name": "symbol",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "new_price": {
+                    "name": "new_price",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "float"
+                }
+            }
+        }
+    },
+    "expected_sequence": [
+        {
+            "name": "get_stock_info",
+            "arguments": {
+                "symbol": "AAPL"
+            }
+        },
+        {
+            "name": "place_order",
+            "arguments": {
+                "order_type": "Buy",
+                "symbol": "AAPL",
+                "price": 227.16,
+                "amount": 100
+            }
+        }
+    ]
+}

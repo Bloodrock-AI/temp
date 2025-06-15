@@ -1,0 +1,545 @@
+{
+    "dfa": [
+        {
+            "name": "G0",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "C"
+                    ],
+                    "from": "G0",
+                    "to": "G1"
+                },
+                {
+                    "symbols": [
+                        "A",
+                        "B",
+                        "E",
+                        "F",
+                        "I",
+                        "J",
+                        "L",
+                        "M",
+                        "N",
+                        "Q",
+                        "U",
+                        "W"
+                    ],
+                    "from": "G0",
+                    "to": "G0"
+                }
+            ]
+        },
+        {
+            "name": "G1",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "D"
+                    ],
+                    "from": "G1",
+                    "to": "G2"
+                },
+                {
+                    "symbols": [
+                        "A",
+                        "B",
+                        "E",
+                        "F",
+                        "I",
+                        "J",
+                        "L",
+                        "M",
+                        "N",
+                        "Q",
+                        "U",
+                        "W"
+                    ],
+                    "from": "G1",
+                    "to": "G1"
+                }
+            ]
+        },
+        {
+            "name": "G2",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "A"
+                    ],
+                    "from": "G2",
+                    "to": "G3"
+                },
+                {
+                    "symbols": [
+                        "B",
+                        "E",
+                        "F",
+                        "I",
+                        "J",
+                        "L",
+                        "M",
+                        "N",
+                        "Q",
+                        "U",
+                        "W"
+                    ],
+                    "from": "G2",
+                    "to": "G2"
+                }
+            ]
+        },
+        {
+            "name": "G3",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "B"
+                    ],
+                    "from": "G3",
+                    "to": "G4"
+                },
+                {
+                    "symbols": [
+                        "A",
+                        "E",
+                        "F",
+                        "I",
+                        "J",
+                        "L",
+                        "M",
+                        "N",
+                        "Q",
+                        "U",
+                        "W"
+                    ],
+                    "from": "G3",
+                    "to": "G3"
+                }
+            ]
+        },
+        {
+            "name": "G4",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "E"
+                    ],
+                    "from": "G4",
+                    "to": "G5"
+                },
+                {
+                    "symbols": [
+                        "A",
+                        "B",
+                        "F",
+                        "I",
+                        "J",
+                        "L",
+                        "M",
+                        "N",
+                        "Q",
+                        "U",
+                        "W"
+                    ],
+                    "from": "G4",
+                    "to": "G4"
+                }
+            ]
+        },
+        {
+            "name": "G5",
+            "is_final": true,
+            "transitions": [
+                {
+                    "symbols": [
+                        "A",
+                        "B",
+                        "E",
+                        "F",
+                        "I",
+                        "J",
+                        "L",
+                        "M",
+                        "N",
+                        "Q",
+                        "U",
+                        "W"
+                    ],
+                    "from": "G5",
+                    "to": "G5"
+                }
+            ]
+        }
+    ],
+    "alphabet": {
+        "A": {
+            "name": "cat",
+            "arguments": {
+                "file_name": {
+                    "name": "file_name",
+                    "value": "data.txt",
+                    "excluded_values": null,
+                    "type": "string"
+                }
+            }
+        },
+        "B": {
+            "name": "grep",
+            "arguments": {
+                "file_name": {
+                    "name": "file_name",
+                    "value": "data.txt",
+                    "excluded_values": null,
+                    "type": "string"
+                },
+                "pattern": {
+                    "name": "pattern",
+                    "value": "Q4 financials",
+                    "excluded_values": null,
+                    "type": "string"
+                }
+            }
+        },
+        "C": {
+            "name": "mkdir",
+            "arguments": {
+                "dir_name": {
+                    "name": "dir_name",
+                    "value": "Reports",
+                    "excluded_values": null,
+                    "type": "string"
+                }
+            }
+        },
+        "D": {
+            "name": "mv",
+            "arguments": {
+                "source": {
+                    "name": "source",
+                    "value": "summary.doc",
+                    "excluded_values": null,
+                    "type": "string"
+                },
+                "destination": {
+                    "name": "destination",
+                    "value": "Reports",
+                    "excluded_values": null,
+                    "type": "string"
+                }
+            }
+        },
+        "E": {
+            "name": "wc",
+            "arguments": {
+                "file_name": {
+                    "name": "file_name",
+                    "value": "data.txt",
+                    "excluded_values": null,
+                    "type": "string"
+                },
+                "mode": {
+                    "name": "mode",
+                    "value": "l",
+                    "excluded_values": null,
+                    "type": "string"
+                }
+            }
+        },
+        "F": {
+            "name": "cat",
+            "arguments": {
+                "file_name": {
+                    "name": "file_name",
+                    "value": null,
+                    "excluded_values": [
+                        "data.txt"
+                    ],
+                    "type": "string"
+                }
+            }
+        },
+        "G": {
+            "name": "cd",
+            "arguments": {
+                "folder": {
+                    "name": "folder",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "H": {
+            "name": "cp",
+            "arguments": {
+                "source": {
+                    "name": "source",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "destination": {
+                    "name": "destination",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "I": {
+            "name": "diff",
+            "arguments": {
+                "file_name1": {
+                    "name": "file_name1",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "file_name2": {
+                    "name": "file_name2",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "J": {
+            "name": "du",
+            "arguments": {
+                "human_readable": {
+                    "name": "human_readable",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "boolean"
+                }
+            }
+        },
+        "K": {
+            "name": "echo",
+            "arguments": {
+                "content": {
+                    "name": "content",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "file_name": {
+                    "name": "file_name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "L": {
+            "name": "find",
+            "arguments": {
+                "path": {
+                    "name": "path",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "name": {
+                    "name": "name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "M": {
+            "name": "grep",
+            "arguments": {
+                "file_name": {
+                    "name": "file_name",
+                    "value": null,
+                    "excluded_values": [
+                        "data.txt"
+                    ],
+                    "type": "string"
+                },
+                "pattern": {
+                    "name": "pattern",
+                    "value": null,
+                    "excluded_values": [
+                        "Q4 financials"
+                    ],
+                    "type": "string"
+                }
+            }
+        },
+        "N": {
+            "name": "ls",
+            "arguments": {
+                "a": {
+                    "name": "a",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "boolean"
+                }
+            }
+        },
+        "O": {
+            "name": "mkdir",
+            "arguments": {
+                "dir_name": {
+                    "name": "dir_name",
+                    "value": null,
+                    "excluded_values": [
+                        "Reports"
+                    ],
+                    "type": "string"
+                }
+            }
+        },
+        "P": {
+            "name": "mv",
+            "arguments": {
+                "source": {
+                    "name": "source",
+                    "value": null,
+                    "excluded_values": [
+                        "summary.doc"
+                    ],
+                    "type": "string"
+                },
+                "destination": {
+                    "name": "destination",
+                    "value": null,
+                    "excluded_values": [
+                        "Reports"
+                    ],
+                    "type": "string"
+                }
+            }
+        },
+        "Q": {
+            "name": "pwd",
+            "arguments": {}
+        },
+        "R": {
+            "name": "rm",
+            "arguments": {
+                "file_name": {
+                    "name": "file_name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "S": {
+            "name": "rmdir",
+            "arguments": {
+                "dir_name": {
+                    "name": "dir_name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "T": {
+            "name": "sort",
+            "arguments": {
+                "file_name": {
+                    "name": "file_name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "U": {
+            "name": "tail",
+            "arguments": {
+                "file_name": {
+                    "name": "file_name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "lines": {
+                    "name": "lines",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "integer"
+                }
+            }
+        },
+        "V": {
+            "name": "touch",
+            "arguments": {
+                "file_name": {
+                    "name": "file_name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "W": {
+            "name": "wc",
+            "arguments": {
+                "file_name": {
+                    "name": "file_name",
+                    "value": null,
+                    "excluded_values": [
+                        "data.txt"
+                    ],
+                    "type": "string"
+                },
+                "mode": {
+                    "name": "mode",
+                    "value": null,
+                    "excluded_values": [
+                        "l"
+                    ],
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "expected_sequence": [
+        {
+            "name": "mkdir",
+            "arguments": {
+                "dir_name": "Reports"
+            }
+        },
+        {
+            "name": "mv",
+            "arguments": {
+                "source": "summary.doc",
+                "destination": "Reports"
+            }
+        },
+        {
+            "name": "cat",
+            "arguments": {
+                "file_name": "data.txt"
+            }
+        },
+        {
+            "name": "grep",
+            "arguments": {
+                "pattern": "Q4 financials",
+                "file_name": "data.txt"
+            }
+        },
+        {
+            "name": "wc",
+            "arguments": {
+                "file_name": "data.txt",
+                "mode": "l"
+            }
+        }
+    ]
+}

@@ -1,0 +1,553 @@
+{
+    "dfa": [
+        {
+            "name": "G0",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "B"
+                    ],
+                    "from": "G0",
+                    "to": "G1"
+                },
+                {
+                    "symbols": [
+                        "H",
+                        "I",
+                        "J",
+                        "K",
+                        "L",
+                        "N",
+                        "O",
+                        "P",
+                        "Q",
+                        "R",
+                        "S",
+                        "T"
+                    ],
+                    "from": "G0",
+                    "to": "G0"
+                }
+            ]
+        },
+        {
+            "name": "G1",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "A"
+                    ],
+                    "from": "G1",
+                    "to": "G2"
+                },
+                {
+                    "symbols": [
+                        "B",
+                        "H",
+                        "I",
+                        "J",
+                        "K",
+                        "L",
+                        "N",
+                        "O",
+                        "P",
+                        "Q",
+                        "R",
+                        "S",
+                        "T"
+                    ],
+                    "from": "G1",
+                    "to": "G1"
+                }
+            ]
+        },
+        {
+            "name": "G2",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "C"
+                    ],
+                    "from": "G2",
+                    "to": "G3"
+                },
+                {
+                    "symbols": [
+                        "B",
+                        "H",
+                        "I",
+                        "J",
+                        "K",
+                        "L",
+                        "N",
+                        "O",
+                        "P",
+                        "Q",
+                        "R",
+                        "S",
+                        "T"
+                    ],
+                    "from": "G2",
+                    "to": "G2"
+                }
+            ]
+        },
+        {
+            "name": "G3",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "D"
+                    ],
+                    "from": "G3",
+                    "to": "G4"
+                },
+                {
+                    "symbols": [
+                        "B",
+                        "H",
+                        "I",
+                        "J",
+                        "K",
+                        "L",
+                        "N",
+                        "O",
+                        "P",
+                        "Q",
+                        "R",
+                        "S",
+                        "T"
+                    ],
+                    "from": "G3",
+                    "to": "G3"
+                }
+            ]
+        },
+        {
+            "name": "G4",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "E"
+                    ],
+                    "from": "G4",
+                    "to": "G5"
+                },
+                {
+                    "symbols": [
+                        "B",
+                        "H",
+                        "I",
+                        "J",
+                        "K",
+                        "L",
+                        "N",
+                        "O",
+                        "P",
+                        "Q",
+                        "R",
+                        "S",
+                        "T"
+                    ],
+                    "from": "G4",
+                    "to": "G4"
+                }
+            ]
+        },
+        {
+            "name": "G5",
+            "is_final": true,
+            "transitions": [
+                {
+                    "symbols": [
+                        "B",
+                        "H",
+                        "I",
+                        "J",
+                        "K",
+                        "L",
+                        "N",
+                        "O",
+                        "P",
+                        "Q",
+                        "R",
+                        "S",
+                        "T"
+                    ],
+                    "from": "G5",
+                    "to": "G5"
+                }
+            ]
+        }
+    ],
+    "alphabet": {
+        "A": {
+            "name": "fillFuelTank",
+            "arguments": {
+                "fuelAmount": {
+                    "name": "fuelAmount",
+                    "value": 40.0,
+                    "excluded_values": null,
+                    "type": "float"
+                }
+            }
+        },
+        "B": {
+            "name": "liter_to_gallon",
+            "arguments": {
+                "liter": {
+                    "name": "liter",
+                    "value": 150.0,
+                    "excluded_values": null,
+                    "type": "float"
+                }
+            }
+        },
+        "C": {
+            "name": "lockDoors",
+            "arguments": {
+                "unlock": {
+                    "name": "unlock",
+                    "value": false,
+                    "excluded_values": null,
+                    "type": "boolean"
+                },
+                "door": {
+                    "name": "door",
+                    "value": [
+                        "driver",
+                        "passenger",
+                        "rear_left",
+                        "rear_right"
+                    ],
+                    "excluded_values": null,
+                    "type": "array"
+                }
+            }
+        },
+        "D": {
+            "name": "pressBrakePedal",
+            "arguments": {
+                "pedalPosition": {
+                    "name": "pedalPosition",
+                    "value": 1.0,
+                    "excluded_values": null,
+                    "type": "float"
+                }
+            }
+        },
+        "E": {
+            "name": "startEngine",
+            "arguments": {
+                "ignitionMode": {
+                    "name": "ignitionMode",
+                    "value": "START",
+                    "excluded_values": null,
+                    "type": "string"
+                }
+            }
+        },
+        "F": {
+            "name": "activateParkingBrake",
+            "arguments": {
+                "mode": {
+                    "name": "mode",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "G": {
+            "name": "adjustClimateControl",
+            "arguments": {
+                "temperature": {
+                    "name": "temperature",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "float"
+                },
+                "unit": {
+                    "name": "unit",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "fanSpeed": {
+                    "name": "fanSpeed",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "integer"
+                },
+                "mode": {
+                    "name": "mode",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "H": {
+            "name": "check_tire_pressure",
+            "arguments": {}
+        },
+        "I": {
+            "name": "displayCarStatus",
+            "arguments": {
+                "option": {
+                    "name": "option",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "J": {
+            "name": "display_log",
+            "arguments": {
+                "messages": {
+                    "name": "messages",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "array"
+                }
+            }
+        },
+        "K": {
+            "name": "estimate_distance",
+            "arguments": {
+                "cityA": {
+                    "name": "cityA",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "cityB": {
+                    "name": "cityB",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "L": {
+            "name": "estimate_drive_feasibility_by_mileage",
+            "arguments": {
+                "distance": {
+                    "name": "distance",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "float"
+                }
+            }
+        },
+        "M": {
+            "name": "fillFuelTank",
+            "arguments": {
+                "fuelAmount": {
+                    "name": "fuelAmount",
+                    "value": null,
+                    "excluded_values": [
+                        40.0
+                    ],
+                    "type": "float"
+                }
+            }
+        },
+        "N": {
+            "name": "find_nearest_tire_shop",
+            "arguments": {}
+        },
+        "O": {
+            "name": "gallon_to_liter",
+            "arguments": {
+                "gallon": {
+                    "name": "gallon",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "float"
+                }
+            }
+        },
+        "P": {
+            "name": "get_current_speed",
+            "arguments": {}
+        },
+        "Q": {
+            "name": "get_outside_temperature_from_google",
+            "arguments": {}
+        },
+        "R": {
+            "name": "get_outside_temperature_from_weather_com",
+            "arguments": {}
+        },
+        "S": {
+            "name": "get_zipcode_based_on_city",
+            "arguments": {
+                "city": {
+                    "name": "city",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "T": {
+            "name": "liter_to_gallon",
+            "arguments": {
+                "liter": {
+                    "name": "liter",
+                    "value": null,
+                    "excluded_values": [
+                        150.0
+                    ],
+                    "type": "float"
+                }
+            }
+        },
+        "U": {
+            "name": "lockDoors",
+            "arguments": {
+                "unlock": {
+                    "name": "unlock",
+                    "value": null,
+                    "excluded_values": [
+                        false
+                    ],
+                    "type": "boolean"
+                },
+                "door": {
+                    "name": "door",
+                    "value": null,
+                    "excluded_values": [
+                        [
+                            "driver",
+                            "passenger",
+                            "rear_left",
+                            "rear_right"
+                        ]
+                    ],
+                    "type": "array"
+                }
+            }
+        },
+        "V": {
+            "name": "pressBrakePedal",
+            "arguments": {
+                "pedalPosition": {
+                    "name": "pedalPosition",
+                    "value": null,
+                    "excluded_values": [
+                        1.0
+                    ],
+                    "type": "float"
+                }
+            }
+        },
+        "W": {
+            "name": "releaseBrakePedal",
+            "arguments": {}
+        },
+        "X": {
+            "name": "setCruiseControl",
+            "arguments": {
+                "speed": {
+                    "name": "speed",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "float"
+                },
+                "activate": {
+                    "name": "activate",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "boolean"
+                },
+                "distanceToNextVehicle": {
+                    "name": "distanceToNextVehicle",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "float"
+                }
+            }
+        },
+        "Y": {
+            "name": "setHeadlights",
+            "arguments": {
+                "mode": {
+                    "name": "mode",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "Z": {
+            "name": "set_navigation",
+            "arguments": {
+                "destination": {
+                    "name": "destination",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "AA": {
+            "name": "startEngine",
+            "arguments": {
+                "ignitionMode": {
+                    "name": "ignitionMode",
+                    "value": null,
+                    "excluded_values": [
+                        "START"
+                    ],
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "expected_sequence": [
+        {
+            "name": "liter_to_gallon",
+            "arguments": {
+                "liter": 150.0
+            }
+        },
+        {
+            "name": "fillFuelTank",
+            "arguments": {
+                "fuelAmount": 40.0
+            }
+        },
+        {
+            "name": "lockDoors",
+            "arguments": {
+                "unlock": false,
+                "door": [
+                    "driver",
+                    "passenger",
+                    "rear_left",
+                    "rear_right"
+                ]
+            }
+        },
+        {
+            "name": "pressBrakePedal",
+            "arguments": {
+                "pedalPosition": 1.0
+            }
+        },
+        {
+            "name": "startEngine",
+            "arguments": {
+                "ignitionMode": "START"
+            }
+        }
+    ]
+}

@@ -29,24 +29,34 @@ class Automation(World):
         self.reset_world_state()
         self.prompts = [
             {
-                "prompt": "Turn on the lights and set the thermostat to 24 degrees.",
-                "expected_sequence": ["turn_on_lights()", "set_thermostat(temperature=24)"]
+                "prompt_id": "automation_1",
+                "prompt": "Turn on the lights and then set the thermostat to 24 degrees.",
+                "setup_functions": [],
+                "expected_sequences": [["turn_on_lights()", "set_thermostat(temperature=24)"]]
             },
             {
-                "prompt": "Lock the door and activate the alarm.",
-                "expected_sequence": ["lock_door()", "activate_alarm()"]
+                "prompt_id": "automation_2",
+                "prompt": "Lock the door and activate the alarm in that order.",
+                "setup_functions":["unlock_door()",],
+                "expected_sequences": [["lock_door()", "activate_alarm()"]]
             },
             {
-                "prompt": "Unlock the door, turn off the lights, and set the thermostat to 20 degrees.",
-                "expected_sequence": ["unlock_door()", "turn_off_lights()", "set_thermostat(temperature=20)"]
+                "prompt_id": "automation_3",
+                "prompt": "First step: Unlock the door. Second step: Turn off the lights. Third step: Set the thermostat to 20 degrees.",
+                "setup_functions":["turn_on_lights()",],
+                "expected_sequences": [["unlock_door()", "turn_off_lights()", "set_thermostat(temperature=20)"]]
             },
             {
-                "prompt": "Print the system status, then turn on the lights if they are off.",
-                "expected_sequence": ["print_system_status()", "turn_on_lights()"]
+                "prompt_id": "automation_4",
+                "prompt": "Print the system status, then turn on the lights only if they are off.",
+                "setup_functions": [],
+                "expected_sequences": [["print_system_status()", "turn_on_lights()"]]
             },
             {
-                "prompt": "Deactivate the alarm, unlock the door, and lower the thermostat to 18 degrees.",
-                "expected_sequence": ["deactivate_alarm()", "unlock_door()", "set_thermostat(temperature=18)"]
+                "prompt_id": "automation_5",
+                "prompt": "The house does in lockdown mode. Lock the doors, activate the alarm and turn off the lights in that order. Then, set the thermostat to 30 degrees and turn everything back on in the same order they were shut down.",
+                "setup_functions":["unlock_door()", "turn_on_lights()"],
+                "expected_sequences": [["lock_door()", "activate_alarm()", "turn_off_lights()","set_thermostat(temperature=30)", "unlock_door()", "deactivate_alarm()", "turn_on_lights()"]]
             }
         ]
 

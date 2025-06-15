@@ -1,0 +1,2383 @@
+[
+    {
+        "world": "Automation",
+        "prompt": "Turn on the lights and set the thermostat to 24 degrees.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 0,
+        "database": {
+            "lights_on": false,
+            "thermostat": 22,
+            "door_locked": true,
+            "alarm_on": false
+        }
+    },
+    {
+        "world": "Automation",
+        "prompt": "Lock the door and activate the alarm.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 0,
+        "database": {
+            "lights_on": false,
+            "thermostat": 22,
+            "door_locked": true,
+            "alarm_on": false
+        }
+    },
+    {
+        "world": "Automation",
+        "prompt": "Unlock the door, turn off the lights, and set the thermostat to 20 degrees.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 0,
+        "database": {
+            "lights_on": false,
+            "thermostat": 22,
+            "door_locked": true,
+            "alarm_on": false
+        }
+    },
+    {
+        "world": "Automation",
+        "prompt": "Print the system status, then turn on the lights if they are off.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 0,
+        "database": {
+            "lights_on": false,
+            "thermostat": 22,
+            "door_locked": true,
+            "alarm_on": false
+        }
+    },
+    {
+        "world": "Automation",
+        "prompt": "Deactivate the alarm, unlock the door, and lower the thermostat to 18 degrees.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 0,
+        "database": {
+            "lights_on": false,
+            "thermostat": 22,
+            "door_locked": true,
+            "alarm_on": false
+        }
+    },
+    {
+        "world": "Communication",
+        "prompt": "Send a high-priority message from 'Alice' to 'Bob' with the content 'Urgent meeting at 3 PM'.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 0,
+        "database": {
+            "messages": []
+        }
+    },
+    {
+        "world": "Communication",
+        "prompt": "Print all messages for 'Bob', filtering only high-priority ones.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 0,
+        "database": {
+            "messages": []
+        }
+    },
+    {
+        "world": "Communication",
+        "prompt": "Send a normal-priority message from 'Charlie' to 'Dana' with the content 'Lunch at noon'. Then print all of Dana\u2019s messages.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 1,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 1
+        },
+        "generated_tokens": 49,
+        "database": {
+            "messages": []
+        }
+    },
+    {
+        "world": "Communication",
+        "prompt": "Schedule a message from 'Eve' to 'Frank' saying 'Reminder: Call at 10 AM' to be sent at '2025-02-12T10:00:00'.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 1,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 257,
+        "database": {
+            "messages": []
+        }
+    },
+    {
+        "world": "Communication",
+        "prompt": "Forward a message originally sent by 'Alice' at '2025-02-11T14:30:00' to 'Grace' by 'Bob'.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 1,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 1
+        },
+        "generated_tokens": 937,
+        "database": {
+            "messages": []
+        }
+    },
+    {
+        "world": "Communication",
+        "prompt": "Send a message from 'Henry' to 'Ivy' saying 'See you at the event!' with normal priority, then delete it using the correct timestamp.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 33,
+        "database": {
+            "messages": []
+        }
+    },
+    {
+        "world": "Configurations",
+        "prompt": "Set the configuration for 'theme' to 'dark mode' under the 'UI' category with the current timestamp, 2025-02-12T10:00:00.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 285,
+        "database": {}
+    },
+    {
+        "world": "Configurations",
+        "prompt": "Print the configuration for 'theme' and update it to 'light mode' while keeping the category unchanged.",
+        "functions_called": "[FunctionCalled(name='delete_config', arguments={'key': 'theme'}, response=\"Configuration 'theme' not found.\")]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 455,
+        "database": {}
+    },
+    {
+        "world": "Configurations",
+        "prompt": "Set a new configuration for 'auto-save' to 'enabled' under the 'system' category, then print and confirm it.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 4,
+        "database": {}
+    },
+    {
+        "world": "Configurations",
+        "prompt": "Set a configuration for 'timeout' to '30 minutes' under the 'security' category, then update it to '15 minutes' and verify the change by printing the config.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 1,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 1
+        },
+        "generated_tokens": 159,
+        "database": {}
+    },
+    {
+        "world": "Configurations",
+        "prompt": "Set configurations for 'max-connections' to '100' in 'network', 'log-level' to 'debug' in 'system', then print both.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 1,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 383,
+        "database": {}
+    },
+    {
+        "world": "Configurations",
+        "prompt": "Update 'log-level' from 'debug' to 'info', then delete 'max-connections', and finally print all remaining configurations.",
+        "functions_called": "[FunctionCalled(name='update_config', arguments={'key': 'log-level', 'new_value': 'info', 'category': 'general', 'timestamp': '2022-01-01T00:00:00.000Z'}, response=\"Configuration 'log-level' not found.\")]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 2132,
+        "database": {}
+    },
+    {
+        "world": "Configurations",
+        "prompt": "Set a new configuration for 'backup-frequency' to 'daily' in 'storage', update 'timeout' to '10 minutes', then print both settings.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 94,
+        "database": {}
+    },
+    {
+        "world": "CRUD",
+        "prompt": "Create a new user named 'Alice' with an age of 25. List the details of this user and confirm the age field is correct",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 1,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 1
+        },
+        "generated_tokens": 139,
+        "database": {
+            "user_c7e4c544": {
+                "id": "user_c7e4c544",
+                "name": "Alice",
+                "age": 25,
+                "email": null
+            },
+            "user_211a5b3d": {
+                "id": "user_211a5b3d",
+                "name": "John",
+                "age": 30,
+                "email": null
+            },
+            "user_91511f24": {
+                "id": "user_91511f24",
+                "name": "Jane",
+                "age": 25,
+                "email": null
+            }
+        }
+    },
+    {
+        "world": "CRUD",
+        "prompt": "Show all users and update the email of the user with name 'Alice' to 'alice@example.com'. Ensure the changes were applied.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 1,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 1
+        },
+        "generated_tokens": 94,
+        "database": {
+            "user_c7e4c544": {
+                "id": "user_c7e4c544",
+                "name": "Alice",
+                "age": 25,
+                "email": null
+            },
+            "user_211a5b3d": {
+                "id": "user_211a5b3d",
+                "name": "John",
+                "age": 30,
+                "email": null
+            },
+            "user_91511f24": {
+                "id": "user_91511f24",
+                "name": "Jane",
+                "age": 25,
+                "email": null
+            }
+        }
+    },
+    {
+        "world": "CRUD",
+        "prompt": "Show all users. Then, update the emails of all users with no email address to 'default@example.com'. Pick one of these users and ensure the changes were applied.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 2048,
+        "database": {
+            "user_c7e4c544": {
+                "id": "user_c7e4c544",
+                "name": "Alice",
+                "age": 25,
+                "email": null
+            },
+            "user_211a5b3d": {
+                "id": "user_211a5b3d",
+                "name": "John",
+                "age": 30,
+                "email": null
+            },
+            "user_91511f24": {
+                "id": "user_91511f24",
+                "name": "Jane",
+                "age": 25,
+                "email": null
+            }
+        }
+    },
+    {
+        "world": "CRUD",
+        "prompt": "Add a new user named 'Charlie' aged 40 with email 'charlie@email.com'. Then, delete that user. Finally, confirm the deletion by showing all the users.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 1,
+            "FUNCTION_HALLUCINATION": 1,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 146,
+        "database": {
+            "user_c7e4c544": {
+                "id": "user_c7e4c544",
+                "name": "Alice",
+                "age": 25,
+                "email": null
+            },
+            "user_211a5b3d": {
+                "id": "user_211a5b3d",
+                "name": "John",
+                "age": 30,
+                "email": null
+            },
+            "user_91511f24": {
+                "id": "user_91511f24",
+                "name": "Jane",
+                "age": 25,
+                "email": null
+            }
+        }
+    },
+    {
+        "world": "CRUD",
+        "prompt": "Create a new user named 'Eve' with an age of 22 and empty email. Then, update their email to 'eve@example.com'. Finally delete the user and verify the deletion by checking all the existing users.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 1,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 1
+        },
+        "generated_tokens": 43,
+        "database": {
+            "user_c7e4c544": {
+                "id": "user_c7e4c544",
+                "name": "Alice",
+                "age": 25,
+                "email": null
+            },
+            "user_211a5b3d": {
+                "id": "user_211a5b3d",
+                "name": "John",
+                "age": 30,
+                "email": null
+            },
+            "user_91511f24": {
+                "id": "user_91511f24",
+                "name": "Jane",
+                "age": 25,
+                "email": null
+            }
+        }
+    },
+    {
+        "world": "DataProcessing",
+        "prompt": "Print all employees in the 'HR' department who are currently active.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 2048,
+        "database": {
+            "dataset": [
+                {
+                    "employee_id": 1,
+                    "name": "Alice",
+                    "age": 35,
+                    "salary": 70000,
+                    "department": "HR",
+                    "status": "active",
+                    "sales": 5000,
+                    "category": "management",
+                    "date": "2024-02-01"
+                },
+                {
+                    "employee_id": 2,
+                    "name": "Bob",
+                    "age": 28,
+                    "salary": 50000,
+                    "department": "Engineering",
+                    "status": "inactive",
+                    "sales": 3000,
+                    "category": "development",
+                    "date": "2024-02-02"
+                },
+                {
+                    "employee_id": 3,
+                    "name": "Charlie",
+                    "age": 40,
+                    "salary": 90000,
+                    "department": "HR",
+                    "status": "active",
+                    "sales": 7000,
+                    "category": "management",
+                    "date": "2024-02-03"
+                },
+                {
+                    "employee_id": 4,
+                    "name": "Dana",
+                    "age": 25,
+                    "salary": 45000,
+                    "department": "Marketing",
+                    "status": "active",
+                    "sales": 2000,
+                    "category": "advertising",
+                    "date": "2024-02-04"
+                },
+                {
+                    "employee_id": 5,
+                    "name": "Eve",
+                    "age": 32,
+                    "salary": 75000,
+                    "department": "Engineering",
+                    "status": "active",
+                    "sales": 6000,
+                    "category": "development",
+                    "date": "2024-02-05"
+                },
+                {
+                    "employee_id": 6,
+                    "name": "Frank",
+                    "age": 45,
+                    "salary": 100000,
+                    "department": "Finance",
+                    "status": "inactive",
+                    "sales": 8000,
+                    "category": "accounting",
+                    "date": "2024-02-06"
+                }
+            ]
+        }
+    },
+    {
+        "world": "DataProcessing",
+        "prompt": "Find employees older than 30 and sort them by salary in descending order.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 1,
+            "FUNCTION_HALLUCINATION": 1,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 2048,
+        "database": {
+            "dataset": [
+                {
+                    "employee_id": 1,
+                    "name": "Alice",
+                    "age": 35,
+                    "salary": 70000,
+                    "department": "HR",
+                    "status": "active",
+                    "sales": 5000,
+                    "category": "management",
+                    "date": "2024-02-01"
+                },
+                {
+                    "employee_id": 2,
+                    "name": "Bob",
+                    "age": 28,
+                    "salary": 50000,
+                    "department": "Engineering",
+                    "status": "inactive",
+                    "sales": 3000,
+                    "category": "development",
+                    "date": "2024-02-02"
+                },
+                {
+                    "employee_id": 3,
+                    "name": "Charlie",
+                    "age": 40,
+                    "salary": 90000,
+                    "department": "HR",
+                    "status": "active",
+                    "sales": 7000,
+                    "category": "management",
+                    "date": "2024-02-03"
+                },
+                {
+                    "employee_id": 4,
+                    "name": "Dana",
+                    "age": 25,
+                    "salary": 45000,
+                    "department": "Marketing",
+                    "status": "active",
+                    "sales": 2000,
+                    "category": "advertising",
+                    "date": "2024-02-04"
+                },
+                {
+                    "employee_id": 5,
+                    "name": "Eve",
+                    "age": 32,
+                    "salary": 75000,
+                    "department": "Engineering",
+                    "status": "active",
+                    "sales": 6000,
+                    "category": "development",
+                    "date": "2024-02-05"
+                },
+                {
+                    "employee_id": 6,
+                    "name": "Frank",
+                    "age": 45,
+                    "salary": 100000,
+                    "department": "Finance",
+                    "status": "inactive",
+                    "sales": 8000,
+                    "category": "accounting",
+                    "date": "2024-02-06"
+                }
+            ]
+        }
+    },
+    {
+        "world": "DataProcessing",
+        "prompt": "Calculate the total sales from all active employees in the dataset.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 1,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 1
+        },
+        "generated_tokens": 131,
+        "database": {
+            "dataset": [
+                {
+                    "employee_id": 1,
+                    "name": "Alice",
+                    "age": 35,
+                    "salary": 70000,
+                    "department": "HR",
+                    "status": "active",
+                    "sales": 5000,
+                    "category": "management",
+                    "date": "2024-02-01"
+                },
+                {
+                    "employee_id": 2,
+                    "name": "Bob",
+                    "age": 28,
+                    "salary": 50000,
+                    "department": "Engineering",
+                    "status": "inactive",
+                    "sales": 3000,
+                    "category": "development",
+                    "date": "2024-02-02"
+                },
+                {
+                    "employee_id": 3,
+                    "name": "Charlie",
+                    "age": 40,
+                    "salary": 90000,
+                    "department": "HR",
+                    "status": "active",
+                    "sales": 7000,
+                    "category": "management",
+                    "date": "2024-02-03"
+                },
+                {
+                    "employee_id": 4,
+                    "name": "Dana",
+                    "age": 25,
+                    "salary": 45000,
+                    "department": "Marketing",
+                    "status": "active",
+                    "sales": 2000,
+                    "category": "advertising",
+                    "date": "2024-02-04"
+                },
+                {
+                    "employee_id": 5,
+                    "name": "Eve",
+                    "age": 32,
+                    "salary": 75000,
+                    "department": "Engineering",
+                    "status": "active",
+                    "sales": 6000,
+                    "category": "development",
+                    "date": "2024-02-05"
+                },
+                {
+                    "employee_id": 6,
+                    "name": "Frank",
+                    "age": 45,
+                    "salary": 100000,
+                    "department": "Finance",
+                    "status": "inactive",
+                    "sales": 8000,
+                    "category": "accounting",
+                    "date": "2024-02-06"
+                }
+            ]
+        }
+    },
+    {
+        "world": "DataProcessing",
+        "prompt": "Transform all employee names to uppercase and sort by employee_id in ascending order.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 1,
+            "FUNCTION_HALLUCINATION": 1,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 159,
+        "database": {
+            "dataset": [
+                {
+                    "employee_id": 1,
+                    "name": "Alice",
+                    "age": 35,
+                    "salary": 70000,
+                    "department": "HR",
+                    "status": "active",
+                    "sales": 5000,
+                    "category": "management",
+                    "date": "2024-02-01"
+                },
+                {
+                    "employee_id": 2,
+                    "name": "Bob",
+                    "age": 28,
+                    "salary": 50000,
+                    "department": "Engineering",
+                    "status": "inactive",
+                    "sales": 3000,
+                    "category": "development",
+                    "date": "2024-02-02"
+                },
+                {
+                    "employee_id": 3,
+                    "name": "Charlie",
+                    "age": 40,
+                    "salary": 90000,
+                    "department": "HR",
+                    "status": "active",
+                    "sales": 7000,
+                    "category": "management",
+                    "date": "2024-02-03"
+                },
+                {
+                    "employee_id": 4,
+                    "name": "Dana",
+                    "age": 25,
+                    "salary": 45000,
+                    "department": "Marketing",
+                    "status": "active",
+                    "sales": 2000,
+                    "category": "advertising",
+                    "date": "2024-02-04"
+                },
+                {
+                    "employee_id": 5,
+                    "name": "Eve",
+                    "age": 32,
+                    "salary": 75000,
+                    "department": "Engineering",
+                    "status": "active",
+                    "sales": 6000,
+                    "category": "development",
+                    "date": "2024-02-05"
+                },
+                {
+                    "employee_id": 6,
+                    "name": "Frank",
+                    "age": 45,
+                    "salary": 100000,
+                    "department": "Finance",
+                    "status": "inactive",
+                    "sales": 8000,
+                    "category": "accounting",
+                    "date": "2024-02-06"
+                }
+            ]
+        }
+    },
+    {
+        "world": "DataProcessing",
+        "prompt": "Keep only employees in the 'Finance' department and count how many remain.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 1,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 89,
+        "database": {
+            "dataset": [
+                {
+                    "employee_id": 1,
+                    "name": "Alice",
+                    "age": 35,
+                    "salary": 70000,
+                    "department": "HR",
+                    "status": "active",
+                    "sales": 5000,
+                    "category": "management",
+                    "date": "2024-02-01"
+                },
+                {
+                    "employee_id": 2,
+                    "name": "Bob",
+                    "age": 28,
+                    "salary": 50000,
+                    "department": "Engineering",
+                    "status": "inactive",
+                    "sales": 3000,
+                    "category": "development",
+                    "date": "2024-02-02"
+                },
+                {
+                    "employee_id": 3,
+                    "name": "Charlie",
+                    "age": 40,
+                    "salary": 90000,
+                    "department": "HR",
+                    "status": "active",
+                    "sales": 7000,
+                    "category": "management",
+                    "date": "2024-02-03"
+                },
+                {
+                    "employee_id": 4,
+                    "name": "Dana",
+                    "age": 25,
+                    "salary": 45000,
+                    "department": "Marketing",
+                    "status": "active",
+                    "sales": 2000,
+                    "category": "advertising",
+                    "date": "2024-02-04"
+                },
+                {
+                    "employee_id": 5,
+                    "name": "Eve",
+                    "age": 32,
+                    "salary": 75000,
+                    "department": "Engineering",
+                    "status": "active",
+                    "sales": 6000,
+                    "category": "development",
+                    "date": "2024-02-05"
+                },
+                {
+                    "employee_id": 6,
+                    "name": "Frank",
+                    "age": 45,
+                    "salary": 100000,
+                    "department": "Finance",
+                    "status": "inactive",
+                    "sales": 8000,
+                    "category": "accounting",
+                    "date": "2024-02-06"
+                }
+            ]
+        }
+    },
+    {
+        "world": "DataProcessing",
+        "prompt": "Lowercase all category names and sort employees by 'date' in ascending order.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 503,
+        "database": {
+            "dataset": [
+                {
+                    "employee_id": 1,
+                    "name": "Alice",
+                    "age": 35,
+                    "salary": 70000,
+                    "department": "HR",
+                    "status": "active",
+                    "sales": 5000,
+                    "category": "management",
+                    "date": "2024-02-01"
+                },
+                {
+                    "employee_id": 2,
+                    "name": "Bob",
+                    "age": 28,
+                    "salary": 50000,
+                    "department": "Engineering",
+                    "status": "inactive",
+                    "sales": 3000,
+                    "category": "development",
+                    "date": "2024-02-02"
+                },
+                {
+                    "employee_id": 3,
+                    "name": "Charlie",
+                    "age": 40,
+                    "salary": 90000,
+                    "department": "HR",
+                    "status": "active",
+                    "sales": 7000,
+                    "category": "management",
+                    "date": "2024-02-03"
+                },
+                {
+                    "employee_id": 4,
+                    "name": "Dana",
+                    "age": 25,
+                    "salary": 45000,
+                    "department": "Marketing",
+                    "status": "active",
+                    "sales": 2000,
+                    "category": "advertising",
+                    "date": "2024-02-04"
+                },
+                {
+                    "employee_id": 5,
+                    "name": "Eve",
+                    "age": 32,
+                    "salary": 75000,
+                    "department": "Engineering",
+                    "status": "active",
+                    "sales": 6000,
+                    "category": "development",
+                    "date": "2024-02-05"
+                },
+                {
+                    "employee_id": 6,
+                    "name": "Frank",
+                    "age": 45,
+                    "salary": 100000,
+                    "department": "Finance",
+                    "status": "inactive",
+                    "sales": 8000,
+                    "category": "accounting",
+                    "date": "2024-02-06"
+                }
+            ]
+        }
+    },
+    {
+        "world": "DataProcessing",
+        "prompt": "Find and keep only the employee with the highest salary.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 1,
+            "FUNCTION_HALLUCINATION": 1,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 56,
+        "database": {
+            "dataset": [
+                {
+                    "employee_id": 1,
+                    "name": "Alice",
+                    "age": 35,
+                    "salary": 70000,
+                    "department": "HR",
+                    "status": "active",
+                    "sales": 5000,
+                    "category": "management",
+                    "date": "2024-02-01"
+                },
+                {
+                    "employee_id": 2,
+                    "name": "Bob",
+                    "age": 28,
+                    "salary": 50000,
+                    "department": "Engineering",
+                    "status": "inactive",
+                    "sales": 3000,
+                    "category": "development",
+                    "date": "2024-02-02"
+                },
+                {
+                    "employee_id": 3,
+                    "name": "Charlie",
+                    "age": 40,
+                    "salary": 90000,
+                    "department": "HR",
+                    "status": "active",
+                    "sales": 7000,
+                    "category": "management",
+                    "date": "2024-02-03"
+                },
+                {
+                    "employee_id": 4,
+                    "name": "Dana",
+                    "age": 25,
+                    "salary": 45000,
+                    "department": "Marketing",
+                    "status": "active",
+                    "sales": 2000,
+                    "category": "advertising",
+                    "date": "2024-02-04"
+                },
+                {
+                    "employee_id": 5,
+                    "name": "Eve",
+                    "age": 32,
+                    "salary": 75000,
+                    "department": "Engineering",
+                    "status": "active",
+                    "sales": 6000,
+                    "category": "development",
+                    "date": "2024-02-05"
+                },
+                {
+                    "employee_id": 6,
+                    "name": "Frank",
+                    "age": 45,
+                    "salary": 100000,
+                    "department": "Finance",
+                    "status": "inactive",
+                    "sales": 8000,
+                    "category": "accounting",
+                    "date": "2024-02-06"
+                }
+            ]
+        }
+    },
+    {
+        "world": "DesktopManager",
+        "prompt": "Open 'Text Editor' and list open applications.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 112,
+        "database": {
+            "open_applications": [],
+            "app_history": [],
+            "action_log": {}
+        }
+    },
+    {
+        "world": "DesktopManager",
+        "prompt": "Open 'Browser', perform a search action, then print actions performed in the Browser.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 2048,
+        "database": {
+            "open_applications": [],
+            "app_history": [],
+            "action_log": {}
+        }
+    },
+    {
+        "world": "DesktopManager",
+        "prompt": "Open 'Music Player', play a song, and close the application.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 1,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 1
+        },
+        "generated_tokens": 55,
+        "database": {
+            "open_applications": [],
+            "app_history": [],
+            "action_log": {}
+        }
+    },
+    {
+        "world": "DesktopManager",
+        "prompt": "Check the history of opened applications.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 1,
+            "FUNCTION_HALLUCINATION": 1,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 40,
+        "database": {
+            "open_applications": [],
+            "app_history": [],
+            "action_log": {}
+        }
+    },
+    {
+        "world": "DesktopManager",
+        "prompt": "Open 'Terminal', execute a command, and list all currently open applications.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 27,
+        "database": {
+            "open_applications": [],
+            "app_history": [],
+            "action_log": {}
+        }
+    },
+    {
+        "world": "DesktopManager",
+        "prompt": "Open 'Spreadsheet', enter data, then print its action log.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 1,
+            "FUNCTION_HALLUCINATION": 1,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 292,
+        "database": {
+            "open_applications": [],
+            "app_history": [],
+            "action_log": {}
+        }
+    },
+    {
+        "world": "EventsScheduler",
+        "prompt": "Schedule a meeting called 'Team Sync' at '2025-02-10T09:00:00' and retrieve its scheduled time.",
+        "functions_called": "[FunctionCalled(name='schedule_event', arguments={'event_name': 'Team Sync', 'event_time': '2025-02-10T09:00:00'}, response=\"Event 'Team Sync' scheduled at 2025-02-10T09:00:00.\")]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 285,
+        "database": {}
+    },
+    {
+        "world": "EventsScheduler",
+        "prompt": "Schedule 'Team Sync' at '2025-02-10T09:00:00', then list all scheduled events.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 1,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 1
+        },
+        "generated_tokens": 90,
+        "database": {}
+    },
+    {
+        "world": "EventsScheduler",
+        "prompt": "Reschedule 'Team Sync' to '2025-02-10T10:00:00' and check the remaining time until the event.",
+        "functions_called": "[FunctionCalled(name='cancel_event', arguments={'event_name': 'Team Sync'}, response=\"Event 'Team Sync' has been canceled.\")]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 165,
+        "database": {}
+    },
+    {
+        "world": "EventsScheduler",
+        "prompt": "Cancel 'Team Sync', then list all events to confirm it has been removed.",
+        "functions_called": "[FunctionCalled(name='cancel_event', arguments={'event_name': 'Team Sync'}, response=\"Event 'Team Sync' not found.\")]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 1425,
+        "database": {}
+    },
+    {
+        "world": "EventsScheduler",
+        "prompt": "Schedule a recurring stand-up meeting every 30 minutes and retrieve its scheduled time.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 1,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 1
+        },
+        "generated_tokens": 351,
+        "database": {}
+    },
+    {
+        "world": "EventsScheduler",
+        "prompt": "List all scheduled events and check the remaining time until 'Stand-up Meeting'.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 1,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 1
+        },
+        "generated_tokens": 68,
+        "database": {}
+    },
+    {
+        "world": "EventsScheduler",
+        "prompt": "Schedule 'Project Review' at '2025-02-11T15:00:00', list all events, then check time until 'Project Review'.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 1,
+            "FUNCTION_HALLUCINATION": 1,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 241,
+        "database": {}
+    },
+    {
+        "world": "FileManagement",
+        "prompt": "Create a file named 'notes.txt', then write 'Meeting at 10 AM' to it.",
+        "functions_called": "[FunctionCalled(name='create_file', arguments={'filename': 'notes.txt'}, response=\"File 'notes.txt' already exists.\")]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 540,
+        "database": {
+            "notes.txt": "Lady Maria lies dormant in the Astral Clocktower",
+            "meeting_notes.txt": "An appointment with the lawyer is set for 5 p.m."
+        }
+    },
+    {
+        "world": "FileManagement",
+        "prompt": "Check if 'notes.txt' exists, then read its content.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 1,
+            "FUNCTION_HALLUCINATION": 1,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 281,
+        "database": {
+            "notes.txt": "Lady Maria lies dormant in the Astral Clocktower",
+            "meeting_notes.txt": "An appointment with the lawyer is set for 5 p.m."
+        }
+    },
+    {
+        "world": "FileManagement",
+        "prompt": "Rename 'notes.txt' to 'new_notes.txt' and list all files.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 1,
+            "FUNCTION_HALLUCINATION": 1,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 94,
+        "database": {
+            "notes.txt": "Lady Maria lies dormant in the Astral Clocktower",
+            "meeting_notes.txt": "An appointment with the lawyer is set for 5 p.m."
+        }
+    },
+    {
+        "world": "FileManagement",
+        "prompt": "Append 'New agenda added' to 'meeting_notes.txt' and count its words.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 2048,
+        "database": {
+            "notes.txt": "Lady Maria lies dormant in the Astral Clocktower",
+            "meeting_notes.txt": "An appointment with the lawyer is set for 5 p.m."
+        }
+    },
+    {
+        "world": "FileManagement",
+        "prompt": "Copy 'meeting_notes.txt' to 'notes.txt' and check the latter's size.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 2048,
+        "database": {
+            "notes.txt": "Lady Maria lies dormant in the Astral Clocktower",
+            "meeting_notes.txt": "An appointment with the lawyer is set for 5 p.m."
+        }
+    },
+    {
+        "world": "FileManagement",
+        "prompt": "Search for the word 'agenda' in 'meeting_notes.txt'. If it's not found, append it.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 1,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 1
+        },
+        "generated_tokens": 78,
+        "database": {
+            "notes.txt": "Lady Maria lies dormant in the Astral Clocktower",
+            "meeting_notes.txt": "An appointment with the lawyer is set for 5 p.m."
+        }
+    },
+    {
+        "world": "LegalCompliance",
+        "prompt": "Verify if the statement 'Users must be informed before data collection' adheres to the privacy policy. If it does, approve it as a valid policy statement.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 57,
+        "database": {
+            "privacy_policy": "\n            This Privacy Policy governs the manner in which user data is collected, used, and stored. \n            Users must be informed before data collection. Personal data shall not be shared with third parties \n            without explicit consent. Users have the right to access and delete their data.\n            ",
+            "terms_of_service": "\n            By using this service, users agree to comply with all applicable laws. \n            The service provider is not liable for misuse. Refunds are only available within 30 days of purchase. \n            Users must not engage in fraudulent activities.\n            ",
+            "gdpr_compliance": "\n            Under GDPR, organizations must ensure transparency in data processing. \n            Users must be able to request a copy of their personal data. Consent for data processing must be explicit \n            and documented. Data breaches must be reported within 72 hours.\n            "
+        }
+    },
+    {
+        "world": "LegalCompliance",
+        "prompt": "A potential violation has been detected where personal data is being shared with third parties without consent. Flag this violation as 'Unauthorized data sharing detected' and request consent from user 'U123' for data processing as 'Data processing consent required'.",
+        "functions_called": "[FunctionCalled(name='flag_violation', arguments={'issue': 'GDPR Compliance'}, response='Violation flagged: GDPR Compliance')]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 2146,
+        "database": {
+            "privacy_policy": "\n            This Privacy Policy governs the manner in which user data is collected, used, and stored. \n            Users must be informed before data collection. Personal data shall not be shared with third parties \n            without explicit consent. Users have the right to access and delete their data.\n            ",
+            "terms_of_service": "\n            By using this service, users agree to comply with all applicable laws. \n            The service provider is not liable for misuse. Refunds are only available within 30 days of purchase. \n            Users must not engage in fraudulent activities.\n            ",
+            "gdpr_compliance": "\n            Under GDPR, organizations must ensure transparency in data processing. \n            Users must be able to request a copy of their personal data. Consent for data processing must be explicit \n            and documented. Data breaches must be reported within 72 hours.\n            "
+        }
+    },
+    {
+        "world": "LegalCompliance",
+        "prompt": "Conduct an audit on GDPR compliance and flag the issue: 'Data breaches not reported within 72 hours' ",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 215,
+        "database": {
+            "privacy_policy": "\n            This Privacy Policy governs the manner in which user data is collected, used, and stored. \n            Users must be informed before data collection. Personal data shall not be shared with third parties \n            without explicit consent. Users have the right to access and delete their data.\n            ",
+            "terms_of_service": "\n            By using this service, users agree to comply with all applicable laws. \n            The service provider is not liable for misuse. Refunds are only available within 30 days of purchase. \n            Users must not engage in fraudulent activities.\n            ",
+            "gdpr_compliance": "\n            Under GDPR, organizations must ensure transparency in data processing. \n            Users must be able to request a copy of their personal data. Consent for data processing must be explicit \n            and documented. Data breaches must be reported within 72 hours.\n            "
+        }
+    },
+    {
+        "world": "LegalCompliance",
+        "prompt": "Check whether the policy 'Users must not engage in fraudulent activities' is part of the terms of service. If it is, enforce compliance measures to prevent such activity as 'Fraudulent activity detected'.",
+        "functions_called": "[FunctionCalled(name='enforce_compliance', arguments={'doc_name': 'Users must not engage in fraudulent activities', 'issue': 'Fraudulent activity detected'}, response=\"Compliance enforcement initiated for 'Users must not engage in fraudulent activities' due to issue: Fraudulent activity detected.\")]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 2106,
+        "database": {
+            "privacy_policy": "\n            This Privacy Policy governs the manner in which user data is collected, used, and stored. \n            Users must be informed before data collection. Personal data shall not be shared with third parties \n            without explicit consent. Users have the right to access and delete their data.\n            ",
+            "terms_of_service": "\n            By using this service, users agree to comply with all applicable laws. \n            The service provider is not liable for misuse. Refunds are only available within 30 days of purchase. \n            Users must not engage in fraudulent activities.\n            ",
+            "gdpr_compliance": "\n            Under GDPR, organizations must ensure transparency in data processing. \n            Users must be able to request a copy of their personal data. Consent for data processing must be explicit \n            and documented. Data breaches must be reported within 72 hours.\n            "
+        }
+    },
+    {
+        "world": "LegalCompliance",
+        "prompt": "Review the privacy policy to confirm that 'Personal data shall not be shared with third parties'. If this rule is violated, flag the issue as 'Third-party data sharing detected', enforce corrective actions on privacy policy for 'Unauthorized data sharing mitigation', and generate an audit report to track compliance.",
+        "functions_called": "[FunctionCalled(name='enforce_compliance', arguments={'doc_name': 'privacy_policy', 'issue': 'Personal data shall not be shared with third parties'}, response=\"Compliance enforcement initiated for 'privacy_policy' due to issue: Personal data shall not be shared with third parties.\")]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 203,
+        "database": {
+            "privacy_policy": "\n            This Privacy Policy governs the manner in which user data is collected, used, and stored. \n            Users must be informed before data collection. Personal data shall not be shared with third parties \n            without explicit consent. Users have the right to access and delete their data.\n            ",
+            "terms_of_service": "\n            By using this service, users agree to comply with all applicable laws. \n            The service provider is not liable for misuse. Refunds are only available within 30 days of purchase. \n            Users must not engage in fraudulent activities.\n            ",
+            "gdpr_compliance": "\n            Under GDPR, organizations must ensure transparency in data processing. \n            Users must be able to request a copy of their personal data. Consent for data processing must be explicit \n            and documented. Data breaches must be reported within 72 hours.\n            "
+        }
+    },
+    {
+        "world": "Maths",
+        "prompt": "Add 15 and 7, then multiply the result by 3.",
+        "functions_called": "[FunctionCalled(name='calculate_average', arguments={'numbers': [1, 2, 3, 4, 5]}, response=3.0)]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 2480,
+        "database": {
+            "calculations": [
+                "Average of [1, 2, 3, 4, 5] = 3.0",
+                "Average of [10, 20, 30] = 20.0"
+            ]
+        }
+    },
+    {
+        "world": "Maths",
+        "prompt": "Divide 100 by 4, then raise the result to the power of 2.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 4,
+        "database": {
+            "calculations": [
+                "Average of [1, 2, 3, 4, 5] = 3.0",
+                "Average of [10, 20, 30] = 20.0"
+            ]
+        }
+    },
+    {
+        "world": "Maths",
+        "prompt": "Calculate the average of the numbers 10, 20, and 30.",
+        "functions_called": "[FunctionCalled(name='calculate_average', arguments={'numbers': [10, 20, 30]}, response=20.0)]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 447,
+        "database": {
+            "calculations": [
+                "Average of [1, 2, 3, 4, 5] = 3.0",
+                "Average of [10, 20, 30] = 20.0"
+            ]
+        }
+    },
+    {
+        "world": "Maths",
+        "prompt": "Subtract 4 from 25 and divide the result by 3. Then, calculate the average of this quotient and the product of 4 and 5.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 17,
+        "database": {
+            "calculations": [
+                "Average of [1, 2, 3, 4, 5] = 3.0",
+                "Average of [10, 20, 30] = 20.0"
+            ]
+        }
+    },
+    {
+        "world": "Maths",
+        "prompt": "Multiply 6 by 7. Then, add a number to that result to produce the number 50. Then divide 50 by 4 to the second power.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 1,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 1
+        },
+        "generated_tokens": 50,
+        "database": {
+            "calculations": [
+                "Average of [1, 2, 3, 4, 5] = 3.0",
+                "Average of [10, 20, 30] = 20.0"
+            ]
+        }
+    },
+    {
+        "world": "Navigation",
+        "prompt": "Move the player right by 2 steps.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 2048,
+        "database": {
+            "player_position": [
+                0,
+                0
+            ]
+        }
+    },
+    {
+        "world": "Navigation",
+        "prompt": "Move the player down by 3 steps, then retrieve the player's position.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 1,
+            "FUNCTION_HALLUCINATION": 1,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 49,
+        "database": {
+            "player_position": [
+                0,
+                0
+            ]
+        }
+    },
+    {
+        "world": "Navigation",
+        "prompt": "Move the player right by 1 step, then move down by 2 steps.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 38,
+        "database": {
+            "player_position": [
+                0,
+                0
+            ]
+        }
+    },
+    {
+        "world": "Navigation",
+        "prompt": "Move the player in a square pattern (2 steps right, 2 steps down, 2 steps left, 2 steps up).",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 1,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 202,
+        "database": {
+            "player_position": [
+                0,
+                0
+            ]
+        }
+    },
+    {
+        "world": "Navigation",
+        "prompt": "Move the player to the bottom-right corner of the grid (4,4).",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 46,
+        "database": {
+            "player_position": [
+                0,
+                0
+            ]
+        }
+    },
+    {
+        "world": "Navigation",
+        "prompt": "Move the player right by 3 steps. Reset the player's position and confirm their location.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 1,
+            "FUNCTION_HALLUCINATION": 1,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 2048,
+        "database": {
+            "player_position": [
+                0,
+                0
+            ]
+        }
+    },
+    {
+        "world": "Transactions",
+        "prompt": "Create account 'A123', deposit 500, and confirm the balance.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 1,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 1
+        },
+        "generated_tokens": 179,
+        "database": {
+            "G888": {
+                "balance": 0.0,
+                "transactions": []
+            }
+        }
+    },
+    {
+        "world": "Transactions",
+        "prompt": "Create account 'A123', deposit 200, withdraw 100 and then retrieve its transaction history.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 55,
+        "database": {
+            "G888": {
+                "balance": 0.0,
+                "transactions": []
+            }
+        }
+    },
+    {
+        "world": "Transactions",
+        "prompt": "Create both 'A123' and 'B456' accounts in that order, deposit 500 into 'A123', then transfer 300 from 'A123' to 'B456' and confirm both balances starting from 'A123'.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 2048,
+        "database": {
+            "G888": {
+                "balance": 0.0,
+                "transactions": []
+            }
+        }
+    },
+    {
+        "world": "Transactions",
+        "prompt": "Create account 'A123', deposit 200, apply 5% interest, and retrieve the new balance.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 2048,
+        "database": {
+            "G888": {
+                "balance": 0.0,
+                "transactions": []
+            }
+        }
+    },
+    {
+        "world": "Transactions",
+        "prompt": "Create accounts 'A123' and 'B456' in this order, then retrieve their transaction histories in the order they were created.",
+        "functions_called": "[FunctionCalled(name='get_transaction_history', arguments={'account_id': 'A123'}, response=[])]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 2584,
+        "database": {
+            "G888": {
+                "balance": 0.0,
+                "transactions": []
+            }
+        }
+    },
+    {
+        "world": "Transactions",
+        "prompt": "Create account 'D001', deposit 100, check its balance and then close it.",
+        "functions_called": "[FunctionCalled(name='close_account', arguments={'account_id': 'D001'}, response=\"Account 'D001' not found.\")]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 2389,
+        "database": {
+            "G888": {
+                "balance": 0.0,
+                "transactions": []
+            }
+        }
+    },
+    {
+        "world": "Transactions",
+        "prompt": "Create account 'D001', deposit 1000, apply 10% interest, then withdraw 300.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 1,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 1
+        },
+        "generated_tokens": 74,
+        "database": {
+            "G888": {
+                "balance": 0.0,
+                "transactions": []
+            }
+        }
+    },
+    {
+        "world": "Transactions",
+        "prompt": "Create two accounts 'E111' and 'F222' in that order, deposit 500 into 'E111' and apply 10% interest. Then, transfer all of its money to 'F222' and close 'E111'.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 278,
+        "database": {
+            "G888": {
+                "balance": 0.0,
+                "transactions": []
+            }
+        }
+    },
+    {
+        "world": "Transactions",
+        "prompt": "Create account 'A123', deposit 100, charge a fee of 50, and check the balance.",
+        "functions_called": "[FunctionCalled(name='close_account', arguments={'account_id': 'A123'}, response=\"Account 'A123' not found.\")]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 4096,
+        "database": {
+            "G888": {
+                "balance": 0.0,
+                "transactions": []
+            }
+        }
+    },
+    {
+        "world": "Transactions",
+        "prompt": "Create account 'Cainhurst', deposit 100, then refund 100 and retrieve the transaction history.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 1,
+            "FUNCTION_HALLUCINATION": 1,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 2048,
+        "database": {
+            "G888": {
+                "balance": 0.0,
+                "transactions": []
+            }
+        }
+    },
+    {
+        "world": "Transactions",
+        "prompt": "Create account 'D001', deposit 50, apply 10% interest, then charge a maintenance fee of 10.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 31,
+        "database": {
+            "G888": {
+                "balance": 0.0,
+                "transactions": []
+            }
+        }
+    },
+    {
+        "world": "Transactions",
+        "prompt": "Create account 'G888', deposit 500, then charge a fee of the account's entire amount and check the balance.",
+        "functions_called": "[FunctionCalled(name='create_account', arguments={'account_id': 'G888'}, response=\"Account 'G888' created with balance 0.0.\")]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 875,
+        "database": {
+            "G888": {
+                "balance": 0.0,
+                "transactions": []
+            }
+        }
+    },
+    {
+        "world": "Transactions",
+        "prompt": "Create account 'E111', deposit 100, refund 150, then apply 5% interest.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 1,
+            "FUNCTION_HALLUCINATION": 1,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 80,
+        "database": {
+            "G888": {
+                "balance": 0.0,
+                "transactions": []
+            }
+        }
+    },
+    {
+        "world": "Validation",
+        "prompt": "Validate the email 'user@example.com'.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 1,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 1
+        },
+        "generated_tokens": 2048,
+        "database": {}
+    },
+    {
+        "world": "Validation",
+        "prompt": "Hash the password 'Yharnam' and validate that 'Hunter' does not match its hash.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 2048,
+        "database": {}
+    },
+    {
+        "world": "Validation",
+        "prompt": "Validate if 'John_Doe' is a proper username, then hash the password 'MyStrongPass!'.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 1,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 1
+        },
+        "generated_tokens": 53,
+        "database": {}
+    },
+    {
+        "world": "Validation",
+        "prompt": "Generate a 7-digit OTP and verify if '1234567' is the correct OTP.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 1,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 1
+        },
+        "generated_tokens": 41,
+        "database": {}
+    },
+    {
+        "world": "Validation",
+        "prompt": "Validate the email 'invalid-email', hash the password 'test123', then generate an OTP of length 9.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 1,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 1
+        },
+        "generated_tokens": 51,
+        "database": {}
+    },
+    {
+        "world": "Validation",
+        "prompt": "Validate 'Alice_Wonder' as a username, hash 'SuperSecure123', generate an OTP of length 8, and check if '999999' matches it.",
+        "functions_called": "[FunctionCalled(name='check_password_hash', arguments={'password': 'Alice_Wonder', 'hashed_password': 'SuperSecure123'}, response=False)]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 437,
+        "database": {}
+    },
+    {
+        "world": "WebBrowsing",
+        "prompt": "Move to 'page1.html' and retrieve its HTML source.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 2048,
+        "database": {
+            "current_url": null,
+            "history": []
+        }
+    },
+    {
+        "world": "WebBrowsing",
+        "prompt": "Navigate to 'page2.html', then search for the text 'Matt then discusses his former job, training \"cookies\"'.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 1,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 1
+        },
+        "generated_tokens": 91,
+        "database": {
+            "current_url": null,
+            "history": []
+        }
+    },
+    {
+        "world": "WebBrowsing",
+        "prompt": "Go to 'page3.html', retrieve the page source, and confirm the current URL.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 63,
+        "database": {
+            "current_url": null,
+            "history": []
+        }
+    },
+    {
+        "world": "WebBrowsing",
+        "prompt": "Move to 'page1.html'. Then, move to 'page2.html'. Then go back to the previous page.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 1,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 1
+        },
+        "generated_tokens": 37,
+        "database": {
+            "current_url": null,
+            "history": []
+        }
+    },
+    {
+        "world": "WebBrowsing",
+        "prompt": "Retrieve the current URL before and after navigating to 'page3.html'.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 1,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 1
+        },
+        "generated_tokens": 180,
+        "database": {
+            "current_url": null,
+            "history": []
+        }
+    },
+    {
+        "world": "WebBrowsing",
+        "prompt": "View the browsing history after visiting 'page3.html', 'page1.html' and 'page2.html' in that specific order.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 1,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 1
+        },
+        "generated_tokens": 40,
+        "database": {
+            "current_url": null,
+            "history": []
+        }
+    },
+    {
+        "world": "Writing",
+        "prompt": "Write a simple sentence describing 'the big cat runs'.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 1,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 1
+        },
+        "generated_tokens": 359,
+        "database": {
+            "sentence": "",
+            "word_pools": {
+                "nouns": [
+                    "dog",
+                    "cat",
+                    "car",
+                    "house",
+                    "tree",
+                    "bird"
+                ],
+                "verbs": [
+                    "runs",
+                    "jumps",
+                    "drives",
+                    "flies",
+                    "sleeps"
+                ],
+                "adjectives": [
+                    "fast",
+                    "blue",
+                    "big",
+                    "small",
+                    "happy"
+                ],
+                "articles": [
+                    "a",
+                    "the"
+                ],
+                "prepositions": [
+                    "on",
+                    "under",
+                    "beside",
+                    "near",
+                    "above"
+                ]
+            }
+        }
+    },
+    {
+        "world": "Writing",
+        "prompt": "Write a sentence about a small dog sleeping under a tree. Use present simple tense for the verb",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 1,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 1
+        },
+        "generated_tokens": 1707,
+        "database": {
+            "sentence": "",
+            "word_pools": {
+                "nouns": [
+                    "dog",
+                    "cat",
+                    "car",
+                    "house",
+                    "tree",
+                    "bird"
+                ],
+                "verbs": [
+                    "runs",
+                    "jumps",
+                    "drives",
+                    "flies",
+                    "sleeps"
+                ],
+                "adjectives": [
+                    "fast",
+                    "blue",
+                    "big",
+                    "small",
+                    "happy"
+                ],
+                "articles": [
+                    "a",
+                    "the"
+                ],
+                "prepositions": [
+                    "on",
+                    "under",
+                    "beside",
+                    "near",
+                    "above"
+                ]
+            }
+        }
+    },
+    {
+        "world": "Writing",
+        "prompt": "Form a sentence about 'a fast bird' that 'flies beside the house'.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 575,
+        "database": {
+            "sentence": "",
+            "word_pools": {
+                "nouns": [
+                    "dog",
+                    "cat",
+                    "car",
+                    "house",
+                    "tree",
+                    "bird"
+                ],
+                "verbs": [
+                    "runs",
+                    "jumps",
+                    "drives",
+                    "flies",
+                    "sleeps"
+                ],
+                "adjectives": [
+                    "fast",
+                    "blue",
+                    "big",
+                    "small",
+                    "happy"
+                ],
+                "articles": [
+                    "a",
+                    "the"
+                ],
+                "prepositions": [
+                    "on",
+                    "under",
+                    "beside",
+                    "near",
+                    "above"
+                ]
+            }
+        }
+    },
+    {
+        "world": "Writing",
+        "prompt": "Create a sentence consisting of the words: 'runs', 'the', 'dog', 'happy'. Put them in the correct order first.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 1,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 1
+        },
+        "generated_tokens": 168,
+        "database": {
+            "sentence": "",
+            "word_pools": {
+                "nouns": [
+                    "dog",
+                    "cat",
+                    "car",
+                    "house",
+                    "tree",
+                    "bird"
+                ],
+                "verbs": [
+                    "runs",
+                    "jumps",
+                    "drives",
+                    "flies",
+                    "sleeps"
+                ],
+                "adjectives": [
+                    "fast",
+                    "blue",
+                    "big",
+                    "small",
+                    "happy"
+                ],
+                "articles": [
+                    "a",
+                    "the"
+                ],
+                "prepositions": [
+                    "on",
+                    "under",
+                    "beside",
+                    "near",
+                    "above"
+                ]
+            }
+        }
+    },
+    {
+        "world": "Writing",
+        "prompt": "Construct a sentence where 'the blue cat jumps above a small X'. Replace 'X' with the available synonym word for 'large plant' in the 'nouns' list.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 1,
+            "MISTAKE_2_COUNTER": 1,
+            "MISTAKE_3_COUNTER": 0,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 0
+        },
+        "generated_tokens": 493,
+        "database": {
+            "sentence": "",
+            "word_pools": {
+                "nouns": [
+                    "dog",
+                    "cat",
+                    "car",
+                    "house",
+                    "tree",
+                    "bird"
+                ],
+                "verbs": [
+                    "runs",
+                    "jumps",
+                    "drives",
+                    "flies",
+                    "sleeps"
+                ],
+                "adjectives": [
+                    "fast",
+                    "blue",
+                    "big",
+                    "small",
+                    "happy"
+                ],
+                "articles": [
+                    "a",
+                    "the"
+                ],
+                "prepositions": [
+                    "on",
+                    "under",
+                    "beside",
+                    "near",
+                    "above"
+                ]
+            }
+        }
+    },
+    {
+        "world": "Writing",
+        "prompt": "Construct the sentence 'the bird flies', finalize it, then repeat the entire process again.",
+        "functions_called": "[]",
+        "mistakes": {
+            "MISTAKE_1_COUNTER": 0,
+            "MISTAKE_2_COUNTER": 0,
+            "MISTAKE_3_COUNTER": 1,
+            "FUNCTION_HALLUCINATION": 0,
+            "PARAMETER_HALLUCINATION": 1
+        },
+        "generated_tokens": 39,
+        "database": {
+            "sentence": "",
+            "word_pools": {
+                "nouns": [
+                    "dog",
+                    "cat",
+                    "car",
+                    "house",
+                    "tree",
+                    "bird"
+                ],
+                "verbs": [
+                    "runs",
+                    "jumps",
+                    "drives",
+                    "flies",
+                    "sleeps"
+                ],
+                "adjectives": [
+                    "fast",
+                    "blue",
+                    "big",
+                    "small",
+                    "happy"
+                ],
+                "articles": [
+                    "a",
+                    "the"
+                ],
+                "prepositions": [
+                    "on",
+                    "under",
+                    "beside",
+                    "near",
+                    "above"
+                ]
+            }
+        }
+    }
+]

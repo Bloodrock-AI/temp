@@ -30,11 +30,12 @@ def get_device():
 
 def get_model_tools(model: ModelType):
     model = model.value
-    tokenizer = AutoTokenizer.from_pretrained(model)
+    tokenizer = AutoTokenizer.from_pretrained(model, trust_remote_code=True)
     model = AutoModelForCausalLM.from_pretrained(
         model,
         torch_dtype=torch.float16,
         device_map=get_device(),
+        trust_remote_code=True,
     ).to(get_device())
     
     return model, tokenizer

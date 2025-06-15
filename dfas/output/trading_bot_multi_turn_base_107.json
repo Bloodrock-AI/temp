@@ -1,0 +1,345 @@
+{
+    "dfa": [
+        {
+            "name": "G0",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "A"
+                    ],
+                    "from": "G0",
+                    "to": "G1"
+                },
+                {
+                    "symbols": [
+                        "F",
+                        "G",
+                        "H",
+                        "I",
+                        "J",
+                        "K",
+                        "L",
+                        "M",
+                        "N",
+                        "S"
+                    ],
+                    "from": "G0",
+                    "to": "G0"
+                }
+            ]
+        },
+        {
+            "name": "G1",
+            "is_final": true,
+            "transitions": [
+                {
+                    "symbols": [
+                        "A",
+                        "F",
+                        "G",
+                        "H",
+                        "I",
+                        "J",
+                        "K",
+                        "L",
+                        "M",
+                        "N",
+                        "S"
+                    ],
+                    "from": "G1",
+                    "to": "G1"
+                }
+            ]
+        }
+    ],
+    "alphabet": {
+        "A": {
+            "name": "get_stock_info",
+            "arguments": {
+                "symbol": {
+                    "name": "symbol",
+                    "value": "ZETA",
+                    "excluded_values": null,
+                    "type": "string"
+                }
+            }
+        },
+        "B": {
+            "name": "add_to_watchlist",
+            "arguments": {
+                "stock": {
+                    "name": "stock",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "C": {
+            "name": "cancel_order",
+            "arguments": {
+                "order_id": {
+                    "name": "order_id",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "integer"
+                }
+            }
+        },
+        "D": {
+            "name": "filter_stocks_by_price",
+            "arguments": {
+                "stocks": {
+                    "name": "stocks",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "array"
+                },
+                "min_price": {
+                    "name": "min_price",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "float"
+                },
+                "max_price": {
+                    "name": "max_price",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "float"
+                }
+            }
+        },
+        "E": {
+            "name": "fund_account",
+            "arguments": {
+                "amount": {
+                    "name": "amount",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "float"
+                }
+            }
+        },
+        "F": {
+            "name": "get_account_info",
+            "arguments": {}
+        },
+        "G": {
+            "name": "get_available_stocks",
+            "arguments": {
+                "sector": {
+                    "name": "sector",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "H": {
+            "name": "get_current_time",
+            "arguments": {}
+        },
+        "I": {
+            "name": "get_order_details",
+            "arguments": {
+                "order_id": {
+                    "name": "order_id",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "integer"
+                }
+            }
+        },
+        "J": {
+            "name": "get_order_history",
+            "arguments": {}
+        },
+        "K": {
+            "name": "get_stock_info",
+            "arguments": {
+                "symbol": {
+                    "name": "symbol",
+                    "value": null,
+                    "excluded_values": [
+                        "ZETA"
+                    ],
+                    "type": "string"
+                }
+            }
+        },
+        "L": {
+            "name": "get_symbol_by_name",
+            "arguments": {
+                "name": {
+                    "name": "name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "M": {
+            "name": "get_transaction_history",
+            "arguments": {
+                "start_date": {
+                    "name": "start_date",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "end_date": {
+                    "name": "end_date",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "N": {
+            "name": "get_watchlist",
+            "arguments": {}
+        },
+        "O": {
+            "name": "make_transaction",
+            "arguments": {
+                "account_id": {
+                    "name": "account_id",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "integer"
+                },
+                "xact_type": {
+                    "name": "xact_type",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "amount": {
+                    "name": "amount",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "float"
+                }
+            }
+        },
+        "P": {
+            "name": "notify_price_change",
+            "arguments": {
+                "stocks": {
+                    "name": "stocks",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "array"
+                },
+                "threshold": {
+                    "name": "threshold",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "float"
+                }
+            }
+        },
+        "Q": {
+            "name": "place_order",
+            "arguments": {
+                "order_type": {
+                    "name": "order_type",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "symbol": {
+                    "name": "symbol",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "price": {
+                    "name": "price",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "float"
+                },
+                "amount": {
+                    "name": "amount",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "integer"
+                }
+            }
+        },
+        "R": {
+            "name": "remove_stock_from_watchlist",
+            "arguments": {
+                "symbol": {
+                    "name": "symbol",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "S": {
+            "name": "trading_get_login_status",
+            "arguments": {}
+        },
+        "T": {
+            "name": "trading_login",
+            "arguments": {
+                "username": {
+                    "name": "username",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "password": {
+                    "name": "password",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "U": {
+            "name": "trading_logout",
+            "arguments": {}
+        },
+        "V": {
+            "name": "update_market_status",
+            "arguments": {
+                "current_time_str": {
+                    "name": "current_time_str",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "W": {
+            "name": "update_stock_price",
+            "arguments": {
+                "symbol": {
+                    "name": "symbol",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "new_price": {
+                    "name": "new_price",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "float"
+                }
+            }
+        }
+    },
+    "expected_sequence": [
+        {
+            "name": "get_stock_info",
+            "arguments": {
+                "symbol": "ZETA"
+            }
+        }
+    ]
+}

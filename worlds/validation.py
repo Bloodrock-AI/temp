@@ -32,28 +32,40 @@ class Validation(World):
         self.reset_world_state()
         self.prompts = [
             {
+                "prompt_id": "validation_1",
                 "prompt": "Validate the email 'user@example.com'.",
-                "expected_sequence": ["validate_email(email='user@example.com')"]
+                "setup_functions": [],
+                "expected_sequences": [["validate_email(email='user@example.com')"]]
             },
             {
+                "prompt_id": "validation_2",
                 "prompt": "Hash the password 'Yharnam' and validate that 'Hunter' does not match its hash.",
-                "expected_sequence": ["hash_password(password='Yharnam')", "check_password_hash(password='Hunter', '0a099edf6266ef30bc1f157a1cb2a0c8cdec45be4e7fbbff6c765949076ead14')"]
+                "setup_functions": [],
+                "expected_sequences": [["hash_password(password='Yharnam')", "check_password_hash(password='Hunter', '0a099edf6266ef30bc1f157a1cb2a0c8cdec45be4e7fbbff6c765949076ead14')"]]
             },
             {
+                "prompt_id": "validation_3",
                 "prompt": "Validate if 'John_Doe' is a proper username, then hash the password 'MyStrongPass!'.",
-                "expected_sequence": ["validate_username(username='John_Doe')", "hash_password(password='MyStrongPass!')"]
+                "setup_functions": [],
+                "expected_sequences": [["validate_username(username='John_Doe')", "hash_password(password='MyStrongPass!')"]]
             },
             {
+                "prompt_id": "validation_4",
                 "prompt": "Generate a 7-digit OTP and verify if '1234567' is the correct OTP.",
-                "expected_sequence": ["generate_otp(length=7)", "verify_otp(input_otp='1234567', correct_otp='1234567')"]
+                "setup_functions": [],
+                "expected_sequences": [["generate_otp(length=7)", "verify_otp(input_otp='1234567', correct_otp='1234567')"]]
             },
             {
+                "prompt_id": "validation_5",
                 "prompt": "Validate the email 'invalid-email', hash the password 'test123', then generate an OTP of length 9.",
-                "expected_sequence": ["validate_email(email='invalid-email')", "hash_password(password='test123')", "generate_otp(length=9)"]
+                "setup_functions": [],
+                "expected_sequences": [["validate_email(email='invalid-email')", "hash_password(password='test123')", "generate_otp(length=9)"]]
             },
             {
-                "prompt": "Validate 'Alice_Wonder' as a username, hash 'SuperSecure123', generate an OTP of length 8, and check if '999999' matches it.",
-                "expected_sequence": ["validate_username(username='Alice_Wonder')", "hash_password(password='SuperSecure123')", "generate_otp(length=8)", "verify_otp(input_otp='99999999', correct_otp='123456789')"]
+                "prompt_id": "validation_6",
+                "prompt": "Validate 'Alice_Wonder' as a username, hash 'SuperSecure123', generate an OTP of length 8, and check if '99999999' matches it.",
+                "setup_functions": [],
+                "expected_sequences": [["validate_username(username='Alice_Wonder')", "hash_password(password='SuperSecure123')", "generate_otp(length=8)", "verify_otp(input_otp='99999999', correct_otp='12345678')"]]
             }
         ]
 

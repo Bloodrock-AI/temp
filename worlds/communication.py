@@ -26,32 +26,26 @@ class Communication(World):
         self.reset_world_state()
         self.prompts = [
             {
+                "prompt_id": "communication_1",
                 "prompt": "Send a high-priority message from 'Alice' to 'Bob' with the content 'Urgent meeting at 3 PM'.",
-                "expected_sequence": ["send_message(sender='Alice', recipient='Bob', content='Urgent meeting at 3 PM', priority='high')"]
+                "setup_functions": [],
+                "expected_sequences": [["send_message(sender='Alice', recipient='Bob', content='Urgent meeting at 3 PM', priority='high')"]]
             },
             {
+                "prompt_id": "communication_2",
                 "prompt": "Print all messages for 'Bob', filtering only high-priority ones.",
-                "expected_sequence": ["print_messages(recipient='Bob', priority='high')"]
+                "setup_functions": [],
+                "expected_sequences": [["print_messages(recipient='Bob', priority='high')"]]
             },
             {
-                "prompt": "Send a normal-priority message from 'Charlie' to 'Dana' with the content 'Lunch at noon'. Then print all of Dana’s messages.",
-                "expected_sequence": ["send_message(sender='Charlie', recipient='Dana', content='Lunch at noon', priority='normal')", "print_messages(recipient='Dana')"]
-            },
-            {
-                "prompt": "Schedule a message from 'Eve' to 'Frank' saying 'Reminder: Call at 10 AM' to be sent at '2025-02-12T10:00:00'.",
-                "expected_sequence": ["schedule_message(sender='Eve', recipient='Frank', content='Reminder: Call at 10 AM', send_time='2025-02-12T10:00:00')"]
-            },
-            {
-                "prompt": "Forward a message originally sent by 'Alice' at '2025-02-11T14:30:00' to 'Grace' by 'Bob'.",
-                "expected_sequence": ["forward_message(original_sender='Alice', new_recipient='Grace', timestamp='2025-02-11T14:30:00', forwarded_by='Bob')"]
-            },
-            {
-                "prompt": "Send a message from 'Henry' to 'Ivy' saying 'See you at the event!' with normal priority, then delete it using the correct timestamp.",
-                "expected_sequence": ["send_message(sender='Henry', recipient='Ivy', content='See you at the event!', priority='normal')", "delete_message(sender='Henry', recipient='Ivy', timestamp='<timestamp>')"]
+                "prompt_id": "communication_3",
+                "prompt": "Send a normal-priority message from 'Charlie' to 'Dana' with the content 'Lunch at noon'. Then print all of Dana’s normal-priority messages. Finally, delete Charlie's messages to Dana.",
+                "setup_functions": [],
+                "expected_sequences": [["send_message(sender='Charlie', recipient='Dana', content='Lunch at noon', priority='normal')", "print_messages(recipient='Dana', priority='normal')", "delete_message(sender='Charlie', recipient='Dana')"]]
             },
         ]
 
-    def send_message(self, sender: str, recipient: str, content: str, priority: Optional[str] = "normal", timestamp: Optional[str] = None) -> str:
+    def send_message(self, sender: str, recipient: str, content: str, priority: Optional[str], timestamp: Optional[str] = None) -> str:
         """
         Sends a message from a sender to a recipient.
         
@@ -68,7 +62,7 @@ class Communication(World):
         self.world_state["messages"].append(message)
         return f"Message sent from '{sender}' to '{recipient}' with priority '{priority}'."
 
-    def print_messages(self, recipient: str, priority: Optional[str] = None) -> List[Dict[str, str]]:
+    def print_messages(self, recipient: str, priority: str) -> List[Dict[str, str]]:
         """
         Prints messages for a specific recipient, optionally filtering by priority.
         
@@ -76,9 +70,9 @@ class Communication(World):
         :param priority: Optionally filter messages by priority.  Enum: ["low", "normal", "high"]
         :return: A list of messages.
         """
-        return [msg for msg in self.world_state["messages"] if msg["recipient"] == recipient and (priority is None or msg["priority"] == priority)]
+        return [msg for msg in self.world_state["messages"] if msg["recipient"] == recipient and (msg["priority"] == priority)]
 
-    def delete_message(self, sender: str, recipient: str, timestamp: str) -> str:
+    def delete_message(self, sender: str, recipient: str) -> str:
         """
         Deletes a message based on sender, recipient, and timestamp.
         
@@ -87,8 +81,8 @@ class Communication(World):
         :param timestamp: The timestamp of the message to delete.
         :return: Confirmation message.
         """
-        self.world_state["messages"] = [msg for msg in self.world_state["messages"] if not (msg["sender"] == sender and msg["recipient"] == recipient and msg["timestamp"] == timestamp)]
-        return f"Message from '{sender}' to '{recipient}' at '{timestamp}' has been deleted."
+        self.world_state["messages"] = [msg for msg in self.world_state["messages"] if not (msg["sender"] == sender and msg["recipient"] == recipient) ]
+        return f"Message from '{sender}' to '{recipient}' has been deleted."
 
     def forward_message(self, original_sender: str, new_recipient: str, timestamp: str, forwarded_by: str) -> str:
         """

@@ -93,7 +93,8 @@ and the functions called and their responses were: {self.functions_called_str if
 
 What are the user prompt's different goals? Are the functions called enough to satisfy all of the prompt's aspects? Shoould more functions be called?
 Let me break it down:
-        '''
+<token>
+'''
 
 class FunctionAgentPrompt:
 
@@ -200,7 +201,7 @@ class DecisionAgent:
             self.prompt.get_prompt()
         )
         logger.mistake_counters["generated_tokens"] += self.model.last_generated_tokens
-        out=out.split('</think>')[1]
+        out=out.split('<token>')[1]
         
         reg = r'"answer":\s*(true|false)'
         m = re.search(reg, out)

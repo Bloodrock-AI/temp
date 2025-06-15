@@ -1,0 +1,314 @@
+{
+    "dfa": [
+        {
+            "name": "G0",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "A",
+                        "F",
+                        "G",
+                        "H",
+                        "I",
+                        "K",
+                        "M"
+                    ],
+                    "from": "G0",
+                    "to": "G0"
+                }
+            ]
+        },
+        {
+            "name": "G1",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "A",
+                        "F",
+                        "G",
+                        "H",
+                        "I",
+                        "K",
+                        "M"
+                    ],
+                    "from": "G1",
+                    "to": "G1"
+                }
+            ]
+        },
+        {
+            "name": "G2",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "A"
+                    ],
+                    "from": "G2",
+                    "to": "G3"
+                },
+                {
+                    "symbols": [
+                        "F",
+                        "G",
+                        "H",
+                        "I",
+                        "K",
+                        "M"
+                    ],
+                    "from": "G2",
+                    "to": "G2"
+                }
+            ]
+        },
+        {
+            "name": "G3",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "B"
+                    ],
+                    "from": "G3",
+                    "to": "G4"
+                },
+                {
+                    "symbols": [
+                        "A",
+                        "F",
+                        "G",
+                        "H",
+                        "I",
+                        "K",
+                        "M"
+                    ],
+                    "from": "G3",
+                    "to": "G3"
+                }
+            ]
+        },
+        {
+            "name": "G4",
+            "is_final": false,
+            "transitions": [
+                {
+                    "symbols": [
+                        "C"
+                    ],
+                    "from": "G4",
+                    "to": "G5"
+                },
+                {
+                    "symbols": [
+                        "A",
+                        "F",
+                        "G",
+                        "H",
+                        "I",
+                        "K",
+                        "M"
+                    ],
+                    "from": "G4",
+                    "to": "G4"
+                }
+            ]
+        },
+        {
+            "name": "G5",
+            "is_final": true,
+            "transitions": [
+                {
+                    "symbols": [
+                        "A",
+                        "F",
+                        "G",
+                        "H",
+                        "I",
+                        "K",
+                        "M"
+                    ],
+                    "from": "G5",
+                    "to": "G5"
+                }
+            ]
+        }
+    ],
+    "alphabet": {
+        "A": {
+            "name": "get_user_id",
+            "arguments": {
+                "user": {
+                    "name": "user",
+                    "value": "Bob",
+                    "excluded_values": null,
+                    "type": "string"
+                }
+            }
+        },
+        "B": {
+            "name": "message_login",
+            "arguments": {
+                "user_id": {
+                    "name": "user_id",
+                    "value": "USR001",
+                    "excluded_values": null,
+                    "type": "string"
+                }
+            }
+        },
+        "C": {
+            "name": "send_message",
+            "arguments": {
+                "receiver_id": {
+                    "name": "receiver_id",
+                    "value": "USR002",
+                    "excluded_values": null,
+                    "type": "string"
+                },
+                "message": {
+                    "name": "message",
+                    "value": "Meeting notes and project details.",
+                    "excluded_values": null,
+                    "type": "string"
+                }
+            }
+        },
+        "D": {
+            "name": "add_contact",
+            "arguments": {
+                "user_name": {
+                    "name": "user_name",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "E": {
+            "name": "delete_message",
+            "arguments": {
+                "receiver_id": {
+                    "name": "receiver_id",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                },
+                "message_id": {
+                    "name": "message_id",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "integer"
+                }
+            }
+        },
+        "F": {
+            "name": "get_message_stats",
+            "arguments": {}
+        },
+        "G": {
+            "name": "get_user_id",
+            "arguments": {
+                "user": {
+                    "name": "user",
+                    "value": null,
+                    "excluded_values": [
+                        "Bob"
+                    ],
+                    "type": "string"
+                }
+            }
+        },
+        "H": {
+            "name": "list_users",
+            "arguments": {}
+        },
+        "I": {
+            "name": "message_get_login_status",
+            "arguments": {}
+        },
+        "J": {
+            "name": "message_login",
+            "arguments": {
+                "user_id": {
+                    "name": "user_id",
+                    "value": null,
+                    "excluded_values": [
+                        "USR001"
+                    ],
+                    "type": "string"
+                }
+            }
+        },
+        "K": {
+            "name": "search_messages",
+            "arguments": {
+                "keyword": {
+                    "name": "keyword",
+                    "value": null,
+                    "excluded_values": [],
+                    "type": "string"
+                }
+            }
+        },
+        "L": {
+            "name": "send_message",
+            "arguments": {
+                "receiver_id": {
+                    "name": "receiver_id",
+                    "value": null,
+                    "excluded_values": [
+                        "USR002"
+                    ],
+                    "type": "string"
+                },
+                "message": {
+                    "name": "message",
+                    "value": null,
+                    "excluded_values": [
+                        "Meeting notes and project details."
+                    ],
+                    "type": "string"
+                }
+            }
+        },
+        "M": {
+            "name": "view_messages_sent",
+            "arguments": {}
+        }
+    },
+    "expected_sequence": [
+        {
+            "name": "cd",
+            "arguments": {
+                "folder": "initial_directory"
+            }
+        },
+        {
+            "name": "cat",
+            "arguments": {
+                "file_name": "notes"
+            }
+        },
+        {
+            "name": "get_user_id",
+            "arguments": {
+                "user": "Bob"
+            }
+        },
+        {
+            "name": "message_login",
+            "arguments": {
+                "user_id": "USR001"
+            }
+        },
+        {
+            "name": "send_message",
+            "arguments": {
+                "receiver_id": "USR002",
+                "message": "Meeting notes and project details."
+            }
+        }
+    ]
+}
