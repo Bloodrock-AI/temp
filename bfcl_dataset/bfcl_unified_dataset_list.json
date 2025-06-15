@@ -1948,8 +1948,8 @@
     },
     "expected_sequences": [
       [
-        "displayCarStatus('fuel')",
-        "fillFuelTank(15.0)",
+        "displayCarStatus(option='fuel')",
+        "fillFuelTank(fuelAmount=15.0)",
         "lockDoors(unlock=False, door=['driver', 'passenger', 'rear_left', 'rear_right'])",
         "pressBrakePedal(pedalPosition=1.0)",
         "startEngine(ignitionMode='START')"
@@ -1990,8 +1990,8 @@
     },
     "expected_sequences": [
       [
-        "get_zipcode_based_on_city('San Francisco')",
-        "get_zipcode_based_on_city('Rivermist')",
+        "get_zipcode_based_on_city(city='San Francisco')",
+        "get_zipcode_based_on_city(city='Rivermist')",
         "estimate_distance(cityA='94016', cityB='83214')"
       ]
     ]
@@ -2030,8 +2030,8 @@
     },
     "expected_sequences": [
       [
-        "get_zipcode_based_on_city('Crescent Hollow')",
-        "get_zipcode_based_on_city('Autumnville')",
+        "get_zipcode_based_on_city(city='Crescent Hollow')",
+        "get_zipcode_based_on_city(city='Autumnville')",
         "estimate_distance(cityA='69238', cityB='51479')"
       ]
     ]
@@ -2070,8 +2070,8 @@
     },
     "expected_sequences": [
       [
-        "get_zipcode_based_on_city('San Francisco')",
-        "get_zipcode_based_on_city('Rivermist')",
+        "get_zipcode_based_on_city(city='San Francisco')",
+        "get_zipcode_based_on_city(city='Rivermist')",
         "estimate_distance(cityA='94016', cityB='83214')"
       ]
     ]
@@ -2110,8 +2110,8 @@
     },
     "expected_sequences": [
       [
-        "get_zipcode_based_on_city('San Francisco')",
-        "get_zipcode_based_on_city('Rivermist')",
+        "get_zipcode_based_on_city(city='San Francisco')",
+        "get_zipcode_based_on_city(city='Rivermist')",
         "estimate_distance(cityA='94016', cityB='83214')"
       ]
     ]
@@ -2190,8 +2190,8 @@
     },
     "expected_sequences": [
       [
-        "get_zipcode_based_on_city('San Francisco')",
-        "get_zipcode_based_on_city('Rivermist')",
+        "get_zipcode_based_on_city(city='San Francisco')",
+        "get_zipcode_based_on_city(city='Rivermist')",
         "estimate_distance(cityA='94016', cityB='83214')",
         "estimate_drive_feasibility_by_mileage(distance=980.0)"
       ]
@@ -2231,8 +2231,8 @@
     },
     "expected_sequences": [
       [
-        "get_zipcode_based_on_city('Rivermist')",
-        "get_zipcode_based_on_city('Stonebrook')",
+        "get_zipcode_based_on_city(city='Rivermist')",
+        "get_zipcode_based_on_city(city='Stonebrook')",
         "estimate_distance(cityA='83214', cityB='74532')",
         "send_message(receiver_id='USR002', message='The distance from Rivermist to Stonebrook is 750.0 km.')"
       ]
