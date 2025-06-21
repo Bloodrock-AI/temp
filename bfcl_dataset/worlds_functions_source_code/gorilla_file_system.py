@@ -3,7 +3,7 @@ import subprocess
 from copy import deepcopy
 from typing import Dict, List, Optional, Union
 
-from long_context import (
+from bfcl_dataset.worlds_functions_source_code.long_context import (
     FILE_CONTENT_EXTENSION, FILES_TAIL_USED, POPULATE_FILE_EXTENSION)
 
 
@@ -145,6 +145,19 @@ class GorillaFileSystem:
         self.root: Directory
         self._current_dir: Directory
         self._api_description = "This tool belongs to the Gorilla file system. It is a simple file system that allows users to perform basic file operations such as navigating directories, creating files and directories, reading and writing to files, etc."
+
+    def get_state(self) -> Dict[str, Union[Directory, str]]:
+        """
+        Get the current state of the file system.
+
+        Returns:
+            state (dict): A dictionary containing the root directory and the current working directory.
+        """
+        return {
+            "root": self.root,
+            "current_working_directory": self._current_dir,
+            "api_description": self._api_description,
+        }
 
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, GorillaFileSystem):

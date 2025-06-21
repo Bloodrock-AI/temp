@@ -32,6 +32,22 @@ class TicketAPI:
         self.current_user: Optional[str]
         self._api_description = "This tool belongs to the ticketing system that is part of a company, which allows users to create, view, and manage support business tickets."
 
+    def get_state(self) -> Dict[str, Union[List[Dict[str, Union[int, str]]], int, Optional[str]]]:
+        """
+        Get the current state of the ticketing system.
+
+        Returns:
+            Dict: A dictionary containing the current state of the ticketing system.
+                - ticket_queue (List[Dict[str, Union[int, str]]]): List of tickets in the queue.
+                - ticket_counter (int): Current ticket counter value.
+                - current_user (Optional[str]): Currently authenticated user.
+        """
+        return {
+            "ticket_queue": self.ticket_queue,
+            "ticket_counter": self.ticket_counter,
+            "current_user": self.current_user,
+        }
+    
     def _load_scenario(self, scenario: dict, long_context=False) -> None:
         """
         Load a scenario into the ticket queue.

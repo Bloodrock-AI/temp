@@ -3,7 +3,7 @@ from copy import deepcopy
 from datetime import datetime
 from typing import Dict, List, Optional, Tuple, Union
 
-from long_context import (
+from bfcl_dataset.worlds_functions_source_code.long_context import (
     BOOKING_RECORD_EXTENSION, CREDIT_CARD_EXTENSION)
 
 DEFAULT_STATE = {
@@ -35,6 +35,24 @@ class TravelAPI:
         self.budget_limit: Optional[float]
         self._api_description = "This tool belongs to the travel system, which allows users to book flights, manage credit cards, and view budget information."
         self._flight_cost_lookup: Dict[str, Dict[str, float]] = {}
+
+    def get_state(self) -> Dict[str, Union[Dict, str, int, float]]:
+        """
+        Get the current state of the TravelAPI instance.
+        Returns:
+            Dict[str, Union[Dict, str, int, float]]: The current state of the TravelAPI instance.
+        """
+        return {
+            "credit_card_list": self.credit_card_list,
+            "booking_record": self.booking_record,
+            "access_token": self.access_token,
+            "token_type": self.token_type,
+            "token_expires_in": self.token_expires_in,
+            "token_scope": self.token_scope,
+            "user_first_name": self.user_first_name,
+            "user_last_name": self.user_last_name,
+            "budget_limit": self.budget_limit,
+        }
 
     def _load_scenario(
         self,

@@ -66,6 +66,22 @@ class MessageAPI:
         self.current_user: Optional[str]
         self._api_description = "This tool belongs to the Message API, which is used to manage user interactions in a workspace."
 
+    def get_state(self) -> Dict[str, Union[set, int, Dict[str, str], List[Dict[str, str]], Optional[str]]]:
+        """
+        Get the current state of the MessageAPI.
+
+        Returns:
+            state (Dict): A dictionary containing the current state of the MessageAPI.
+        """
+        return {
+            "generated_ids": self.generated_ids,
+            "user_count": self.user_count,
+            "user_map": self.user_map,
+            "inbox": self.inbox,
+            "message_count": self.message_count,
+            "current_user": self.current_user,
+        }
+
     def _load_scenario(self, scenario: dict, long_context=False) -> None:
         """
         Load a scenario into the MessageAPI.

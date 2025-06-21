@@ -2,7 +2,7 @@ import random
 from copy import deepcopy
 from typing import Dict, List, Union
 
-from long_context import (
+from bfcl_dataset.worlds_functions_source_code.long_context import (
     CAR_STATUS_METADATA_EXTENSION,
     INTERMEDIARY_CITIES,
     LONG_WEATHER_EXTENSION,
@@ -77,6 +77,37 @@ class VehicleControlAPI:
         self.rearLeftTirePressure: float
         self.rearRightTirePressure: float
         self._api_description = "This tool belongs to the vehicle control system, which allows users to control various aspects of the car such as engine, doors, climate control, lights, and more."
+
+    def get_state(self) -> Dict[str, Union[str, float, int, Dict[str, str]]]:
+        """
+        Returns the current state of the vehicle control API.
+        Returns:
+            Dict: The current state of the vehicle control API.
+        """
+        return {
+            "fuelLevel": self.fuelLevel,
+            "batteryVoltage": self.batteryVoltage,
+            "engineState": self.engine_state,
+            "remainingUnlockedDoors": self.remainingUnlockedDoors,
+            "doorStatus": self.doorStatus,
+            "acTemperature": self.acTemperature,
+            "fanSpeed": self.fanSpeed,
+            "acMode": self.acMode,
+            "humidityLevel": self.humidityLevel,
+            "headLightStatus": self.headLightStatus,
+            "parkingBrakeStatus": self.parkingBrakeStatus,
+            "_parkingBrakeForce": self._parkingBrakeForce,
+            "_slopeAngle": self._slopeAngle,
+            "brakePedalStatus": self.brakePedalStatus,
+            "_brakePedalForce": self._brakePedalForce,
+            "distanceToNextVehicle": self.distanceToNextVehicle,
+            "cruiseStatus": self.cruiseStatus,
+            "destination": self.destination,
+            "frontLeftTirePressure": self.frontLeftTirePressure,
+            "frontRightTirePressure": self.frontRightTirePressure,
+            "rearLeftTirePressure": self.rearLeftTirePressure,
+            "rearRightTirePressure": self.rearRightTirePressure,
+        }
 
     def _load_scenario(self, scenario: dict, long_context=False) -> None:
         """

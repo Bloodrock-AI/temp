@@ -55,35 +55,45 @@ def _prep_name(name: str) -> str:
     name = name.replace('Api', 'API')
     return name
 
-def main(model: str, output_file: str):
+def main(
+    model: str,
+    output_file: str
+):
 
     # load datasets
     base_dir = os.path.dirname(os.path.abspath(__file__))
-    dataset_file = os.path.join(base_dir, 'bfcl_dataset', 'all_bfcl_worlds_dataset.json')
+    dataset_file = os.path.join(base_dir, 'bfcl_dataset', 'bfcl_dataset_final_list.json')
     test_entry_dict = load_test_entries_dataset(dataset_file)
     tool_definitions = {}
+    tool_to_world_map = {}
     for file in os.listdir(os.path.join(base_dir, 'bfcl_dataset', 'worlds')):
         if file.endswith('.json'):
             tool_definitions_file = os.path.join(base_dir, 'bfcl_dataset', 'worlds', file)
             _tool_definitions = load_tool_definitions(tool_definitions_file)
             
             name = _prep_name(file[:-5])  # remove .json extension
+            for tool_def in _tool_definitions:
+                tool_to_world_map[tool_def["name"]] = name  # map tool name to world name
             tool_definitions[name] = _tool_definitions
 
-    OUTPUT_TOKENS_CAP = 10_000
+
+    OUTPUT_TOKENS_CAP = 26_000
     
     GENERATED_TOKENS_AVG = 0
     RESULTS = []
     
     try:
         for test_entry in test_entry_dict.values():
+            print(test_entry)
             logger.reset()
 
             active_worlds = {}
             for world in test_entry['involved_classes']:
                 active_worlds[world] = bfcl_worlds[world]()
+                print(f'Loading world: {world}')
                 active_worlds[world]._load_scenario(test_entry['initial_config'])
-    
+                print(f'World {world} loaded successfully')
+                
             # prompt from dataset
             user_prompt = test_entry["prompt"]
             
@@ -91,25 +101,22 @@ def main(model: str, output_file: str):
             
             prev_generated_tokens = logger.mistake_counters["generated_tokens"]
             
-            # tool_definitions = world.tool_definitions
-            # get tool descriptions from all active worlds
-            
-        
-            FUNCTION_SYSTEM_PROMPT = world.function_system_prompt
-            DECISION_SYSTEM_PROMPT = world.decision_system_prompt
+            additional_state = {
+                world: active_worlds[world].get_state() for world in active_worlds
+            }
 
             decision_prompt = DecisionAgentPrompt(
                 function_definitions=tool_definitions,
                 user_prompt=user_prompt,
-                additional_instructions=DECISION_SYSTEM_PROMPT,
-                additional_state=world.world_state_description.format(world.world_state)
+                # additional_instructions=DECISION_SYSTEM_PROMPT,
+                additional_state=additional_state
             )
 
             function_prompt = FunctionAgentPrompt(
                 function_definitions=tool_definitions,
                 user_prompt=user_prompt,
-                additional_instructions=FUNCTION_SYSTEM_PROMPT,
-                additional_state=world.world_state_description.format(world.world_state)
+                # additional_instructions=FUNCTION_SYSTEM_PROMPT,
+                additional_state=additional_state
             )
             
             decision_agent = DecisionAgent(
@@ -136,6 +143,8 @@ def main(model: str, output_file: str):
                 print(f'Calling function: {function}')
                 
                 try:
+                    world_name = tool_to_world_map[function["function_name"]]
+                    world = active_worlds[world_name]
                     resp = getattr(world, function["function_name"])(**function["arguments"])
                 except AttributeError as e:
                     # function does not exist
@@ -168,7 +177,9 @@ def main(model: str, output_file: str):
                 )
                 
                 # update additional states
-                new_state = world.world_state_description.format(world.world_state)
+                new_state = {
+                    world: active_worlds[world].get_state() for world in active_worlds
+                }
                 decision_prompt.additional_state = new_state
                 function_prompt.additional_state = new_state
                 
@@ -191,7 +202,7 @@ def main(model: str, output_file: str):
                 print(f'PARAMETER_HALLUCINATION: {logger.mistake_counters["parameter_hallucination"]}')
                 print(f'GENERATED_TOKENS: {logger.mistake_counters["generated_tokens"] - prev_generated_tokens}')
                 GENERATED_TOKENS_AVG += logger.mistake_counters["generated_tokens"] - prev_generated_tokens
-                
+
                 print(f'Sequence: {decision_prompt.functions_called}')
                 RESULTS.append({
                     "world": world.__class__.__name__,
@@ -213,3 +224,8 @@ def main(model: str, output_file: str):
 
     with open(output_file, 'w') as f:
         json.dump(RESULTS, f, indent=4)
+
+main(
+    ModelType.DEEPSEEK_1_5B,
+    output_file="test.json"
+)

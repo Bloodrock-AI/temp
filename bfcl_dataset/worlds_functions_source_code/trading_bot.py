@@ -3,7 +3,7 @@ from copy import deepcopy
 from datetime import datetime, time, timedelta
 from typing import Dict, List, Optional, Union
 
-from long_context import (
+from bfcl_dataset.worlds_functions_source_code.long_context import (
     AUTOMOBILE_EXTENSION,
     MA_5_EXTENSION,
     MA_20_EXTENSION,
@@ -155,6 +155,24 @@ class TradingBot:
         self.watch_list: List[str]
         self.transaction_history: List[Dict[str, Union[str, float, int]]]
         self._api_description = "This tool belongs to the trading system, which allows users to trade stocks, manage their account, and view stock information."
+
+    def get_state(self) -> Dict[str, Union[Dict, List, int, bool]]:
+        """
+        Get the current state of the TradingBot.
+
+        Returns:
+            state (Dict): A dictionary containing the current state of the TradingBot.
+        """
+        return {
+            "orders": self.orders,
+            "account_info": self.account_info,
+            "authenticated": self.authenticated,
+            "market_status": self.market_status,
+            "order_counter": self.order_counter,
+            "stocks": self.stocks,
+            "watch_list": self.watch_list,
+            "transaction_history": self.transaction_history,
+        }
 
     def _load_scenario(self, scenario: dict, long_context=False) -> None:
         """

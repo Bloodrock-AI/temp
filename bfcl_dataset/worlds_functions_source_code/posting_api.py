@@ -26,6 +26,23 @@ class TwitterAPI:
         self.tweet_counter: int
         self._api_description = "This tool belongs to the TwitterAPI, which provides core functionality for posting tweets, retweeting, commenting, and following users on Twitter."
 
+    def get_state(self) -> Dict[str, Union[str, bool, Dict[int, Dict[str, Union[int, str, List[str]]]], Dict[int, List[Dict[str, str]]], Dict[str, List[int]], List[str], int]]:
+        """
+        Get the current state of the TwitterAPI instance.
+        Returns:
+            state (dict): A dictionary containing the current state of the TwitterAPI instance.
+        """
+        return {
+            "username": self.username,
+            "password": self.password,
+            "authenticated": self.authenticated,
+            "tweets": self.tweets,
+            "comments": self.comments,
+            "retweets": self.retweets,
+            "following_list": self.following_list,
+            "tweet_counter": self.tweet_counter,
+        }
+
     def _load_scenario(self, scenario: dict, long_context=False) -> None:
         """
         Load a scenario into the TwitterAPI instance.
