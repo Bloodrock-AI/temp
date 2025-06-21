@@ -18,7 +18,7 @@ To use:  change PROMPTS_FILE, ANSWERS_FILE, WORLDS_DIR below, then
 PROMPTS_FILE = "/Users/panosm/Desktop/Bloodrock/DFAs/temp/bfcl_dataset/prompts_dataset_list.json"     
 ANSWERS_FILE = "/Users/panosm/Desktop/Bloodrock/DFAs/temp/bfcl_dataset/answers_list.json"      
 WORLDS_DIR   = "/Users/panosm/Desktop/Bloodrock/DFAs/temp/bfcl_dataset/worlds"           
-OUTPUT_FILE  = "/Users/panosm/Desktop/Bloodrock/DFAs/temp/bfcl_dataset/bfcl_unified_dataset.json"       
+OUTPUT_FILE  = "/Users/panosm/Desktop/Bloodrock/DFAs/temp/bfcl_dataset/bfcl_unified_dataset_all_initials.json"       
 
 import glob, json, os, re
 from typing import Dict, List, Set, Any
@@ -61,16 +61,16 @@ def choose_world(fnset: Set[str], worlds: Dict[str, Set[str]]) -> str:
             best, score = w, overlap
     return best
 
-def first_config_entry(cfg: Any) -> Any:
-    """
-    Return a dict containing only the first key-value pair
-    of `cfg` (assuming `cfg` is a mapping). If cfg is not a
-    dict or is empty, return cfg unchanged.
-    """
-    if isinstance(cfg, dict) and cfg:
-        key = next(iter(cfg))
-        return {key: cfg[key]}
-    return cfg
+# def first_config_entry(cfg: Any) -> Any:
+#     """
+#     Return a dict containing only the first key-value pair
+#     of `cfg` (assuming `cfg` is a mapping). If cfg is not a
+#     dict or is empty, return cfg unchanged.
+#     """
+#     if isinstance(cfg, dict) and cfg:
+#         key = next(iter(cfg))
+#         return {key: cfg[key]}
+#     return cfg
 
 def build_dataset() -> List[dict]:
     prompts = {p["id"]: p for p in load_objects(PROMPTS_FILE)}
@@ -92,7 +92,9 @@ def build_dataset() -> List[dict]:
             "prompt_id":          pid,
             "world":              world,
             "prompt":             p["question"][0][0]["content"],
-            "initial_config":     first_config_entry(p.get("initial_config", {})),
+            #"initial_config":     first_config_entry(p.get("initial_config", {})),
+            "initial_config":     p.get("initial_config", {}),
+
             "expected_sequences": [first_seq]
         })
 
