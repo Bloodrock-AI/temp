@@ -115,7 +115,7 @@ def build_dataset() -> List[dict]:
             "initial_config":     p.get("initial_config", {}),
             "involved_classes":   p.get("involved_classes", []),
             "expected_sequences": [first_seq],
-            "dfa_spec":           dfa_specs.get(pid, None)
+            "CORE":           dfa_specs.get(pid, None)
         })
 
     print(f"✓ merged {len(merged)} examples   (skipped {skipped})")
