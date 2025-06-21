@@ -1,5 +1,6 @@
 from dfas.dfa import Node, Transition, FunctionCall, FunctionArgument
 from build_json_dataset import serialize_function_call
+from core import evaluate
 
 import sys
 import re
@@ -293,8 +294,9 @@ def evaluate_world(world, result):
     dfa = world["nodes"]
     
     # use agent_sequence and dfa to evaluate the agent's output
+    return evaluate(agent_sequence, dfa)
     
-    return True  # Placeholder for actual evaluation logic
+    # return True  # Placeholder for actual evaluation logic
 
 if __name__ == "__main__":
     dataset_file = sys.argv[1]
