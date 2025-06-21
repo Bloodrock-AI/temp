@@ -192,7 +192,7 @@ def actions_to_states(seq: List[str], dfa: List[Node]) -> List[str]:
         if not transition_found:
             # Action doesn't match any transition from current node, stop traversal
             break
-
+    
     return states_visited
 
 def simplify_action_sequence(seq: List[str], dfa: List[Node]) -> Tuple[List[str], int]:
@@ -253,11 +253,11 @@ def main() -> None:
     simple_seq, fail_states = simplify_action_sequence(IN_SEQ, [G0, G1, G2])
     print(simple_seq)    
 
-    a = evaluate_v2(simple_seq, [G0, G1, G2], ["0", "A", "B01"])
-    print(a)
+    # a = evaluate_v2(simple_seq, [G0, G1, G2], ["0", "A", "B01"])
+    # print(a)
 
-    b = 1 - LD_norm(["A", "D", "B01"], ["A", "A", "B01"])
-    print(b)
+    # b = 1 - LD_norm(["A", "D", "B01"], ["A", "A", "B01"])
+    # print(b)
 
     print(evaluate(simple_seq, [G0, G1, G2]))
 

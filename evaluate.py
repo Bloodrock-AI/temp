@@ -1,6 +1,6 @@
 from dfas.dfa import Node, Transition, FunctionCall, FunctionArgument
 from build_json_dataset import serialize_function_call
-from core import evaluate
+from core import evaluate, Transition as CoreTransition
 
 import sys
 import re
@@ -269,6 +269,19 @@ def load_world(a):
 
     return out
 
+def convert_dfa(dfa: dict[str, Node]) -> List[Node]:
+    """
+    Convert a dfa to a list and then make transitions with multiple symbols into multiple transitions with single symbols.
+    """
+    dfa_list = list(dfa.values())
+    for node in dfa_list:
+        new_transitions = []
+        for transition in node.transitions:
+            for symbol in transition.symbols:
+                new_transitions.append(CoreTransition(symbol=symbol, _from=transition._from, _to=transition._to))
+        node.transitions = new_transitions
+    return dfa_list
+
 def evaluate_world(world, result):
     """
     Evaluate the world against the result.
@@ -293,10 +306,7 @@ def evaluate_world(world, result):
     
     dfa = world["nodes"]
     
-    # use agent_sequence and dfa to evaluate the agent's output
-    return evaluate(agent_sequence, dfa)
-    
-    # return True  # Placeholder for actual evaluation logic
+    return evaluate(['0', *agent_sequence], convert_dfa(dfa))
 
 if __name__ == "__main__":
     dataset_file = sys.argv[1]
