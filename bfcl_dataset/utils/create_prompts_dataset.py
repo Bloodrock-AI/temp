@@ -18,7 +18,7 @@ To use:  change PROMPTS_FILE, ANSWERS_FILE, WORLDS_DIR below, then
 PROMPTS_FILE = "/Users/panosm/Desktop/Bloodrock/DFAs/temp/bfcl_dataset/prompts_dataset_list.json"     
 ANSWERS_FILE = "/Users/panosm/Desktop/Bloodrock/DFAs/temp/bfcl_dataset/answers_list.json"      
 WORLDS_DIR   = "/Users/panosm/Desktop/Bloodrock/DFAs/temp/bfcl_dataset/worlds"           
-OUTPUT_FILE  = "/Users/panosm/Desktop/Bloodrock/DFAs/temp/bfcl_dataset/bfcl_unified_dataset_all_initials.json"       
+OUTPUT_FILE  = "/Users/panosm/Desktop/Bloodrock/DFAs/temp/bfcl_dataset/bfcl_dataset_final.json"       
 
 import glob, json, os, re
 from typing import Dict, List, Set, Any
@@ -72,10 +72,30 @@ def choose_world(fnset: Set[str], worlds: Dict[str, Set[str]]) -> str:
 #         return {key: cfg[key]}
 #     return cfg
 
+
+def load_dfa_specs(dir_: str) -> Dict[str, dict]:
+    """
+    Load DFA specs and map them to prompt_id by extracting the part
+    of the filename starting from 'multi' (e.g. messages_multi_turn_2.json → multi_turn_2).
+    """
+    dfa_map: Dict[str, dict] = {}
+    for fp in glob.glob(os.path.join(dir_, "*.json")):
+        fname = os.path.splitext(os.path.basename(fp))[0]
+        match = re.search(r"(multi\w*)", fname)
+        if not match:
+            continue
+        prompt_id = match.group(1)
+        with open(fp, encoding="utf-8") as f:
+            dfa_map[prompt_id] = json.load(f)
+    return dfa_map
+
+
+
 def build_dataset() -> List[dict]:
     prompts = {p["id"]: p for p in load_objects(PROMPTS_FILE)}
     answers = {a["id"]: a for a in load_objects(ANSWERS_FILE)}
     worlds  = load_worlds(WORLDS_DIR)
+    dfa_specs = load_dfa_specs("/Users/panosm/Desktop/Bloodrock/DFAs/temp/bfcl_dataset/dfas")  # ← your DFA folder
 
     merged, skipped = [], 0
     for pid, p in prompts.items():
@@ -84,7 +104,7 @@ def build_dataset() -> List[dict]:
             skipped += 1
             continue
 
-        first_seq = ans_entry["ground_truth"][0]       # 1st answer sequence
+        first_seq = ans_entry["ground_truth"][0]
         fnset: Set[str] = {fn_name(call) for call in first_seq}
         world = choose_world(fnset, worlds)
 
@@ -92,14 +112,15 @@ def build_dataset() -> List[dict]:
             "prompt_id":          pid,
             "world":              world,
             "prompt":             p["question"][0][0]["content"],
-            #"initial_config":     first_config_entry(p.get("initial_config", {})),
             "initial_config":     p.get("initial_config", {}),
-
-            "expected_sequences": [first_seq]
+            "involved_classes":   p.get("involved_classes", []),
+            "expected_sequences": [first_seq],
+            "dfa_spec":           dfa_specs.get(pid, None)
         })
 
     print(f"✓ merged {len(merged)} examples   (skipped {skipped})")
     return merged
+
 
 if __name__ == "__main__":
     dataset = build_dataset()
