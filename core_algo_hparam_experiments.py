@@ -3,8 +3,163 @@ import string
 import matplotlib.pyplot as plt
 import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
+from itertools import combinations
 
 random.seed(42)  # For reproducibility
+
+def needleman_wunsch(predicted, gold,
+                     k_ins=1.0, k_del=1.0, k_sub=1.0,
+                     sim=None):
+    """
+    Compute weighted global alignment cost between `predicted` and `gold`.
+    - k_ins: cost to insert a symbol in predicted
+    - k_del: cost to delete a symbol from predicted
+    - k_sub: max cost to substitute one symbol for another
+    - sim(a,b): similarity in [0,1]; default is exact-match (1 if a==b else 0).
+    """
+    if sim is None:
+        sim = lambda a, b: 1.0 if a == b else 0.0
+
+    m, n = len(predicted), len(gold)
+    # dp[i][j] = min cost to align predicted[:i] to gold[:j]
+    dp = [[0.0]*(n+1) for _ in range(m+1)]
+    for i in range(1, m+1):
+        dp[i][0] = i * k_del
+    for j in range(1, n+1):
+        dp[0][j] = j * k_ins
+
+    for i in range(1, m+1):
+        for j in range(1, n+1):
+            cost_del = dp[i-1][j] + k_del
+            cost_ins = dp[i][j-1] + k_ins
+            sub_cost = k_sub * (1.0 - sim(predicted[i-1], gold[j-1]))
+            cost_sub = dp[i-1][j-1] + sub_cost
+            dp[i][j] = min(cost_del, cost_ins, cost_sub)
+
+    return dp[m][n]
+
+
+def kendall_tau_coefficient(predicted, gold):
+    """
+    Compute Kendall Tau coefficient over the order of matched symbols.
+    Only symbols appearing in both sequences are considered, in the order
+    they appear in `predicted`. Result is clamped to [0,1]:
+      - 1.0 means perfect agreement
+      - 0.0 means no agreement or complete reversal
+    """
+    # get unique matched symbols in predicted order
+    seen = set()
+    matched = []
+    for s in predicted:
+        if s in gold and s not in seen:
+            seen.add(s)
+            matched.append(s)
+
+    n = len(matched)
+    if n < 2:
+        return 1.0
+
+    # map each symbol to its index in gold
+    rank = {s: i for i, s in enumerate(gold) if s in seen}
+    # build list of ranks in the order of matched
+    ranks = [rank[s] for s in matched]
+
+    nc = nd = 0
+    for i, j in combinations(range(n), 2):
+        if (ranks[i] - ranks[j]) * (i - j) > 0:
+            nc += 1
+        else:
+            nd += 1
+
+    tau = (nc - nd) / (0.5 * n * (n - 1))
+    # clamp to [0,1]
+    return max(0.0, min(1.0, tau))
+
+
+def function_call_metric(predicted,
+                         gold,
+                         k_ins=1.0, k_del=1.0, k_sub=1.0,
+                         k_fail=1.0, k_scramble=1.0,
+                         fail_symbols=None,
+                         sim=None,
+                         normalize=False):
+    """
+    Compute the total penalty and its components for the custom function-call metric.
+
+    Parameters
+    ----------
+    predicted : list of symbols
+    gold      : list of symbols
+    k_ins     : insertion cost
+    k_del     : deletion cost
+    k_sub     : substitution cost weight
+    k_fail    : per-fail-symbol penalty
+    k_scramble: scrambling penalty weight
+    fail_symbols : iterable of symbols to treat as 'fail' (default: [])
+    sim       : similarity function sim(a,b) in [0,1] (default exact match)
+    normalize : if True, also return a similarity score = 1/(1 + total_penalty)
+
+    Returns
+    -------
+    dict with keys
+      - 'alignment_cost'
+      - 'fail_penalty'
+      - 'scrambling_penalty'
+      - 'total_penalty'
+      - 'similarity' (only if normalize=True)
+    """
+    if fail_symbols is None:
+        fail_symbols = []
+    if sim is None:
+        sim = lambda a, b: 1.0 if a == b else 0.0
+
+    # 1. Alignment cost
+    C_align = needleman_wunsch(predicted, gold,
+                               k_ins=k_ins, k_del=k_del,
+                               k_sub=k_sub, sim=sim)
+    
+
+    # 2. Fail-state penalty
+    N_fail = sum(1 for s in predicted if s in fail_symbols)
+    C_fail = k_fail * N_fail
+
+    # 3. Scrambling penalty
+    tau = kendall_tau_coefficient(predicted, gold)
+    C_scramble = k_scramble * (1.0 - tau)
+
+    total = C_align + C_fail + C_scramble
+    result = {
+        'alignment_cost':     C_align,
+        'fail_penalty':       C_fail,
+        'scrambling_penalty': C_scramble,
+        'total_penalty':      total
+    }
+    if normalize:
+        result['similarity'] = 1.0 / (1.0 + total)
+
+    return result
+
+
+# Example usage
+if __name__ == '__main__':
+    gold      = ['A', 'B', 'C', 'D']
+    predicted = ['A', 'B', 'C']
+    # simple sim: Aʹ vs A has sim=0.3 to reflect a "near match"
+    def sim_fn(a, b):
+        return 0.3 if (a, b) == ('Aʹ', 'A') else float(a == b)
+
+    res = function_call_metric(
+        predicted, gold,
+        k_ins=1, k_del=1, k_sub=1,
+        k_fail=3, k_scramble=1,
+        fail_symbols=['X'], sim=sim_fn,
+        normalize=True
+    )
+    print(res)
+    # Expected: alignment_cost≈0.7+1, fail_penalty=3, scrambling_penalty=0,
+    # total_penalty≈4.7, similarity≈1/5.7
+
+
 
 def LD(s1, s2, insertion_cost=1, deletion_cost=1, substitution_cost=1):
     """
