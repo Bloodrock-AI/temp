@@ -1,0 +1,28 @@
+Hyperparameters:
+  Insertion Cost: 0.5
+  Deletion Cost: 0.5
+  Substitution Cost: 0.5
+
+Results:
+  Generated 6994 target sequences
+  Generated 115524 scrambled sequences
+  Generated 58180 fail states sequences
+  Generated 1022464 combined sequences
+
+Scrambled Bin Statistics:
+  norm_LD - Mean: 0.213, Std: 0.098
+  Needleman-Wunsch - Mean: 0.204, Std: 0.096
+  Kendall Tau - Mean: 0.543, Std: 0.285
+  Function Call Metric - Mean: 0.661, Std: 0.331
+
+Fail States Bin Statistics:
+  norm_LD - Mean: 0.153, Std: 0.079
+  Needleman-Wunsch - Mean: 0.139, Std: 0.070
+  Kendall Tau - Mean: 0.777, Std: 0.287
+  Function Call Metric - Mean: 5.482, Std: 3.991
+
+Combined Bin Statistics:
+  norm_LD - Mean: 0.289, Std: 0.082
+  Needleman-Wunsch - Mean: 0.274, Std: 0.079
+  Kendall Tau - Mean: 0.540, Std: 0.283
+  Function Call Metric - Mean: 7.098, Std: 4.429
