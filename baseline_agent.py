@@ -83,8 +83,8 @@ def main(model: str, output_file: str):
                 setup_functions = prompt.get('functions', [])
             
                 # reset the database
-                world_state = world.world_state
-                
+                world.reset_world_state()
+
                 # run setup functions
                 for function in setup_functions:
                     eval(f'world.{function}')
@@ -98,14 +98,14 @@ def main(model: str, output_file: str):
                     function_definitions=tool_definitions,
                     user_prompt=user_prompt,
                     additional_instructions=DECISION_SYSTEM_PROMPT,
-                    additional_state=world.world_state_description.format(world_state)
+                    additional_state=world.world_state_description.format(world.world_state)
                 )
 
                 function_prompt = FunctionAgentPrompt(
                     function_definitions=tool_definitions,
                     user_prompt=user_prompt,
                     additional_instructions=FUNCTION_SYSTEM_PROMPT,
-                    additional_state=world.world_state_description.format(world_state)
+                    additional_state=world.world_state_description.format(world.world_state)
                 )
                 
                 decision_agent = DecisionAgent(
@@ -164,7 +164,7 @@ def main(model: str, output_file: str):
                     )
                     
                     # update additional states
-                    new_state = world.world_state_description.format(world_state)
+                    new_state = world.world_state_description.format(world.world_state)
                     decision_prompt.additional_state = new_state
                     function_prompt.additional_state = new_state
                     

@@ -1,0 +1,11 @@
+Hyperparameters:
+  Insertion Cost: 1.5
+  Deletion Cost: 2.0
+  Substitution Cost: 0.5
+
+Results:
+  Generated 6994 target sequences
+  Generated 76934 scrambled sequences
+  Generated 58180 fail states sequences
+  Generated 639980 combined sequences
+

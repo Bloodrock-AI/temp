@@ -1,5 +1,6 @@
 from const import ModelType
 from baseline_agent import main
+from bfcl_agent import main as bfcl_main
 from logger import logger
 
 models = [
@@ -15,3 +16,6 @@ for model in models:
     print(f'----------------------- RUNNING EXPERIMENTS FOR MODEL: {model} ----------------------')
     main(model=model, output_file=f"results_{model}.json")
     logger.reset()
+    bfcl_main(model=model, output_file=f"bfcl_results_{model}.json")
+    logger.reset()
+    print(f'----------------------- COMPLETED EXPERIMENTS FOR MODEL: {model} ----------------')

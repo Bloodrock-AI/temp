@@ -10,7 +10,7 @@ Output:  BFCL_v3_multi_turn_base_list.json
 import json
 from pathlib import Path
 
-INPUT_FILE  = Path("/Users/panosm/Desktop/Bloodrock/DFAs/temp/bfcl_dataset/bfcl_unified_dataset.json")
+INPUT_FILE  = Path("/Users/panosm/Desktop/Bloodrock/DFAs/temp/bfcl_dataset/bfcl_dataset_final.json")
 OUTPUT_FILE = INPUT_FILE.with_name(INPUT_FILE.stem + "_list.json")
 
 def main() -> None:
