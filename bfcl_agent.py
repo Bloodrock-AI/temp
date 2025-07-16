@@ -225,7 +225,7 @@ def main(
     with open(output_file, 'w') as f:
         json.dump(RESULTS, f, indent=4)
 
-main(
-    ModelType.DEEPSEEK_1_5B,
-    output_file="test.json"
-)
+# main(
+#     ModelType.DEEPSEEK_1_5B,
+#     output_file="test.json"
+# )
