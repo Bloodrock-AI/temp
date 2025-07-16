@@ -45,3 +45,9 @@ This will produce 2 `json` files for each model.
 
 # MESSAGE TO STAMOULIS
 You only need to produce the output sequences for the datasets for different models. We will be doing the rest of the work to get the actual metrics.
+
+# List of models we could run
+- Qwen 3 0.6B, 1.7B, 4B, 8B, 14B, 32B
+- Llama 3.3 70B 
+- Deepseek-qwen 7B, 14B
+- Deepseek-llama 8B, 70B
