@@ -29,14 +29,29 @@ def get_device():
     return torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 def get_model_tools(model: ModelType):
-    model = model.value
-    tokenizer = AutoTokenizer.from_pretrained(model, trust_remote_code=True)
-    model = AutoModelForCausalLM.from_pretrained(
-        model,
-        torch_dtype=torch.float16,
-        device_map=get_device(),
-        trust_remote_code=True,
-    ).to(get_device())
+    tokenizer = AutoTokenizer.from_pretrained(model_id, use_fast=True)
+
+    if torch.cuda.is_available():
+        dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16
+    else:
+        dtype = torch.float32  # CPU needs fp32
+
+    # Try 4-bit on GPU (needs bitsandbytes); fall back gracefully
+    try:
+        model = AutoModelForCausalLM.from_pretrained(
+            model_id,
+            device_map="auto",
+            torch_dtype=dtype,
+            load_in_4bit=torch.cuda.is_available(),  # ignored on CPU
+        )
+    except Exception as e:
+        print(f"[info] Falling back to non-quantized load: {e}")
+        model = AutoModelForCausalLM.from_pretrained(
+            model_id, device_map="auto", torch_dtype=dtype
+        )
+
+    model.eval()
+
     
     return model, tokenizer
     
