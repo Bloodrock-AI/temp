@@ -28,8 +28,8 @@ class StopOnString(StoppingCriteria):
 def get_device():
     return torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-def get_model_tools(model: ModelType):
-    tokenizer = AutoTokenizer.from_pretrained(model_id, use_fast=True)
+def get_model_tools(model_type: ModelType):
+    tokenizer = AutoTokenizer.from_pretrained(model_type.value, use_fast=True)
 
     if torch.cuda.is_available():
         dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16
@@ -39,7 +39,7 @@ def get_model_tools(model: ModelType):
     # Try 4-bit on GPU (needs bitsandbytes); fall back gracefully
     try:
         model = AutoModelForCausalLM.from_pretrained(
-            model_id,
+            model_type.value,
             device_map="auto",
             torch_dtype=dtype,
             load_in_4bit=torch.cuda.is_available(),  # ignored on CPU
@@ -47,7 +47,7 @@ def get_model_tools(model: ModelType):
     except Exception as e:
         print(f"[info] Falling back to non-quantized load: {e}")
         model = AutoModelForCausalLM.from_pretrained(
-            model_id, device_map="auto", torch_dtype=dtype
+            model_type.value, device_map="auto", torch_dtype=dtype
         )
 
     model.eval()
