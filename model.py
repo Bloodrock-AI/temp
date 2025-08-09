@@ -56,9 +56,34 @@ class Model:
         
         # decode output
         output = self.tokenizer.decode(output_tokens[0], skip_special_tokens=True)
+        output = output[0, input_tensors.shape[-1]:]
         print(f"Output: {output}")
         
         return output
+
+    def prompt_v2(self, messages: List[Dict[str, str]]) -> str:
+        input_tensors = self.tokenizer.apply_chat_template(
+            messages,
+            add_generation_prompt=True,
+            return_tensors="pt"
+        ).to(self._model.device)
+        prompt_len = input_tensors["input_ids"].shape[-1]
+
+        with torch.no_grad():
+        outputs = model.generate(
+            inputs,
+            max_new_tokens=256,
+            do_sample=True,
+            temperature=0.7,
+            top_p=0.9,
+            eos_token_id=tokenizer.eos_token_id,
+        )
+
+        # Strip the prompt portion and decode only the newly generated tokens
+        gen_tokens = outputs[0, input_tensors.shape[-1]:]
+        output = tokenizer.decode(gen_tokens, skip_special_tokens=True).strip()
+        return output
+
 
 @tool()
 def get_weather(city: str) -> int:
