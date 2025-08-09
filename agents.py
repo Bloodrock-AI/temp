@@ -96,6 +96,51 @@ Let me break it down:
 <token>
 '''
 
+    def get_prompt_v2(self) -> str:
+        system = f'''
+You are a helpful assistant which decides whether the user's query is satisfied or not.
+Your task is to answer whether or not the user's query is satisfied based on the functions already called.
+You cannot call any of the functions. Your task is to solely decide whether the functions called were enough.
+
+{f"Additional Instructions: {self.additional_instructions}" if self.additional_instructions else ""}
+
+Available functions:
+{self.function_definitions}
+
+You should decide if the above functions and their responses were enough to satisfy the user's query.
+You should provide answer in JSON format as follows:
+```json
+{{
+    "answer": true
+}}
+```
+
+Please give your answer now:
+
+{"<think>" if self.think else ""}
+Alright so the user query is: "{self.user_prompt}"
+
+and the functions called and their responses were: {self.functions_called_str if self.functions_called_str else "No functions called yet"}
+
+{f"and the additional state is: {self.additional_state}" if self.additional_state else ""}
+
+What are the user prompt's different goals? Are the functions called enough to satisfy all of the prompt's aspects? Shoould more functions be called?
+Let me break it down:
+'''
+        user = self.user_prompt
+
+        tools = str({
+                    "name": func.name,
+                    "arguments": func.arguments,
+                    "response": func.response,
+                }) for func in self.functions_called
+
+        return [
+            { "system": system },
+            { "user": user },
+            *[{ "tool": t } for t in tools]
+        ]
+
 class FunctionAgentPrompt:
 
     def __init__(
@@ -181,6 +226,52 @@ Please give your answer now:
 What function should I call next?
 <token>
 '''
+        
+    def get_prompt_v2(self) -> str:
+        system = f'''
+You are a helpful assistant which can use functions in order to satisfy the user's query.
+These are the functions which you have access to:
+{self.function_definitions}
+
+{f"Additional Instructions: {self.additional_instructions}" if self.additional_instructions else ""}
+
+Your task is to give the next function which should be called in order to satisfy the user's prompt.
+
+You should give the next function which should be called.
+You should provide ONLY ONE function, the one that should be called right now.
+Give a SINGLE function call. Give a SINGLE JSON object.
+Give your answer in JSON format as follows:
+```json
+{{
+    "answer": true
+}}
+```
+
+Please give your answer now:
+
+{"<think>" if self.think else ""}
+Alright so the user query is: "{self.user_prompt}"
+
+and the functions called and their responses were: {self.functions_called_str if self.functions_called_str else "No functions called yet"}
+
+{f"and the additional state is: {self.additional_state}" if self.additional_state else ""}
+
+What are the user prompt's different goals? Are the functions called enough to satisfy all of the prompt's aspects? Shoould more functions be called?
+Let me break it down:
+'''
+        user = self.user_prompt
+
+        tools = str({
+                    "name": func.name,
+                    "arguments": func.arguments,
+                    "response": func.response,
+                }) for func in self.functions_called
+
+        return [
+            { "system": system },
+            { "user": user },
+            *[{ "tool": t } for t in tools]
+        ]
 
 class DecisionAgent:
     def __init__(
@@ -197,11 +288,12 @@ class DecisionAgent:
     
     def decide(self) -> bool:
         global GENERATED_TOKENS
-        out = self.model.prompt(
-            self.prompt.get_prompt()
-        )
+        # out = self.model.prompt(
+        #    self.prompt.get_prompt()
+        #)
+        out = self.model.prompt_v2(self.prompt.get_prompt_v2())
         logger.mistake_counters["generated_tokens"] += self.model.last_generated_tokens
-        out=out.split('<token>')[1]
+        # out=out.split('<token>')[1]
         
         reg = r'"answer":\s*(true|false)'
         m = re.search(reg, out)
@@ -226,11 +318,12 @@ class FunctionAgent:
         self.prompt = prompt
     
     def get_next_function(self) -> Dict[str, Any]:
-        out = self.model.prompt(
-            self.prompt.get_prompt()
-        )
+        #out = self.model.prompt(
+        #    self.prompt.get_prompt()
+        #)
+        out = self.model.prompt_v2(self.prompt.get_prompt_v2())
         logger.mistake_counters["generated_tokens"] += self.model.last_generated_tokens
-        out=out.split('<token>')[-1]
+        #out=out.split('<token>')[-1]
         
         reg = re.compile(
             r'```json\s*'        # opening fence + optional space
