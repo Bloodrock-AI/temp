@@ -1,21 +1,21 @@
 from const import ModelType
-from baseline_agent import main
-from bfcl_agent import main as bfcl_main
+# from baseline_agent import main
+from hf_baseline_agent import main as hf_main
+# from bfcl_agent import main as bf\cl_main
 from logger import logger
 
 models = [
-    ModelType.QWEN_0_5B,
-    ModelType.DEEPSEEK_1_5B,
-    # ModelType.QWEN_7B,
-    # ModelType.DEEPSEEK_QWEN_14B,
-    # ModelType.MISTRAL_24B,
-    # ModelType.DEEPSEEK_LLAMA_70B,
+    # ModelType.QWEN_8B, # not supported
+    ModelType.QWEN_14B,
+    ModelType.QWEN_32B,
+    ModelType.DEEPSEEK_R1,
+    # ModelType.LLAMA_3_3_70B, # does weird stuff
 ]
 
 for model in models:
     print(f'----------------------- RUNNING EXPERIMENTS FOR MODEL: {model} ----------------------')
-    main(model=model, output_file=f"results_{model}.json")
+    hf_main(model=model, output_file=f"results_{model}.json")
     logger.reset()
-    bfcl_main(model=model, output_file=f"bfcl_results_{model}.json")
-    logger.reset()
+    # bfcl_main(model=model, output_file=f"bfcl_results_{model}.json")
+    # logger.reset()
     print(f'----------------------- COMPLETED EXPERIMENTS FOR MODEL: {model} ----------------')

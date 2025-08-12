@@ -45,7 +45,7 @@ class Communication(World):
             },
         ]
 
-    def send_message(self, sender: str, recipient: str, content: str, priority: Optional[str], timestamp: Optional[str] = None) -> str:
+    def send_message(self, sender: str, recipient: str, content: str, priority: str, timestamp: str = None) -> str:
         """
         Sends a message from a sender to a recipient.
         
@@ -103,7 +103,7 @@ class Communication(World):
                 return f"Message from '{original_sender}' forwarded to '{new_recipient}' by '{forwarded_by}'."
         return "Original message not found."
 
-    def schedule_message(self, sender: str, recipient: str, content: str, send_time: str, priority: Optional[str] = "normal") -> str:
+    def schedule_message(self, sender: str, recipient: str, content: str, send_time: str, priority: str = "normal") -> str:
         """
         Schedules a message to be sent at a later time.
         

@@ -12,11 +12,13 @@ class ModelType(Enum):
     DEEPSEEK_LLAMA_8B = "deepseek-ai/DeepSeek-R1-Distill-Llama-8B"
     DEEPSEEK_QWEN_14B = "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B"
     DEEPSEEK_LLAMA_70B = "deepseek-ai/DeepSeek-R1-Distill-Llama-70B"
+    DEEPSEEK_R1 = "deepseek-ai/DeepSeek-R1-0528"
     
     # Qwen
-    QWEN_0_5B = "Qwen/Qwen2.5-0.5B"
-    QWEN_7B = "Qwen/Qwen-7B"
-    
+    QWEN_8B = "Qwen/Qwen3-8B"
+    QWEN_14B = "Qwen/Qwen3-14B"
+    QWEN_32B = "Qwen/Qwen3-32B"
+
     # Mistral
     MISTRAL_24B = "mistralai/Mistral-Small-3.1-24B-Instruct-2503"
     
