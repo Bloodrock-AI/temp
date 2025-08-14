@@ -75,7 +75,7 @@ class RoboticArm(World):
         # Each expected sequence uses precise function calls (no ambiguity).
         self.prompts = [
             {
-                "prompt_id": "arm_1",
+                "prompt_id": "robotic_arm_1",
                 "prompt": (
                     "Unlock safety. Move to (0.30, 0.35, 0.12, yaw=0.0) and pick 'box_small'. "
                     "Then move to (0.95, 0.20, 0.10, yaw=0.0) and place it."
@@ -91,7 +91,7 @@ class RoboticArm(World):
                 ]]
             },
             {
-                "prompt_id": "arm_2",
+                "prompt_id": "robotic_arm_2",
                 "prompt": (
                     "Pick 'box_large' at its known pose, "
                     "bring it to quality control station, then return home."
@@ -118,7 +118,7 @@ class RoboticArm(World):
                 ],]
             },
             {
-                "prompt_id": "arm_3",
+                "prompt_id": "robotic_arm_3",
                 "prompt": (
                     "Unlock safety. Check pose and list objects in ther order. Move to the pose of 'gear_A' and pick it. "
                     "Then place it at (0.80, 0.35, 0.10, yaw=0.0)."
@@ -136,7 +136,7 @@ class RoboticArm(World):
                 ]]
             },
             {
-                "prompt_id": "arm_4",
+                "prompt_id": "robotic_arm_4",
                 "prompt": (
                     "Move to (0.90, -0.10, 0.14, yaw=0.0) and pick 'panel_X'. "
                     "Rotate yaw to 1.57 rad while above (0.95, 0.20, 0.10) and place it there."
@@ -152,7 +152,7 @@ class RoboticArm(World):
                 ]]
             },
             {
-                "prompt_id": "arm_5",
+                "prompt_id": "robotic_arm_5",
                 "prompt": (
                     "Pick 'box_large' at (0.28, -0.30, 0.15), place it at (0.80, 0.35, 0.10). "
                     "Then pick 'box_small' at (0.30, 0.35, 0.12) and place it at (0.95, 0.20, 0.10). Finally, return home."
@@ -188,7 +188,7 @@ class RoboticArm(World):
                 ]]
             },
             {
-                "prompt_id": "arm_6",
+                "prompt_id": "robotic_arm_6",
                 "prompt": (
                     "Unlock safety. Read current pose and gripper state in that order. Query the pose of 'gear_A' and move to it at "
                     "speed 0.2. When there, pick it up. Query the pose of the 'packaging_area' "
@@ -225,7 +225,7 @@ class RoboticArm(World):
                 ]]
             },
             {
-                "prompt_id": "arm_7",
+                "prompt_id": "robotic_arm_7",
                 "prompt": (
                     "List objects. Unlock safety. Pick 'box_large' at its known pose and place it at the packaging area. "
                     "Lock safety for an operator pass-through, read the current pose, then unlock. Pick 'box_small', and move to "
@@ -272,7 +272,7 @@ class RoboticArm(World):
                 ]]
         },
         {
-            "prompt_id": "arm_8",
+            "prompt_id": "robotic_arm_8",
             "prompt": (
                 "Pick 'gear_A' and then pick 'box_small'. Deliver both to the assembly table and then return home."
             ),
@@ -396,22 +396,22 @@ class RoboticArm(World):
 
     def move_to(self, x: float, y: float, z: float, yaw: float = None, speed: float = None) -> str:
         """
-        Command a Cartesian point-to-point move of the end-effector to (x, y, z) with an optional yaw.
+        Commands a Cartesian point-to-point move of the end-effector to (x, y, z) with an optional yaw.
 
-        Preconditions (enforced by this method):
-            - Safety mode must be disabled (`self.world_state["safety_mode"]` is False).
-            - Target (x, y, z) must lie within the inclusive workspace bounds.
-            - Target (x, y) must not intersect any configured no-go zone.
+        Preconditions
+            - Safety mode must be disabled (self.world_state["safety_mode"] is False)
+            - Target (x, y, z) must lie within the inclusive workspace bounds
+            - Target (x, y) must not intersect any configured no-go zone
 
-        Behavior:
-            - On success, updates `self.world_state["pose"]` to the target position.
-            - If `yaw` is provided, updates yaw; if None, yaw is left unchanged.
-            - `speed` is accepted for realism but ignored in this simulation.
+        Behavior
+            - On success, updates self.world_state["pose"] to the target position
+            - If yaw is provided, updates yaw; if None, yaw remains unchanged
+            - Speed parameter is accepted for realism but ignored in this simulation
 
-        Failure cases (returns an error string):
-            - "ERROR: Safety mode is enabled. Unlock before moving."
-            - "ERROR: Target pose out of workspace bounds."
-            - "ERROR: Target pose lies within a no-go zone."
+        Failure cases
+            - "Safety mode is enabled. Unlock before moving."
+            - "Target pose out of workspace bounds."
+            - "Target pose lies within a no-go zone."
 
         :param x: Target x coordinate in meters.
         :param y: Target y coordinate in meters.
@@ -437,14 +437,14 @@ class RoboticArm(World):
 
     def move_home(self) -> str:
         """
-        Move the end-effector to the configured home pose.
+        Moves the end-effector to the configured home pose.
 
-        Preconditions:
-            - Safety mode must be disabled (same as `move_to`).
+        Preconditions
+            - Safety mode must be disabled (same as `move_to`)
 
-        Behavior:
-            - Uses `self.world_state["home_pose"]` and delegates to `move_to(...)`.
-            - Returns the same confirmation or error string as `move_to`.
+        Behavior
+            - Uses `self.world_state["home_pose"]` and delegates to `move_to(...)`
+            - Returns the same confirmation or error string as `move_to`
 
         :return: Confirmation or error message from the underlying `move_to(...)` call.
         """
@@ -455,18 +455,18 @@ class RoboticArm(World):
 
     def open_gripper(self) -> str:
         """
-        Open the gripper — use only with intent (e.g., immediately before grasping, or after releasing).
+        Opens the gripper — use only with intent (e.g., immediately before grasping, or after releasing).
 
-        Safety & policy:
-            - The gripper must be open before picking up an object.
-            - Do not open while transporting or supporting an object; objects should only be moved while the gripper is closed.
+        Safety & policy
+            - The gripper must be open before picking up an object
+            - Do not open while transporting or supporting an object; objects should only be moved while the gripper is closed
             - Avoid issuing repeated open commands when the gripper is already open:
             it can retrigger actuation cycles (pneumatic/vacuum), cause pressure fluctuations, part slip/drops,
-            and unnecessary wear or faults.
-            - Opening while supporting a load is considered harmful.
+            and unnecessary wear or faults
+            - Opening while supporting a load is considered harmful
 
-        Operational note:
-            - This action changes only the jaw state; higher-level logic must ensure it is done at an appropriate time.
+        Operational note
+            - This action changes only the jaw state; higher-level logic must ensure it is done at an appropriate time
 
         :return: Confirmation message.
         """
@@ -475,16 +475,16 @@ class RoboticArm(World):
 
     def close_gripper(self) -> str:
         """
-        Close the gripper — use only with intent. Gripper is automatically closed after picking up an object.
+        Closes the gripper — use only with intent. Gripper is automatically closed after picking up an object.
 
-        Safety & policy:
-            - Objects must be transported with the gripper closed; do not move an object with the gripper open.
+        Safety & policy
+            - Objects must be transported with the gripper closed; do not move an object with the gripper open
             - Avoid issuing repeated close commands when the gripper is already closed. In real cells this is not idempotent:
-            repeated closes can induce force spikes, over-squeeze, controller faults, or premature mechanical wear.
-            - Closing without an object present does not create a grasp; alignment and contact must be established beforehand.
+            repeated closes can induce force spikes, over-squeeze, controller faults, or premature mechanical wear
+            - Closing without an object present does not create a grasp; alignment and contact must be established beforehand
 
-        Operational note:
-            - This action changes only the jaw state; higher-level logic must ensure conditions are appropriate for closing.
+        Operational note
+            - This action changes only the jaw state; higher-level logic must ensure conditions are appropriate for closing
 
         :return: Confirmation message.
         """
@@ -493,33 +493,33 @@ class RoboticArm(World):
 
     def pick(self, object_name: str) -> str:
         """
-        Grasp a named object at the current end-effector pose.
+        Grasps a named object at the current end-effector pose.
 
-        Preconditions (enforced):
-            - Safety mode is disabled.
-            - No object is currently held.
-            - The named object exists in the scene catalogue.
-            - The gripper is OPEN prior to grasping.
+        Preconditions (enforced)
+            - Safety mode is disabled
+            - No object is currently held
+            - The named object exists in the scene catalogue
+            - The gripper is OPEN prior to grasping
             - The current end-effector pose is within the object's pick tolerances
-            (|Δx,y| ≤ pick_tolerance_xy and |Δz| ≤ pick_tolerance_z).
-            - Object weight does not exceed the configured load capacity.
+            (|Δx,y| ≤ pick_tolerance_xy and |Δz| ≤ pick_tolerance_z)
+            - Object weight does not exceed the configured load capacity
 
-        Behavior on success:
-            - Secures the object (marks it as held), records its load, and CLOSES the gripper.
-            - Returns a confirmation message.
+        Behavior on success
+            - Secures the object (marks it as held), records its load, and CLOSES the gripper
+            - Returns a confirmation message
 
-        Failure cases (returns an error string):
-            - "ERROR: Safety mode is enabled. Unlock before picking."
-            - "ERROR: Already holding an object."
-            - "ERROR: Unknown object name."
-            - "ERROR: Gripper must be open before pick."
-            - "ERROR: Pose not aligned for pick (tolerance exceeded)."
-            - "ERROR: Object too heavy for gripper."
+        Failure cases (returns an error string)
+            - "Safety mode is enabled. Unlock before picking."
+            - "Already holding an object."
+            - "Unknown object name."
+            - "Gripper must be open before pick."
+            - "Pose not aligned for pick (tolerance exceeded)."
+            - "Object too heavy for gripper."
 
-        Safety & policy:
+        Safety & policy
             - Opening the gripper while supporting a load is unsafe; grasp should be established with the
-            gripper open and then secured by closing as part of the grasp cycle.
-            - Avoid unnecessary grasp attempts; repeated cycles increase wear and risk.
+            gripper open and then secured by closing as part of the grasp cycle
+            - Avoid unnecessary grasp attempts; repeated cycles increase wear and risk
 
         :param object_name: Unique identifier of the target object.
         :return: Confirmation or error message.
@@ -556,29 +556,29 @@ class RoboticArm(World):
 
     def place(self) -> str:
         """
-        Release the currently held object at the current end-effector pose.
+        Releases the currently held object at the current end-effector pose.
 
-        Preconditions (enforced):
-            - Safety mode is disabled.
-            - An object is currently held.
-            - The pose lies within the inclusive workspace bounds and outside no-go zones.
+        Preconditions (enforced)
+            - Safety mode is disabled
+            - An object is currently held
+            - The pose lies within the inclusive workspace bounds and outside no-go zones
 
-        Behavior on success:
-            - Updates the placed object's pose to the current end-effector pose.
-            - Clears the held object and load, and OPENS the gripper.
-            - Returns a confirmation message including the final coordinates.
+        Behavior on success
+            - Updates the placed object's pose to the current end-effector pose
+            - Clears the held object and load, and OPENS the gripper
+            - Returns a confirmation message including the final coordinates
 
-        Failure cases (returns an error string):
-            - "ERROR: Safety mode is enabled. Unlock before placing."
-            - "ERROR: No object to place."
-            - "ERROR: Cannot place outside workspace bounds."
-            - "ERROR: Cannot place in a no-go zone."
+        Failure cases (returns an error string)
+            - "Safety mode is enabled. Unlock before placing."
+            - "No object to place."
+            - "Cannot place outside workspace bounds."
+            - "Cannot place in a no-go zone."
 
-        Safety & policy:
+        Safety & policy
             - Objects should be transported with the gripper CLOSED; releasing occurs only at the
-            intended destination.
+            intended destination
             - Although this simulator opens the gripper on success and does not separately verify a
-            closed state beforehand, in real cells releasing with an open/unstable grasp is unsafe.
+            closed state beforehand, in real cells releasing with an open or unstable grasp is unsafe
 
         :return: Confirmation or error message.
         """
@@ -606,65 +606,74 @@ class RoboticArm(World):
 
     def sense_pose(self) -> dict:
         """
-        Read-only: return the current end-effector pose.
+        Read-only. Returns the current end-effector pose.
 
-        Purpose:
-            - Verify actual position/orientation before moving, grasping, or releasing.
-            - Useful for tolerance checks and for logging/telemetry.
+        Purpose
+            - Verify actual position and orientation before moving, grasping, or releasing.
+            - Useful for tolerance checks and for logging or telemetry.
 
-        Returns:
-            Dict with fields: {"x": float, "y": float, "z": float, "yaw": float} in SI units.
+        Returns
+            - Dictionary with fields → {"x" is float, "y" is float, "z" is float, "yaw" is float} in SI units.
 
-        Side effects:
-            - None (does not alter state).
+        Side effects
+            - None. This function does not alter state.
+
+        :return: Current end-effector pose as a dictionary.
         """
         return self.world_state["pose"]
 
     def sense_gripper(self) -> str:
         """
-        Read-only: report the current gripper state.
+        Read-only. Reports the current gripper state.
 
-        Purpose:
-            - Confirm preconditions (e.g., open before picking up an object; closed while transporting).
+        Purpose
+            - Confirm preconditions (for example, open before picking up an object; closed while transporting).
             - Useful for safety checks and sequencing.
 
-        Returns:
-            "open" or "closed".
+        Returns
+            - "open" or "closed".
 
-        Side effects:
-            - None (does not alter state).
+        Side effects
+            - None. This function does not alter state.
+            
+        :return: Current gripper state as a string. "open" or "closed".
         """
         return "closed" if self.world_state["gripper_closed"] else "open"
 
     def list_objects(self) -> dict:
         """
-        Read-only: enumerate known objects with their weights and poses.
+        Read-only. Enumerates known objects with their weights and poses.
 
-        Purpose:
-            - Inspect available items for planning (e.g., select objects within load capacity).
+        Purpose
+            - Inspect available items for planning (for example, select objects within load capacity).
             - Retrieve exact target poses without relying on hardcoded coordinates.
 
-        Returns:
-            Mapping of object_name -> {"weight": float (kg), "pose": {"x": float, "y": float, "z": float}}.
+        Returns
+            - Mapping from object name to a dictionary → {"weight" is float in kg, "pose" is {"x" is float, "y" is float, "z" is float}}.
 
-        Side effects:
-            - None (does not alter state).
+        Side effects
+            - None. This function does not alter state.
+            
+        :return: Dictionary of objects with their weights and poses.
         """
         return {k: {"weight": v["weight"], "pose": v["pose"]} for k, v in self.world_state["objects"].items()}
 
     def get_object_pose(self, object_name: str) -> dict:
         """
-        Read-only: return the pose of a named object, or an error payload if unknown.
+        Read-only. Returns the pose of a named object, or an error payload if unknown.
 
-        Purpose:
+        Purpose
             - Obtain the precise pick location from the scene catalog prior to aligning.
 
-        Returns:
-            - On success: {"x": float, "y": float, "z": float}.
-            - On failure: {"error": "Unknown object name."}
+        Returns
+            - Success → {"x" is float, "y" is float, "z" is float}
+            - Failure → {"error" is "Unknown object name."}
 
-        Side effects:
-            - None (does not alter state).
+        Side effects
+            - None. This function does not alter state.
+        
+        :param object_name: Unique identifier of the target object.
+        :return: Object pose or error message.
         """
         obj = self.world_state["objects"].get(object_name)
         if obj is None:
@@ -673,17 +682,20 @@ class RoboticArm(World):
 
     def get_station_pose(self, station_name: str) -> dict:
         """
-        Read-only: return the pose of a named station, or an error payload if unknown.
+        Read-only. Returns the pose of a named station, or an error payload if unknown.
 
-        Purpose:
-            - Obtain the precise destination pose for transport/release operations.
+        Purpose
+            - Obtain the precise destination pose for transport or release operations.
 
-        Returns:
-            - On success: {"x": float, "y": float, "z": float, "yaw": float}.
-            - On failure: {"error": "Unknown station name."}
+        Returns
+            - Success → {"x" is float, "y" is float, "z" is float, "yaw" is float}
+            - Failure → {"error" is "Unknown station name."}
 
-        Side effects:
-            - None (does not alter state).
+        Side effects
+            - None. This function does not alter state.
+
+        :param station_name: Unique identifier of the target station.
+        :return: Station pose or error message.
         """
         st = self.world_state["stations"].get(station_name)
         if st is None:

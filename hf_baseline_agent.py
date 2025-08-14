@@ -11,7 +11,7 @@ from const import ModelType, MessageType, Role
 from huggingface_hub import InferenceClient
 from llm_tool import tool
 
-from worlds import Automation, Communication, Configurations, CRUD, DesktopManager, EventsScheduler, FileManagement, LegalCompliance, Computations, Navigation, Transactions, Validation, WebBrowsing, Writing
+from worlds import Automation, Communication, Configurations, CRUD, DesktopManager, EventsScheduler, FileManagement, LegalCompliance, Computations, Navigation, Transactions, Validation, WebBrowsing, Writing, RoboticArm, FarmingRover
 from logger import logger
 
 from dataclasses import dataclass
@@ -40,6 +40,8 @@ tests = {
     "validation": Validation(),
     "web_browsing": WebBrowsing(),
     "writing": Writing(),
+    "robotic_arm": RoboticArm(),
+    "robot_farm": FarmingRover(),
 }
 
 def load_prompt_dataset(dataset_file: str) -> List[Dict]:

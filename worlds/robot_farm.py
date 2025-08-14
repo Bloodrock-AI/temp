@@ -365,21 +365,21 @@ class FarmingRover(World):
 
     def unlock_safety_mode(self) -> str:
         """
-        Disable the rover's safety lock to allow motion and actuations.
+        Disables the rover's safety lock to allow motion and actuations.
         Do NOT issue this command if the safety is already locked.
         Repeatedly “unlocking” an already-unlocked system can spam
         safety logs, retrigger permission handshakes, or momentarily stall motion
         while interlocks are revalidated — all with no benefit.
 
-        Preconditions (enforced by this method):
-            - None.
+        Preconditions (enforced by this method)
+            - None
 
-        Behavior:
-            - Sets `self.world_state["safety_mode"] = False`.
-            - Returns a confirmation message.
+        Behavior
+            - Sets `self.world_state["safety_mode"] = False`
+            - Returns a confirmation message
 
-        Failure cases (returns an error string):
-            - None (this operation always succeeds).
+        Failure cases (returns an error string)
+            - None (this operation always succeeds)
 
         :return: Confirmation message indicating safety mode is unlocked.
         """
@@ -388,21 +388,21 @@ class FarmingRover(World):
 
     def lock_safety_mode(self) -> str:
         """
-        Enable the rover's safety lock to prevent motion and actuations.
+        Enables the rover's safety lock to prevent motion and actuations.
         Do NOT issue this command if the arm is already locked.
         Repeated “lock” commands can generate nuisance events in safety logs,
         prolong stop-to-start transitions, or cause confusing operator prompts,
         without improving safety.
 
-        Preconditions (enforced by this method):
-            - None.
+        Preconditions (enforced by this method)
+            - None
 
-        Behavior:
-            - Sets `self.world_state["safety_mode"] = True`.
-            - Returns a confirmation message.
+        Behavior
+            - Sets `self.world_state["safety_mode"] = True`
+            - Returns a confirmation message
 
-        Failure cases (returns an error string):
-            - None (this operation always succeeds).
+        Failure cases (returns an error string)
+            - None (this operation always succeeds)
 
         :return: Confirmation message indicating safety mode is locked.
         """
@@ -411,22 +411,22 @@ class FarmingRover(World):
 
     def move_to(self, x: float, y: float, yaw: float = None, speed: float = None) -> str:
         """
-        Drive the rover to the target (x, y) with an optional yaw (radians).
+        Drives the rover to the target (x, y) with an optional yaw (radians).
 
-        Preconditions (enforced by this method):
-            - Safety mode must be disabled (`self.world_state["safety_mode"]` is False).
-            - Target (x, y) must lie within the inclusive field bounds.
-            - Target (x, y) must not intersect any configured no-go zone.
+        Preconditions (enforced by this method)
+            - Safety mode must be disabled (`self.world_state["safety_mode"]` is False)
+            - Target (x, y) must lie within the inclusive field bounds
+            - Target (x, y) must not intersect any configured no-go zone
 
-        Behavior:
-            - On success, updates `self.world_state["pose"]["x"]` and `["y"]` to the target.
-            - If `yaw` is provided, updates `self.world_state["pose"]["yaw"]`; if None, yaw is unchanged.
-            - `speed` is accepted for realism but ignored in this simulation.
+        Behavior
+            - On success, updates `self.world_state["pose"]["x"]` and `["y"]` to the target
+            - If `yaw` is provided, updates `self.world_state["pose"]["yaw"]`; if None, yaw is unchanged
+            - `speed` is accepted for realism but ignored in this simulation
 
-        Failure cases (returns an error string):
-            - "ERROR: Safety mode is enabled. Unlock before moving."
-            - "ERROR: Target location out of field bounds."
-            - "ERROR: Target location lies within a no-go zone."
+        Failure cases (returns an error string)
+            - "Safety mode is enabled. Unlock before moving."
+            - "Target location out of field bounds."
+            - "Target location lies within a no-go zone."
 
         :param x: Target x coordinate in meters.
         :param y: Target y coordinate in meters.
@@ -451,19 +451,19 @@ class FarmingRover(World):
 
     def move_home(self) -> str:
         """
-        Drive the rover to the configured home pose.
+        Drives the rover to the configured home pose.
 
-        Preconditions (enforced by this method):
-            - Safety mode must be disabled (`self.world_state["safety_mode"]` is False).
+        Preconditions (enforced by this method)
+            - Safety mode must be disabled (`self.world_state["safety_mode"]` is False)
 
-        Behavior:
-            - Retrieves `self.world_state["home_pose"]` and delegates to `move_to(...)`.
-            - Returns the same confirmation or error message as `move_to`.
+        Behavior
+            - Retrieves `self.world_state["home_pose"]` and delegates to `move_to(...)`
+            - Returns the same confirmation or error message as `move_to`
 
-        Failure cases (returns an error string):
-            - "ERROR: Safety mode is enabled. Unlock before moving."
-            - "ERROR: Target location out of field bounds."        (propagated from `move_to`)
-            - "ERROR: Target location lies within a no-go zone."   (propagated from `move_to`)
+        Failure cases (returns an error string)
+            - "Safety mode is enabled. Unlock before moving."
+            - "Target location out of field bounds."        (propagated from `move_to`)
+            - "Target location lies within a no-go zone."   (propagated from `move_to`)
 
         :return: Confirmation or error message from the underlying `move_to(...)` call.
         """
@@ -475,28 +475,28 @@ class FarmingRover(World):
 
     def harvest_fruit(self, plant_id: str) -> str:
         """
-        Harvest fruit from a specified plant at the rover’s current position.
+        Harvests fruit from a specified plant at the rover’s current position.
 
-        Preconditions (enforced by this method):
-            - Safety mode is disabled (`self.world_state["safety_mode"]` is False).
-            - The plant exists in `self.world_state["plants"]`.
-            - The plant currently has fruit (`has_fruit` is True).
-            - The plant’s ripeness meets or exceeds `self.world_state["ripe_threshold"]`.
-            - The rover is within `self.world_state["plant_tolerance_xy"]` of the plant’s pose.
-            - Adding the plant’s `fruit_weight` will not exceed `hopper_capacity_kg`.
+        Preconditions (enforced by this method)
+            - Safety mode is disabled (`self.world_state["safety_mode"]` is False)
+            - The plant exists in `self.world_state["plants"]`
+            - The plant currently has fruit (`has_fruit` is True)
+            - The plant’s ripeness meets or exceeds `self.world_state["ripe_threshold"]`
+            - The rover is within `self.world_state["plant_tolerance_xy"]` of the plant’s pose
+            - Adding the plant’s `fruit_weight` will not exceed `hopper_capacity_kg`
 
-        Behavior:
-            - On success, increases `hopper_load_kg` by the plant’s `fruit_weight`.
-            - Marks the plant as harvested by setting `has_fruit = False`.
-            - Returns a confirmation message including new hopper load.
+        Behavior
+            - On success, increases `hopper_load_kg` by the plant’s `fruit_weight`
+            - Marks the plant as harvested by setting `has_fruit = False`
+            - Returns a confirmation message including new hopper load
 
-        Failure cases (returns an error string):
-            - "ERROR: Safety mode is enabled. Unlock before harvesting."
-            - "ERROR: Unknown plant id."
-            - "ERROR: No harvestable fruit on this plant."
-            - "ERROR: Fruit not ripe enough to harvest."
-            - "ERROR: Not within harvesting tolerance."
-            - "ERROR: Hopper capacity exceeded."
+        Failure cases (returns an error string)
+            - "Safety mode is enabled. Unlock before harvesting."
+            - "Unknown plant id."
+            - "No harvestable fruit on this plant."
+            - "Fruit not ripe enough to harvest."
+            - "Not within harvesting tolerance."
+            - "Hopper capacity exceeded."
 
         :param plant_id: Identifier of the target plant (key in `self.world_state["plants"]`).
         :return: Confirmation or error message.
@@ -527,19 +527,19 @@ class FarmingRover(World):
 
     def dump_hopper(self) -> str:
         """
-        Empty the hopper at the collection bin station.
+        Empties the hopper at the collection bin station.
 
-        Preconditions (enforced by this method):
-            - Safety mode is disabled (`self.world_state["safety_mode"]` is False).
-            - The rover is within `self.world_state["station_tolerance_xy"]` of `stations["collection_bin"]`.
+        Preconditions (enforced by this method)
+            - Safety mode is disabled (`self.world_state["safety_mode"]` is False)
+            - The rover is within `self.world_state["station_tolerance_xy"]` of `stations["collection_bin"]`
 
-        Behavior:
-            - On success, sets `hopper_load_kg` to 0.0.
-            - Returns a confirmation message including the dumped mass.
+        Behavior
+            - On success, sets `hopper_load_kg` to 0.0
+            - Returns a confirmation message including the dumped mass
 
-        Failure cases (returns an error string):
-            - "ERROR: Safety mode is enabled. Unlock before dumping."
-            - "ERROR: Not at collection bin."
+        Failure cases (returns an error string)
+            - "Safety mode is enabled. Unlock before dumping."
+            - "Not at collection bin."
 
         :return: Confirmation or error message.
         """
@@ -556,28 +556,27 @@ class FarmingRover(World):
 
     def water_plant(self, plant_id: str, liters: float) -> str:
         """
-        Water a plant by a specified amount.
+        Waters a plant by a specified amount.
 
-        Preconditions (enforced by this method):
-            - Safety mode is disabled (`self.world_state["safety_mode"]` is False).
-            - The plant exists in `self.world_state["plants"]`.
-            - `liters` is positive and less than or equal to `self.world_state["water_tank_l"]`.
-            - The rover is within `self.world_state["plant_tolerance_xy"]` of the plant’s pose.
-            - The resulting moisture would not exceed `self.world_state["max_moisture"]`.
+        Preconditions (enforced by this method)
+            - Safety mode is disabled (`self.world_state["safety_mode"]` is False)
+            - The plant exists in `self.world_state["plants"]`
+            - `liters` is positive and less than or equal to `self.world_state["water_tank_l"]`
+            - The rover is within `self.world_state["plant_tolerance_xy"]` of the plant’s pose
+            - The resulting moisture would not exceed `self.world_state["max_moisture"]`
 
-        Behavior:
-            - On success, decreases `water_tank_l` by `liters`.
-            - Increases the plant’s `moisture` by `liters / water_tank_capacity_l`,
-            capped at `max_moisture`.
-            - Returns a confirmation message including remaining tank volume.
+        Behavior
+            - On success, decreases `water_tank_l` by `liters`
+            - Increases the plant’s `moisture` by `liters / water_tank_capacity_l`, capped at `max_moisture`
+            - Returns a confirmation message including remaining tank volume
 
-        Failure cases (returns an error string):
-            - "ERROR: Safety mode is enabled. Unlock before watering."
-            - "ERROR: Liters must be positive."
-            - "ERROR: Unknown plant id."
-            - "ERROR: Not within watering tolerance."
-            - "ERROR: Not enough water in tank."
-            - "ERROR: Moisture would exceed safe limit."
+        Failure cases (returns an error string)
+            - "Safety mode is enabled. Unlock before watering."
+            - "Liters must be positive."
+            - "Unknown plant id."
+            - "Not within watering tolerance."
+            - "Not enough water in tank."
+            - "Moisture would exceed safe limit."
 
         :param plant_id: Identifier of the target plant (key in `self.world_state["plants"]`).
         :param liters: Amount of water to apply (liters).
@@ -610,27 +609,27 @@ class FarmingRover(World):
 
     def spray_pesticide(self, plant_id: str, ml: float) -> str:
         """
-        Apply pesticide to a specified plant.
+        Applies pesticide to a specified plant.
 
-        Preconditions (enforced by this method):
-            - Safety mode is disabled (`self.world_state["safety_mode"]` is False).
-            - The plant exists in `self.world_state["plants"]`.
-            - `ml` is positive and less than or equal to `self.world_state["pesticide_tank_ml"]`.
-            - The plant currently has a pest issue (`pest` is True).
-            - The rover is within `self.world_state["plant_tolerance_xy"]` of the plant’s pose.
+        Preconditions (enforced by this method)
+            - Safety mode is disabled (`self.world_state["safety_mode"]` is False)
+            - The plant exists in `self.world_state["plants"]`
+            - `ml` is positive and less than or equal to `self.world_state["pesticide_tank_ml"]`
+            - The plant currently has a pest issue (`pest` is True)
+            - The rover is within `self.world_state["plant_tolerance_xy"]` of the plant’s pose
 
-        Behavior:
-            - On success, decreases `pesticide_tank_ml` by `ml`.
-            - Sets the plant’s `pest` flag to False.
-            - Returns a confirmation message including remaining tank volume.
+        Behavior
+            - On success, decreases `pesticide_tank_ml` by `ml`
+            - Sets the plant’s `pest` flag to False
+            - Returns a confirmation message including remaining tank volume
 
-        Failure cases (returns an error string):
-            - "ERROR: Safety mode is enabled. Unlock before spraying."
-            - "ERROR: Milliliters must be positive."
-            - "ERROR: Unknown plant id."
-            - "ERROR: No pest detected on this plant."
-            - "ERROR: Not within spraying tolerance."
-            - "ERROR: Not enough pesticide in tank."
+        Failure cases (returns an error string)
+            - "Safety mode is enabled. Unlock before spraying."
+            - "Milliliters must be positive."
+            - "Unknown plant id."
+            - "No pest detected on this plant."
+            - "Not within spraying tolerance."
+            - "Not enough pesticide in tank."
 
         :param plant_id: Identifier of the target plant (key in `self.world_state["plants"]`).
         :param ml: Amount of pesticide to apply (milliliters).
@@ -661,19 +660,19 @@ class FarmingRover(World):
 
     def refill_water_tank(self) -> str:
         """
-        Refill the water tank to capacity at the water station.
+        Refills the water tank to capacity at the water station.
 
-        Preconditions (enforced by this method):
-            - Safety mode is disabled (`self.world_state["safety_mode"]` is False).
-            - The rover is within `self.world_state["station_tolerance_xy"]` of `stations["water_station"]`.
+        Preconditions (enforced by this method)
+            - Safety mode is disabled (`self.world_state["safety_mode"]` is False)
+            - The rover is within `self.world_state["station_tolerance_xy"]` of `stations["water_station"]`
 
-        Behavior:
-            - On success, sets `self.world_state["water_tank_l"]` to `self.world_state["water_tank_capacity_l"]`.
-            - Returns a confirmation message including the final tank volume.
+        Behavior
+            - On success, sets `self.world_state["water_tank_l"]` to `self.world_state["water_tank_capacity_l"]`
+            - Returns a confirmation message including the final tank volume
 
-        Failure cases (returns an error string):
-            - "ERROR: Safety mode is enabled. Unlock before refilling."
-            - "ERROR: Not at water station."
+        Failure cases (returns an error string)
+            - "Safety mode is enabled. Unlock before refilling."
+            - "Not at water station."
 
         :return: Confirmation or error message.
         """
@@ -689,20 +688,20 @@ class FarmingRover(World):
 
     def refill_pesticide(self) -> str:
         """
-        Refill the pesticide tank to capacity at the pesticide refill station.
+        Refills the pesticide tank to capacity at the pesticide refill station.
 
-        Preconditions (enforced by this method):
-            - Safety mode is disabled (`self.world_state["safety_mode"]` is False).
-            - The rover is within `self.world_state["station_tolerance_xy"]` of `stations["pesticide_refill"]`.
+        Preconditions (enforced by this method)
+            - Safety mode is disabled (`self.world_state["safety_mode"]` is False)
+            - The rover is within `self.world_state["station_tolerance_xy"]` of `stations["pesticide_refill"]`
 
-        Behavior:
+        Behavior
             - On success, sets `self.world_state["pesticide_tank_ml"]` to
-            `self.world_state["pesticide_tank_capacity_ml"]`.
-            - Returns a confirmation message including the final tank volume.
+            `self.world_state["pesticide_tank_capacity_ml"]`
+            - Returns a confirmation message including the final tank volume
 
-        Failure cases (returns an error string):
-            - "ERROR: Safety mode is enabled. Unlock before refilling."
-            - "ERROR: Not at pesticide refill station."
+        Failure cases (returns an error string)
+            - "Safety mode is enabled. Unlock before refilling."
+            - "Not at pesticide refill station."
 
         :return: Confirmation or error message.
         """
@@ -718,19 +717,19 @@ class FarmingRover(World):
 
     def recharge(self) -> str:
         """
-        Recharge the rover's battery to 100% at the charging pad.
+        Recharges the rover's battery to 100% at the charging pad.
 
-        Preconditions (enforced by this method):
-            - Safety mode is disabled (`self.world_state["safety_mode"]` is False).
-            - The rover is within `self.world_state["station_tolerance_xy"]` of `stations["charging_pad"]`.
+        Preconditions (enforced by this method)
+            - Safety mode is disabled (`self.world_state["safety_mode"]` is False)
+            - The rover is within `self.world_state["station_tolerance_xy"]` of `stations["charging_pad"]`
 
-        Behavior:
-            - On success, sets `self.world_state["battery_pct"] = 100.0`.
-            - Returns a confirmation message.
+        Behavior
+            - On success, sets `self.world_state["battery_pct"] = 100.0`
+            - Returns a confirmation message
 
-        Failure cases (returns an error string):
-            - "ERROR: Safety mode is enabled. Unlock before recharging."
-            - "ERROR: Not at charging pad."
+        Failure cases (returns an error string)
+            - "Safety mode is enabled. Unlock before recharging."
+            - "Not at charging pad."
 
         :return: Confirmation or error message.
         """
@@ -746,16 +745,16 @@ class FarmingRover(World):
 
     def sense_pose(self) -> Dict[str, float]:
         """
-        Read-only: return the current rover pose as a mapping with keys 'x', 'y', and 'yaw'.
+        Read-only. Returns the current rover pose as a mapping with keys 'x', 'y', and 'yaw'.
 
-        Preconditions (enforced by this method):
-            - None.
+        Preconditions (enforced by this method)
+            - None
 
-        Behavior:
-            - Returns the current pose without modifying any state.
+        Behavior
+            - Returns the current pose without modifying any state
 
-        Failure cases (returns an error string):
-            - None (this operation always succeeds).
+        Failure cases (returns an error string)
+            - None (this operation always succeeds)
 
         :return: Dict containing {'x': float, 'y': float, 'yaw': float}.
         """
@@ -763,18 +762,18 @@ class FarmingRover(World):
 
     def sense_battery(self) -> str:
         """
-        Read-only: report the current battery percentage as a formatted string (e.g., '80.0%').
+        Read-only. Reports the current battery percentage as a formatted string (e.g., '80.0%').
 
-        Preconditions (enforced by this method):
-            - None.
+        Preconditions (enforced by this method)
+            - None
 
-        Behavior:
+        Behavior
             - Returns the current battery percentage from `self.world_state["battery_pct"]`
-            formatted with one decimal place and a trailing percent sign.
-            - Does not modify any state.
+            formatted with one decimal place and a trailing percent sign
+            - Does not modify any state
 
-        Failure cases (returns an error string):
-            - None (this operation always succeeds).
+        Failure cases (returns an error string)
+            - None (this operation always succeeds)
 
         :return: Battery percentage string (e.g., '80.0%').
         """
@@ -782,19 +781,19 @@ class FarmingRover(World):
 
     def sense_hopper(self) -> Dict[str, float]:
         """
-        Read-only: return the hopper load and capacity in kilograms.
+        Read-only. Returns the hopper load and capacity in kilograms.
 
-        Preconditions (enforced by this method):
-            - None.
+        Preconditions (enforced by this method)
+            - None
 
-        Behavior:
-            - Returns a mapping with keys:
-                - 'load_kg': current mass in the hopper.
-                - 'capacity_kg': maximum hopper capacity.
-            - Does not modify any state.
+        Behavior
+            - Returns a mapping with keys
+                - 'load_kg' is current mass in the hopper
+                - 'capacity_kg' is maximum hopper capacity
+            - Does not modify any state
 
-        Failure cases (returns an error string):
-            - None (this operation always succeeds).
+        Failure cases (returns an error string)
+            - None (this operation always succeeds)
 
         :return: Dict with {'load_kg': float, 'capacity_kg': float}.
         """
@@ -805,19 +804,19 @@ class FarmingRover(World):
 
     def list_plants(self) -> Dict[str, dict]:
         """
-        Read-only: enumerate all known plants and their attributes.
+        Read-only. Enumerates all known plants and their attributes.
 
-        Preconditions (enforced by this method):
-            - None.
+        Preconditions (enforced by this method)
+            - None
 
-        Behavior:
-            - Returns a mapping from plant_id to a dict containing:
-            {'pose': {'x','y'}, 'ripeness': float, 'moisture': float,
-            'pest': bool, 'has_fruit': bool, 'fruit_weight': float}.
-            - Provides a snapshot view; does not modify any state.
+        Behavior
+            - Returns a mapping from plant_id to a dictionary containing
+            {'pose' is {'x', 'y'}, 'ripeness' is float, 'moisture' is float,
+            'pest' is bool, 'has_fruit' is bool, 'fruit_weight' is float}
+            - Provides a snapshot view; does not modify any state
 
-        Failure cases (returns an error string):
-            - None (this operation always succeeds).
+        Failure cases (returns an error string)
+            - None (this operation always succeeds)
 
         :return: Dict[str, dict] of plant metadata.
         """
@@ -825,25 +824,25 @@ class FarmingRover(World):
 
     def scan_plant(self, plant_id: str) -> dict:
         """
-        Read-only: inspect a single plant and return its attributes, or an error payload if unknown.
+        Read-only. Inspects a single plant and returns its attributes, or an error payload if unknown.
 
-        Preconditions (enforced by this method):
-            - None.
+        Preconditions (enforced by this method)
+            - None
 
-        Behavior:
-            - On success, returns:
+        Behavior
+            - On success, returns
             {
-                'pose': {'x','y'},
-                'ripeness': float,
-                'moisture': float,
-                'pest': bool,
-                'has_fruit': bool,
-                'fruit_weight': float
-            }.
-            - Does not modify any state.
+                'pose' is {'x', 'y'},
+                'ripeness' is float,
+                'moisture' is float,
+                'pest' is bool,
+                'has_fruit' is bool,
+                'fruit_weight' is float
+            }
+            - Does not modify any state
 
-        Failure cases (returns an error string):
-            - Returns {'error': 'Unknown plant id.'} if the plant_id does not exist.
+        Failure cases (returns an error string)
+            - Returns {'error' is 'Unknown plant id.'} if the plant_id does not exist
 
         :param plant_id: Identifier of the plant to inspect.
         :return: Attribute dict or {'error': 'Unknown plant id.'}.
@@ -862,17 +861,17 @@ class FarmingRover(World):
 
     def get_plant_pose(self, plant_id: str) -> dict:
         """
-        Read-only: retrieve the XY pose of a plant, or an error payload if unknown.
+        Read-only. Retrieves the XY pose of a plant, or an error payload if unknown.
 
-        Preconditions (enforced by this method):
-            - None.
+        Preconditions (enforced by this method)
+            - None
 
-        Behavior:
-            - On success, returns {'x': float, 'y': float} for the specified plant.
-            - Does not modify any state.
+        Behavior
+            - On success, returns {'x' is float, 'y' is float} for the specified plant
+            - Does not modify any state
 
-        Failure cases (returns an error string):
-            - Returns {'error': 'Unknown plant id.'} if the plant_id does not exist.
+        Failure cases (returns an error string)
+            - Returns {'error' is 'Unknown plant id.'} if the plant_id does not exist
 
         :param plant_id: Identifier of the plant.
         :return: {'x': float, 'y': float} or {'error': 'Unknown plant id.'}.
@@ -884,17 +883,17 @@ class FarmingRover(World):
 
     def get_station_pose(self, station_name: str) -> dict:
         """
-        Read-only: retrieve the pose of a named station, or an error payload if unknown.
+        Read-only. Retrieves the pose of a named station, or an error payload if unknown.
 
-        Preconditions (enforced by this method):
-            - None.
+        Preconditions (enforced by this method)
+            - None
 
-        Behavior:
-            - On success, returns {'x': float, 'y': float, 'yaw': float}.
-            - Does not modify any state.
+        Behavior
+            - On success, returns {'x' is float, 'y' is float, 'yaw' is float}
+            - Does not modify any state
 
-        Failure cases (returns an error string):
-            - Returns {'error': 'Unknown station name.'} if the station is not defined.
+        Failure cases (returns an error string)
+            - Returns {'error' is 'Unknown station name.'} if the station is not defined
 
         :param station_name: Name of the station (e.g., 'collection_bin', 'charging_pad').
         :return: {'x': float, 'y': float, 'yaw': float} or {'error': 'Unknown station name.'}.

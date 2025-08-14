@@ -12,3 +12,5 @@ from worlds.transactions import Transactions
 from worlds.validation import Validation
 from worlds.web_browsing import WebBrowsing
 from worlds.writing import Writing
+from worlds.robotic_arm import RoboticArm
+from worlds.robot_farm import FarmingRover

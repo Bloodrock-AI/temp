@@ -44,7 +44,8 @@ def serialize_node(n: Any) -> dict:
 # Manual overrides for class names that do not match PascalCase of filename
 WORLD_CLASS_OVERRIDES = {
     "crud": "CRUD",
-    "computations": "Maths",
+    # "computations": "Maths",
+    "robot_farm": "FarmingRover",
 }
 
 # Files to explicitly skip in the 'worlds' directory
@@ -60,7 +61,7 @@ def load_prompt_map(worlds_dir: str = "worlds") -> dict[str, list[str]]:
 
         module_name = os.path.splitext(file)[0]
         class_name = WORLD_CLASS_OVERRIDES.get(module_name, snake_to_pascal(module_name))
-
+        
         try:
             full_module = f"{worlds_dir}.{module_name}".replace("/", ".")
             module = importlib.import_module(full_module)
@@ -97,6 +98,7 @@ def build_dataset(root_dir: str, output_file: str, worlds_dir: str = "worlds"):
         world_path = os.path.join(root_dir, world)
         if not os.path.isdir(world_path) or world.startswith("__"):
             continue
+        print(f"Processing world: {world}")
 
         for file in sorted(os.listdir(world_path)):
             if not file.endswith(".py") or file.startswith("__"):
