@@ -59,7 +59,11 @@ def load_prompt_dataset(dataset_file: str) -> List[Dict]:
     prompt_dict = {
         prompt['prompt_id']: prompt for prompt in dataset
     }
-    return prompt_dict
+    
+    eval_dict = {
+        prompt['prompt_id']: load_world(prompt) for prompt in dataset
+    }
+    return prompt_dict, eval_dict
 
 
 class ToolCall:
@@ -206,7 +210,7 @@ ollama_client = OllamaClient()
 def main(model: str, output_file: str):
     # load dataset
     dataset_file = 'all_worlds_dataset.json'
-    prompt_dict = load_prompt_dataset(dataset_file)
+    prompt_dict, eval_dict = load_prompt_dataset(dataset_file)
 
     OUTPUT_TOKENS_CAP = 5_000
     
@@ -217,7 +221,7 @@ def main(model: str, output_file: str):
         for world in list(tests.values()):
             print(f'---------------------- WORLD: {world.__class__.__name__} ----------------------')
             # for prompt in world.prompts:
-            for prompt in world.prompts[:1]:
+            for prompt in world.prompts:
 
                 # prompt from dataset
                 current_prompt = prompt_dict.get(prompt['prompt_id'], None)
@@ -232,7 +236,7 @@ def main(model: str, output_file: str):
                 
                 print(f'---------------------- PROMPT: {user_prompt} ----------------------')
                 
-                setup_functions = prompt.get('functions', [])
+                setup_functions = prompt.get('setup_functions', [])
 
                 # reset the database
                 world.reset_world_state()
@@ -337,19 +341,34 @@ Your task is to give the next function which should be called in order to satisf
                         arguments=function.arguments,
                         response=resp,
                     )
-                    function_sequence.append(fc)
+                    function_sequence.append({
+                        "function_name": fc.name,
+                        "arguments": fc.arguments,
+                        "response": fc.response
+                    })
 
                 # print mistake counters
                 print(f'------------ logger ------------')
                 print(f'Functions called: {function_sequence}')
                 
-                RESULTS.append({
+                prompt_res = {
                     "world": world.__class__.__name__,
                     "prompt_id": prompt['prompt_id'],
                     "prompt": user_prompt,
-                    "functions_called": str(function_sequence),
+                    "functions_called": json.dumps(function_sequence),
                     "database": world.world_state,
-                })
+                }
+                prompt_eval_world = eval_dict.get(prompt['prompt_id'], None)
+
+                # stats = evaluate_world(prompt_eval_world, prompt_res)
+                bfcl_stats = evaluate_bfcl(world, prompt['prompt_id'], world.world_state.copy(), function_sequence)
+                print(f'------------ stats ------------')
+                # print(f'Stats: {stats}')
+                print(f'BFCL Stats: {bfcl_stats}')
+
+                prompt_res["bfcl_stats"] = bfcl_stats
+
+                RESULTS.append(prompt_res)
     except Exception as e:
         print(f'Error: {repr(e)}')
 
