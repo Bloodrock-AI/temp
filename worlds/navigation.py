@@ -72,11 +72,12 @@ class Navigation(World):
         :param position: The (x, y) position to check.
         :return: True if within bounds, False otherwise.
         """
-        grid_width, grid_height = self.world_state["grid_size"]
+        grid_width, grid_height = self.grid_size
         x, y = position
-        return 0 <= x < grid_width and 0 <= y < grid_height
+        is_within = 0 <= x < grid_width and 0 <= y < grid_height
+        rtrn_msg = "is" if is_within else "is NOT"
+        return f"Position {position} {rtrn_msg} bounds" 
 
-    @tool()
     def move_up(self, steps: int = 1) -> str:
         """
         Moves the player up by a specified number of steps.
@@ -91,7 +92,7 @@ class Navigation(World):
             return f"Moved up to {new_position}."
         return "Move out of bounds."
 
-    @tool()
+    # @tool()
     def move_down(self, steps: int = 1) -> str:
         """
         Moves the player down by a specified number of steps.
@@ -106,7 +107,7 @@ class Navigation(World):
             return f"Moved down to {new_position}."
         return "Move out of bounds."
 
-    @tool()
+    # @tool()
     def move_left(self,steps: int = 1) -> str:
         """
         Moves the player left by a specified number of steps.
@@ -121,7 +122,7 @@ class Navigation(World):
             return f"Moved left to {new_position}."
         return "Move out of bounds."
 
-    @tool()
+    # @tool()
     def move_right(self,steps: int = 1) -> str:
         """
         Moves the player right by a specified number of steps.
@@ -136,7 +137,7 @@ class Navigation(World):
             return f"Moved right to {new_position}."
         return "Move out of bounds."
 
-    @tool()
+    # @tool()
     def get_player_position(self) -> Tuple[int, int]:
         """
         Retrieves the current position of the player.
@@ -145,7 +146,7 @@ class Navigation(World):
         """
         return self.world_state["player_position"]
 
-    @tool()
+    # @tool()
     def reset_position(self) -> str:
         """
         Resets the player to the starting position.

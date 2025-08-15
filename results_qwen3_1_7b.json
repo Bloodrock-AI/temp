@@ -1,0 +1,38 @@
+[
+    {
+        "world": "Navigation",
+        "prompt_id": "navigation_1",
+        "prompt": "Move the player right by 2 steps.",
+        "functions_called": "[FunctionCalled(name='move_right', arguments='{\"steps\": 2}', response='Moved right to (2, 0).'), FunctionCalled(name='get_player_position', arguments='{}', response=(2, 0)), FunctionCalled(name='move_right', arguments='{\"steps\": 2}', response='Moved right to (4, 0).'), FunctionCalled(name='move_right', arguments='{\"steps\": 2}', response='Moved right to (6, 0).')]",
+        "database": {
+            "player_position": [
+                6,
+                0
+            ]
+        }
+    },
+    {
+        "world": "Navigation",
+        "prompt_id": "navigation_2",
+        "prompt": "Move the player down by 3 steps, then retrieve the player's position.",
+        "functions_called": "[FunctionCalled(name='move_down', arguments='{\"steps\": 3}', response='Moved down to (0, 3).'), FunctionCalled(name='get_player_position', arguments='{}', response=(0, 3)), FunctionCalled(name='get_player_position', arguments='{}', response=(0, 3))]",
+        "database": {
+            "player_position": [
+                0,
+                3
+            ]
+        }
+    },
+    {
+        "world": "Navigation",
+        "prompt_id": "navigation_3",
+        "prompt": "Move the player right by 1 step, then move down by 2 steps.",
+        "functions_called": "[FunctionCalled(name='move_right', arguments='{\"steps\": 1}', response='Moved right to (1, 0).'), FunctionCalled(name='move_down', arguments='{\"steps\": 2}', response='Moved down to (1, 2).'), FunctionCalled(name='move_left', arguments='{\"steps\": 1}', response='Moved left to (0, 2).'), FunctionCalled(name='move_down', arguments='{\"steps\": 1}', response='Moved down to (0, 3).')]",
+        "database": {
+            "player_position": [
+                0,
+                3
+            ]
+        }
+    }
+]

@@ -1,0 +1,14 @@
+[
+    {
+        "world": "Automation",
+        "prompt_id": "automation_1",
+        "prompt": "Turn on the lights and then set the thermostat to 24 degrees.",
+        "functions_called": "[FunctionCalled(name='turn_on_lights', arguments='{}', response='Lights turned on.'), FunctionCalled(name='turn_on_lights', arguments='{}', response='Lights turned on.'), FunctionCalled(name='turn_on_lights', arguments='{}', response='Lights turned on.'), FunctionCalled(name='turn_on_lights', arguments='{}', response='Lights turned on.')]",
+        "database": {
+            "lights_on": true,
+            "thermostat": 22,
+            "door_locked": true,
+            "alarm_on": false
+        }
+    }
+]

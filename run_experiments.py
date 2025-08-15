@@ -1,7 +1,7 @@
 from const import ModelType
 # from baseline_agent import main
 from hf_baseline_agent import main as hf_main
-# from bfcl_agent import main as bf\cl_main
+# from bfcl_agent import main as bfcl_main
 from logger import logger
 
 models = [
