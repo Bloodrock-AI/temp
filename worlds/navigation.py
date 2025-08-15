@@ -12,6 +12,19 @@ DECISION_SYSTEM_PROMPT="""
 You are a helpful assistant that makes changes on a database. The database is a list of messages. Always check the database.
 """
 
+def is_within_bounds(position: Tuple[int, int], grid_size) -> bool:
+    """
+    Checks if a given position is within the grid bounds.
+    
+    :param position: The (x, y) position to check.
+    :return: True if within bounds, False otherwise.
+    """
+    grid_width, grid_height = grid_size
+    x, y = position
+    is_within = 0 <= x < grid_width and 0 <= y < grid_height
+    rtrn_msg = "is" if is_within else "is NOT"
+    return f"Position {position} {rtrn_msg} bounds" 
+
 class Navigation(World):
     def __init__(self):
         self.world_state_description = "Player Position on 5x5 Grid: {}"
@@ -65,19 +78,6 @@ class Navigation(World):
 
         self.tool_definitions = self._get_tool_definitions()
 
-    def is_within_bounds(self, position: Tuple[int, int]) -> bool:
-        """
-        Checks if a given position is within the grid bounds.
-        
-        :param position: The (x, y) position to check.
-        :return: True if within bounds, False otherwise.
-        """
-        grid_width, grid_height = self.grid_size
-        x, y = position
-        is_within = 0 <= x < grid_width and 0 <= y < grid_height
-        rtrn_msg = "is" if is_within else "is NOT"
-        return f"Position {position} {rtrn_msg} bounds" 
-
     def move_up(self, steps: int = 1) -> str:
         """
         Moves the player up by a specified number of steps.
@@ -87,7 +87,7 @@ class Navigation(World):
         """
         x, y = self.world_state["player_position"]
         new_position = (x, y - steps)
-        if self.is_within_bounds(new_position):
+        if is_within_bounds(new_position, self.grid_size):
             self.world_state["player_position"] = new_position
             return f"Moved up to {new_position}."
         return "Move out of bounds."
@@ -102,7 +102,7 @@ class Navigation(World):
         """
         x, y = self.world_state["player_position"]
         new_position = (x, y + steps)
-        if self.is_within_bounds(new_position):
+        if is_within_bounds(new_position, self.grid_size):
             self.world_state["player_position"] = new_position
             return f"Moved down to {new_position}."
         return "Move out of bounds."
@@ -117,7 +117,7 @@ class Navigation(World):
         """
         x, y = self.world_state["player_position"]
         new_position = (x - steps, y)
-        if self.is_within_bounds(new_position):
+        if is_within_bounds(new_position, self.grid_size):
             self.world_state["player_position"] = new_position
             return f"Moved left to {new_position}."
         return "Move out of bounds."
@@ -132,7 +132,7 @@ class Navigation(World):
         """
         x, y = self.world_state["player_position"]
         new_position = (x + steps, y)
-        if self.is_within_bounds(new_position):
+        if is_within_bounds(new_position, self.grid_size):
             self.world_state["player_position"] = new_position
             return f"Moved right to {new_position}."
         return "Move out of bounds."

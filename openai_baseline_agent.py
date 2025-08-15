@@ -7,12 +7,7 @@ import time
 from datetime import datetime
 import uuid
 
-# that's for vLLM
 from openai import OpenAI
-api_client = OpenAI(
-    api_key="EMPTY",
-    base_url="http://localhost:8000/v1",
-)
 
 from llm_tool import tool
 
@@ -95,9 +90,9 @@ class ToolCall:
 
 
 # Replaced with ollama below::: client = InferenceClient(provider="auto")
-class VLLMClient:
+class OpenAIClient:
 
-    def __init__(self, model="Qwen/Qwen3-8B", temperature=0.1, num_predict=-1, **kwargs):
+    def __init__(self, model="gpt-4o-mini", temperature=0.1, api_key=None, **kwargs):
         """
         Initialize the Ollama client.
 
@@ -105,13 +100,13 @@ class VLLMClient:
             model (str): The model name.
             **kwargs: Additional parameters.
         """
+        self.api_key = api_key
+        self.api_client = OpenAI()
+
         self.model = model # you can overwrite following get_next_function
         self.temperature = temperature
         self.params = kwargs
-        self.client_class = "vLLMClient"
-
-        self.num_predict = num_predict
-        self.num_ctx = self.get_num_ctx(model) 
+        self.client_class = "OpenAIClient"
 
 
     def get_next_function(self, model, messages_history, tool_definitions=None):
@@ -128,7 +123,7 @@ class VLLMClient:
         """
         start_time = time.time()
 
-        output = api_client.chat.completions.create(
+        output = self.api_client.chat.completions.create(
             model=model,
             messages=messages_history,
             tools=tool_definitions,
@@ -201,7 +196,7 @@ def parse_world_tools(tool_definitions: Union[str, List[Dict]]) -> List[Dict]:
     # This escapes any embedded quotes correctly.
     return json.loads(json.dumps(obj, ensure_ascii=False))
 
-ollama_client = OllamaClient()
+openai_client = OpenAIClient()
 
 def main(model: str, output_file: str):
     # load dataset
@@ -255,12 +250,12 @@ Your task is to give the next function which should be called in order to satisf
 
                         """
                     },
-                    {
-                        "role": "tool",
-                        "tool_call_id": str(uuid.uuid4()),
-                        "name": "update_world_state",
-                        "content": world.world_state_description.format(world.world_state)
-                    },
+                    # {
+                    #     "role": "tool",
+                    #     "tool_call_id": str(uuid.uuid4()),
+                    #     "name": "update_world_state",
+                    #     "content": world.world_state_description.format(world.world_state)
+                    # },
                     {
                         "role": "user",
                         "content": user_prompt,
@@ -273,7 +268,7 @@ Your task is to give the next function which should be called in order to satisf
 
                 while prompt_iterations < MAX_PROMPT_ITERATIONS:  # Limit iterations to prevent infinite loops
                     try:
-                        tool_call_id, function = ollama_client.get_next_function(
+                        tool_call_id, function = openai_client.get_next_function(
                             model=model,
                             messages_history=function_agent_messages_history,
                             tool_definitions=tool_definitions,
@@ -324,13 +319,13 @@ Your task is to give the next function which should be called in order to satisf
                     # update additional states
                     new_state = world.world_state_description.format(world.world_state)
 
-                    # add current world state to the history
-                    function_agent_messages_history.append({
-                        "tool_call_id": str(uuid.uuid4()),
-                        "role": "tool",
-                        "name": "update_world_state",
-                        "content": json.dumps(new_state),
-                    })
+                    # # add current world state to the history
+                    # function_agent_messages_history.append({
+                    #     "tool_call_id": str(uuid.uuid4()),
+                    #     "role": "tool",
+                    #     "name": "update_world_state",
+                    #     "content": json.dumps(new_state),
+                    # })
 
                     fc = FunctionCalled(
                         name=function.name,
