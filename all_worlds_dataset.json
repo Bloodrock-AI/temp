@@ -249,10 +249,8 @@
           },
           "category": {
             "name": "category",
-            "value": null,
-            "excluded_values": [
-              "UI"
-            ],
+            "value": "UI",
+            "excluded_values": null,
             "type": "str"
           },
           "timestamp": {
@@ -285,7 +283,9 @@
           "category": {
             "name": "category",
             "value": null,
-            "excluded_values": null,
+            "excluded_values": [
+              "UI"
+            ],
             "type": "str"
           },
           "timestamp": {
@@ -326,25 +326,25 @@
           "key": {
             "name": "key",
             "value": null,
-            "excluded_values": null,
+            "excluded_values": [],
             "type": "str"
           },
           "new_value": {
             "name": "new_value",
             "value": null,
-            "excluded_values": null,
+            "excluded_values": [],
             "type": "str"
           },
           "category": {
             "name": "category",
             "value": null,
-            "excluded_values": null,
+            "excluded_values": [],
             "type": "str"
           },
           "timestamp": {
             "name": "timestamp",
             "value": null,
-            "excluded_values": null,
+            "excluded_values": [],
             "type": "str"
           }
         }
@@ -6892,6 +6892,8014 @@
             "excluded_values": [
               "agenda"
             ],
+            "type": "str"
+          }
+        }
+      }
+    }
+  },
+  {
+    "prompt_id": "robotic_arm_1",
+    "world": "robotic_arm",
+    "prompt": "Unlock safety. Move to (0.30, 0.35, 0.12, yaw=0.0) and pick 'box_small'. Then move to (0.95, 0.20, 0.10, yaw=0.0) and place it.",
+    "nodes": [
+      {
+        "name": "G0",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "A"
+            ],
+            "from": "G0",
+            "to": "G1"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G0",
+            "to": "G0"
+          }
+        ]
+      },
+      {
+        "name": "G1",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C"
+            ],
+            "from": "G1",
+            "to": "G2"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G1",
+            "to": "G1"
+          }
+        ]
+      },
+      {
+        "name": "G2",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "E"
+            ],
+            "from": "G2",
+            "to": "G3"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G2",
+            "to": "G2"
+          }
+        ]
+      },
+      {
+        "name": "G3",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "G"
+            ],
+            "from": "G3",
+            "to": "G4"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G3",
+            "to": "G3"
+          }
+        ]
+      },
+      {
+        "name": "G4",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C'"
+            ],
+            "from": "G4",
+            "to": "G5"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G4",
+            "to": "G4"
+          }
+        ]
+      },
+      {
+        "name": "G5",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "H"
+            ],
+            "from": "G5",
+            "to": "G6"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G5",
+            "to": "G5"
+          }
+        ]
+      },
+      {
+        "name": "G6",
+        "is_final": true,
+        "transitions": [
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G6",
+            "to": "G6"
+          }
+        ]
+      }
+    ],
+    "alphabet": {
+      "A": {
+        "name": "unlock_safety_mode",
+        "arguments": {}
+      },
+      "B": {
+        "name": "lock_safety_mode",
+        "arguments": {}
+      },
+      "C": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 0.3,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 0.35,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "z": {
+            "name": "z",
+            "value": 0.12,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C'": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 0.95,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 0.2,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "z": {
+            "name": "z",
+            "value": 0.1,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C''": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": null,
+            "excluded_values": [
+              0.3,
+              0.95
+            ],
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": null,
+            "excluded_values": [
+              0.35,
+              0.2
+            ],
+            "type": "float"
+          },
+          "z": {
+            "name": "z",
+            "value": null,
+            "excluded_values": [
+              0.12,
+              0.1
+            ],
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": null,
+            "excluded_values": [
+              0.0
+            ],
+            "type": "float"
+          }
+        }
+      },
+      "D": {
+        "name": "move_home",
+        "arguments": {}
+      },
+      "E": {
+        "name": "open_gripper",
+        "arguments": {}
+      },
+      "F": {
+        "name": "close_gripper",
+        "arguments": {}
+      },
+      "G": {
+        "name": "pick",
+        "arguments": {
+          "object_name": {
+            "name": "object_name",
+            "value": "box_small",
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "G'": {
+        "name": "pick",
+        "arguments": {
+          "object_name": {
+            "name": "object_name",
+            "value": null,
+            "excluded_values": [
+              "box_small"
+            ],
+            "type": "str"
+          }
+        }
+      },
+      "H": {
+        "name": "place",
+        "arguments": {}
+      },
+      "I": {
+        "name": "sense_pose",
+        "arguments": {}
+      },
+      "J": {
+        "name": "sense_gripper",
+        "arguments": {}
+      },
+      "K": {
+        "name": "list_objects",
+        "arguments": {}
+      },
+      "L": {
+        "name": "get_object_pose",
+        "arguments": {
+          "object_name": {
+            "name": "object_name",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "M": {
+        "name": "get_station_pose",
+        "arguments": {
+          "station_name": {
+            "name": "station_name",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      }
+    }
+  },
+  {
+    "prompt_id": "robotic_arm_2",
+    "world": "robotic_arm",
+    "prompt": "Pick 'box_large' at its known pose, bring it to quality control station, then return home.",
+    "nodes": [
+      {
+        "name": "G0",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "A"
+            ],
+            "from": "G0",
+            "to": "G1"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G0",
+            "to": "G0"
+          }
+        ]
+      },
+      {
+        "name": "G1",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C"
+            ],
+            "from": "G1",
+            "to": "G2"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G1",
+            "to": "G1"
+          }
+        ]
+      },
+      {
+        "name": "G2",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "E"
+            ],
+            "from": "G2",
+            "to": "G3"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G2",
+            "to": "G2"
+          }
+        ]
+      },
+      {
+        "name": "G3",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "G"
+            ],
+            "from": "G3",
+            "to": "G4"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G3",
+            "to": "G3"
+          }
+        ]
+      },
+      {
+        "name": "G4",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C'"
+            ],
+            "from": "G4",
+            "to": "G5"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G4",
+            "to": "G4"
+          }
+        ]
+      },
+      {
+        "name": "G5",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "H"
+            ],
+            "from": "G5",
+            "to": "G6"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G5",
+            "to": "G5"
+          }
+        ]
+      },
+      {
+        "name": "G6",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C''",
+              "D"
+            ],
+            "from": "G6",
+            "to": "G7"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G6",
+            "to": "G6"
+          }
+        ]
+      },
+      {
+        "name": "G7",
+        "is_final": true,
+        "transitions": [
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G7",
+            "to": "G7"
+          }
+        ]
+      }
+    ],
+    "alphabet": {
+      "A": {
+        "name": "unlock_safety_mode",
+        "arguments": {}
+      },
+      "B": {
+        "name": "lock_safety_mode",
+        "arguments": {}
+      },
+      "C": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 0.28,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": -0.3,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "z": {
+            "name": "z",
+            "value": 0.15,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C'": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 1.05,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": -0.2,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "z": {
+            "name": "z",
+            "value": 0.1,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C''": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 0.5,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "z": {
+            "name": "z",
+            "value": 0.4,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C'''": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": null,
+            "excluded_values": [
+              0.28,
+              1.05,
+              0.5
+            ],
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": null,
+            "excluded_values": [
+              -0.3,
+              -0.2,
+              0.0
+            ],
+            "type": "float"
+          },
+          "z": {
+            "name": "z",
+            "value": null,
+            "excluded_values": [
+              0.15,
+              0.1,
+              0.4
+            ],
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": null,
+            "excluded_values": [
+              0.0
+            ],
+            "type": "float"
+          }
+        }
+      },
+      "D": {
+        "name": "move_home",
+        "arguments": {}
+      },
+      "E": {
+        "name": "open_gripper",
+        "arguments": {}
+      },
+      "F": {
+        "name": "close_gripper",
+        "arguments": {}
+      },
+      "G": {
+        "name": "pick",
+        "arguments": {
+          "object_name": {
+            "name": "object_name",
+            "value": "box_large",
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "G'": {
+        "name": "pick",
+        "arguments": {
+          "object_name": {
+            "name": "object_name",
+            "value": null,
+            "excluded_values": [
+              "box_large"
+            ],
+            "type": "str"
+          }
+        }
+      },
+      "H": {
+        "name": "place",
+        "arguments": {}
+      },
+      "I": {
+        "name": "sense_pose",
+        "arguments": {}
+      },
+      "J": {
+        "name": "sense_gripper",
+        "arguments": {}
+      },
+      "K": {
+        "name": "list_objects",
+        "arguments": {}
+      },
+      "L": {
+        "name": "get_object_pose",
+        "arguments": {
+          "object_name": {
+            "name": "object_name",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "M": {
+        "name": "get_station_pose",
+        "arguments": {
+          "station_name": {
+            "name": "station_name",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      }
+    }
+  },
+  {
+    "prompt_id": "robotic_arm_3",
+    "world": "robotic_arm",
+    "prompt": "Unlock safety. Check pose and list objects in ther order. Move to the pose of 'gear_A' and pick it. Then place it at (0.80, 0.35, 0.10, yaw=0.0).",
+    "nodes": [
+      {
+        "name": "G0",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "A"
+            ],
+            "from": "G0",
+            "to": "G1"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G0",
+            "to": "G0"
+          }
+        ]
+      },
+      {
+        "name": "G1",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "I"
+            ],
+            "from": "G1",
+            "to": "G2"
+          },
+          {
+            "symbols": [
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G1",
+            "to": "G1"
+          }
+        ]
+      },
+      {
+        "name": "G2",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "K"
+            ],
+            "from": "G2",
+            "to": "G3"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "L",
+              "M"
+            ],
+            "from": "G2",
+            "to": "G2"
+          }
+        ]
+      },
+      {
+        "name": "G3",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C"
+            ],
+            "from": "G3",
+            "to": "G4"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G3",
+            "to": "G3"
+          }
+        ]
+      },
+      {
+        "name": "G4",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "E"
+            ],
+            "from": "G4",
+            "to": "G5"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G4",
+            "to": "G4"
+          }
+        ]
+      },
+      {
+        "name": "G5",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "G"
+            ],
+            "from": "G5",
+            "to": "G6"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G5",
+            "to": "G5"
+          }
+        ]
+      },
+      {
+        "name": "G6",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C'"
+            ],
+            "from": "G6",
+            "to": "G7"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G6",
+            "to": "G6"
+          }
+        ]
+      },
+      {
+        "name": "G7",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "H"
+            ],
+            "from": "G7",
+            "to": "G8"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G7",
+            "to": "G7"
+          }
+        ]
+      },
+      {
+        "name": "G8",
+        "is_final": true,
+        "transitions": [
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G8",
+            "to": "G8"
+          }
+        ]
+      }
+    ],
+    "alphabet": {
+      "A": {
+        "name": "unlock_safety_mode",
+        "arguments": {}
+      },
+      "B": {
+        "name": "lock_safety_mode",
+        "arguments": {}
+      },
+      "C": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 0.6,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 0.1,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "z": {
+            "name": "z",
+            "value": 0.11,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C'": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 0.8,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 0.35,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "z": {
+            "name": "z",
+            "value": 0.1,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C''": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": null,
+            "excluded_values": [
+              0.6,
+              0.8
+            ],
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": null,
+            "excluded_values": [
+              0.1,
+              0.35
+            ],
+            "type": "float"
+          },
+          "z": {
+            "name": "z",
+            "value": null,
+            "excluded_values": [
+              0.11,
+              0.1
+            ],
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": null,
+            "excluded_values": [
+              0.0
+            ],
+            "type": "float"
+          }
+        }
+      },
+      "D": {
+        "name": "move_home",
+        "arguments": {}
+      },
+      "E": {
+        "name": "open_gripper",
+        "arguments": {}
+      },
+      "F": {
+        "name": "close_gripper",
+        "arguments": {}
+      },
+      "G": {
+        "name": "pick",
+        "arguments": {
+          "object_name": {
+            "name": "object_name",
+            "value": "gear_A",
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "G'": {
+        "name": "pick",
+        "arguments": {
+          "object_name": {
+            "name": "object_name",
+            "value": null,
+            "excluded_values": [
+              "gear_A"
+            ],
+            "type": "str"
+          }
+        }
+      },
+      "H": {
+        "name": "place",
+        "arguments": {}
+      },
+      "I": {
+        "name": "sense_pose",
+        "arguments": {}
+      },
+      "J": {
+        "name": "sense_gripper",
+        "arguments": {}
+      },
+      "K": {
+        "name": "list_objects",
+        "arguments": {}
+      },
+      "L": {
+        "name": "get_object_pose",
+        "arguments": {
+          "object_name": {
+            "name": "object_name",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "M": {
+        "name": "get_station_pose",
+        "arguments": {
+          "station_name": {
+            "name": "station_name",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      }
+    }
+  },
+  {
+    "prompt_id": "robotic_arm_4",
+    "world": "robotic_arm",
+    "prompt": "Move to (0.90, -0.10, 0.14, yaw=0.0) and pick 'panel_X'. Rotate yaw to 1.57 rad while above (0.95, 0.20, 0.10) and place it there.",
+    "nodes": [
+      {
+        "name": "G0",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "A"
+            ],
+            "from": "G0",
+            "to": "G1"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G0",
+            "to": "G0"
+          }
+        ]
+      },
+      {
+        "name": "G1",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C"
+            ],
+            "from": "G1",
+            "to": "G2"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G1",
+            "to": "G1"
+          }
+        ]
+      },
+      {
+        "name": "G2",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "E"
+            ],
+            "from": "G2",
+            "to": "G3"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G2",
+            "to": "G2"
+          }
+        ]
+      },
+      {
+        "name": "G3",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "G"
+            ],
+            "from": "G3",
+            "to": "G4"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G3",
+            "to": "G3"
+          }
+        ]
+      },
+      {
+        "name": "G4",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C'"
+            ],
+            "from": "G4",
+            "to": "G5"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G4",
+            "to": "G4"
+          }
+        ]
+      },
+      {
+        "name": "G5",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "H"
+            ],
+            "from": "G5",
+            "to": "G6"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G5",
+            "to": "G5"
+          }
+        ]
+      },
+      {
+        "name": "G6",
+        "is_final": true,
+        "transitions": [
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G6",
+            "to": "G6"
+          }
+        ]
+      }
+    ],
+    "alphabet": {
+      "A": {
+        "name": "unlock_safety_mode",
+        "arguments": {}
+      },
+      "B": {
+        "name": "lock_safety_mode",
+        "arguments": {}
+      },
+      "C": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 0.9,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": -0.1,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "z": {
+            "name": "z",
+            "value": 0.14,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C'": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 0.95,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 0.2,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "z": {
+            "name": "z",
+            "value": 0.1,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 1.57,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C''": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": null,
+            "excluded_values": [
+              0.9,
+              0.95
+            ],
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": null,
+            "excluded_values": [
+              -0.1,
+              0.2
+            ],
+            "type": "float"
+          },
+          "z": {
+            "name": "z",
+            "value": null,
+            "excluded_values": [
+              0.14,
+              0.1
+            ],
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": null,
+            "excluded_values": [
+              0.0,
+              1.57
+            ],
+            "type": "float"
+          }
+        }
+      },
+      "D": {
+        "name": "move_home",
+        "arguments": {}
+      },
+      "E": {
+        "name": "open_gripper",
+        "arguments": {}
+      },
+      "F": {
+        "name": "close_gripper",
+        "arguments": {}
+      },
+      "G": {
+        "name": "pick",
+        "arguments": {
+          "object_name": {
+            "name": "object_name",
+            "value": "panel_X",
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "G'": {
+        "name": "pick",
+        "arguments": {
+          "object_name": {
+            "name": "object_name",
+            "value": null,
+            "excluded_values": [
+              "panel_X"
+            ],
+            "type": "str"
+          }
+        }
+      },
+      "H": {
+        "name": "place",
+        "arguments": {}
+      },
+      "I": {
+        "name": "sense_pose",
+        "arguments": {}
+      },
+      "J": {
+        "name": "sense_gripper",
+        "arguments": {}
+      },
+      "K": {
+        "name": "list_objects",
+        "arguments": {}
+      },
+      "L": {
+        "name": "get_object_pose",
+        "arguments": {
+          "object_name": {
+            "name": "object_name",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "M": {
+        "name": "get_station_pose",
+        "arguments": {
+          "station_name": {
+            "name": "station_name",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      }
+    }
+  },
+  {
+    "prompt_id": "robotic_arm_5",
+    "world": "robotic_arm",
+    "prompt": "Pick 'box_large' at (0.28, -0.30, 0.15), place it at (0.80, 0.35, 0.10). Then pick 'box_small' at (0.30, 0.35, 0.12) and place it at (0.95, 0.20, 0.10). Finally, return home.",
+    "nodes": [
+      {
+        "name": "G0",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "A"
+            ],
+            "from": "G0",
+            "to": "G1"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G0",
+            "to": "G0"
+          }
+        ]
+      },
+      {
+        "name": "G1",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C"
+            ],
+            "from": "G1",
+            "to": "G2"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G1",
+            "to": "G1"
+          }
+        ]
+      },
+      {
+        "name": "G2",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "E"
+            ],
+            "from": "G2",
+            "to": "G3"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G2",
+            "to": "G2"
+          }
+        ]
+      },
+      {
+        "name": "G3",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "G"
+            ],
+            "from": "G3",
+            "to": "G4"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G3",
+            "to": "G3"
+          }
+        ]
+      },
+      {
+        "name": "G4",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C'"
+            ],
+            "from": "G4",
+            "to": "G5"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G4",
+            "to": "G4"
+          }
+        ]
+      },
+      {
+        "name": "G5",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "H"
+            ],
+            "from": "G5",
+            "to": "G6"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G5",
+            "to": "G5"
+          }
+        ]
+      },
+      {
+        "name": "G6",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C''"
+            ],
+            "from": "G6",
+            "to": "G7"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G6",
+            "to": "G6"
+          }
+        ]
+      },
+      {
+        "name": "G7",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "E"
+            ],
+            "from": "G7",
+            "to": "G8"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G7",
+            "to": "G7"
+          }
+        ]
+      },
+      {
+        "name": "G8",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "G'"
+            ],
+            "from": "G8",
+            "to": "G9"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G8",
+            "to": "G8"
+          }
+        ]
+      },
+      {
+        "name": "G9",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C'''"
+            ],
+            "from": "G9",
+            "to": "G10"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G9",
+            "to": "G9"
+          }
+        ]
+      },
+      {
+        "name": "G10",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "H"
+            ],
+            "from": "G10",
+            "to": "G11"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G10",
+            "to": "G10"
+          }
+        ]
+      },
+      {
+        "name": "G11",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C''''",
+              "D"
+            ],
+            "from": "G11",
+            "to": "G12"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G11",
+            "to": "G11"
+          }
+        ]
+      },
+      {
+        "name": "G12",
+        "is_final": true,
+        "transitions": [
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G12",
+            "to": "G12"
+          }
+        ]
+      }
+    ],
+    "alphabet": {
+      "A": {
+        "name": "unlock_safety_mode",
+        "arguments": {}
+      },
+      "B": {
+        "name": "lock_safety_mode",
+        "arguments": {}
+      },
+      "C": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 0.28,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": -0.3,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "z": {
+            "name": "z",
+            "value": 0.15,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C'": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 0.8,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 0.35,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "z": {
+            "name": "z",
+            "value": 0.1,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C''": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 0.3,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 0.35,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "z": {
+            "name": "z",
+            "value": 0.12,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C'''": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 0.95,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 0.2,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "z": {
+            "name": "z",
+            "value": 0.1,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C''''": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 0.5,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "z": {
+            "name": "z",
+            "value": 0.4,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C'''''": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": null,
+            "excluded_values": [
+              0.28,
+              0.8,
+              0.3,
+              0.95,
+              0.5
+            ],
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": null,
+            "excluded_values": [
+              -0.3,
+              0.35,
+              0.35,
+              0.2,
+              0.0
+            ],
+            "type": "float"
+          },
+          "z": {
+            "name": "z",
+            "value": null,
+            "excluded_values": [
+              0.15,
+              0.1,
+              0.12,
+              0.1,
+              0.4
+            ],
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": null,
+            "excluded_values": [
+              0.0
+            ],
+            "type": "float"
+          }
+        }
+      },
+      "D": {
+        "name": "move_home",
+        "arguments": {}
+      },
+      "E": {
+        "name": "open_gripper",
+        "arguments": {}
+      },
+      "F": {
+        "name": "close_gripper",
+        "arguments": {}
+      },
+      "G": {
+        "name": "pick",
+        "arguments": {
+          "object_name": {
+            "name": "object_name",
+            "value": "box_large",
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "G'": {
+        "name": "pick",
+        "arguments": {
+          "object_name": {
+            "name": "object_name",
+            "value": "box_small",
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "G''": {
+        "name": "pick",
+        "arguments": {
+          "object_name": {
+            "name": "object_name",
+            "value": null,
+            "excluded_values": [
+              "box_large",
+              "box_small"
+            ],
+            "type": "str"
+          }
+        }
+      },
+      "H": {
+        "name": "place",
+        "arguments": {}
+      },
+      "I": {
+        "name": "sense_pose",
+        "arguments": {}
+      },
+      "J": {
+        "name": "sense_gripper",
+        "arguments": {}
+      },
+      "K": {
+        "name": "list_objects",
+        "arguments": {}
+      },
+      "L": {
+        "name": "get_object_pose",
+        "arguments": {
+          "object_name": {
+            "name": "object_name",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "M": {
+        "name": "get_station_pose",
+        "arguments": {
+          "station_name": {
+            "name": "station_name",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      }
+    }
+  },
+  {
+    "prompt_id": "robotic_arm_6",
+    "world": "robotic_arm",
+    "prompt": "Unlock safety. Read current pose and gripper state in that order. Query the pose of 'gear_A' and move to it at speed 0.2. When there, pick it up. Query the pose of the 'packaging_area' station and move to it with yaw=1.57 (rotate end-effector) and place the object. Finally, return home and lock safety mode",
+    "nodes": [
+      {
+        "name": "G0",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "A"
+            ],
+            "from": "G0",
+            "to": "G1"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "L'",
+              "M",
+              "M'"
+            ],
+            "from": "G0",
+            "to": "G0"
+          }
+        ]
+      },
+      {
+        "name": "G1",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "I"
+            ],
+            "from": "G1",
+            "to": "G2"
+          },
+          {
+            "symbols": [
+              "J",
+              "K",
+              "L",
+              "L'M",
+              "M'"
+            ],
+            "from": "G1",
+            "to": "G1"
+          }
+        ]
+      },
+      {
+        "name": "G2",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "J"
+            ],
+            "from": "G2",
+            "to": "G3"
+          },
+          {
+            "symbols": [
+              "I",
+              "K",
+              "L",
+              "L'",
+              "M",
+              "M'"
+            ],
+            "from": "G2",
+            "to": "G2"
+          }
+        ]
+      },
+      {
+        "name": "G3",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "L"
+            ],
+            "from": "G3",
+            "to": "G4"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L'",
+              "M",
+              "M'"
+            ],
+            "from": "G3",
+            "to": "G3"
+          }
+        ]
+      },
+      {
+        "name": "G4",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C"
+            ],
+            "from": "G4",
+            "to": "G5"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "L'",
+              "M",
+              "M'"
+            ],
+            "from": "G4",
+            "to": "G4"
+          }
+        ]
+      },
+      {
+        "name": "G5",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "E"
+            ],
+            "from": "G5",
+            "to": "G6"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "L'",
+              "M",
+              "M'"
+            ],
+            "from": "G5",
+            "to": "G5"
+          }
+        ]
+      },
+      {
+        "name": "G6",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "G"
+            ],
+            "from": "G6",
+            "to": "G7"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "L'",
+              "M",
+              "M'"
+            ],
+            "from": "G6",
+            "to": "G6"
+          }
+        ]
+      },
+      {
+        "name": "G7",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "M"
+            ],
+            "from": "G7",
+            "to": "G8"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "L'",
+              "M'"
+            ],
+            "from": "G7",
+            "to": "G7"
+          }
+        ]
+      },
+      {
+        "name": "G8",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C'"
+            ],
+            "from": "G8",
+            "to": "G9"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "L'",
+              "M",
+              "M'"
+            ],
+            "from": "G8",
+            "to": "G8"
+          }
+        ]
+      },
+      {
+        "name": "G9",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "H"
+            ],
+            "from": "G9",
+            "to": "G10"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "L'",
+              "M",
+              "M'"
+            ],
+            "from": "G9",
+            "to": "G9"
+          }
+        ]
+      },
+      {
+        "name": "G10",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C''",
+              "D"
+            ],
+            "from": "G10",
+            "to": "G11"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "L'",
+              "M",
+              "M'"
+            ],
+            "from": "G10",
+            "to": "G10"
+          }
+        ]
+      },
+      {
+        "name": "G11",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "B"
+            ],
+            "from": "G11",
+            "to": "G12"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "L'",
+              "M",
+              "M'"
+            ],
+            "from": "G11",
+            "to": "G11"
+          }
+        ]
+      },
+      {
+        "name": "G12",
+        "is_final": true,
+        "transitions": [
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "L'",
+              "M",
+              "M'"
+            ],
+            "from": "G12",
+            "to": "G12"
+          }
+        ]
+      }
+    ],
+    "alphabet": {
+      "A": {
+        "name": "unlock_safety_mode",
+        "arguments": {}
+      },
+      "B": {
+        "name": "lock_safety_mode",
+        "arguments": {}
+      },
+      "C": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 0.6,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 0.1,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "z": {
+            "name": "z",
+            "value": 0.11,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "speed": {
+            "name": "speed",
+            "value": 0.2,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C'": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 0.8,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 0.35,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "z": {
+            "name": "z",
+            "value": 0.1,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 1.57,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C''": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 0.5,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "z": {
+            "name": "z",
+            "value": 0.4,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C'''": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": null,
+            "excluded_values": [
+              0.6,
+              0.8,
+              0.5
+            ],
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": null,
+            "excluded_values": [
+              0.1,
+              0.35,
+              0.0
+            ],
+            "type": "float"
+          },
+          "z": {
+            "name": "z",
+            "value": null,
+            "excluded_values": [
+              0.11,
+              0.1,
+              0.4
+            ],
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": null,
+            "excluded_values": [
+              0.0,
+              1.57
+            ],
+            "type": "float"
+          },
+          "speed": {
+            "name": "speed",
+            "value": null,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "D": {
+        "name": "move_home",
+        "arguments": {}
+      },
+      "E": {
+        "name": "open_gripper",
+        "arguments": {}
+      },
+      "F": {
+        "name": "close_gripper",
+        "arguments": {}
+      },
+      "G": {
+        "name": "pick",
+        "arguments": {
+          "object_name": {
+            "name": "object_name",
+            "value": "gear_A",
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "G'": {
+        "name": "pick",
+        "arguments": {
+          "object_name": {
+            "name": "object_name",
+            "value": "box_small",
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "G''": {
+        "name": "pick",
+        "arguments": {
+          "object_name": {
+            "name": "object_name",
+            "value": null,
+            "excluded_values": [
+              "gear_A",
+              "box_small"
+            ],
+            "type": "str"
+          }
+        }
+      },
+      "H": {
+        "name": "place",
+        "arguments": {}
+      },
+      "I": {
+        "name": "sense_pose",
+        "arguments": {}
+      },
+      "J": {
+        "name": "sense_gripper",
+        "arguments": {}
+      },
+      "K": {
+        "name": "list_objects",
+        "arguments": {}
+      },
+      "L": {
+        "name": "get_object_pose",
+        "arguments": {
+          "object_name": {
+            "name": "object_name",
+            "value": "gear_A",
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "L'": {
+        "name": "get_object_pose",
+        "arguments": {
+          "object_name": {
+            "name": "object_name",
+            "value": null,
+            "excluded_values": [
+              "gear_A"
+            ],
+            "type": "str"
+          }
+        }
+      },
+      "M": {
+        "name": "get_station_pose",
+        "arguments": {
+          "station_name": {
+            "name": "station_name",
+            "value": "packaging_area",
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "M'": {
+        "name": "get_station_pose",
+        "arguments": {
+          "station_name": {
+            "name": "station_name",
+            "value": null,
+            "excluded_values": [
+              "packaging_area"
+            ],
+            "type": "str"
+          }
+        }
+      }
+    }
+  },
+  {
+    "prompt_id": "robotic_arm_7",
+    "world": "robotic_arm",
+    "prompt": "List objects. Unlock safety. Pick 'box_large' at its known pose and place it at the packaging area. Lock safety for an operator pass-through, read the current pose, then unlock. Pick 'box_small', and move to the assembly table with yaw = 1.576. Then, descend 10 centimeters and place the object you are holding. Finally, return home.",
+    "nodes": [
+      {
+        "name": "G0",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "K"
+            ],
+            "from": "G0",
+            "to": "G1"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "L",
+              "M"
+            ],
+            "from": "G0",
+            "to": "G0"
+          }
+        ]
+      },
+      {
+        "name": "G1",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "A"
+            ],
+            "from": "G1",
+            "to": "G2"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G1",
+            "to": "G1"
+          }
+        ]
+      },
+      {
+        "name": "G2",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C"
+            ],
+            "from": "G2",
+            "to": "G3"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G2",
+            "to": "G2"
+          }
+        ]
+      },
+      {
+        "name": "G3",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "E"
+            ],
+            "from": "G3",
+            "to": "G4"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G3",
+            "to": "G3"
+          }
+        ]
+      },
+      {
+        "name": "G4",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "G"
+            ],
+            "from": "G4",
+            "to": "G5"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G4",
+            "to": "G4"
+          }
+        ]
+      },
+      {
+        "name": "G5",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C'"
+            ],
+            "from": "G5",
+            "to": "G6"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G5",
+            "to": "G5"
+          }
+        ]
+      },
+      {
+        "name": "G6",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "H"
+            ],
+            "from": "G6",
+            "to": "G7"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G6",
+            "to": "G6"
+          }
+        ]
+      },
+      {
+        "name": "G7",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "B"
+            ],
+            "from": "G7",
+            "to": "G8"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G7",
+            "to": "G7"
+          }
+        ]
+      },
+      {
+        "name": "G8",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "I"
+            ],
+            "from": "G8",
+            "to": "G9"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G8",
+            "to": "G8"
+          }
+        ]
+      },
+      {
+        "name": "G9",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "A"
+            ],
+            "from": "G9",
+            "to": "G10"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G9",
+            "to": "G9"
+          }
+        ]
+      },
+      {
+        "name": "G10",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C''"
+            ],
+            "from": "G10",
+            "to": "G11"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G10",
+            "to": "G10"
+          }
+        ]
+      },
+      {
+        "name": "G11",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "E"
+            ],
+            "from": "G11",
+            "to": "G12"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G11",
+            "to": "G11"
+          }
+        ]
+      },
+      {
+        "name": "G12",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "G'"
+            ],
+            "from": "G12",
+            "to": "G13"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G12",
+            "to": "G12"
+          }
+        ]
+      },
+      {
+        "name": "G13",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C'''"
+            ],
+            "from": "G13",
+            "to": "G14"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G13",
+            "to": "G13"
+          }
+        ]
+      },
+      {
+        "name": "G14",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C''''"
+            ],
+            "from": "G14",
+            "to": "G15"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G14",
+            "to": "G14"
+          }
+        ]
+      },
+      {
+        "name": "G15",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "H"
+            ],
+            "from": "G15",
+            "to": "G16"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G15",
+            "to": "G15"
+          }
+        ]
+      },
+      {
+        "name": "G16",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C'''''",
+              "D"
+            ],
+            "from": "G16",
+            "to": "G17"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G16",
+            "to": "G16"
+          }
+        ]
+      },
+      {
+        "name": "G17",
+        "is_final": true,
+        "transitions": [
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G17",
+            "to": "G17"
+          }
+        ]
+      }
+    ],
+    "alphabet": {
+      "A": {
+        "name": "unlock_safety_mode",
+        "arguments": {}
+      },
+      "B": {
+        "name": "lock_safety_mode",
+        "arguments": {}
+      },
+      "C": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 0.28,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": -0.3,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "z": {
+            "name": "z",
+            "value": 0.15,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C'": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 0.8,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 0.35,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "z": {
+            "name": "z",
+            "value": 0.1,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C''": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 0.3,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 0.35,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "z": {
+            "name": "z",
+            "value": 0.12,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C'''": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 0.95,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 0.2,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "z": {
+            "name": "z",
+            "value": 0.2,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 1.57,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C''''": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 0.95,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 0.2,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "z": {
+            "name": "z",
+            "value": 0.1,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 1.57,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C'''''": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 0.5,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "z": {
+            "name": "z",
+            "value": 0.4,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C''''''": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": null,
+            "excluded_values": [
+              0.28,
+              0.8,
+              0.3,
+              0.95,
+              0.5
+            ],
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": null,
+            "excluded_values": [
+              -0.3,
+              0.35,
+              0.35,
+              0.2,
+              0.0
+            ],
+            "type": "float"
+          },
+          "z": {
+            "name": "z",
+            "value": null,
+            "excluded_values": [
+              0.15,
+              0.1,
+              0.12,
+              0.2,
+              0.4
+            ],
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": null,
+            "excluded_values": [
+              0.0,
+              1.57
+            ],
+            "type": "float"
+          }
+        }
+      },
+      "D": {
+        "name": "move_home",
+        "arguments": {}
+      },
+      "E": {
+        "name": "open_gripper",
+        "arguments": {}
+      },
+      "F": {
+        "name": "close_gripper",
+        "arguments": {}
+      },
+      "G": {
+        "name": "pick",
+        "arguments": {
+          "object_name": {
+            "name": "object_name",
+            "value": "box_large",
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "G'": {
+        "name": "pick",
+        "arguments": {
+          "object_name": {
+            "name": "object_name",
+            "value": "box_small",
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "G''": {
+        "name": "pick",
+        "arguments": {
+          "object_name": {
+            "name": "object_name",
+            "value": null,
+            "excluded_values": [
+              "box_large",
+              "box_small"
+            ],
+            "type": "str"
+          }
+        }
+      },
+      "H": {
+        "name": "place",
+        "arguments": {}
+      },
+      "I": {
+        "name": "sense_pose",
+        "arguments": {}
+      },
+      "J": {
+        "name": "sense_gripper",
+        "arguments": {}
+      },
+      "K": {
+        "name": "list_objects",
+        "arguments": {}
+      },
+      "L": {
+        "name": "get_object_pose",
+        "arguments": {
+          "object_name": {
+            "name": "object_name",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "M": {
+        "name": "get_station_pose",
+        "arguments": {
+          "station_name": {
+            "name": "station_name",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      }
+    }
+  },
+  {
+    "prompt_id": "robotic_arm_8",
+    "world": "robotic_arm",
+    "prompt": "Pick 'gear_A' and then pick 'box_small'. Deliver both to the assembly table and then return home.",
+    "nodes": [
+      {
+        "name": "G0",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "A"
+            ],
+            "from": "G0",
+            "to": "G1"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G0",
+            "to": "G0"
+          }
+        ]
+      },
+      {
+        "name": "G1",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C"
+            ],
+            "from": "G1",
+            "to": "G2"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G1",
+            "to": "G1"
+          }
+        ]
+      },
+      {
+        "name": "G2",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "E"
+            ],
+            "from": "G2",
+            "to": "G3"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G2",
+            "to": "G2"
+          }
+        ]
+      },
+      {
+        "name": "G3",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "G"
+            ],
+            "from": "G3",
+            "to": "G4"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G3",
+            "to": "G3"
+          }
+        ]
+      },
+      {
+        "name": "G4",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C'"
+            ],
+            "from": "G4",
+            "to": "G5"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G4",
+            "to": "G4"
+          }
+        ]
+      },
+      {
+        "name": "G5",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "H"
+            ],
+            "from": "G5",
+            "to": "G6"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G5",
+            "to": "G5"
+          }
+        ]
+      },
+      {
+        "name": "G6",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C''"
+            ],
+            "from": "G6",
+            "to": "G7"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G6",
+            "to": "G6"
+          }
+        ]
+      },
+      {
+        "name": "G7",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "E"
+            ],
+            "from": "G7",
+            "to": "G8"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G7",
+            "to": "G7"
+          }
+        ]
+      },
+      {
+        "name": "G8",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "G'"
+            ],
+            "from": "G8",
+            "to": "G9"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G8",
+            "to": "G8"
+          }
+        ]
+      },
+      {
+        "name": "G9",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C'"
+            ],
+            "from": "G9",
+            "to": "G10"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G9",
+            "to": "G9"
+          }
+        ]
+      },
+      {
+        "name": "G10",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "H"
+            ],
+            "from": "G10",
+            "to": "G11"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G10",
+            "to": "G10"
+          }
+        ]
+      },
+      {
+        "name": "G11",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C'''",
+              "D"
+            ],
+            "from": "G11",
+            "to": "G12"
+          },
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G11",
+            "to": "G11"
+          }
+        ]
+      },
+      {
+        "name": "G12",
+        "is_final": true,
+        "transitions": [
+          {
+            "symbols": [
+              "I",
+              "J",
+              "K",
+              "L",
+              "M"
+            ],
+            "from": "G12",
+            "to": "G12"
+          }
+        ]
+      }
+    ],
+    "alphabet": {
+      "A": {
+        "name": "unlock_safety_mode",
+        "arguments": {}
+      },
+      "B": {
+        "name": "lock_safety_mode",
+        "arguments": {}
+      },
+      "C": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 0.6,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 0.1,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "z": {
+            "name": "z",
+            "value": 0.11,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C'": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 0.95,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 0.2,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "z": {
+            "name": "z",
+            "value": 0.1,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C''": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 0.3,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 0.35,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "z": {
+            "name": "z",
+            "value": 0.12,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C'''": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 0.5,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "z": {
+            "name": "z",
+            "value": 0.4,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C''''": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": null,
+            "excluded_values": [
+              0.6,
+              0.95,
+              0.3,
+              0.5
+            ],
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": null,
+            "excluded_values": [
+              0.1,
+              0.2,
+              0.35,
+              0.0
+            ],
+            "type": "float"
+          },
+          "z": {
+            "name": "z",
+            "value": null,
+            "excluded_values": [
+              0.11,
+              0.1,
+              0.12,
+              0.4
+            ],
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": null,
+            "excluded_values": [
+              0.0
+            ],
+            "type": "float"
+          }
+        }
+      },
+      "D": {
+        "name": "move_home",
+        "arguments": {}
+      },
+      "E": {
+        "name": "open_gripper",
+        "arguments": {}
+      },
+      "F": {
+        "name": "close_gripper",
+        "arguments": {}
+      },
+      "G": {
+        "name": "pick",
+        "arguments": {
+          "object_name": {
+            "name": "object_name",
+            "value": "gear_A",
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "G'": {
+        "name": "pick",
+        "arguments": {
+          "object_name": {
+            "name": "object_name",
+            "value": "box_small",
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "G''": {
+        "name": "pick",
+        "arguments": {
+          "object_name": {
+            "name": "object_name",
+            "value": null,
+            "excluded_values": [
+              "gear_A",
+              "box_small"
+            ],
+            "type": "str"
+          }
+        }
+      },
+      "H": {
+        "name": "place",
+        "arguments": {}
+      },
+      "I": {
+        "name": "sense_pose",
+        "arguments": {}
+      },
+      "J": {
+        "name": "sense_gripper",
+        "arguments": {}
+      },
+      "K": {
+        "name": "list_objects",
+        "arguments": {}
+      },
+      "L": {
+        "name": "get_object_pose",
+        "arguments": {
+          "object_name": {
+            "name": "object_name",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "M": {
+        "name": "get_station_pose",
+        "arguments": {
+          "station_name": {
+            "name": "station_name",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      }
+    }
+  },
+  {
+    "prompt_id": "robot_farm_1",
+    "world": "robot_farm",
+    "prompt": "Disengage safety. Drive to plant C and harvest its fruit. Then take the load to the collection bin,empty the hopper, and return to base.",
+    "nodes": [
+      {
+        "name": "G0",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "A"
+            ],
+            "from": "G0",
+            "to": "G1"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G0",
+            "to": "G0"
+          }
+        ]
+      },
+      {
+        "name": "G1",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C"
+            ],
+            "from": "G1",
+            "to": "G2"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G1",
+            "to": "G1"
+          }
+        ]
+      },
+      {
+        "name": "G2",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "E"
+            ],
+            "from": "G2",
+            "to": "G3"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G2",
+            "to": "G2"
+          }
+        ]
+      },
+      {
+        "name": "G3",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C'"
+            ],
+            "from": "G3",
+            "to": "G4"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G3",
+            "to": "G3"
+          }
+        ]
+      },
+      {
+        "name": "G4",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "F"
+            ],
+            "from": "G4",
+            "to": "G5"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G4",
+            "to": "G4"
+          }
+        ]
+      },
+      {
+        "name": "G5",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "D",
+              "C''"
+            ],
+            "from": "G5",
+            "to": "G6"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G5",
+            "to": "G5"
+          }
+        ]
+      },
+      {
+        "name": "G6",
+        "is_final": true,
+        "transitions": [
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G6",
+            "to": "G6"
+          }
+        ]
+      }
+    ],
+    "alphabet": {
+      "A": {
+        "name": "unlock_safety_mode",
+        "arguments": {}
+      },
+      "B": {
+        "name": "lock_safety_mode",
+        "arguments": {}
+      },
+      "C": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 14.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 8.5,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C'": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 6.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 18.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C''": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 5.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 5.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C'''": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": null,
+            "excluded_values": [
+              14.0,
+              6.0,
+              5.0
+            ],
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": null,
+            "excluded_values": [
+              8.5,
+              18.0,
+              5.0
+            ],
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": null,
+            "excluded_values": [
+              0.0
+            ],
+            "type": "float"
+          }
+        }
+      },
+      "D": {
+        "name": "move_home",
+        "arguments": {}
+      },
+      "E": {
+        "name": "harvest_fruit",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": "plant_C",
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "E'": {
+        "name": "harvest_fruit",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": null,
+            "excluded_values": [
+              "plant_C"
+            ],
+            "type": "str"
+          }
+        }
+      },
+      "F": {
+        "name": "dump_hopper",
+        "arguments": {}
+      },
+      "G": {
+        "name": "water_plant",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          },
+          "liters": {
+            "name": "liters",
+            "value": null,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "H": {
+        "name": "spray_pesticide",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          },
+          "ml": {
+            "name": "ml",
+            "value": null,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "I": {
+        "name": "refill_water_tank",
+        "arguments": {}
+      },
+      "J": {
+        "name": "refill_pesticide",
+        "arguments": {}
+      },
+      "K": {
+        "name": "recharge",
+        "arguments": {}
+      },
+      "L": {
+        "name": "sense_pose",
+        "arguments": {}
+      },
+      "M": {
+        "name": "sense_battery",
+        "arguments": {}
+      },
+      "N": {
+        "name": "sense_hopper",
+        "arguments": {}
+      },
+      "O": {
+        "name": "list_plants",
+        "arguments": {}
+      },
+      "P": {
+        "name": "scan_plant",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "Q": {
+        "name": "get_plant_pose",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "R": {
+        "name": "get_station_pose",
+        "arguments": {
+          "station_name": {
+            "name": "station_name",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      }
+    }
+  },
+  {
+    "prompt_id": "robot_farm_2",
+    "world": "robot_farm",
+    "prompt": "Water plant A with 1.5 liters, then plant C with 2.5 liters, then plant B with 1.5 liters. Refill at the water station only when you need to.",
+    "nodes": [
+      {
+        "name": "G0",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "A"
+            ],
+            "from": "G0",
+            "to": "G1"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G0",
+            "to": "G0"
+          }
+        ]
+      },
+      {
+        "name": "G1",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C"
+            ],
+            "from": "G1",
+            "to": "G2"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G1",
+            "to": "G1"
+          }
+        ]
+      },
+      {
+        "name": "G2",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "G"
+            ],
+            "from": "G2",
+            "to": "G3"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G2",
+            "to": "G2"
+          }
+        ]
+      },
+      {
+        "name": "G3",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C'"
+            ],
+            "from": "G3",
+            "to": "G4"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G3",
+            "to": "G3"
+          }
+        ]
+      },
+      {
+        "name": "G4",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "G'"
+            ],
+            "from": "G4",
+            "to": "G5"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G4",
+            "to": "G4"
+          }
+        ]
+      },
+      {
+        "name": "G5",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C''"
+            ],
+            "from": "G5",
+            "to": "G6"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G5",
+            "to": "G5"
+          }
+        ]
+      },
+      {
+        "name": "G6",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "I"
+            ],
+            "from": "G6",
+            "to": "G7"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G6",
+            "to": "G6"
+          }
+        ]
+      },
+      {
+        "name": "G7",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C'''"
+            ],
+            "from": "G7",
+            "to": "G8"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G7",
+            "to": "G7"
+          }
+        ]
+      },
+      {
+        "name": "G8",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "G''"
+            ],
+            "from": "G8",
+            "to": "G9"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G8",
+            "to": "G8"
+          }
+        ]
+      },
+      {
+        "name": "G9",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "D",
+              "C''''"
+            ],
+            "from": "G9",
+            "to": "G10"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G9",
+            "to": "G9"
+          }
+        ]
+      },
+      {
+        "name": "G10",
+        "is_final": true,
+        "transitions": [
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G10",
+            "to": "G10"
+          }
+        ]
+      }
+    ],
+    "alphabet": {
+      "A": {
+        "name": "unlock_safety_mode",
+        "arguments": {}
+      },
+      "B": {
+        "name": "lock_safety_mode",
+        "arguments": {}
+      },
+      "C": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 2.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 14.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C'": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 14.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 8.5,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C''": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 18.5,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 2.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C'''": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 3.5,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 12.5,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C''''": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 5.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 5.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C'''''": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": null,
+            "excluded_values": [
+              2.0,
+              14.0,
+              18.5,
+              3.5,
+              5.0
+            ],
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": null,
+            "excluded_values": [
+              14.0,
+              8.5,
+              2.0,
+              12.5,
+              5.0
+            ],
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": null,
+            "excluded_values": [
+              0.0
+            ],
+            "type": "float"
+          }
+        }
+      },
+      "D": {
+        "name": "move_home",
+        "arguments": {}
+      },
+      "E": {
+        "name": "harvest_fruit",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "F": {
+        "name": "dump_hopper",
+        "arguments": {}
+      },
+      "G": {
+        "name": "water_plant",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": "plant_A",
+            "excluded_values": null,
+            "type": "str"
+          },
+          "liters": {
+            "name": "liters",
+            "value": 1.5,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "G'": {
+        "name": "water_plant",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": "plant_C",
+            "excluded_values": null,
+            "type": "str"
+          },
+          "liters": {
+            "name": "liters",
+            "value": 2.5,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "G''": {
+        "name": "water_plant",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": "plant_B",
+            "excluded_values": null,
+            "type": "str"
+          },
+          "liters": {
+            "name": "liters",
+            "value": 1.5,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "G'''": {
+        "name": "water_plant",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": null,
+            "excluded_values": [
+              "plant_A",
+              "plant_C",
+              "plant_B"
+            ],
+            "type": "str"
+          },
+          "liters": {
+            "name": "liters",
+            "value": null,
+            "excluded_values": [
+              1.5,
+              2.5
+            ],
+            "type": "float"
+          }
+        }
+      },
+      "H": {
+        "name": "spray_pesticide",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          },
+          "ml": {
+            "name": "ml",
+            "value": null,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "I": {
+        "name": "refill_water_tank",
+        "arguments": {}
+      },
+      "J": {
+        "name": "refill_pesticide",
+        "arguments": {}
+      },
+      "K": {
+        "name": "recharge",
+        "arguments": {}
+      },
+      "L": {
+        "name": "sense_pose",
+        "arguments": {}
+      },
+      "M": {
+        "name": "sense_battery",
+        "arguments": {}
+      },
+      "N": {
+        "name": "sense_hopper",
+        "arguments": {}
+      },
+      "O": {
+        "name": "list_plants",
+        "arguments": {}
+      },
+      "P": {
+        "name": "scan_plant",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "Q": {
+        "name": "get_plant_pose",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "R": {
+        "name": "get_station_pose",
+        "arguments": {
+          "station_name": {
+            "name": "station_name",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      }
+    }
+  },
+  {
+    "prompt_id": "robot_farm_3",
+    "world": "robot_farm",
+    "prompt": "Apply 150 milliliters of pesticide to plant B, then refuel pesticide at the refill station and apply 150 milliliters to plant D. Finish by returning to base.",
+    "nodes": [
+      {
+        "name": "G0",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "A"
+            ],
+            "from": "G0",
+            "to": "G1"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G0",
+            "to": "G0"
+          }
+        ]
+      },
+      {
+        "name": "G1",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C"
+            ],
+            "from": "G1",
+            "to": "G2"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G1",
+            "to": "G1"
+          }
+        ]
+      },
+      {
+        "name": "G2",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "H"
+            ],
+            "from": "G2",
+            "to": "G3"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G2",
+            "to": "G2"
+          }
+        ]
+      },
+      {
+        "name": "G3",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C'"
+            ],
+            "from": "G3",
+            "to": "G4"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G3",
+            "to": "G3"
+          }
+        ]
+      },
+      {
+        "name": "G4",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "J"
+            ],
+            "from": "G4",
+            "to": "G5"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G4",
+            "to": "G4"
+          }
+        ]
+      },
+      {
+        "name": "G5",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C''"
+            ],
+            "from": "G5",
+            "to": "G6"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G5",
+            "to": "G5"
+          }
+        ]
+      },
+      {
+        "name": "G6",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "H'"
+            ],
+            "from": "G6",
+            "to": "G7"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G6",
+            "to": "G6"
+          }
+        ]
+      },
+      {
+        "name": "G7",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "D",
+              "C'''"
+            ],
+            "from": "G7",
+            "to": "G8"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G7",
+            "to": "G7"
+          }
+        ]
+      },
+      {
+        "name": "G8",
+        "is_final": true,
+        "transitions": [
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G8",
+            "to": "G8"
+          }
+        ]
+      }
+    ],
+    "alphabet": {
+      "A": {
+        "name": "unlock_safety_mode",
+        "arguments": {}
+      },
+      "B": {
+        "name": "lock_safety_mode",
+        "arguments": {}
+      },
+      "C": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 3.5,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 12.5,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C'": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 18.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 18.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C''": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 16.5,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 15.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C'''": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 5.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 5.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C''''": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": null,
+            "excluded_values": [
+              3.5,
+              18.0,
+              16.5,
+              5.0
+            ],
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": null,
+            "excluded_values": [
+              12.5,
+              18.0,
+              15.0,
+              5.0
+            ],
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": null,
+            "excluded_values": [
+              0.0
+            ],
+            "type": "float"
+          }
+        }
+      },
+      "D": {
+        "name": "move_home",
+        "arguments": {}
+      },
+      "E": {
+        "name": "harvest_fruit",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "F": {
+        "name": "dump_hopper",
+        "arguments": {}
+      },
+      "G": {
+        "name": "water_plant",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          },
+          "liters": {
+            "name": "liters",
+            "value": null,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "H": {
+        "name": "spray_pesticide",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": "plant_B",
+            "excluded_values": null,
+            "type": "str"
+          },
+          "ml": {
+            "name": "ml",
+            "value": 150.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "H'": {
+        "name": "spray_pesticide",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": "plant_D",
+            "excluded_values": null,
+            "type": "str"
+          },
+          "ml": {
+            "name": "ml",
+            "value": 150.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "H''": {
+        "name": "spray_pesticide",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": null,
+            "excluded_values": [
+              "plant_B",
+              "plant_D"
+            ],
+            "type": "str"
+          },
+          "ml": {
+            "name": "ml",
+            "value": null,
+            "excluded_values": [
+              150.0
+            ],
+            "type": "float"
+          }
+        }
+      },
+      "I": {
+        "name": "refill_water_tank",
+        "arguments": {}
+      },
+      "J": {
+        "name": "refill_pesticide",
+        "arguments": {}
+      },
+      "K": {
+        "name": "recharge",
+        "arguments": {}
+      },
+      "L": {
+        "name": "sense_pose",
+        "arguments": {}
+      },
+      "M": {
+        "name": "sense_battery",
+        "arguments": {}
+      },
+      "N": {
+        "name": "sense_hopper",
+        "arguments": {}
+      },
+      "O": {
+        "name": "list_plants",
+        "arguments": {}
+      },
+      "P": {
+        "name": "scan_plant",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "Q": {
+        "name": "get_plant_pose",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "R": {
+        "name": "get_station_pose",
+        "arguments": {
+          "station_name": {
+            "name": "station_name",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      }
+    }
+  },
+  {
+    "prompt_id": "robot_farm_4",
+    "world": "robot_farm",
+    "prompt": "Inspect plant B. If you detect pests, apply 20 milliliters of pesticide. Harvest only if its fruit is ripe. Empty the hopper at the bin and go back to base.",
+    "nodes": [
+      {
+        "name": "G0",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "A"
+            ],
+            "from": "G0",
+            "to": "G1"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P'",
+              "Q",
+              "R"
+            ],
+            "from": "G0",
+            "to": "G0"
+          }
+        ]
+      },
+      {
+        "name": "G1",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "P"
+            ],
+            "from": "G1",
+            "to": "G2"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P'",
+              "Q",
+              "R"
+            ],
+            "from": "G1",
+            "to": "G1"
+          }
+        ]
+      },
+      {
+        "name": "G2",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C"
+            ],
+            "from": "G2",
+            "to": "G3"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P'",
+              "Q",
+              "R"
+            ],
+            "from": "G2",
+            "to": "G2"
+          }
+        ]
+      },
+      {
+        "name": "G3",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "H"
+            ],
+            "from": "G3",
+            "to": "G4"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P'",
+              "Q",
+              "R"
+            ],
+            "from": "G3",
+            "to": "G3"
+          }
+        ]
+      },
+      {
+        "name": "G4",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C'"
+            ],
+            "from": "G4",
+            "to": "G5"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P'",
+              "Q",
+              "R"
+            ],
+            "from": "G4",
+            "to": "G4"
+          }
+        ]
+      },
+      {
+        "name": "G5",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "F"
+            ],
+            "from": "G5",
+            "to": "G6"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P'",
+              "Q",
+              "R"
+            ],
+            "from": "G5",
+            "to": "G5"
+          }
+        ]
+      },
+      {
+        "name": "G6",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "D",
+              "C''"
+            ],
+            "from": "G6",
+            "to": "G7"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P'",
+              "Q",
+              "R"
+            ],
+            "from": "G6",
+            "to": "G6"
+          }
+        ]
+      },
+      {
+        "name": "G7",
+        "is_final": true,
+        "transitions": [
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P'",
+              "Q",
+              "R"
+            ],
+            "from": "G7",
+            "to": "G7"
+          }
+        ]
+      }
+    ],
+    "alphabet": {
+      "A": {
+        "name": "unlock_safety_mode",
+        "arguments": {}
+      },
+      "B": {
+        "name": "lock_safety_mode",
+        "arguments": {}
+      },
+      "C": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 3.5,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 12.5,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C'": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 6.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 18.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C''": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 5.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 5.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C'''": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": null,
+            "excluded_values": [
+              3.5,
+              6.0,
+              5.0
+            ],
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": null,
+            "excluded_values": [
+              12.5,
+              18.0,
+              5.0
+            ],
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": null,
+            "excluded_values": [
+              0.0
+            ],
+            "type": "float"
+          }
+        }
+      },
+      "D": {
+        "name": "move_home",
+        "arguments": {}
+      },
+      "E": {
+        "name": "harvest_fruit",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "F": {
+        "name": "dump_hopper",
+        "arguments": {}
+      },
+      "G": {
+        "name": "water_plant",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          },
+          "liters": {
+            "name": "liters",
+            "value": null,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "H": {
+        "name": "spray_pesticide",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": "plant_B",
+            "excluded_values": null,
+            "type": "str"
+          },
+          "ml": {
+            "name": "ml",
+            "value": 20.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "H'": {
+        "name": "spray_pesticide",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": null,
+            "excluded_values": [
+              "plant_B"
+            ],
+            "type": "str"
+          },
+          "ml": {
+            "name": "ml",
+            "value": null,
+            "excluded_values": [
+              20.0
+            ],
+            "type": "float"
+          }
+        }
+      },
+      "I": {
+        "name": "refill_water_tank",
+        "arguments": {}
+      },
+      "J": {
+        "name": "refill_pesticide",
+        "arguments": {}
+      },
+      "K": {
+        "name": "recharge",
+        "arguments": {}
+      },
+      "L": {
+        "name": "sense_pose",
+        "arguments": {}
+      },
+      "M": {
+        "name": "sense_battery",
+        "arguments": {}
+      },
+      "N": {
+        "name": "sense_hopper",
+        "arguments": {}
+      },
+      "O": {
+        "name": "list_plants",
+        "arguments": {}
+      },
+      "P": {
+        "name": "scan_plant",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": "plant_B",
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "P'": {
+        "name": "scan_plant",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": null,
+            "excluded_values": [
+              "plant_B"
+            ],
+            "type": "str"
+          }
+        }
+      },
+      "Q": {
+        "name": "get_plant_pose",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "R": {
+        "name": "get_station_pose",
+        "arguments": {
+          "station_name": {
+            "name": "station_name",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      }
+    }
+  },
+  {
+    "prompt_id": "robot_farm_5",
+    "world": "robot_farm",
+    "prompt": "Disengage safety. Report your current position, then navigate to the charging pad.Recharge there and re-engage safety.",
+    "nodes": [
+      {
+        "name": "G0",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "A"
+            ],
+            "from": "G0",
+            "to": "G1"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G0",
+            "to": "G0"
+          }
+        ]
+      },
+      {
+        "name": "G1",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "L"
+            ],
+            "from": "G1",
+            "to": "G2"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G1",
+            "to": "G1"
+          }
+        ]
+      },
+      {
+        "name": "G2",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C"
+            ],
+            "from": "G2",
+            "to": "G3"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G2",
+            "to": "G2"
+          }
+        ]
+      },
+      {
+        "name": "G3",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "K"
+            ],
+            "from": "G3",
+            "to": "G4"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G3",
+            "to": "G3"
+          }
+        ]
+      },
+      {
+        "name": "G4",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "B"
+            ],
+            "from": "G4",
+            "to": "G5"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G4",
+            "to": "G4"
+          }
+        ]
+      },
+      {
+        "name": "G5",
+        "is_final": true,
+        "transitions": [
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G5",
+            "to": "G5"
+          }
+        ]
+      }
+    ],
+    "alphabet": {
+      "A": {
+        "name": "unlock_safety_mode",
+        "arguments": {}
+      },
+      "B": {
+        "name": "lock_safety_mode",
+        "arguments": {}
+      },
+      "C": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 1.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 1.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C'": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 5.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 5.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C''": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": null,
+            "excluded_values": [
+              1.0,
+              5.0
+            ],
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": null,
+            "excluded_values": [
+              1.0,
+              5.0
+            ],
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": null,
+            "excluded_values": [
+              0.0
+            ],
+            "type": "float"
+          }
+        }
+      },
+      "D": {
+        "name": "move_home",
+        "arguments": {}
+      },
+      "E": {
+        "name": "harvest_fruit",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "F": {
+        "name": "dump_hopper",
+        "arguments": {}
+      },
+      "G": {
+        "name": "water_plant",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          },
+          "liters": {
+            "name": "liters",
+            "value": null,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "H": {
+        "name": "spray_pesticide",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          },
+          "ml": {
+            "name": "ml",
+            "value": null,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "I": {
+        "name": "refill_water_tank",
+        "arguments": {}
+      },
+      "J": {
+        "name": "refill_pesticide",
+        "arguments": {}
+      },
+      "K": {
+        "name": "recharge",
+        "arguments": {}
+      },
+      "L": {
+        "name": "sense_pose",
+        "arguments": {}
+      },
+      "M": {
+        "name": "sense_battery",
+        "arguments": {}
+      },
+      "N": {
+        "name": "sense_hopper",
+        "arguments": {}
+      },
+      "O": {
+        "name": "list_plants",
+        "arguments": {}
+      },
+      "P": {
+        "name": "scan_plant",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "Q": {
+        "name": "get_plant_pose",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "R": {
+        "name": "get_station_pose",
+        "arguments": {
+          "station_name": {
+            "name": "station_name",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      }
+    }
+  },
+  {
+    "prompt_id": "robot_farm_6",
+    "world": "robot_farm",
+    "prompt": "Harvest plant A, then plant C. Take each load to the collection bin, empty the hopper, and return to base.",
+    "nodes": [
+      {
+        "name": "G0",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "A"
+            ],
+            "from": "G0",
+            "to": "G1"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G0",
+            "to": "G0"
+          }
+        ]
+      },
+      {
+        "name": "G1",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C"
+            ],
+            "from": "G1",
+            "to": "G2"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G1",
+            "to": "G1"
+          }
+        ]
+      },
+      {
+        "name": "G2",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "E"
+            ],
+            "from": "G2",
+            "to": "G3"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G2",
+            "to": "G2"
+          }
+        ]
+      },
+      {
+        "name": "G3",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C'"
+            ],
+            "from": "G3",
+            "to": "G4"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G3",
+            "to": "G3"
+          }
+        ]
+      },
+      {
+        "name": "G4",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "E'"
+            ],
+            "from": "G4",
+            "to": "G5"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G4",
+            "to": "G4"
+          }
+        ]
+      },
+      {
+        "name": "G5",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C''"
+            ],
+            "from": "G5",
+            "to": "G6"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G5",
+            "to": "G5"
+          }
+        ]
+      },
+      {
+        "name": "G6",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "F"
+            ],
+            "from": "G6",
+            "to": "G7"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G6",
+            "to": "G6"
+          }
+        ]
+      },
+      {
+        "name": "G7",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "D",
+              "C'''"
+            ],
+            "from": "G7",
+            "to": "G8"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G7",
+            "to": "G7"
+          }
+        ]
+      },
+      {
+        "name": "G8",
+        "is_final": true,
+        "transitions": [
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G8",
+            "to": "G8"
+          }
+        ]
+      }
+    ],
+    "alphabet": {
+      "A": {
+        "name": "unlock_safety_mode",
+        "arguments": {}
+      },
+      "B": {
+        "name": "lock_safety_mode",
+        "arguments": {}
+      },
+      "C": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 2.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 14.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C'": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 14.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 8.5,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C''": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 6.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 18.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C'''": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 5.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 5.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C''''": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": null,
+            "excluded_values": [
+              2.0,
+              14.0,
+              6.0,
+              5.0
+            ],
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": null,
+            "excluded_values": [
+              14.0,
+              8.5,
+              18.0,
+              5.0
+            ],
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": null,
+            "excluded_values": [
+              0.0
+            ],
+            "type": "float"
+          }
+        }
+      },
+      "D": {
+        "name": "move_home",
+        "arguments": {}
+      },
+      "E": {
+        "name": "harvest_fruit",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": "plant_A",
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "E'": {
+        "name": "harvest_fruit",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": "plant_C",
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "E''": {
+        "name": "harvest_fruit",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": null,
+            "excluded_values": [
+              "plant_A",
+              "plant_C"
+            ],
+            "type": "str"
+          }
+        }
+      },
+      "F": {
+        "name": "dump_hopper",
+        "arguments": {}
+      },
+      "G": {
+        "name": "water_plant",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          },
+          "liters": {
+            "name": "liters",
+            "value": null,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "H": {
+        "name": "spray_pesticide",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          },
+          "ml": {
+            "name": "ml",
+            "value": null,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "I": {
+        "name": "refill_water_tank",
+        "arguments": {}
+      },
+      "J": {
+        "name": "refill_pesticide",
+        "arguments": {}
+      },
+      "K": {
+        "name": "recharge",
+        "arguments": {}
+      },
+      "L": {
+        "name": "sense_pose",
+        "arguments": {}
+      },
+      "M": {
+        "name": "sense_battery",
+        "arguments": {}
+      },
+      "N": {
+        "name": "sense_hopper",
+        "arguments": {}
+      },
+      "O": {
+        "name": "list_plants",
+        "arguments": {}
+      },
+      "P": {
+        "name": "scan_plant",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "Q": {
+        "name": "get_plant_pose",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "R": {
+        "name": "get_station_pose",
+        "arguments": {
+          "station_name": {
+            "name": "station_name",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      }
+    }
+  },
+  {
+    "prompt_id": "robot_farm_7",
+    "world": "robot_farm",
+    "prompt": "Water plant C with 4.5 liters while keeping moisture within safe limits. Then harvest plant A and deliver the load to the collection bin.Empty the hopper and return to base.",
+    "nodes": [
+      {
+        "name": "G0",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "A"
+            ],
+            "from": "G0",
+            "to": "G1"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G0",
+            "to": "G0"
+          }
+        ]
+      },
+      {
+        "name": "G1",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C"
+            ],
+            "from": "G1",
+            "to": "G2"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G1",
+            "to": "G1"
+          }
+        ]
+      },
+      {
+        "name": "G2",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "G"
+            ],
+            "from": "G2",
+            "to": "G3"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G2",
+            "to": "G2"
+          }
+        ]
+      },
+      {
+        "name": "G3",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C'"
+            ],
+            "from": "G3",
+            "to": "G4"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G3",
+            "to": "G3"
+          }
+        ]
+      },
+      {
+        "name": "G4",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "E"
+            ],
+            "from": "G4",
+            "to": "G5"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G4",
+            "to": "G4"
+          }
+        ]
+      },
+      {
+        "name": "G5",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C''"
+            ],
+            "from": "G5",
+            "to": "G6"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G5",
+            "to": "G5"
+          }
+        ]
+      },
+      {
+        "name": "G6",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "F"
+            ],
+            "from": "G6",
+            "to": "G7"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G6",
+            "to": "G6"
+          }
+        ]
+      },
+      {
+        "name": "G7",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "D",
+              "C'''"
+            ],
+            "from": "G7",
+            "to": "G8"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G7",
+            "to": "G7"
+          }
+        ]
+      },
+      {
+        "name": "G8",
+        "is_final": true,
+        "transitions": [
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P",
+              "Q",
+              "R"
+            ],
+            "from": "G8",
+            "to": "G8"
+          }
+        ]
+      }
+    ],
+    "alphabet": {
+      "A": {
+        "name": "unlock_safety_mode",
+        "arguments": {}
+      },
+      "B": {
+        "name": "lock_safety_mode",
+        "arguments": {}
+      },
+      "C": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 14.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 8.5,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C'": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 2.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 14.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C''": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 6.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 18.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C'''": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 5.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 5.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C''''": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": null,
+            "excluded_values": [
+              14.0,
+              2.0,
+              6.0,
+              5.0
+            ],
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": null,
+            "excluded_values": [
+              8.5,
+              14.0,
+              18.0,
+              5.0
+            ],
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": null,
+            "excluded_values": [
+              0.0
+            ],
+            "type": "float"
+          }
+        }
+      },
+      "D": {
+        "name": "move_home",
+        "arguments": {}
+      },
+      "E": {
+        "name": "harvest_fruit",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": "plant_A",
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "E'": {
+        "name": "harvest_fruit",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": "plant_C",
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "E''": {
+        "name": "harvest_fruit",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": null,
+            "excluded_values": [
+              "plant_A",
+              "plant_C"
+            ],
+            "type": "str"
+          }
+        }
+      },
+      "F": {
+        "name": "dump_hopper",
+        "arguments": {}
+      },
+      "G": {
+        "name": "water_plant",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": "plant_C",
+            "excluded_values": null,
+            "type": "str"
+          },
+          "liters": {
+            "name": "liters",
+            "value": 4.5,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "G'": {
+        "name": "water_plant",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": null,
+            "excluded_values": [
+              "plant_C"
+            ],
+            "type": "str"
+          },
+          "liters": {
+            "name": "liters",
+            "value": null,
+            "excluded_values": [
+              4.5
+            ],
+            "type": "float"
+          }
+        }
+      },
+      "H": {
+        "name": "spray_pesticide",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          },
+          "ml": {
+            "name": "ml",
+            "value": null,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "I": {
+        "name": "refill_water_tank",
+        "arguments": {}
+      },
+      "J": {
+        "name": "refill_pesticide",
+        "arguments": {}
+      },
+      "K": {
+        "name": "recharge",
+        "arguments": {}
+      },
+      "L": {
+        "name": "sense_pose",
+        "arguments": {}
+      },
+      "M": {
+        "name": "sense_battery",
+        "arguments": {}
+      },
+      "N": {
+        "name": "sense_hopper",
+        "arguments": {}
+      },
+      "O": {
+        "name": "list_plants",
+        "arguments": {}
+      },
+      "P": {
+        "name": "scan_plant",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "Q": {
+        "name": "get_plant_pose",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "R": {
+        "name": "get_station_pose",
+        "arguments": {
+          "station_name": {
+            "name": "station_name",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      }
+    }
+  },
+  {
+    "prompt_id": "robot_farm_8",
+    "world": "robot_farm",
+    "prompt": "First refill the water tank at the water station.Then service plant D: inspect it, apply 50 milliliters of pesticide if pests are present, and water it with 2.5 liters. Return to base and re-engage safety.",
+    "nodes": [
+      {
+        "name": "G0",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "A"
+            ],
+            "from": "G0",
+            "to": "G1"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P'",
+              "Q",
+              "R"
+            ],
+            "from": "G0",
+            "to": "G0"
+          }
+        ]
+      },
+      {
+        "name": "G1",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C"
+            ],
+            "from": "G1",
+            "to": "G2"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P'",
+              "Q",
+              "R"
+            ],
+            "from": "G1",
+            "to": "G1"
+          }
+        ]
+      },
+      {
+        "name": "G2",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "I"
+            ],
+            "from": "G2",
+            "to": "G3"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P'",
+              "Q",
+              "R"
+            ],
+            "from": "G2",
+            "to": "G2"
+          }
+        ]
+      },
+      {
+        "name": "G3",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "P"
+            ],
+            "from": "G3",
+            "to": "G4"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P'",
+              "Q",
+              "R"
+            ],
+            "from": "G3",
+            "to": "G3"
+          }
+        ]
+      },
+      {
+        "name": "G4",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "C'"
+            ],
+            "from": "G4",
+            "to": "G5"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P'",
+              "Q",
+              "R"
+            ],
+            "from": "G4",
+            "to": "G4"
+          }
+        ]
+      },
+      {
+        "name": "G5",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "H"
+            ],
+            "from": "G5",
+            "to": "G6"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P'",
+              "Q",
+              "R"
+            ],
+            "from": "G5",
+            "to": "G5"
+          }
+        ]
+      },
+      {
+        "name": "G6",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "G"
+            ],
+            "from": "G6",
+            "to": "G7"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P'",
+              "Q",
+              "R"
+            ],
+            "from": "G6",
+            "to": "G6"
+          }
+        ]
+      },
+      {
+        "name": "G7",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "D",
+              "C''"
+            ],
+            "from": "G7",
+            "to": "G8"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P'",
+              "Q",
+              "R"
+            ],
+            "from": "G7",
+            "to": "G7"
+          }
+        ]
+      },
+      {
+        "name": "G8",
+        "is_final": false,
+        "transitions": [
+          {
+            "symbols": [
+              "B"
+            ],
+            "from": "G8",
+            "to": "G9"
+          },
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P'",
+              "Q",
+              "R"
+            ],
+            "from": "G8",
+            "to": "G8"
+          }
+        ]
+      },
+      {
+        "name": "G9",
+        "is_final": true,
+        "transitions": [
+          {
+            "symbols": [
+              "L",
+              "M",
+              "N",
+              "O",
+              "P'",
+              "Q",
+              "R"
+            ],
+            "from": "G9",
+            "to": "G9"
+          }
+        ]
+      }
+    ],
+    "alphabet": {
+      "A": {
+        "name": "unlock_safety_mode",
+        "arguments": {}
+      },
+      "B": {
+        "name": "lock_safety_mode",
+        "arguments": {}
+      },
+      "C": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 18.5,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 2.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C'": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 16.5,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 15.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C''": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": 5.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": 5.0,
+            "excluded_values": null,
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": 0.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "C'''": {
+        "name": "move_to",
+        "arguments": {
+          "x": {
+            "name": "x",
+            "value": null,
+            "excluded_values": [
+              18.5,
+              16.5,
+              5.0
+            ],
+            "type": "float"
+          },
+          "y": {
+            "name": "y",
+            "value": null,
+            "excluded_values": [
+              2.0,
+              15.0,
+              5.0
+            ],
+            "type": "float"
+          },
+          "yaw": {
+            "name": "yaw",
+            "value": null,
+            "excluded_values": [
+              0.0
+            ],
+            "type": "float"
+          }
+        }
+      },
+      "D": {
+        "name": "move_home",
+        "arguments": {}
+      },
+      "E": {
+        "name": "harvest_fruit",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "F": {
+        "name": "dump_hopper",
+        "arguments": {}
+      },
+      "G": {
+        "name": "water_plant",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": "plant_D",
+            "excluded_values": null,
+            "type": "str"
+          },
+          "liters": {
+            "name": "liters",
+            "value": 2.5,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "G'": {
+        "name": "water_plant",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": null,
+            "excluded_values": [
+              "plant_D"
+            ],
+            "type": "str"
+          },
+          "liters": {
+            "name": "liters",
+            "value": null,
+            "excluded_values": [
+              2.5
+            ],
+            "type": "float"
+          }
+        }
+      },
+      "H": {
+        "name": "spray_pesticide",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": "plant_D",
+            "excluded_values": null,
+            "type": "str"
+          },
+          "ml": {
+            "name": "ml",
+            "value": 50.0,
+            "excluded_values": null,
+            "type": "float"
+          }
+        }
+      },
+      "H'": {
+        "name": "spray_pesticide",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": null,
+            "excluded_values": [
+              "plant_D"
+            ],
+            "type": "str"
+          },
+          "ml": {
+            "name": "ml",
+            "value": null,
+            "excluded_values": [
+              50.0
+            ],
+            "type": "float"
+          }
+        }
+      },
+      "I": {
+        "name": "refill_water_tank",
+        "arguments": {}
+      },
+      "J": {
+        "name": "refill_pesticide",
+        "arguments": {}
+      },
+      "K": {
+        "name": "recharge",
+        "arguments": {}
+      },
+      "L": {
+        "name": "sense_pose",
+        "arguments": {}
+      },
+      "M": {
+        "name": "sense_battery",
+        "arguments": {}
+      },
+      "N": {
+        "name": "sense_hopper",
+        "arguments": {}
+      },
+      "O": {
+        "name": "list_plants",
+        "arguments": {}
+      },
+      "P": {
+        "name": "scan_plant",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": "plant_D",
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "P'": {
+        "name": "scan_plant",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": null,
+            "excluded_values": [
+              "plant_D"
+            ],
+            "type": "str"
+          }
+        }
+      },
+      "Q": {
+        "name": "get_plant_pose",
+        "arguments": {
+          "plant_id": {
+            "name": "plant_id",
+            "value": null,
+            "excluded_values": null,
+            "type": "str"
+          }
+        }
+      },
+      "R": {
+        "name": "get_station_pose",
+        "arguments": {
+          "station_name": {
+            "name": "station_name",
+            "value": null,
+            "excluded_values": null,
             "type": "str"
           }
         }

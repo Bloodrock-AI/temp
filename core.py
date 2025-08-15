@@ -1,4 +1,5 @@
 from dataclasses import dataclass, field
+from core_2 import core
 
 from typing import List, Tuple, Optional
 
@@ -35,22 +36,30 @@ G2.transitions = [
     Transition(symbol="B01'", _from=G2, _to=G2),
 ]
 
-paths = [
-    {
-        "G0": 1,
-        "G1": 0,
-        "G2": 0,
-    }
-]
-path_sequences = [
-    {
-        "G0": [ [0] ],
-        "G1": [ [] ],
-        "G2": [ [] ],
-    }
-]
+# paths = [
+#     {
+#         "G0": 1,
+#         "G1": 0,
+#         "G2": 0,
+#         "G3": 0,
+#         "G4": 0,
+#         "G5": 0,
+#         "G6": 0,
+#     }
+# ]
+# path_sequences = [
+#     {
+#         "G0": [ ['0'] ],
+#         "G1": [ [] ],
+#         "G2": [ [] ],
+#         "G3": [ [] ],
+#         "G4": [ [] ],
+#         "G5": [ [] ],
+#         "G6": [ [] ],
+#     }
+# ]
 
-def get_path(dfa: List[Node], start: Node, k: int):
+def get_path(dfa: List[Node], start: Node, k: int, paths: List[dict], path_sequences: Optional[List[dict]]) -> None:
     if k < len(paths):
         return paths[k]
 
@@ -63,7 +72,7 @@ def get_path(dfa: List[Node], start: Node, k: int):
         for node in dfa:
             for transition in node.transitions:
                 new_path_counts[transition._to.name] += paths[i-1][node.name]
-               
+
                 new_path_seq[transition._to.name].extend(
                     [*path, transition.symbol] for path in path_sequences[i-1][node.name] if path
                 )
@@ -104,57 +113,87 @@ def LD_norm(a: List[str], b: List[str], fail_states: Optional[int] = None) -> fl
 def path_correctness(a: List[str], b: List[str]) -> float:
     return 1 - LD_norm(a, b)
 
-def evaluate(seq: List[str], dfa: List[Node]) -> float:
-    
+def evaluate(
+    seq: List[str],
+    dfa: List[Node],
+) -> float:
+
+    path_sequences = [{
+        "G0": [ ['0'] ],
+    }]
+
+    paths = [{
+        "G0": 1,
+    }]
+
+    for node in dfa:
+        if node.name == "G0": continue
+        path_sequences[0][node.name] = [[]]
+        paths[0][node.name] = 0
+
     start = dfa[0]
     final = dfa[-1]
     max_pc = 0
     min_ld = len(seq)
+    max_core_score = 0
 
     # case 1: |seq| == |target|
-    get_path(dfa, start, len(seq)-1)
+    get_path(dfa, start, len(seq)-1, paths, path_sequences)
 
     for path in path_sequences[len(seq)-1][final.name]:
-        print(f"evaluating: {path} with {seq}")
+        # print(f"evaluating: {path} with {seq}")
         pc = path_correctness(path[1:], seq[1:])
         ld = LD(path[1:], seq[1:])
-        print(f"pc: {pc}")
+        core_score = core(''.join(path[1:]), ''.join(seq[1:]))
+        # print(f"pc: {pc}")
         if pc > max_pc:
             max_pc = pc
-        print(f"ld: {ld}")
+        # print(f"ld: {ld}")
         if ld < min_ld:
             min_ld = ld
+        if core_score > max_core_score:
+            max_core_score = core_score
 
     if max_pc == 1: return max_pc
 
     for i in range(len(seq)-min_ld, len(seq)):
         for path in path_sequences[len(seq)-i-1][final.name]:
-            print(f"evaluating: {path} with {seq}")
+            # print(f"evaluating: {path} with {seq}")
             pc = path_correctness(path[1:], seq[1:])
             ld = LD(path[1:], seq[1:])
-            print(f"pc: {pc}")
+            core_score = core(''.join(path[1:]), ''.join(seq[1:]))
+            # print(f"pc: {pc}")
             if pc > max_pc:
                 max_pc = pc
-            print(f"ld: {ld}")
+            # print(f"ld: {ld}")
             if ld < min_ld:
                 min_ld = ld
+            if core_score > max_core_score:
+                max_core_score = core_score
 
-    if max_pc == 1: return max_pc
+    # if max_pc == 1: return max_pc
 
-    get_path(dfa, start, len(seq)+min_ld)
+    get_path(dfa, start, len(seq)+min_ld, paths, path_sequences)
     for i in range(len(seq), len(seq)+min_ld):
         for path in path_sequences[len(seq)-i-1][final.name]:
-            print(f"evaluating: {path} with {seq}")
+            # print(f"evaluating: {path} with {seq}")
             pc = path_correctness(path[1:], seq[1:])
             ld = LD(path[1:], seq[1:])
-            print(f"pc: {pc}")
+            core_score = core(''.join(path[1:]), ''.join(seq[1:]))
+            # print(f"pc: {pc}")
             if pc > max_pc:
                 max_pc = pc
-            print(f"ld: {ld}")
+            # print(f"ld: {ld}")
             if ld < min_ld:
                 min_ld = ld
+            if core_score > max_core_score:
+                max_core_score = core_score
 
-    return max_pc
+    return {
+        "max_pc": max_pc,
+        "min_ld": min_ld,
+        "max_core_score": max_core_score,
+    }
 
 def actions_to_states(seq: List[str], dfa: List[Node]) -> List[str]:
     """
@@ -251,7 +290,7 @@ def main() -> None:
     IN_SEQ = ["0", "A", "B01"] 
 
     simple_seq, fail_states = simplify_action_sequence(IN_SEQ, [G0, G1, G2])
-    print(simple_seq)    
+    print(simple_seq)
 
     # a = evaluate_v2(simple_seq, [G0, G1, G2], ["0", "A", "B01"])
     # print(a)

@@ -1,6 +1,7 @@
 from dfas.dfa import Node, Transition, FunctionCall, FunctionArgument
 from build_json_dataset import serialize_function_call
 from core import evaluate, Transition as CoreTransition
+# from core_2 import core
 
 import sys
 import re
@@ -80,20 +81,26 @@ def parse_function_calls_from_string(seq_str: str) -> List[Dict[str, Optional[st
         {"name": ..., "arguments": {...}, "response": ...}
     ]
     """
-    out = seq_str.replace("'", "\"").replace("[", "").replace("]", "").replace("\n", "").replace("=", ":").strip().split("), FunctionCalled(")
-    out = [s.replace("FunctionCalled", "") for s in out if s.strip()]
-    for index, s in enumerate(out):
-        s = s.strip()
-        if s.endswith(")"):
-            s = s[:-1]
-        if s.startswith("("):
-            s = s[1:]
-        s = f"{{{s}}}"
-        s = re.sub(r'(\w+):', r'"\1":', s)
-        s = fix_response_quotes(s)
-        s += "}"
-        out[index] = s
-    return [json.loads(s) for s in out if s.strip()]
+    # out = seq_str.replace("'", "\"").replace("[", "").replace("]", "").replace("\n", "").replace("=", ":").strip().split("), FunctionCalled(")
+    # out = [s.replace("FunctionCalled", "") for s in out if s.strip()]
+    # for index, s in enumerate(out):
+    #     s = s.strip()
+    #     if s.endswith(")"):
+    #         s = s[:-1]
+    #     if s.startswith("("):
+    #         s = s[1:]
+    #     s = f"{{{s}}}"
+    #     s = re.sub(r'(\w+):', r'"\1":', s)
+    #     s = fix_response_quotes(s)
+    #     s += "}"
+    #     out[index] = s       
+    # return [json.loads(s) for s in out if s.strip()]
+    
+    fcs = json.loads(seq_str)
+    # print(f"Parsed function calls: {fcs}")
+    for fc in fcs:
+        fc["arguments"] = json.loads(fc["arguments"])
+    return fcs
 
 alphabet_proc = {
     "set_config": [
@@ -169,9 +176,13 @@ def fc2symbol(fc, alphabet) -> str:
     
     out_symbol = ""
     
-    for symbol in alphabet[fc["name"]]:
+    # print(f"Function call: {fc['function_name']}")
+    # print(f"Arguments: {type(fc['arguments'])}")
+    # print(f"Alphabet: {alphabet}")
+    
+    for symbol in alphabet[fc["function_name"]]:
         # print("--------")
-        # print(f"Checking symbol: {symbol['symbol']} for function call: {fc['name']}")
+        # print(f"Checking symbol: {symbol['symbol']} for function call: {fc['function_name']}")
         
         try:
             for arg_name, arg in symbol["arguments"].items():
@@ -188,7 +199,7 @@ def fc2symbol(fc, alphabet) -> str:
                     # throws KeyError if argument is not present
                     # throws AssertionError if argument value does not match
                     assert fc["arguments"][arg_name] == arg_value["value"]
-                    print(f"Argument {arg_name} matched with value: {arg_value['value']}")
+                    # print(f"Argument {arg_name} matched with value: {arg_value['value']}")
                     out_symbol = symbol["symbol"]
                 else:
                     # this argument is not required
@@ -289,24 +300,34 @@ def evaluate_world(world, result):
     # Convert the alphabet to a processing format
     alphabet_proc = convert_alphabet_to_proc(world["alphabet"])
     
+    # print(f"Alphabet processed: {alphabet_proc}")
+    # print("----------")
+    # print(f"Result: {result}")
+    
     # Parse the function calls from the result
     function_calls = parse_function_calls_from_string(result["functions_called"])
-    print(f"Parsed function calls: {function_calls}")
-    print("----------")
+    # print(f"Parsed function calls: {function_calls}")
+    # print("----------")
     
     # Check each function call against the alphabet
     agent_sequence = []
     for fc in function_calls:
         symbol = fc2symbol(fc, alphabet_proc)
         if not symbol:
-            print(f"Function call {fc} does not match any symbol in the alphabet.")
+            # print(f"Function call {fc} does not match any symbol in the alphabet.")
             continue
         agent_sequence.append(symbol)
-        print(f"Function call {fc} matches symbol: {symbol}")
+        # print(f"Function call {fc} matches symbol: {symbol}")
     
     dfa = world["nodes"]
     
-    return evaluate(['0', *agent_sequence], convert_dfa(dfa))
+    core_stats = evaluate(['0', *agent_sequence], convert_dfa(dfa))
+    
+    return {
+        "prompt_id": world["prompt_id"],
+        "agent_sequence": agent_sequence,
+        "core_stats": core_stats,
+    }
 
 if __name__ == "__main__":
     dataset_file = sys.argv[1]
@@ -316,13 +337,13 @@ if __name__ == "__main__":
     with open(dataset_file, 'r') as f:
         dataset = json.load(f)
 
-    world = load_world(dataset[2])
-    print(f"World loaded: {world['prompt_id']}")
+    world = load_world(dataset[32])
+    print(f"World loaded: {world[32]}")
 
     # Load the results (json)
     with open(results_file, 'r') as f:
         results = json.load(f)
     
-    print(f"Results loaded: {results[13]['prompt']}")
+    print(f"Results loaded: {results[0]['prompt']}")
     
-    print(evaluate_world(world, results[13]))
+    print(evaluate_world(world, results[0]))

@@ -104,7 +104,8 @@ def core(predicted, gold, nw_coeff=0.5, verbose=False):
     """
     Core function to compute the average cost of alignment
     between predicted and gold sequences.
-    """
+    """ 
+    
     avg_cost = needleman_wunsch(predicted, gold)
     ktc_value, matched_symbols = ktc(predicted, gold)
     
@@ -221,42 +222,43 @@ def generate_unique_sequences(a, b, c):
     return list(sequences)
 
 
-COUNT = 35
-TARGET_SEQUENCES = []
-# List of increasingly scrambled sequences of all lengths and complexities (produced using TARGET_SEQUENCES)
-SCRAMBLED_BIN = []
-# List of sequences with fail states added of all length and complexities (produced using TARGET_SEQUENCES)
-# invalid length-sparcity combinations will be ignored (e.g. length=2, sparcity=0.3)
-FAIL_STATES_BIN = []
-# List of sequences with both fail states and scrambled sequences of all lengths and complexities
-# invalid length-sparcity combinations will be ignored (e.g. length=2, sparcity=0.3)
-COMBINED_BIN = []
-
-for length in range (2, 10):
-    for complexity in range(2, 15):
-        # print(f"Generating sequences with complexity {complexity} and length {length}")
-        TARGET_SEQUENCES.extend(generate_unique_sequences(complexity, length, COUNT))
-
-for seq in TARGET_SEQUENCES:
-    # Scramble each sequence with a random Kendall distance
-    for scramble_length in range(0, comb(len(seq), 2) + 1):
-        scrambled = scramble_with_kendall(seq, scramble_length, randomize=True)
-        # print(f"Scrambled sequence: {scrambled}")
-        
-        # Calculate Kendall Tau for the scrambled sequence
-        tau_value, _ = ktc(scrambled, seq)
-        # print(f"Kendall Tau for scrambled sequence: {tau_value}")
-
-        SCRAMBLED_BIN.append((scrambled, seq, tau_value))
-
-for seq in TARGET_SEQUENCES:
-    # Add fail states to each sequence with varying sparcity levels
-    for sparcity in [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]:
-        fail_seq = add_fail_states(seq, sparcity)
-        if fail_seq is not None:
-            FAIL_STATES_BIN.append((fail_seq, seq, sparcity))
 
 if __name__ == "__main__":
+    COUNT = 35
+    TARGET_SEQUENCES = []
+    # List of increasingly scrambled sequences of all lengths and complexities (produced using TARGET_SEQUENCES)
+    SCRAMBLED_BIN = []
+    # List of sequences with fail states added of all length and complexities (produced using TARGET_SEQUENCES)
+    # invalid length-sparcity combinations will be ignored (e.g. length=2, sparcity=0.3)
+    FAIL_STATES_BIN = []
+    # List of sequences with both fail states and scrambled sequences of all lengths and complexities
+    # invalid length-sparcity combinations will be ignored (e.g. length=2, sparcity=0.3)
+    COMBINED_BIN = []
+
+    for length in range (2, 10):
+        for complexity in range(2, 15):
+            # print(f"Generating sequences with complexity {complexity} and length {length}")
+            TARGET_SEQUENCES.extend(generate_unique_sequences(complexity, length, COUNT))
+
+    for seq in TARGET_SEQUENCES:
+        # Scramble each sequence with a random Kendall distance
+        for scramble_length in range(0, comb(len(seq), 2) + 1):
+            scrambled = scramble_with_kendall(seq, scramble_length, randomize=True)
+            # print(f"Scrambled sequence: {scrambled}")
+            
+            # Calculate Kendall Tau for the scrambled sequence
+            tau_value, _ = ktc(scrambled, seq)
+            # print(f"Kendall Tau for scrambled sequence: {tau_value}")
+
+            SCRAMBLED_BIN.append((scrambled, seq, tau_value))
+
+    for seq in TARGET_SEQUENCES:
+        # Add fail states to each sequence with varying sparcity levels
+        for sparcity in [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]:
+            fail_seq = add_fail_states(seq, sparcity)
+            if fail_seq is not None:
+                FAIL_STATES_BIN.append((fail_seq, seq, sparcity))
+
     print("Generating sequences and plotting...")
     
     # Create output directory for saving plots
