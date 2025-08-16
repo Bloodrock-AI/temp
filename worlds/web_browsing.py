@@ -85,7 +85,7 @@ class WebBrowsing(World):
             return f"Moved to {file_name}."
         return "Page not found."
 
-    def get_page_source(self, ) -> Optional[str]:
+    def get_page_source(self, ) -> str:
         """
         Retrieves the HTML source of the current page.
         
@@ -108,7 +108,7 @@ class WebBrowsing(World):
                 return text in file.read()
         return False
 
-    def get_current_url(self) -> Optional[str]:
+    def get_current_url(self) -> str:
         """
         Retrieves the currently loaded page's file name.
         

@@ -68,7 +68,7 @@ class CRUD(World):
         """Generates the current timestamp in ISO 8601 format."""
         return datetime.utcnow().isoformat() + "Z"
 
-    def add_user(self, name: str, age: int, email: Optional[str] = None) -> str:
+    def add_user(self, name: str, age: int, email: str = None) -> str:
         """
         Adds a new user to the database and returns the user ID.
     

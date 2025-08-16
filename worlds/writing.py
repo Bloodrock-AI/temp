@@ -128,7 +128,7 @@ class Writing(World):
             }
         ]
 
-    def add_article(self, article: Optional[str] = None) -> str:
+    def add_article(self, article: str = None) -> str:
         """
         Adds an article (e.g., 'a', 'the') to the sentence.
         
@@ -142,7 +142,7 @@ class Writing(World):
         self.world_state["sentence"] += word + " "
         return f"Added article: '{word}'"
 
-    def add_noun(self, noun: Optional[str] = None) -> str:
+    def add_noun(self, noun: str = None) -> str:
         """
         Adds a noun to the sentence.
         
@@ -156,7 +156,7 @@ class Writing(World):
         self.world_state["sentence"] += word + " "
         return f"Added noun: '{word}'"
 
-    def add_verb(self, verb: Optional[str] = None) -> str:
+    def add_verb(self, verb: str = None) -> str:
         """
         Adds a verb to the sentence.
         
@@ -170,7 +170,7 @@ class Writing(World):
         self.world_state["sentence"] += word + " "
         return f"Added verb: '{word}'"
 
-    def add_adjective(self, adjective: Optional[str] = None) -> str:
+    def add_adjective(self, adjective: str = None) -> str:
         """
         Adds an adjective to the sentence.
         
@@ -184,7 +184,7 @@ class Writing(World):
         self.world_state["sentence"] += word + " "
         return f"Added adjective: '{word}'"
 
-    def add_preposition(self, preposition: Optional[str] = None) -> str:
+    def add_preposition(self, preposition: str = None) -> str:
         """
         Adds a preposition to the sentence.
         

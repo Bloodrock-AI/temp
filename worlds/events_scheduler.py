@@ -105,7 +105,7 @@ class EventsScheduler(World):
             return f"Event '{event_name}' rescheduled to {new_time}."
         return f"Event '{event_name}' not found."
 
-    def get_event_time(self, event_name: str) -> Optional[str]:
+    def get_event_time(self, event_name: str) -> str:
         """
         Retrieves the scheduled time of an event.
         
@@ -114,7 +114,7 @@ class EventsScheduler(World):
         """
         return self.world_state.get(event_name, None)
 
-    def time_until_event(self, event_name: str) -> Optional[str]:
+    def time_until_event(self, event_name: str) -> str:
         """
         Calculates the remaining time until a scheduled event.
         

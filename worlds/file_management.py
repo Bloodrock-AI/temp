@@ -111,7 +111,7 @@ class FileManagement(World):
             return f"File '{filename}' deleted."
         return f"File '{filename}' not found."
 
-    def read_file(self, filename: str) -> Optional[str]:
+    def read_file(self, filename: str) -> str:
         """
         Reads the content of a file.
         
@@ -204,7 +204,7 @@ class FileManagement(World):
         """
         return filename in self.world_state
 
-    def get_file_size(self, filename: str) -> Optional[int]:
+    def get_file_size(self, filename: str) -> int:
         """
         Returns the size of the file content in characters.
         
@@ -228,7 +228,7 @@ class FileManagement(World):
             return f"File '{filename}' cleared."
         return f"File '{filename}' not found."
 
-    def count_words(self, filename: str) -> Optional[int]:
+    def count_words(self, filename: str) -> int:
         """
         Counts the number of words in a file.
         
