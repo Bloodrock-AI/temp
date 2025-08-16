@@ -78,7 +78,7 @@ class Configurations(World):
             }
         ]
 
-    def set_config(self, key: str, value: str, category: Optional[str] = "general", timestamp: Optional[str] = None) -> str:
+    def set_config(self, key: str, value: str, category: str = "general", timestamp: str = None) -> str:
         """
         Sets a configuration value in the database.
         
@@ -93,7 +93,7 @@ class Configurations(World):
         self.world_state[key] = {"value": value, "category": category, "timestamp": timestamp}
         return f"Configuration '{key}' set to '{value}' in category '{category}'."
 
-    def print_config(self, key: str) -> Optional[Dict[str, str]]:
+    def print_config(self, key: str) -> Dict[str, str]:
         """
         Print a configuration value from the database.
         
@@ -102,7 +102,7 @@ class Configurations(World):
         """
         return self.world_state.get(key, None)
 
-    def update_config(self, key: str, new_value: str, category: Optional[str] = None, timestamp: Optional[str] = None) -> str:
+    def update_config(self, key: str, new_value: str, category: str = None, timestamp: str = None) -> str:
         """
         Updates an existing configuration setting.
         

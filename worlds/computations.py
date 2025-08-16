@@ -90,7 +90,7 @@ class Computations(World):
         self.world_state["calculations"].append(f"{a} * {b} = {a * b}")
         return a * b
 
-    def divide_numbers(self, a: int, b: int) -> Optional[float]:
+    def divide_numbers(self, a: int, b: int) -> float:
         """
         Divides the first integer by the second and returns the result.
         
