@@ -5,7 +5,9 @@ from openai_baseline_agent import main as openai_main
 from logger import logger
 
 models = [
-    "gpt-4o-mini"
+    "gpt-4o-mini",
+    "o1-mini",
+    "o3-mini",
 ]
 
 for model in models[:1]:

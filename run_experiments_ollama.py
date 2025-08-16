@@ -8,7 +8,13 @@ models = [
     "qwen3:0.6b",
     "qwen3:1.7b",
     "qwen2.5:0.5b",
-    "qwen3:8b"
+    "qwen3:8b",
+    "deepseek-r1:1.5b",
+    "deepseek-r1:7b",
+    "gpt-oss:20b",
+    "smollm2:135m",
+    "smollm2:360m",
+    "smollm2:1.7b",
 ]
 
 for model in models[:1]:
