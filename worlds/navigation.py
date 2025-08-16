@@ -42,37 +42,37 @@ class Navigation(World):
                 "prompt_id": "navigation_1",
                 "prompt": "Move the player right by 2 steps.", 
                 "setup_functions": [],
-                "expected_sequences": [["move_right(2)"]]
+                "expected_sequences": [["move_right(steps=2)"]]
             },
             {
                 "prompt_id": "navigation_2",
                 "prompt": "Move the player down by 3 steps, then retrieve the player's position.", 
                 "setup_functions": [],
-                "expected_sequences": [["move_down(3)", "get_player_position()"]]
+                "expected_sequences": [["move_down(steps=3)", "get_player_position()"]]
             },
             {
                 "prompt_id": "navigation_3",
                 "prompt": "Move the player right by 1 step, then move down by 2 steps.", 
                 "setup_functions": [],
-                "expected_sequences": [["move_right(1)", "move_down(2)"]]
+                "expected_sequences": [["move_right(steps=1)", "move_down(steps=2)"]]
             },
             {
                 "prompt_id": "navigation_4",
                 "prompt": "Move the player in a square pattern (2 steps right, 2 steps down, 2 steps left, 2 steps up).",
                 "setup_functions": [], 
-                "expected_sequences": [["move_right(2)", "move_down(2)", "move_left(2)", "move_up(2)"]]
+                "expected_sequences": [["move_right(steps=2)", "move_down(steps=2)", "move_left(steps=2)", "move_up(steps=2)"]]
             },
             {
                 "prompt_id": "navigation_5",
                 "prompt": "Move the player to the bottom-right corner of the grid (4,4) as fast as possible.",
                 "setup_functions": [], 
-                "expected_sequences": [["move_right(4)", "move_down(4)"]]
+                "expected_sequences": [["move_right(steps=4)", "move_down(steps=4)"]]
             },
             {
                 "prompt_id": "navigation_6",
                 "prompt": "Move the player right by 3 steps. Reset the player's position and confirm their location.",
                 "setup_functions": [], 
-                "expected_sequences": [["move_right(3)", "reset_position()", "get_player_position()"]]
+                "expected_sequences": [["move_right(steps=3)", "reset_position()", "get_player_position()"]]
             }
         ]      
 

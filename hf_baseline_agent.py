@@ -61,7 +61,7 @@ def load_prompt_dataset(dataset_file: str) -> List[Dict]:
     }
     return prompt_dict, eval_dict
 
-def get_next_function(
+def get_next_functions(
         model: str,
         messages_history: List[Dict] = None,
         client: Optional[InferenceClient] = None,
@@ -77,10 +77,13 @@ def get_next_function(
         max_tokens=max_tokens,
     )
     # get next tool call
-    if output.choices[0].message.tool_calls:
-        print(output.choices[0].message.tool_calls)
-        return output.choices[0].message.tool_calls[0].id, output.choices[0].message.tool_calls[0].function
-    return None, None
+    # if output.choices[0].message.tool_calls:
+    #     print(output.choices[0].message.tool_calls)
+    #     return output.choices[0].message.tool_calls[0].id, output.choices[0].message.tool_calls[0].function
+    
+    # return None, None
+    
+    return output.choices[0].message.tool_calls
 
 client = InferenceClient(provider="auto")
 
@@ -187,7 +190,7 @@ Your task is to give the next function which should be called in order to satisf
 
                 while prompt_iterations < MAX_PROMPT_ITERATIONS:  # Limit iterations to prevent infinite loops
                     try:
-                        tool_call_id, function = get_next_function(
+                        tool_calls = get_next_functions(
                             model=model.value,
                             messages_history=function_agent_messages_history,
                             client=client,
@@ -200,42 +203,56 @@ Your task is to give the next function which should be called in order to satisf
                         print(f'Failed to parse function')
                         break
 
-                    print(f'Calling function: {function}')
+                    if not tool_calls:
+                        print('No tool calls found, ending the process.')
+                        break
+                    
+                    for tool_call in tool_calls:
+                        tool_call_id = tool_call.id
+                        function = FunctionCalled(
+                            name=tool_call.function.name,
+                            arguments=tool_call.function.arguments,
+                            response=None,  # Will be filled after function call
+                        )
 
-                    if function is None:
-                        print("No function needed, ending the process.")
-                        break
+                        print(f'Calling function: {function.name}')
 
-                    try:
-                        # calling the function
-                        resp = getattr(world, function.name)(**json.loads(function.arguments))
-                    except AttributeError as e:
-                        # function does not exist
-                        print(f'Error: {repr(e)}')
-                        print('Failed to call function')
-                        print('[CORE]: FUNCTION CALLING ERROR')
-                        break
-                    except TypeError as e:
-                        # parameter does not exist
-                        print(f'Error: {repr(e)}')
-                        print('Failed to call function')
-                        print('[CORE]: FUNCTION CALLING ERROR')
-                        # function or parameter does not exist
-                        break
-                    except Exception as e:
-                        # "function_name" or "arguments" do not exist -> invalid JSON format
-                        print(f'Error: {repr(e)}')
-                        print('Failed to call function')
-                        logger.mistake_counters["type_2"] += 1
-                        break
+                        try:
+                            # calling the function
+                            resp = getattr(world, function.name)(**json.loads(function.arguments))
+                        except AttributeError as e:
+                            # function does not exist
+                            print(f'Error: {repr(e)}')
+                            print('Failed to call function')
+                            print('[CORE]: FUNCTION CALLING ERROR')
+                            break
+                        except TypeError as e:
+                            # parameter does not exist
+                            print(f'Error: {repr(e)}')
+                            print('Failed to call function')
+                            print('[CORE]: FUNCTION CALLING ERROR')
+                            # function or parameter does not exist
+                            break
+                        except Exception as e:
+                            # "function_name" or "arguments" do not exist -> invalid JSON format
+                            print(f'Error: {repr(e)}')
+                            print('Failed to call function')
+                            logger.mistake_counters["type_2"] += 1
+                            break
 
-                    # add tool call to the history
-                    function_agent_messages_history.append({
-                        "tool_call_id": tool_call_id,
-                        "role": "tool",
-                        "name": function.name,
-                        "content": json.dumps(resp),
-                    })
+                        # add tool call to the history
+                        function_agent_messages_history.append({
+                            "tool_call_id": tool_call_id,
+                            "role": "tool",
+                            "name": function.name,
+                            "content": json.dumps(resp),
+                        })
+
+                        function_sequence.append({
+                            "function_name": function.name,
+                            "arguments": function.arguments,
+                            "response": function.response
+                        })
 
                     # update additional states
                     new_state = world.world_state_description.format(world.world_state)
@@ -246,17 +263,6 @@ Your task is to give the next function which should be called in order to satisf
                         "role": "tool",
                         "name": "update_world_state",
                         "content": json.dumps(new_state),
-                    })
-
-                    fc = FunctionCalled(
-                        name=function.name,
-                        arguments=function.arguments,
-                        response=resp,
-                    )
-                    function_sequence.append({
-                        "function_name": fc.name,
-                        "arguments": fc.arguments,
-                        "response": fc.response
                     })
 
                 # print mistake counters

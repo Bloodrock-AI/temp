@@ -14,6 +14,9 @@ from llm_tool import tool
 from worlds import Automation, Communication, Configurations, CRUD, DesktopManager, EventsScheduler, FileManagement, LegalCompliance, Computations, Navigation, Transactions, Validation, WebBrowsing, Writing
 from logger import logger
 
+from evaluate import load_world, evaluate_world
+from bfcl import evaluate_bfcl
+
 from dataclasses import dataclass
 from typing import List, Dict, Optional, Any, Union
 
@@ -54,7 +57,11 @@ def load_prompt_dataset(dataset_file: str) -> List[Dict]:
     prompt_dict = {
         prompt['prompt_id']: prompt for prompt in dataset
     }
-    return prompt_dict
+    
+    eval_dict = {
+        prompt['prompt_id']: load_world(prompt) for prompt in dataset
+    }
+    return prompt_dict, eval_dict
 
 
 class ToolCall:
@@ -109,7 +116,7 @@ class OpenAIClient:
         self.client_class = "OpenAIClient"
 
 
-    def get_next_function(self, model, messages_history, tool_definitions=None):
+    def get_next_functions(self, model, messages_history, tool_definitions=None):
         """
         Send the conversation history (and tools, if provided) to 
         Ollama's API (running locally) and return the response.
@@ -129,15 +136,17 @@ class OpenAIClient:
             tools=tool_definitions,
             tool_choice="auto"
         )
+        msg = output.choices[0].message
         elapsed_time = round(time.time() - start_time, 4)
 
         # print(response)
         # get next tool call
         # get next tool call
-        if output.choices[0].message.tool_calls:
-            print(output.choices[0].message.tool_calls)
-            return output.choices[0].message.tool_calls[0].id, output.choices[0].message.tool_calls[0].function
-        return None, None
+        # if output.choices[0].message.tool_calls:
+        #     print(output.choices[0].message.tool_calls)
+        #     return output.choices[0].message.tool_calls[0].id, output.choices[0].message.tool_calls[0].function
+        # return None, None
+        return msg, (msg.tool_calls or [])
 
     def get_num_ctx(self, model):
         # token_limits = {
@@ -201,7 +210,7 @@ openai_client = OpenAIClient()
 def main(model: str, output_file: str):
     # load dataset
     dataset_file = 'all_worlds_dataset.json'
-    prompt_dict = load_prompt_dataset(dataset_file)
+    prompt_dict, eval_dict = load_prompt_dataset(dataset_file)
 
     OUTPUT_TOKENS_CAP = 5_000
     
@@ -227,7 +236,7 @@ def main(model: str, output_file: str):
                 
                 print(f'---------------------- PROMPT: {user_prompt} ----------------------')
                 
-                setup_functions = prompt.get('functions', [])
+                setup_functions = prompt.get('setup_functions', [])
 
                 # reset the database
                 world.reset_world_state()
@@ -268,7 +277,7 @@ Your task is to give the next function which should be called in order to satisf
 
                 while prompt_iterations < MAX_PROMPT_ITERATIONS:  # Limit iterations to prevent infinite loops
                     try:
-                        tool_call_id, function = openai_client.get_next_function(
+                        assistant_msg, tool_calls = openai_client.get_next_functions(
                             model=model,
                             messages_history=function_agent_messages_history,
                             tool_definitions=tool_definitions,
@@ -279,72 +288,95 @@ Your task is to give the next function which should be called in order to satisf
                         print(f'Failed to parse function')
                         break
 
-                    if function is None:
-                        print("No function needed, ending the process.")
-                        break
-
-                    print(f'Calling function: {function.name}')
-
-                    try:
-                        # calling the function
-                        resp = getattr(world, function.name)(**json.loads(function.arguments))
-                    except AttributeError as e:
-                        # function does not exist
-                        print(f'Error: {repr(e)}')
-                        print('Failed to call function')
-                        print('[CORE]: FUNCTION CALLING ERROR')
-                        break
-                    except TypeError as e:
-                        # parameter does not exist
-                        print(f'Error: {repr(e)}')
-                        print('Failed to call function')
-                        print('[CORE]: FUNCTION CALLING ERROR')
-                        # function or parameter does not exist
-                        break
-                    except Exception as e:
-                        # "function_name" or "arguments" do not exist -> invalid JSON format
-                        print(f'Error: {repr(e)}')
-                        print('Failed to call function')
-                        logger.mistake_counters["type_2"] += 1
-                        break
-
-                    # add tool call to the history
                     function_agent_messages_history.append({
-                        "tool_call_id": tool_call_id,
-                        "role": "tool",
-                        "name": function.name,
-                        "content": json.dumps(resp),
+                        "role": "assistant",
+                        "content": assistant_msg.content,           # often None when tool_calls present
+                        "tool_calls": [tc.model_dump() for tc in (tool_calls or [])],
                     })
+
+                    if not tool_calls:
+                        print('No tool calls found, ending the process.')
+                        break
+                    
+                    for tool_call in tool_calls:
+                        tool_call_id = tool_call.id
+                        function = FunctionCalled(
+                            name=tool_call.function.name,
+                            arguments=tool_call.function.arguments,
+                            response=None,  # Will be filled after function call
+                        )
+
+                        print(f'Calling function: {function.name}')
+
+                        try:
+                            # calling the function
+                            resp = getattr(world, function.name)(**json.loads(function.arguments))
+                        except AttributeError as e:
+                            # function does not exist
+                            print(f'Error: {repr(e)}')
+                            print('Failed to call function')
+                            print('[CORE]: FUNCTION CALLING ERROR')
+                            break
+                        except TypeError as e:
+                            # parameter does not exist
+                            print(f'Error: {repr(e)}')
+                            print('Failed to call function')
+                            print('[CORE]: FUNCTION CALLING ERROR')
+                            # function or parameter does not exist
+                            break
+                        except Exception as e:
+                            # "function_name" or "arguments" do not exist -> invalid JSON format
+                            print(f'Error: {repr(e)}')
+                            print('Failed to call function')
+                            logger.mistake_counters["type_2"] += 1
+                            break
+
+                        # add tool call to the history
+                        function_agent_messages_history.append({
+                            "tool_call_id": tool_call_id,
+                            "role": "tool",
+                            "name": function.name,
+                            "content": json.dumps(resp),
+                        })
+
+                        function_sequence.append({
+                            "function_name": function.name,
+                            "arguments": function.arguments,
+                            "response": function.response
+                        })
 
                     # update additional states
                     new_state = world.world_state_description.format(world.world_state)
 
-                    # # add current world state to the history
-                    # function_agent_messages_history.append({
-                    #     "tool_call_id": str(uuid.uuid4()),
-                    #     "role": "tool",
-                    #     "name": "update_world_state",
-                    #     "content": json.dumps(new_state),
-                    # })
-
-                    fc = FunctionCalled(
-                        name=function.name,
-                        arguments=function.arguments,
-                        response=resp,
-                    )
-                    function_sequence.append(fc)
+                    # add current world state to the history
+                    function_agent_messages_history.append({
+                        "role": "user",
+                        "content": f"[WORLD STATE]\n{json.dumps(new_state)}",
+                    })
 
                 # print mistake counters
                 print(f'------------ logger ------------')
                 print(f'Functions called: {function_sequence}')
-                
-                RESULTS.append({
+
+                # run evaluation
+                prompt_res = {
                     "world": world.__class__.__name__,
                     "prompt_id": prompt['prompt_id'],
                     "prompt": user_prompt,
-                    "functions_called": str(function_sequence),
+                    "functions_called": json.dumps(function_sequence),
                     "database": world.world_state,
-                })
+                }
+                prompt_eval_world = eval_dict.get(prompt['prompt_id'], None)
+
+                # stats = evaluate_world(prompt_eval_world, prompt_res)
+                bfcl_stats = evaluate_bfcl(world, prompt['prompt_id'], world.world_state.copy(), function_sequence)
+                print(f'------------ stats ------------')
+                # print(f'Stats: {stats}')
+                print(f'BFCL Stats: {bfcl_stats}')
+
+                prompt_res["bfcl_stats"] = bfcl_stats
+                # prompt_res["core_stats"] = stats
+                RESULTS.append(prompt_res)
     except Exception as e:
         print(f'Error: {repr(e)}')
 
