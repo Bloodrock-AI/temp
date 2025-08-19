@@ -256,6 +256,15 @@ def main(model: str, output_file: str):
                     eval(f'world.{function}')
 
                 tool_definitions = parse_world_tools(world.tool_definitions)
+                if isinstance(world, Computations):
+                    tool_definitions[1]["function"]["parameters"]["properties"]["numbers"] = {
+                            "type": "array",
+                            "items": { "type": "integer" },
+                            "description": "A list of integers.",
+                        }
+                    # replace 'float' with 'number'
+                    tool_str = json.dumps(tool_definitions).replace("float", "number")
+                    tool_definitions = json.loads(tool_str)
                 
                 function_agent_messages_history = [
                     {
@@ -303,6 +312,8 @@ Your task is to give the next function which should be called in order to satisf
                         break
                     
                     for tool_call in tool_calls:
+                        if prompt_iterations >= MAX_PROMPT_ITERATIONS:
+                            break
                         tool_call_id = tool_call.id
                         function = FunctionCalled(
                             name=tool_call.function.name,
@@ -348,6 +359,8 @@ Your task is to give the next function which should be called in order to satisf
                             "arguments": function.arguments,
                             "response": function.response
                         })
+                        
+                        prompt_iterations += 1
 
                     # update additional states
                     new_state = world.world_state_description.format(world.world_state)
